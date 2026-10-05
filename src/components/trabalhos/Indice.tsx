@@ -54,11 +54,11 @@ export function Indice({ lista }: { lista: Trabalho[] }) {
           <legend className="sr-only">Filtrar por categoria</legend>
           <div className="flex flex-wrap gap-2">
             <BotaoFiltro ativo={filtro === null} onClick={() => mudar(() => setFiltro(null))}>
-              Todos <span className="text-cinza">{lista.length}</span>
+              Todos <span className={filtro === null ? 'text-grafite' : 'text-cinza'}>{lista.length}</span>
             </BotaoFiltro>
             {usadas.map((c) => (
               <BotaoFiltro key={c} ativo={filtro === c} onClick={() => mudar(() => setFiltro(c))}>
-                {categorias[c]} <span className="text-cinza">{filtrar(lista, c).length}</span>
+                {categorias[c]} <span className={filtro === c ? 'text-grafite' : 'text-cinza'}>{filtrar(lista, c).length}</span>
               </BotaoFiltro>
             ))}
           </div>

@@ -132,7 +132,7 @@ export function Player({ midia, titulo, className = '' }: Props) {
       {pronto && !iniciado && (
         <button type="button" onClick={alternar} className="absolute inset-0 flex items-center justify-center bg-black/25 transition-colors hover:bg-black/10">
           <span className="rotulo flex items-center gap-3 bg-rec px-5 py-4 text-sm text-preto">
-            ▶ Assistir <span className="tc opacity-80">{duracaoCurta(duracao)}</span>
+            ▶ Assistir <span className="tc">{duracaoCurta(duracao)}</span>
           </span>
         </button>
       )}
