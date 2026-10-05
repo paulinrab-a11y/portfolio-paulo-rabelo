@@ -19,7 +19,12 @@ export default function CV() {
             <h1 className="titulo-display text-[clamp(44px,7vw,88px)] print:text-[40px]">{perfil.nomeCompleto}</h1>
             <p className="mt-3 text-lg">Editor de vídeo, motion designer e diretor de arte · {perfil.cidade}</p>
           </div>
-          <BotaoImprimir />
+          <div className="sem-impressao flex flex-wrap gap-3">
+            <a href="/paulo-rabelo-cv.pdf" download className="botao botao-rec">
+              Baixar PDF
+            </a>
+            <BotaoImprimir />
+          </div>
         </header>
 
         <dl className="grid gap-4 border-b border-preto/20 py-6 print:py-3 sm:grid-cols-2 lg:grid-cols-4">

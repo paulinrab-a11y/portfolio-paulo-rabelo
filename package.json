@@ -15,6 +15,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "og": "node scripts/og.mjs",
+    "cv:pdf": "node scripts/cv-pdf.mjs",
     "check": "npm run lint && npm run typecheck && npm run knip && npm run arch && npm test",
     "prepare": "husky || true"
   },

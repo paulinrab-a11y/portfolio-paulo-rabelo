@@ -11,7 +11,7 @@ Atualizado em 05/10/2026. Tudo está no PR #2 (`feat/1-primeira-versao`). Produ�
 | `/trabalhos/<slug>` | Player próprio, créditos, contexto, o que eu fiz, resultado, galeria, serviços relacionados, próximo trabalho |
 | `/servicos` e `/servicos/<slug>` | 8 páginas de serviço para busca (editor de vídeo em São Paulo, motion e VFX, color grading, vídeo com IA, sites, social media e direção de arte, fotografia, podcast) |
 | `/sobre` | Retrato, bio, experiência que rola, formação, ferramentas |
-| `/cv` | Currículo que cabe numa página A4 impressa |
+| `/cv` | Currículo que cabe numa página A4 impressa e PDF para baixar (`/paulo-rabelo-cv.pdf`) |
 
 ## Números (medidos em 05/10/2026)
 

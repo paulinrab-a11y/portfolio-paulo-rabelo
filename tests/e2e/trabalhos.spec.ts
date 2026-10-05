@@ -105,6 +105,15 @@ test.describe('outras páginas', () => {
     await expect(page.getByRole('link', { name: 'Edição de podcast' }).first()).toHaveAttribute('href', '/servicos/edicao-de-podcast');
   });
 
+  test('/cv oferece o PDF de uma página', async ({ page, request }) => {
+    await page.goto('/cv');
+    const href = await page.getByRole('link', { name: 'Baixar PDF' }).getAttribute('href');
+    expect(href).toBe('/paulo-rabelo-cv.pdf');
+    const r = await request.get(href ?? '');
+    expect(r.status()).toBe(200);
+    expect(r.headers()['content-type']).toContain('application/pdf');
+  });
+
   test('/cv tem o nome completo e Rabelo Design', async ({ page }) => {
     await page.goto('/cv');
     await expect(page.getByRole('heading', { level: 1, name: 'Paulo Vitor Pereira Rabelo' })).toBeVisible();

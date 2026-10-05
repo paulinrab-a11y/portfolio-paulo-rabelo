@@ -74,6 +74,9 @@ export default function Sobre() {
             <Link href="/cv" className="botao text-creme">
               Ver CV
             </Link>
+            <a href="/paulo-rabelo-cv.pdf" download className="botao text-creme">
+              Baixar CV em PDF
+            </a>
           </div>
         </div>
       </section>

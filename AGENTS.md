@@ -48,6 +48,7 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 
 ## Scripts
 
+- `npm run cv:pdf`: gera `public/paulo-rabelo-cv.pdf` a partir da página /cv. Rode depois de mudar experiência, formação ou contato.
 - `npm run og`: gera `public/og/home.jpg` (imagem de compartilhamento) com o servidor em `localhost:3400`.
 - `node scripts/prints.mjs`: prints de conferência em `reports/prints/`.
 - `node scripts/gravar-sites.mjs`: grava os sites no ar (precisa de `FFMPEG`). A gravação do Passem a Respeitar tem de parar antes da seção do clipe inédito.
