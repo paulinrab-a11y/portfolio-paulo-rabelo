@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
+import { JsonLd } from '@/components/JsonLd';
 import { contato, experiencias, formacao, perfil } from '@/data/perfil';
+import { breadcrumbLd } from '@/lib/seo';
+import { SITE_URL } from '@/lib/site';
 import { BotaoImprimir } from './BotaoImprimir';
 
 export const metadata: Metadata = {
@@ -12,6 +15,12 @@ export const metadata: Metadata = {
 export default function CV() {
   return (
     <div className="cartela pt-[var(--cabecalho)] print:pt-0">
+      <JsonLd
+        dados={breadcrumbLd(SITE_URL, [
+          { nome: 'Início', caminho: '/' },
+          { nome: 'CV', caminho: '/cv' },
+        ])}
+      />
       <article className="margem mx-auto max-w-5xl py-14 print:max-w-none print:px-0 print:py-0">
         <header className="flex flex-col gap-6 border-b border-preto/20 pb-8 print:pb-3 md:flex-row md:items-end md:justify-between">
           <div>
