@@ -19,9 +19,9 @@ Lighthouse móvel com throttling real (CPU 4× e 4G lento aplicados de fato, `--
 
 | Rota | Desempenho | Acessib. | Boas práticas | SEO | LCP | CLS |
 |---|---|---|---|---|---|---|
-| `/` | 82 a 87 | 100 | 100 | 100 | 1,9 s | 0,007 |
+| `/` | 84 a 87 | 100 | 100 | 100 | 1,9 s | 0,002 |
 | `/trabalhos` | 97 | 100 | 100 | 100 | 1,7 s | 0 |
-| página de trabalho (podcast) | 96 | 100 | 100 | 100 | 2,2 s | 0 |
+| página de trabalho (podcast) | 97 | 100 | 100 | 100 | 2,2 s | 0 |
 | página de trabalho (Hora Bolas) | 96 | 100 | 100 | 100 | 2,4 s | 0 |
 | `/servicos/editor-de-video` | 98 | 100 | 100 | 100 | 1,7 s | 0 |
 | `/sobre` | 97 | 100 | 100 | 100 | 2,2 s | 0 |
@@ -36,6 +36,8 @@ O modo simulado padrão do Lighthouse mostra LCP de ~3,8 s na home. É artefato 
 - Acessibilidade: axe sem violações em 9 páginas, desktop e celular.
 - Compartilhamento: cartela 1200×630 com nome, função e retrato.
 - Galerias e índice com miniaturas otimizadas; CV em uma página A4.
+- Fontes no repositório (`next/font/local`): o build do CI não depende mais da rede e o texto não pula quando a fonte chega (CLS 0).
+- Timeline começa pelo clipe de V1.
 
 ## Testes
 

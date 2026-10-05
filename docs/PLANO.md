@@ -7,7 +7,7 @@ Escrito em 05/10/2026. O brief chegou cortado em `/sobre`. O Paulo autorizou seg
 | Tema | Decisão | Por quê |
 |---|---|---|
 | Stack | Next 16.3.6 (App Router, estático), React 19.3, Tailwind 4.3, GSAP 3.15 com ScrollTrigger e Flip (Flip só em `/trabalhos`, carregado à parte) | Mesmas versões do SITE IPHONE e do Passem a Respeitar. Toolchain copiada do SITE IPHONE |
-| Fontes | Opção A: Big Shoulders 800/900 (títulos), JetBrains Mono 400/500 (HUD), Instrument Sans 400/500/600 (texto). `next/font`, auto-hospedadas | Opção padrão do brief |
+| Fontes | Opção A: Big Shoulders 800/900 (títulos), JetBrains Mono 400/500 (HUD), Instrument Sans 400/500/600 (texto). Arquivos no repositório (`src/app/fontes`, OFL) com `next/font/local`, que calcula a fonte reserva pelas métricas | Opção padrão do brief; o `next/font/google` falhava no build do CI |
 | Cores | `--color-preto`, `--color-carvao`, `--color-linha`, `--color-creme`, `--color-cinza`, `--color-grafite`, `--color-rec`, `--color-rec-escuro` no `@theme` | O Tailwind 4 só gera utilitário com o prefixo `--color-` |
 | Manifesto | 3 opções propostas; o Paulo escolheu a 1 (`manifesto` em `src/data/perfil.ts`) | O brief pede 3 opções |
 | Abertura | Script inline antes da pintura marca `html[data-abertura]` só na primeira visita da sessão e sem reduced motion. Sem JS, não aparece. Duração 1,6 s | Sem piscar e sem quebrar a hidratação (doc `preventing-flash-before-hydration`) |
