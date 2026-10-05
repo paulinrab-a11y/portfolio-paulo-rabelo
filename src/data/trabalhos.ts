@@ -64,7 +64,7 @@ export const trabalhos: Trabalho[] = [
     destaque: 1,
     midia: 'clipe-santxx-azam-mc',
     creditos: [
-      { rotulo: 'Artistas', valor: 'Azam e Santxx' },
+      { rotulo: 'Artistas', valor: 'Santxx e Azam MC' },
       { rotulo: 'Faixa', valor: 'Forza' },
       { rotulo: 'Direção', valor: 'AD ASTRA' },
       { rotulo: 'Minha função', valor: 'Cortes, efeitos visuais, motion e color grading' },
@@ -104,11 +104,11 @@ export const trabalhos: Trabalho[] = [
     midia: 'podcast-opiniao-segura',
     creditos: [
       { rotulo: 'Cliente', valor: 'Podcast Opinião Segura' },
-      { rotulo: 'Minha função', valor: 'Montagem do episódio e lower thirds dos convidados' },
+      { rotulo: 'Minha função', valor: 'Montagem do episódio e criação dos lower thirds' },
     ],
     texto: {
       contexto: 'Edição especial do Podcast Opinião Segura gravada na LAAD Security & Milipol Brazil 2026.',
-      oQueFiz: 'Montei o episódio e coloquei os lower thirds de cada convidado.',
+      oQueFiz: 'Montei o episódio e criei os lower thirds de cada convidado.',
     },
   },
   {
@@ -303,7 +303,7 @@ export const trabalhos: Trabalho[] = [
     ],
     texto: {
       contexto: 'Rebranding do Hora Bolas Club, em Lavras (MG).',
-      oQueFiz: 'Fiz o novo logo, o cardápio e as redes sociais.',
+      oQueFiz: 'Fiz o novo logo e o cardápio, e cuidei das redes sociais.',
       resultado: '300 mil de alcance mensal nas redes.',
     },
   },
@@ -352,7 +352,7 @@ export const trabalhos: Trabalho[] = [
     ],
     texto: {
       contexto: 'Produção do stand da OHC Motors e cobertura de eventos: Eletrocar Show, Cena 2K25 e LAAD Defence & Security 2026.',
-      oQueFiz: 'Produzi o stand da OHC. No Eletrocar Show fiz filmagem e entrevistas. Na Cena 2K25 e na LAAD 2026, filmagem e fotografia.',
+      oQueFiz: 'Produzi o stand da OHC. No Eletrocar Show fiz filmagem e entrevistas. Na Cena 2K25 e na LAAD 2026, fiz filmagem e fotografia.',
     },
   },
   {

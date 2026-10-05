@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'Paulo Rabelo',
     title: 'Paulo Rabelo · edição, motion e direção de arte',
     description: descricao,
-    images: [{ url: '/media/hero/poster.jpg', width: 1280, height: 720, alt: 'Trechos de trabalhos de Paulo Rabelo' }],
+    images: [{ url: '/og/home.jpg', width: 1200, height: 630, alt: 'Paulo Rabelo: edição, motion e direção de arte' }],
   },
   twitter: { card: 'summary_large_image' },
   alternates: { canonical: '/' },
