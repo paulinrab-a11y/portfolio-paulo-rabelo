@@ -6,17 +6,13 @@
  */
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { Flip } from 'gsap/Flip';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText } from 'gsap/SplitText';
 
 declare global {
   namespace gsap.core {
     interface Timeline {
       /** Efeito registrado em src/lib/motion.ts */
       entrar(alvos: gsap.TweenTarget, config?: { y?: number; stagger?: number; duration?: number }, posicao?: gsap.Position): this;
-      /** Efeito registrado em src/lib/motion.ts */
-      cartela(alvos: gsap.TweenTarget, config?: { stagger?: number; duration?: number }, posicao?: gsap.Position): this;
     }
   }
 }
@@ -30,7 +26,7 @@ export const MIDIA = {
 } as const;
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, SplitText, Flip, useGSAP);
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
   gsap.defaults({ ease: 'power3.out', duration: 0.7 });
 
   /**
@@ -53,23 +49,6 @@ if (typeof window !== 'undefined') {
       });
     },
   });
-
-  /** Linhas sobem de dentro de uma máscara, como cartela. Reverte o SplitText no fim. */
-  gsap.registerEffect({
-    name: 'cartela',
-    extendTimeline: true,
-    defaults: { stagger: 0.12, duration: 0.9 },
-    effect: (alvos: gsap.TweenTarget, config: { stagger: number; duration: number }) => {
-      const split = SplitText.create(alvos as gsap.DOMTarget, { type: 'lines', mask: 'lines', aria: 'none' });
-      return gsap.from(split.lines, {
-        yPercent: 110,
-        stagger: config.stagger,
-        duration: config.duration,
-        ease: 'expo.out',
-        onComplete: () => split.revert(),
-      });
-    },
-  });
 }
 
-export { Flip, gsap, ScrollTrigger, useGSAP };
+export { gsap, ScrollTrigger, useGSAP };

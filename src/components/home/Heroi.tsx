@@ -17,14 +17,15 @@ export function Heroi() {
   const raiz = useRef<HTMLElement>(null);
   const tc = useRef<HTMLSpanElement>(null);
 
-  // Timecode do HUD acompanha o loop, escrito direto no DOM a no máximo 30 fps
+  // Timecode do HUD acompanha o loop, escrito direto no DOM a 15 fps. Para
+  // quando o vídeo pausa (fora da tela) e quando o HUD já sumiu na rolagem.
   const ligarTimecode = useCallback((v: HTMLVideoElement | null) => {
     if (!v) return;
     let pedido = 0;
     let ultimo = 0;
     const quadro = (agora: number) => {
       pedido = requestAnimationFrame(quadro);
-      if (agora - ultimo < 33 || !tc.current) return;
+      if (agora - ultimo < 66 || !tc.current || window.scrollY > window.innerHeight * 0.6) return;
       ultimo = agora;
       tc.current.textContent = timecode(v.currentTime * 1000);
     };
@@ -80,7 +81,7 @@ export function Heroi() {
             <span className="rec-ponto rec-pisca" /> REC
           </p>
           <p className="rotulo absolute top-3 right-[calc(var(--margem)+36px)]">
-            <span ref={tc} className="tc">
+            <span ref={tc} className="tc tc-vivo">
               00:00:00:00
             </span>
           </p>

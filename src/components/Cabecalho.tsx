@@ -67,7 +67,7 @@ export function Cabecalho() {
 
       <p className="rotulo flex items-center gap-2 text-cinza" aria-hidden="true">
         <span className="rec-ponto rec-pisca" />
-        <span ref={tc} className="tc min-w-[11ch] text-creme" data-testid="timecode-cabecalho">
+        <span ref={tc} className="tc tc-vivo text-creme" data-testid="timecode-cabecalho">
           00:00:00:00
         </span>
       </p>

@@ -76,7 +76,7 @@ export function Abertura() {
       <div data-abertura-conteudo aria-hidden="true" className="relative flex flex-col items-center gap-5 text-creme">
         <p className="rotulo flex items-center gap-3">
           <span ref={ponto} className="rec-ponto opacity-0" /> REC{' '}
-          <span ref={tc} className="tc text-cinza">
+          <span ref={tc} className="tc tc-vivo text-cinza">
             00:00:00:00
           </span>
         </p>

@@ -96,7 +96,7 @@ export function Timeline({ lista }: { lista: Trabalho[] }) {
             <p className="rotulo text-right text-cinza">
               <span className="hidden lg:inline">Role para editar · ← → navegam</span>
               <span className="block text-lg text-creme lg:mt-1">
-                <span ref={tc} className="tc">
+                <span ref={tc} className="tc tc-vivo">
                   00:00:00:00
                 </span>
               </span>

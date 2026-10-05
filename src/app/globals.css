@@ -75,6 +75,13 @@ body {
   letter-spacing: 0.04em;
 }
 
+/* Timecode que muda a cada quadro: a troca de texto não recalcula o resto da página */
+.tc-vivo {
+  display: inline-block;
+  min-width: 11ch;
+  contain: layout paint style;
+}
+
 .titulo-display {
   font-family: var(--font-titulo);
   font-weight: 900;

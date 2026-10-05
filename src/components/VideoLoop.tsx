@@ -26,6 +26,21 @@ interface Props {
 }
 
 const reduzido = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/**
+ * Os vídeos só começam depois do load e de um momento ocioso: no celular
+ * fraco, decodificar vídeo junto com a hidratação trava a página. O poster
+ * já está na tela, então ninguém espera por isso.
+ */
+let liberados: Promise<void> | null = null;
+function paginaOciosa(): Promise<void> {
+  liberados ??= new Promise((resolve) => {
+    const ocioso = () => ('requestIdleCallback' in window ? window.requestIdleCallback(() => resolve(), { timeout: 1500 }) : setTimeout(resolve, 300));
+    if (document.readyState === 'complete') ocioso();
+    else window.addEventListener('load', ocioso, { once: true });
+  });
+  return liberados;
+}
+
 const economia = () => Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
 
 /**
@@ -47,8 +62,11 @@ export function VideoLoop({ midia, alt, tocar = 'auto', prioridade = false, pree
   useEffect(() => {
     const v = video.current;
     if (!v || !midia.preview) return;
+    let liberado = false;
+    let ativo = true;
 
     const sincronizar = () => {
+      if (!liberado) return;
       const querTocar = desejado.current === 'auto' ? visivel.current : desejado.current;
       if (querTocar && !document.hidden && !reduzido() && !economia()) {
         if (v.preload !== 'auto') v.preload = 'auto';
@@ -69,8 +87,12 @@ export function VideoLoop({ midia, alt, tocar = 'auto', prioridade = false, pree
     io.observe(v);
     document.addEventListener('visibilitychange', sincronizar);
     v.addEventListener('playing', () => v.setAttribute('data-tocando', ''));
-    sincronizar();
+    paginaOciosa().then(() => {
+      liberado = true;
+      if (ativo) sincronizar();
+    });
     return () => {
+      ativo = false;
       io.disconnect();
       document.removeEventListener('visibilitychange', sincronizar);
     };
@@ -82,7 +104,9 @@ export function VideoLoop({ midia, alt, tocar = 'auto', prioridade = false, pree
     if (!v || tocar === 'auto') return;
     if (tocar && !reduzido() && !economia()) {
       v.preload = 'auto';
-      v.play().catch(() => {});
+      paginaOciosa().then(() => {
+        if (desejado.current === true) v.play().catch(() => {});
+      });
     } else {
       v.pause();
     }

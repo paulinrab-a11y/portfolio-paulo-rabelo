@@ -15,7 +15,7 @@ export default defineConfig({
       reportsDirectory: 'coverage',
       // Regras e utilitários puros. GSAP e hooks de navegador são cobertos pelos testes end-to-end.
       include: ['src/lib/**/*.ts'],
-      exclude: ['src/**/*.test.ts', 'src/lib/motion.ts', 'src/lib/hooks.ts'],
+      exclude: ['src/**/*.test.ts', 'src/lib/motion.ts', 'src/lib/flip.ts'],
       thresholds: { lines: 95, functions: 95, statements: 95, branches: 85 },
     },
   },

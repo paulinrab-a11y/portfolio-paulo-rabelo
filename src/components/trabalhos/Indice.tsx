@@ -6,7 +6,8 @@ import { useLayoutEffect, useRef, useState, ViewTransition } from 'react';
 import { SeloIA } from '@/components/SeloIA';
 import { type Categoria, categorias, type Trabalho } from '@/data/trabalhos';
 import { ehVideo, midia } from '@/lib/midia';
-import { Flip, gsap } from '@/lib/motion';
+import { Flip } from '@/lib/flip';
+import { gsap } from '@/lib/motion';
 import { categoriasUsadas, filtrar } from '@/lib/trabalhos';
 
 type Modo = 'lista' | 'grade';
