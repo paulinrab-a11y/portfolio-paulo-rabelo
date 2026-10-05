@@ -13,18 +13,31 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+# Dois jobs só: a fila do GitHub nesta conta atende um job por vez, e cada job
+# espera a vez separado. As verificações rápidas rodam juntas; o e2e à parte.
 jobs:
-  qualidade:
-    name: Lint, tipos e arquitetura
+  verificacoes:
+    name: Verificações (commits, lint, tipos, arquitetura, testes, segurança)
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    # O gitleaks lê a lista de commits do PR pela API do GitHub
+    permissions:
+      contents: read
+      pull-requests: read
+    env:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - name: Mensagens de commit
+        if: github.event_name == 'pull_request'
+        run: npx --no -- commitlint --from "${{ github.event.pull_request.base.sha }}" --to "${{ github.event.pull_request.head.sha }}" --verbose
       - name: Biome (lint e formatação)
         run: npm run lint
       - name: TypeScript
@@ -33,20 +46,6 @@ jobs:
         run: npm run knip
       - name: Contrato de arquitetura
         run: npm run arch
-
-  testes:
-    name: Testes unitários e de integração
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    env:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
       - name: Vitest com cobertura
         run: npm test
       - name: Envia cobertura ao Codecov
@@ -57,6 +56,15 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage/lcov.info
           fail_ci_if_error: false
+      - name: Gitleaks (segredos em todo o histórico)
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_CONFIG: .gitleaks.toml
+      - name: Vulnerabilidades altas ou críticas em dependências de produção
+        run: npm audit --omit=dev --audit-level=high
+      - name: Assinaturas e procedência dos pacotes no registro
+        run: npm audit signatures
 
   e2e:
     name: Testes end-to-end (Playwright)
@@ -82,47 +90,3 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
-
-  seguranca:
-    name: Segredos e dependências
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    # O gitleaks lê a lista de commits do PR pela API do GitHub
-    permissions:
-      contents: read
-      pull-requests: read
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-      - name: Gitleaks (segredos em todo o histórico)
-        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_CONFIG: .gitleaks.toml
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
-      - name: Vulnerabilidades altas ou críticas em dependências de produção
-        run: npm audit --omit=dev --audit-level=high
-      - name: Assinaturas e procedência dos pacotes no registro
-        run: npm audit signatures
-
-  commits:
-    name: Mensagens de commit
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
-      - name: Commitlint
-        run: npx --no -- commitlint --from "${{ github.event.pull_request.base.sha }}" --to "${{ github.event.pull_request.head.sha }}" --verbose
