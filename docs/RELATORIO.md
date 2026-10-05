@@ -37,7 +37,7 @@ O modo simulado padrão do Lighthouse mostra LCP de ~3,8 s na home. É artefato 
 - Timeline: cada trilha espalhada pela régua (antes os 9 trabalhos de V4 se acumulavam no fim).
 - Acessibilidade: axe sem violações em 9 páginas, desktop e celular.
 - Compartilhamento: cartela 1200×630 com nome, função e retrato.
-- Galerias e índice com miniaturas otimizadas; CV em uma página A4.
+- Galerias de fotos grandes pelo otimizador do Next (miniatura de 11 KB em vez de 384 KB); CV em uma página A4 e em PDF.
 - Fontes no repositório (`next/font/local`): o build do CI não depende mais da rede e o texto não pula quando a fonte chega (CLS 0).
 - Timeline começa pelo clipe de V1.
 
