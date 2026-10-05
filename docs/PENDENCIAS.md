@@ -9,27 +9,19 @@ Itens que dependem de dado ou decisão sua. Nada disso foi inventado no site: o 
 - A peça com o rapaz de óculos laranja não é IA. O texto "AI SPEC UX/UI DESIGN" estava errado no slide antigo e não é usado.
 - Repositório público no GitHub (CI do Actions voltou a rodar).
 - Produção: o deploy de 05/10 em portfolio-paulo-rabelo.vercel.app fica no ar.
+- Retrato enviado (entra no /sobre, na home e no compartilhamento).
+- Resto do brief: o Paulo pediu algo com bom SEO ligado ao que faz. Entraram as páginas de serviço (/servicos) e o /sobre com retrato e experiência rolando.
+- Não há originais dos vídeos: as prévias recortadas ficam.
+- Vídeo do drink é do Hora Bolas Club; o do Audi, da OHC Motors.
+- Lower thirds do podcast e fotos do Hora Bolas são do Paulo.
+- Pessoas das fotos de eventos autorizam o uso; não precisa dizer qual evento é qual.
+- Placa do Porsche e "Forza / AD ASTRA" nos créditos podem ficar.
 
 ## Em aberto
 
-### Brief
-1. O brief chegou cortado em `/sobre` ("retrato, bio curta e experiência rolando"). Mande o resto: checkpoints, metas, outras páginas.
-
-### Mídia
-2. Retrato para `/sobre`: não há foto sua na pasta.
-3. Originais dos trabalhos (as prévias são recortes do vídeo do portfólio antigo, com no máximo ~1180×670). A arte do volante Audi sai cortada nas bordas do slide: tem o arquivo inteiro?
-4. Legendas (.vtt) dos vídeos com fala, para acessibilidade.
-
-### Confirmações de conteúdo
-5. Podcast Opinião Segura: os lower thirds dos convidados foram feitos por você?
-6. Hora Bolas: as fotos dos drinks e da porção são suas?
-7. Clipe de Santxx e Azam MC: a cartela diz "Forza" e "Directed by AD ASTRA", e os créditos pequenos dizem "Color by Paulinrab", "Visual Effects by Whynot Records". Usei "Forza" e "AD ASTRA" nos créditos. Pode manter?
-8. VSL: é em inglês e mostra Monster Energy e Golden Goose. De qual cliente é? Por ora, sem cliente.
-9. Vídeos para redes (Audi verde no evento e drink): de quais clientes?
-10. Eventos: de qual evento é cada foto? (grupo sob o letreiro Yala, show com luzes de celular, entrevista com Protecta/UR/Flash/Milipol). As pessoas nas fotos autorizam o uso?
-11. A placa do Porsche está legível na foto. Mantenho?
-12. Ferramentas e ano de cada trabalho (aparecem nos créditos só se você informar).
-13. Outros resultados reais (views, alcance, vendas).
-
-### Publicação
-14. Domínio próprio?
+1. VSL (em inglês, com Monster Energy e Golden Goose): de qual cliente é? Por ora, sem cliente.
+2. A arte do volante Audi sai cortada nas bordas do slide: existe o arquivo inteiro?
+3. Legendas (.vtt) dos vídeos com fala, para acessibilidade.
+4. Ferramentas e ano de cada trabalho (aparecem nos créditos só se você informar).
+5. Outros resultados reais (views, alcance, vendas).
+6. Domínio próprio?

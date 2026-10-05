@@ -18,7 +18,8 @@ Escrito em 05/10/2026. O brief chegou cortado em `/sobre`. O Paulo autorizou seg
 | Mídia | Prévias de 6 a 8 s mudas (MP4 H.264 + WebM VP9) e trechos de até 60 s com áudio, em `public/media/<slug>/`. Manifesto em `src/data/media.json` | Recortes provisórios até os originais chegarem |
 | `/cv` | Página de leitura em cartela creme, pronta para imprimir, com nome completo e Rabelo Design | A seção 2 do brief cita `/sobre` e `/cv` |
 | Vídeos | Só começam depois do `load` e de um momento ocioso; o poster já está na tela | Com CPU 4× mais lenta, o TBT da home caiu de 2,2 s para ~0,3 s |
-| Retrato no `/sobre` | Não há foto na pasta. Fica sem retrato até o Paulo mandar uma | Regra 2: só mídia real, nada gerado |
+| `/sobre` | Retrato enviado pelo Paulo e experiência que rola (a entrada no meio da tela fica ativa, o período aparece grande) | Completa o trecho cortado do brief |
+| SEO | Páginas de serviço em `/servicos/<slug>` com texto só de fatos, trabalhos reais da categoria, JSON-LD (Person, Service, CreativeWork, BreadcrumbList), links internos e sitemap | O Paulo pediu para completar o brief com algo de bom SEO |
 | Repositório | GitHub privado `paulinrab-a11y/portfolio-paulo-rabelo`. `main` só com a base; o site entra por PR | Mesmo fluxo dos outros repositórios |
 | Deploy | Projeto novo na Vercel ligado ao GitHub. PR gera prévia. Produção só com o OK do Paulo | Regra 10 |
 

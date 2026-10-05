@@ -68,6 +68,29 @@ test.describe('outras páginas', () => {
     await expect(page.getByText('Rabelo Design')).toHaveCount(0);
   });
 
+  test('/sobre tem o retrato e a experiência que rola', async ({ page }) => {
+    await page.goto('/sobre');
+    await expect(page.getByRole('img', { name: /Paulo Rabelo sentado/ })).toBeVisible();
+    await expect(page.locator('[data-indice]').first()).toHaveAttribute('data-ativa', 'true');
+  });
+
+  test('/servicos lista os serviços e cada página tem trabalhos e dados estruturados', async ({ page }) => {
+    await page.goto('/servicos');
+    await expect(page.getByRole('heading', { level: 1, name: 'Serviços' })).toBeVisible();
+    await page.getByRole('link', { name: /Editor de vídeo em São Paulo/ }).click();
+    await expect(page).toHaveURL(/\/servicos\/editor-de-video$/);
+    await expect(page.getByRole('heading', { level: 1, name: 'Editor de vídeo em São Paulo' })).toBeVisible();
+    await expect(page.locator('main ul a[href^="/trabalhos/"]').first()).toBeVisible();
+    const blocos = await page.locator('script[type="application/ld+json"]').allTextContents();
+    const tipos = blocos.flatMap((b) => [JSON.parse(b)].flat().map((x: { '@type': string }) => x['@type']));
+    expect(tipos).toEqual(expect.arrayContaining(['Person', 'Service', 'BreadcrumbList']));
+  });
+
+  test('página de trabalho liga aos serviços relacionados', async ({ page }) => {
+    await page.goto('/trabalhos/podcast-opiniao-segura-laad');
+    await expect(page.getByRole('link', { name: 'Edição de podcast' }).first()).toHaveAttribute('href', '/servicos/edicao-de-podcast');
+  });
+
   test('/cv tem o nome completo e Rabelo Design', async ({ page }) => {
     await page.goto('/cv');
     await expect(page.getByRole('heading', { level: 1, name: 'Paulo Vitor Pereira Rabelo' })).toBeVisible();

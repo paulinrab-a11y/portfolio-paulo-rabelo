@@ -2,8 +2,10 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { clientes, contato, experiencias, perfil } from '@/data/perfil';
+import { servicos } from '@/data/servicos';
 import { trabalhos } from '@/data/trabalhos';
 import { midia, temMidia, todasAsMidias } from '@/lib/midia';
+import { trabalhosDoServico } from '@/lib/servicos';
 
 const raiz = join(__dirname, '..', '..');
 const publico = (url: string) => join(raiz, 'public', ...url.split('/').filter(Boolean));
@@ -87,6 +89,23 @@ describe('dados dos trabalhos', () => {
   });
 });
 
+describe('páginas de serviço', () => {
+  it('todo serviço tem pelo menos um trabalho real', () => {
+    for (const s of servicos) expect(trabalhosDoServico(s, trabalhos).length, s.slug).toBeGreaterThan(0);
+  });
+
+  it('descrição cabe no resultado do Google e título não se repete', () => {
+    for (const s of servicos) expect(s.descricao.length, s.slug).toBeLessThanOrEqual(160);
+    const titulos = servicos.map((s) => s.tituloSeo);
+    expect(new Set(titulos).size).toBe(titulos.length);
+  });
+
+  it('toda categoria usada em trabalho tem página de serviço', () => {
+    const cobertas = new Set(servicos.flatMap((s) => s.categorias));
+    for (const t of trabalhos) for (const c of t.categorias) expect(cobertas.has(c), `${t.slug}: ${c}`).toBe(true);
+  });
+});
+
 describe('regras de texto do brief', () => {
   const proibidas: Array<[RegExp, string]> = [
     [/airbag/i, 'OHC: nunca "airbag"'],
@@ -113,7 +132,7 @@ describe('regras de texto do brief', () => {
 
   it('nome completo só no JSON-LD e no CV', () => {
     const usos = fontes.filter(({ texto }) => texto.includes('nomeCompleto')).map(({ f }) => f.replace(/\\/g, '/'));
-    for (const u of usos) expect(u).toMatch(/src\/(data\/perfil\.ts|app\/layout\.tsx|app\/cv\/page\.tsx)$/);
+    for (const u of usos) expect(u).toMatch(/src\/(data\/perfil\.ts|app\/layout\.tsx|app\/cv\/page\.tsx|lib\/seo\.ts)$/);
   });
 
   it('contatos confirmados', () => {

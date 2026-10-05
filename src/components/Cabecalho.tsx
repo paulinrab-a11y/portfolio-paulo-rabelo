@@ -7,6 +7,7 @@ import { progressoParaTimecode } from '@/lib/rolagem';
 
 const links = [
   { href: '/trabalhos', rotulo: 'Trabalhos' },
+  { href: '/servicos', rotulo: 'Serviços' },
   { href: '/sobre', rotulo: 'Sobre' },
   { href: '/#contato', rotulo: 'Contato' },
 ];

@@ -3,10 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ViewTransition } from 'react';
+import { JsonLd } from '@/components/JsonLd';
 import { SeloIA } from '@/components/SeloIA';
 import { Player } from '@/components/trabalhos/Player';
+import { servicos } from '@/data/servicos';
 import { categorias, trabalhos } from '@/data/trabalhos';
 import { ehVideo, midia } from '@/lib/midia';
+import { breadcrumbLd, trabalhoLd } from '@/lib/seo';
+import { servicoDaCategoria } from '@/lib/servicos';
+import { SITE_URL } from '@/lib/site';
 import { buscar, proximo } from '@/lib/trabalhos';
 
 export const dynamicParams = false;
@@ -49,8 +54,28 @@ export default async function PaginaTrabalho({ params }: PageProps<'/trabalhos/[
     </div>
   );
 
+  const relacionados = [...new Set(t.categorias.map((c) => servicoDaCategoria(servicos, c)).filter((x) => x !== undefined))];
+  const caminho = `/trabalhos/${t.slug}`;
+
   return (
     <article className="pt-[var(--cabecalho)]">
+      <JsonLd
+        dados={[
+          trabalhoLd(SITE_URL, {
+            titulo: t.titulo,
+            descricao: `${t.texto.contexto} ${t.texto.oQueFiz}`,
+            caminho,
+            imagem: m.poster.jpg,
+            cliente: t.cliente,
+            feitoComIA: t.feitoComIA,
+          }),
+          breadcrumbLd(SITE_URL, [
+            { nome: 'Início', caminho: '/' },
+            { nome: 'Trabalhos', caminho: '/trabalhos' },
+            { nome: t.titulo, caminho },
+          ]),
+        ]}
+      />
       <div className={vertical || !video ? 'margem grade gap-y-10 pt-8 pb-16 lg:pt-12' : 'pb-12'}>
         {/* Player no topo: o trabalho é o conteúdo principal */}
         <div className={vertical || !video ? 'relative col-span-12 lg:col-span-5' : 'relative mx-auto max-w-[1600px] lg:px-[var(--margem)] lg:pt-8'}>
@@ -71,6 +96,16 @@ export default async function PaginaTrabalho({ params }: PageProps<'/trabalhos/[
             <Bloco rotulo="Contexto" texto={t.texto.contexto} />
             <Bloco rotulo="O que eu fiz" texto={t.texto.oQueFiz} />
             {t.texto.resultado && <Bloco rotulo="Resultado" texto={t.texto.resultado} />}
+            {relacionados.length > 0 && (
+              <p className="rotulo flex flex-wrap gap-x-4 gap-y-2 text-cinza">
+                <span>Serviços:</span>
+                {relacionados.map((r) => (
+                  <Link key={r.slug} href={`/servicos/${r.slug}`} className="text-creme underline decoration-linha underline-offset-4 hover:text-rec">
+                    {r.nome}
+                  </Link>
+                ))}
+              </p>
+            )}
             {t.link && (
               <a href={t.link.href} target="_blank" rel="noopener noreferrer" className="botao text-creme">
                 {t.link.rotulo} <span aria-hidden="true">↗</span>

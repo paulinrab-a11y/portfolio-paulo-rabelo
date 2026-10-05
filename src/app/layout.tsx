@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import { Big_Shoulders, Instrument_Sans, JetBrains_Mono } from 'next/font/google';
 import { Cabecalho } from '@/components/Cabecalho';
+import { JsonLd } from '@/components/JsonLd';
 import { Rodape } from '@/components/Rodape';
 import { contato, perfil } from '@/data/perfil';
+import { pessoaLd } from '@/lib/seo';
 import { SITE_URL } from '@/lib/site';
 import './globals.css';
 
@@ -14,7 +16,7 @@ const descricao = 'Editor de vídeo, motion designer e diretor de arte em São P
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: 'Paulo Rabelo · edição, motion e direção de arte', template: '%s · Paulo Rabelo' },
+  title: { default: 'Paulo Rabelo · Editor de vídeo, motion designer e diretor de arte em São Paulo', template: '%s · Paulo Rabelo' },
   description: descricao,
   openGraph: {
     type: 'website',
@@ -39,19 +41,18 @@ export const viewport: Viewport = {
  */
 const scriptAbertura = `try{if(location.pathname==='/'&&!sessionStorage.getItem('abertura-vista')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var h=document.documentElement;h.setAttribute('data-abertura','');var e=['pointerdown','keydown','wheel','touchmove'],p=function(){h.setAttribute('data-abertura-fim','');sessionStorage.setItem('abertura-vista','1');e.forEach(function(n){removeEventListener(n,p,true)})};e.forEach(function(n){addEventListener(n,p,{capture:true,passive:true})})}}catch(e){}`;
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: perfil.nomeCompleto,
-  alternateName: perfil.nome,
+const pessoa = pessoaLd({
+  nome: perfil.nome,
+  nomeCompleto: perfil.nomeCompleto,
   url: SITE_URL,
-  email: `mailto:${contato.email.valor}`,
-  jobTitle: 'Editor de vídeo, motion designer e diretor de arte',
-  address: { '@type': 'PostalAddress', addressLocality: 'São Paulo', addressRegion: 'SP', addressCountry: 'BR' },
+  imagem: '/media/retrato/paulo-rabelo.jpg',
+  email: contato.email.valor,
+  cargo: 'Editor de vídeo, motion designer e diretor de arte',
+  cidade: 'São Paulo',
+  // O Instagram do contato é da agência (WhyNot), não do Paulo: fica fora do sameAs
   sameAs: [contato.linkedin.href],
-  knowsAbout: [...perfil.servicos],
-  worksFor: [{ '@type': 'Organization', name: 'WhyNot Visuals' }],
-};
+  areas: perfil.servicos,
+});
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -59,11 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: script fixo do próprio site, roda antes da pintura (doc preventing-flash-before-hydration) */}
         <script dangerouslySetInnerHTML={{ __html: scriptAbertura }} />
-        <script
-          type="application/ld+json"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD gerado de dados fixos do site
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd dados={pessoa} />
       </head>
       <body>
         <a href="#conteudo" className="rotulo sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[80] focus:bg-creme focus:px-4 focus:py-3 focus:text-preto">

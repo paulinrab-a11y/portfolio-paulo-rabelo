@@ -1,13 +1,24 @@
 import Link from 'next/link';
 import { contato, perfil } from '@/data/perfil';
+import { servicos } from '@/data/servicos';
+import { trabalhos } from '@/data/trabalhos';
+import { servicosComTrabalho } from '@/lib/servicos';
 
 export function Rodape() {
   return (
-    <footer className="margem flex flex-col gap-4 border-t border-linha bg-black py-8 md:flex-row md:items-center md:justify-between">
-      <p className="rotulo text-cinza">
-        {perfil.nome} · {perfil.cidade}
-      </p>
-      <ul className="rotulo flex flex-wrap gap-x-6 gap-y-2 text-cinza">
+    <footer className="margem grid gap-8 border-t border-linha bg-black py-10 md:grid-cols-12">
+      <nav aria-label="Serviços" className="md:col-span-8">
+        <ul className="rotulo flex flex-wrap gap-x-6 gap-y-3 text-cinza">
+          {servicosComTrabalho(servicos, trabalhos).map((s) => (
+            <li key={s.slug}>
+              <Link href={`/servicos/${s.slug}`} className="hover:text-creme">
+                {s.nome}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <ul className="rotulo flex flex-wrap gap-x-6 gap-y-3 text-cinza md:col-span-4 md:justify-end">
         <li>
           <a href={contato.whatsapp.href} target="_blank" rel="noopener noreferrer" className="hover:text-creme">
             WhatsApp
@@ -29,6 +40,9 @@ export function Rodape() {
           </Link>
         </li>
       </ul>
+      <p className="rotulo text-cinza md:col-span-12">
+        {perfil.nome} · {perfil.cidade}
+      </p>
     </footer>
   );
 }
