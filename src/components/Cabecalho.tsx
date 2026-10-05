@@ -61,7 +61,7 @@ export function Cabecalho() {
   }, []);
 
   return (
-    <header className="margem fixed inset-x-0 top-0 z-50 flex h-[var(--cabecalho)] items-center justify-between gap-4 border-b border-linha/70 bg-preto/92">
+    <header className="sem-impressao margem fixed inset-x-0 top-0 z-50 flex h-[var(--cabecalho)] items-center justify-between gap-4 border-b border-linha/70 bg-preto/92">
       <Link href="/" className="rotulo text-creme hover:text-rec" aria-label="Paulo Rabelo, página inicial">
         Paulo Rabelo
       </Link>

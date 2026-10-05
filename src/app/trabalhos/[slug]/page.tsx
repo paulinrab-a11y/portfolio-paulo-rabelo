@@ -142,8 +142,23 @@ export default async function PaginaTrabalho({ params }: PageProps<'/trabalhos/[
               <Player key={e.poster.jpg} midia={e} titulo={t.titulo} className="w-full" />
             ))}
             {galeria.map((g) => (
-              <figure key={g.src} className="relative bg-carvao" style={{ aspectRatio: `${g.width} / ${g.height}` }}>
-                <Image src={g.src} alt={g.label ? `${t.titulo}: ${g.label}` : t.titulo} fill unoptimized sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" />
+              <figure key={g.src}>
+                {/* Miniatura no tamanho certo (otimizador do Next); o clique abre a peça inteira */}
+                <a href={g.fallback ?? g.src} target="_blank" rel="noopener" className="group relative block bg-carvao" style={{ aspectRatio: `${g.width} / ${g.height}` }}>
+                  <Image
+                    src={g.src}
+                    alt={g.label ? `${t.titulo}: ${g.label}` : t.titulo}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-contain"
+                  />
+                  <span
+                    className="rotulo absolute right-2 bottom-2 bg-preto/80 px-2 py-1 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+                    aria-hidden="true"
+                  >
+                    Ampliar ↗
+                  </span>
+                </a>
               </figure>
             ))}
           </div>

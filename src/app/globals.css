@@ -371,7 +371,19 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
   animation: piscar 1.2s steps(1) infinite;
 }
 
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
 @media print {
+  /* Tudo em rem encolhe junto: o CV cabe numa página A4 */
+  html {
+    font-size: 12px;
+  }
+  body {
+    font-size: 12px;
+  }
   .grao,
   .vinheta,
   .sem-impressao {

@@ -6,7 +6,7 @@ import { servicosComTrabalho } from '@/lib/servicos';
 
 export function Rodape() {
   return (
-    <footer className="margem grid gap-8 border-t border-linha bg-black py-10 md:grid-cols-12">
+    <footer className="sem-impressao margem grid gap-8 border-t border-linha bg-black py-10 md:grid-cols-12">
       <nav aria-label="Serviços" className="md:col-span-8">
         <ul className="rotulo flex flex-wrap gap-x-6 gap-y-3 text-cinza">
           {servicosComTrabalho(servicos, trabalhos).map((s) => (
