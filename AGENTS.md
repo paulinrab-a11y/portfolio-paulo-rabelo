@@ -52,3 +52,4 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 - `node scripts/prints.mjs`: prints de conferência em `reports/prints/`.
 - `node scripts/gravar-sites.mjs`: grava os sites no ar (precisa de `FFMPEG`). A gravação do Passem a Respeitar tem de parar antes da seção do clipe inédito.
 - `node scripts/grao.mjs`: tile do grão.
+- `node scripts/fps.mjs`: quadros por segundo na home com CPU 4× mais lenta.

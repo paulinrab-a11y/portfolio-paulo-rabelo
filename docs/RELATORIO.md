@@ -27,6 +27,8 @@ Lighthouse móvel com throttling real (CPU 4× e 4G lento aplicados de fato, `--
 | `/sobre` | 97 | 100 | 100 | 100 | 2,2 s | 0 |
 | `/cv` | 98 | 100 | 100 | 100 | 1,8 s | 0 |
 
+Fluidez (`node scripts/fps.mjs`): rolando a home inteira em 12 s com a CPU 4× mais lenta, 57 fps no celular e 58 no desktop, 95% dos quadros em até 17 ms.
+
 O modo simulado padrão do Lighthouse mostra LCP de ~3,8 s na home. É artefato do modelo: o LCP observado é igual à primeira pintura (444 ms).
 
 ## Ajustes da noite de 05/10

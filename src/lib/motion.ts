@@ -8,13 +8,12 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-declare global {
-  namespace gsap.core {
-    interface Timeline {
-      /** Efeito registrado em src/lib/motion.ts */
-      entrar(alvos: gsap.TweenTarget, config?: { y?: number; stagger?: number; duration?: number }, posicao?: gsap.Position): this;
-    }
-  }
+interface ConfigEntrar {
+  y?: number;
+  stagger?: number;
+  duration?: number;
+  /** Dispara pela rolagem (ex.: { trigger, start, once: true }) */
+  scrollTrigger?: ScrollTrigger.Vars;
 }
 
 /** Consultas usadas em todo `gsap.matchMedia()` */
@@ -37,7 +36,7 @@ if (typeof window !== 'undefined') {
     name: 'entrar',
     extendTimeline: true,
     defaults: { y: 18, stagger: 0.06, duration: 0.7 },
-    effect: (alvos: gsap.TweenTarget, config: { y: number; stagger: number; duration: number }) => {
+    effect: (alvos: gsap.TweenTarget, config: Required<Omit<ConfigEntrar, 'scrollTrigger'>> & Pick<ConfigEntrar, 'scrollTrigger'>) => {
       const largo = window.matchMedia('(min-width: 768px)').matches;
       return gsap.from(alvos, {
         opacity: 0,
@@ -46,9 +45,15 @@ if (typeof window !== 'undefined') {
         stagger: config.stagger,
         duration: config.duration,
         clearProps: 'transform,filter,opacity',
+        ...(config.scrollTrigger ? { scrollTrigger: config.scrollTrigger } : {}),
       });
     },
   });
+}
+
+/** Entrada padrão (efeito registrado acima), tipada para quem chama */
+export function entrar(alvos: gsap.TweenTarget, config: ConfigEntrar = {}): gsap.core.Tween {
+  return gsap.effects.entrar(alvos, config) as gsap.core.Tween;
 }
 
 export { gsap, ScrollTrigger, useGSAP };

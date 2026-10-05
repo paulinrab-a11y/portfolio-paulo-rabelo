@@ -6,7 +6,7 @@ import { SeloIA } from '@/components/SeloIA';
 import { VideoLoop } from '@/components/VideoLoop';
 import { categorias, type Trabalho } from '@/data/trabalhos';
 import { ehVideo, midia } from '@/lib/midia';
-import { gsap, MIDIA, useGSAP } from '@/lib/motion';
+import { entrar, gsap, MIDIA, useGSAP } from '@/lib/motion';
 
 interface Props {
   itens: Trabalho[];
@@ -41,14 +41,8 @@ export function Selecionados({ itens }: Props) {
         };
       });
       mm.add(MIDIA.movimento, () => {
-        gsap.from('[data-linha-trabalho]', {
-          opacity: 0,
-          y: 24,
-          stagger: 0.06,
-          duration: 0.6,
-          clearProps: 'all',
-          scrollTrigger: { trigger: raiz.current, start: 'top 75%', once: true },
-        });
+        // Efeito registrado em src/lib/motion.ts
+        entrar('[data-linha-trabalho]', { y: 24, duration: 0.6, scrollTrigger: { trigger: raiz.current ?? undefined, start: 'top 75%', once: true } });
       });
     },
     { scope: raiz },
