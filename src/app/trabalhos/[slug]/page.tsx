@@ -38,7 +38,8 @@ export default async function PaginaTrabalho({ params }: PageProps<'/trabalhos/[
   const seguinte = proximo(trabalhos, t.slug);
   const vertical = m.orientation === 'vertical';
   const video = ehVideo(m);
-  const galeria = (m.images ?? []).filter((i) => i.label !== 'thumb' || !video);
+  // A imagem principal já está no palco: não repete na galeria
+  const galeria = (m.images ?? []).filter((i) => (i.label !== 'thumb' || !video) && i.src !== m.poster.avif);
 
   const palco = video ? (
     <Player midia={m} titulo={t.titulo} className={vertical ? 'mx-auto max-h-[78svh] lg:mx-0' : 'w-full'} />

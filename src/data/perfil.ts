@@ -75,12 +75,5 @@ export const clientes: Array<{ nome: string; logo?: { src: string; largura: numb
   { nome: 'Podcast Opinião Segura' },
 ];
 
-/**
- * Manifesto da home: 3 opções propostas (docs/PLANO.md). A primeira está no ar
- * até o Paulo escolher.
- */
-export const manifestos = [
-  ['Edito como quem monta um filme.', 'Mesmo quando é um story de 15 segundos.'],
-  ['Eu corto, animo e dou cor.', 'Cada decisão tem um motivo na tela.'],
-  ['Do roteiro ao último quadro.', 'Edição, motion e direção de arte na mesma ilha.'],
-] as const;
+/** Manifesto da home, escolhido pelo Paulo em 05/10/2026 */
+export const manifesto = ['Edito como quem monta um filme.', 'Mesmo quando é um story de 15 segundos.'] as const;

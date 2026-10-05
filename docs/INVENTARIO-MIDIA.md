@@ -179,3 +179,59 @@ Os melhores quadros do Paulo de frente, no YouTube, são 00:59:11:00 (mais próx
 ## 8. Quadros de conferência
 
 Um quadro de cada recorte final está em `scratchpad/frames-verificacao/` (PNG no tamanho do recorte), mais os 3 candidatos a retrato.
+
+## 9. Slides extras aprovados (segunda rodada)
+
+Os quatro slides são imagens paradas. Comparei o primeiro e o último quadro de cada um e a diferença deu zero. Nada de vídeo, então nenhum preview. Recortes no quadro 1920×1080, AVIF q60 e JPG q82.
+
+| Slug | Arquivo | Recorte (x,y,l,a) | Quadro | Tamanho |
+|---|---|---|---|---|
+| `fotografia` | foto-3 hambúrguer | 0,0,934,1064 | 00:01:44:15 | 934×1064 |
+| `fotografia` | foto-4 porção | 1252,223,376,568 | 00:01:44:15 | 376×568 |
+| `fotografia` | foto-5 casamento | 0,0,918,1064 | 00:08:59:00 | 918×1064 |
+| `fotografia` | foto-6 rapaz com fone | 1252,223,376,568 | 00:08:59:00 | 376×568 |
+| `hora-bolas-rebranding` | logo | 108,268,442,438 | 00:03:28:09 | 442×438 |
+| `hora-bolas-rebranding` | cardapio-capa | 680,321,272,634 | 00:03:28:09 | 272×634 |
+| `hora-bolas-rebranding` | cardapio-pagina-1 | 1102,321,272,634 | 00:03:28:09 | 272×634 |
+| `hora-bolas-rebranding` | cardapio-pagina-2 | 1524,321,270,634 | 00:03:28:09 | 270×634 |
+| `ohc-artes` | personalize-volante-audi | 0,0,974,1080 | 00:02:07:15 | 974×1080 |
+| `ohc-artes` | ai-spec-foto | 1210,279,460,476 | 00:02:07:15 | 460×476 |
+| `ohc-artes` | ai-spec-composicao | 1180,50,520,940 | 00:02:07:15 | 520×940 |
+| `eventos` | stand-ohc-tenda | 0,16,1134,1064 | 01:04:22:00 | 1134×1064 |
+| `eventos` | stand-ohc-retrato | 1317,251,428,524 | 01:04:22:00 | 428×524 |
+| `eventos` | evento-grupo-yala | 124,124,296,376 | 01:04:27:00 | 296×376 |
+| `eventos` | evento-stand-ohc | 491,124,430,376 | 01:04:27:00 | 430×376 |
+| `eventos` | evento-show | 124,579,296,376 | 01:04:27:00 | 296×376 |
+| `eventos` | evento-entrevista-laad | 491,579,430,376 | 01:04:27:00 | 430×376 |
+
+Observações:
+- Logo do rebranding: a peça tem fundo branco próprio, diferente do creme do slide. O recorte fica 2 px dentro desse quadrado branco.
+- Cardápio: só três peças aparecem, a capa e duas páginas. Recuo de 16 px por causa dos cantos arredondados.
+- Arte do volante Audi: no slide ela ocupa a metade esquerda e sai do quadro em cima, embaixo e à esquerda. Pode faltar borda da arte original.
+- AI SPEC: a palavra "reunidos" invade o topo da foto. Por isso a `ai-spec-foto` corta 26 px no topo, não 16. A `ai-spec-composicao` mantém os títulos sobre o creme, do jeito que aparece no slide.
+- `evento-stand-ohc` é outro recorte da mesma foto de `stand-ohc-tenda`.
+- O slide "Trabalhe comigo" (01:04:29:18 em diante) não foi usado.
+
+Textos exatos dos slides:
+- Rebranding: título "Rebranding". Legenda: "REBRANDING" e "Hora Bolas Club · rebranding + social media · 300 mil de alcance mensal". No logo: "HORA BOLAS", "Bilhar", "CLUB". Na capa do cardápio: "Cardápio", "BILHAR CLUB". Na página 1: "PARA JOGAR JUNTO" e "RODADA COMPLETA". Na página 2: "SABOR DE BOTECO", "PORÇÃO DEGUSTAÇÃO" e "SOBREMESAS".
+- OHC: na arte, "OHC MOTORS", "AUDI" e "PERSONALIZE O SEU CARRO AGORA!". Ao lado, "Minimalismo e beleza reunidos" acima da foto e "AI SPEC UX/UI DESIGN" abaixo.
+- Eventos, slide 1: "EVENTOS" e "PRODUÇÃO DE STAND". Na tenda: "OHC MOTORS" e "@OHCMOTORSBR".
+- Eventos, slide 2: "Participação em eventos" e a tabela:
+
+| Evento | Mês | Função | Entrega |
+|---|---|---|---|
+| ELETROCAR SHOW | Junho | FILMAGEM | Entrevistas |
+| CENA 2K25 | Novembro | FILMAGEM | Fotografia |
+| LAAD DEFENCE & SECURITY 2026 | Abril | FILMAGEM | Fotografia |
+
+Só o LAAD tem ano escrito. Nenhum evento tem cidade.
+
+A peça AI SPEC parece gerada por IA? Não dá para afirmar. Parece foto editorial com textura de papel por cima. As espumas de microfone e as câmeras ao redor podem ser montagem. O texto "AI SPEC" está na peça, mas o slide não explica o que quer dizer.
+
+Dúvidas desta rodada:
+1. Qual foto é de qual evento? O slide não liga as 4 fotos às 3 linhas da tabela. Pela imagem, a entrevista com Protecta, UR, Flash e Milipol parece ser do LAAD, e a tenda é da OHC. Grupo Yala e show ficam sem dono.
+2. "AI SPEC UX/UI DESIGN": o que é, para quem foi feito e se leva o selo "Feito com IA".
+3. A arte do volante Audi é da OHC (logo OHC no canto). Ela tem versão original sem corte?
+4. O rapaz do retrato do stand e as pessoas das fotos de evento autorizam o uso?
+
+Tamanho novo: `fotografia` 828 KB, `hora-bolas-rebranding` 184 KB, `ohc-artes` 320 KB, `eventos` 488 KB. `public/media` soma 98 MB com as gravações de sites que entraram depois.

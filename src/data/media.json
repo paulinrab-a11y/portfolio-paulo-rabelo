@@ -490,6 +490,42 @@
         "label": "Pistola em estande de feira, luz verde",
         "in": "00:01:49:15",
         "crop": [1252, 223, 376, 568]
+      },
+      {
+        "src": "/media/fotografia/foto-3.avif",
+        "fallback": "/media/fotografia/foto-3.jpg",
+        "width": 934,
+        "height": 1064,
+        "label": "Hambúrguer empanado com batata",
+        "in": "00:01:44:15",
+        "crop": [0, 0, 934, 1064]
+      },
+      {
+        "src": "/media/fotografia/foto-4.avif",
+        "fallback": "/media/fotografia/foto-4.jpg",
+        "width": 376,
+        "height": 568,
+        "label": "Porção de salgados sobre toalha xadrez amarela",
+        "in": "00:01:44:15",
+        "crop": [1252, 223, 376, 568]
+      },
+      {
+        "src": "/media/fotografia/foto-5.avif",
+        "fallback": "/media/fotografia/foto-5.jpg",
+        "width": 918,
+        "height": 1064,
+        "label": "Noiva jogando o buquê em casamento ao ar livre",
+        "in": "00:08:59:00",
+        "crop": [0, 0, 918, 1064]
+      },
+      {
+        "src": "/media/fotografia/foto-6.avif",
+        "fallback": "/media/fotografia/foto-6.jpg",
+        "width": 376,
+        "height": 568,
+        "label": "Rapaz de boné e fone de ouvido em estúdio",
+        "in": "00:08:59:00",
+        "crop": [1252, 223, 376, 568]
       }
     ],
     "source": "PORTFÓLIO PAULO RABELO.mp4"
@@ -580,6 +616,58 @@
     ],
     "source": "hora bolas/"
   },
+  "hora-bolas-rebranding": {
+    "orientation": "imagem",
+    "width": 442,
+    "height": 438,
+    "poster": {
+      "avif": "/media/hora-bolas-rebranding/logo.avif",
+      "jpg": "/media/hora-bolas-rebranding/logo.jpg"
+    },
+    "preview": null,
+    "full": null,
+    "images": [
+      {
+        "src": "/media/hora-bolas-rebranding/logo.avif",
+        "fallback": "/media/hora-bolas-rebranding/logo.jpg",
+        "width": 442,
+        "height": 438,
+        "label": "Logo em relógio do Hora Bolas Bilhar Club",
+        "in": "00:03:28:09",
+        "crop": [108, 268, 442, 438]
+      },
+      {
+        "src": "/media/hora-bolas-rebranding/cardapio-capa.avif",
+        "fallback": "/media/hora-bolas-rebranding/cardapio-capa.jpg",
+        "width": 272,
+        "height": 634,
+        "label": "Cardápio: capa com o logo e tacos de sinuca",
+        "in": "00:03:28:09",
+        "crop": [680, 321, 272, 634]
+      },
+      {
+        "src": "/media/hora-bolas-rebranding/cardapio-pagina-1.avif",
+        "fallback": "/media/hora-bolas-rebranding/cardapio-pagina-1.jpg",
+        "width": 272,
+        "height": 634,
+        "label": "Cardápio: Para jogar junto e Rodada completa",
+        "in": "00:03:28:09",
+        "crop": [1102, 321, 272, 634]
+      },
+      {
+        "src": "/media/hora-bolas-rebranding/cardapio-pagina-2.avif",
+        "fallback": "/media/hora-bolas-rebranding/cardapio-pagina-2.jpg",
+        "width": 270,
+        "height": 634,
+        "label": "Cardápio: Sabor de boteco e Sobremesas",
+        "in": "00:03:28:09",
+        "crop": [1524, 321, 270, 634]
+      }
+    ],
+    "source": "PORTFÓLIO PAULO RABELO.mp4",
+    "slideText": "REBRANDING / Hora Bolas Club · rebranding + social media · 300 mil de alcance mensal",
+    "note": "Slide parado (sem movimento). Quadro em 00:03:28:09."
+  },
   "ohc-carrossel": {
     "orientation": "imagem",
     "width": 1080,
@@ -601,6 +689,123 @@
       }
     ],
     "source": "ohc/1.jpg"
+  },
+  "ohc-artes": {
+    "orientation": "imagem",
+    "width": 974,
+    "height": 1080,
+    "poster": {
+      "avif": "/media/ohc-artes/personalize-volante-audi.avif",
+      "jpg": "/media/ohc-artes/personalize-volante-audi.jpg"
+    },
+    "preview": null,
+    "full": null,
+    "images": [
+      {
+        "src": "/media/ohc-artes/personalize-volante-audi.avif",
+        "fallback": "/media/ohc-artes/personalize-volante-audi.jpg",
+        "width": 974,
+        "height": 1080,
+        "label": "Arte OHC: Personalize o seu carro agora, volante Audi",
+        "in": "00:02:07:15",
+        "crop": [0, 0, 974, 1080]
+      },
+      {
+        "src": "/media/ohc-artes/ai-spec-foto.avif",
+        "fallback": "/media/ohc-artes/ai-spec-foto.jpg",
+        "width": 460,
+        "height": 476,
+        "label": "Foto editorial: rapaz de óculos laranja cercado de câmeras e microfones",
+        "in": "00:02:07:15",
+        "crop": [1210, 279, 460, 476]
+      }
+    ],
+    "source": "PORTFÓLIO PAULO RABELO.mp4",
+    "note": "O texto \"AI SPEC UX/UI DESIGN\" do slide antigo estava errado (confirmado pelo Paulo); não é usado."
+  },
+  "eventos": {
+    "orientation": "imagem",
+    "width": 1134,
+    "height": 1064,
+    "poster": {
+      "avif": "/media/eventos/stand-ohc-tenda.avif",
+      "jpg": "/media/eventos/stand-ohc-tenda.jpg"
+    },
+    "preview": null,
+    "full": null,
+    "images": [
+      {
+        "src": "/media/eventos/stand-ohc-tenda.avif",
+        "fallback": "/media/eventos/stand-ohc-tenda.jpg",
+        "width": 1134,
+        "height": 1064,
+        "label": "Stand da OHC Motors: tenda e expositor de volantes",
+        "in": "01:04:22:00",
+        "crop": [0, 16, 1134, 1064]
+      },
+      {
+        "src": "/media/eventos/stand-ohc-retrato.avif",
+        "fallback": "/media/eventos/stand-ohc-retrato.jpg",
+        "width": 428,
+        "height": 524,
+        "label": "Stand da OHC Motors: homem de camisa branca diante do expositor",
+        "in": "01:04:22:00",
+        "crop": [1317, 251, 428, 524]
+      },
+      {
+        "src": "/media/eventos/evento-grupo-yala.avif",
+        "fallback": "/media/eventos/evento-grupo-yala.jpg",
+        "width": 296,
+        "height": 376,
+        "label": "Grupo posando sob o letreiro Yala",
+        "in": "01:04:27:00",
+        "crop": [124, 124, 296, 376]
+      },
+      {
+        "src": "/media/eventos/evento-show.avif",
+        "fallback": "/media/eventos/evento-show.jpg",
+        "width": 296,
+        "height": 376,
+        "label": "Dois rapazes num show com luzes de celular",
+        "in": "01:04:27:00",
+        "crop": [124, 579, 296, 376]
+      },
+      {
+        "src": "/media/eventos/evento-entrevista-laad.avif",
+        "fallback": "/media/eventos/evento-entrevista-laad.jpg",
+        "width": 430,
+        "height": 376,
+        "label": "Entrevista em painel com marcas Protecta, UR, Flash, Milipol",
+        "in": "01:04:27:00",
+        "crop": [491, 579, 430, 376]
+      }
+    ],
+    "source": "PORTFÓLIO PAULO RABELO.mp4",
+    "slideText": {
+      "stand": "EVENTOS / PRODUÇÃO DE STAND",
+      "participacao": "Participação em eventos",
+      "tabela": [
+        {
+          "evento": "ELETROCAR SHOW",
+          "mes": "Junho",
+          "funcao": "FILMAGEM",
+          "entrega": "Entrevistas"
+        },
+        {
+          "evento": "CENA 2K25",
+          "mes": "Novembro",
+          "funcao": "FILMAGEM",
+          "entrega": "Fotografia"
+        },
+        {
+          "evento": "LAAD DEFENCE & SECURITY 2026",
+          "mes": "Abril",
+          "funcao": "FILMAGEM",
+          "entrega": "Fotografia"
+        }
+      ]
+    },
+    "note": "Slides parados, sem video. O slide Trabalhe comigo (01:04:29:18 em diante, tem a rua) nao foi usado."
   },
   "logos": {
     "orientation": "imagem",
