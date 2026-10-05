@@ -1,0 +1,35 @@
+# Atualizações de dependências por PR, uma vez por semana.
+# cooldown: espera alguns dias depois da publicação de uma versão antes de propô-la.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+    groups:
+      producao:
+        dependency-type: production
+        update-types: [minor, patch]
+      desenvolvimento:
+        dependency-type: development
+        update-types: [minor, patch]
+    commit-message:
+      prefix: chore
+      include: scope
+    labels: [segurança, infra]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: ci
+    labels: [segurança, infra]
