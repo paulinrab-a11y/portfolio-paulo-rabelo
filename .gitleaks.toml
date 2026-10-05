@@ -1,0 +1,9 @@
+# Varredura de segredos (gitleaks). Usa as regras padrão.
+title = "portfolio-paulo-rabelo"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Arquivos sem segredos por natureza"
+paths = ['''package-lock\.json''', '''public/media/.*''']

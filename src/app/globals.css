@@ -1,0 +1,397 @@
+@import "tailwindcss";
+
+/* Ilha de edição: preto de cinema, creme de cartela, um vermelho de REC. */
+@theme {
+  --color-preto: #0b0b0c;
+  --color-carvao: #151517;
+  --color-linha: #2a2a2e;
+  --color-creme: #f3efe4;
+  --color-cinza: #9b988f;
+  --color-grafite: #5e5b55;
+  --color-rec: #e23e3a;
+  --color-rec-escuro: #c8322e;
+
+  --font-titulo: var(--fonte-titulo), sans-serif;
+  --font-mono: var(--fonte-mono), ui-monospace, monospace;
+  --font-sans: var(--fonte-texto), system-ui, sans-serif;
+
+  --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-sai: cubic-bezier(0.4, 0, 1, 1);
+}
+
+:root {
+  --margem: clamp(20px, 5vw, 72px);
+  --cabecalho: 56px;
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-preto);
+  color: var(--color-creme);
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--color-linha) var(--color-preto);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 0.9rem + 0.25vw, 18px);
+  line-height: 1.55;
+  background: var(--color-preto);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-rec);
+  color: var(--color-preto);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-rec);
+  outline-offset: 3px;
+}
+
+.margem {
+  padding-inline: var(--margem);
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(12px, 2vw, 24px);
+}
+
+/* Rótulo de software de edição: mono, caixa alta, espaçado */
+.rotulo {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.tc {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+/* Timecode que muda a cada quadro: a troca de texto não recalcula o resto da página */
+.tc-vivo {
+  display: inline-block;
+  min-width: 11ch;
+  contain: layout paint style;
+}
+
+.titulo-display {
+  font-family: var(--font-titulo);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* Marca-texto do reel da WhyNot: faixa vermelha atrás do texto digitado */
+.marca-texto {
+  background: linear-gradient(var(--color-rec), var(--color-rec)) no-repeat 0 90% / 100% 0.5em;
+}
+
+.cursor-digitacao {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: -0.2em;
+  background: var(--color-creme);
+  animation: piscar 1s steps(1) infinite;
+}
+
+@keyframes piscar {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Texto digitado em mono: revela letra a letra com clip-path em degraus.
+   Funciona sem JS; espera a abertura terminar na primeira visita. */
+.digitar {
+  --duracao-digitar: calc(var(--letras) * 45ms);
+}
+.digitar-texto {
+  animation: digitar var(--duracao-digitar) steps(var(--letras), jump-none) 0.35s both;
+}
+.digitar-cursor {
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  transform: translateX(calc(var(--letras) * 1ch));
+  animation:
+    digitar-cursor var(--duracao-digitar) steps(var(--letras), jump-none) 0.35s both,
+    piscar 1s steps(1) infinite;
+}
+html[data-abertura] .digitar-texto,
+html[data-abertura] .digitar-cursor {
+  animation-delay: 1.75s;
+}
+@keyframes digitar {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes digitar-cursor {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(var(--letras) * 1ch));
+  }
+}
+
+.rec-ponto {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  background: var(--color-rec);
+}
+
+/* Cartela creme: seções de leitura */
+.cartela {
+  background: var(--color-creme);
+  color: var(--color-preto);
+  color-scheme: light;
+}
+.cartela .secundario {
+  color: var(--color-grafite);
+}
+.cartela :focus-visible {
+  outline-color: var(--color-rec-escuro);
+}
+
+/* Grão: tile estático movido em 12 passos por segundo, sem JS */
+.grao {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  overflow: hidden;
+}
+.grao::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: url("/textura/grao.webp");
+  opacity: 0.06;
+  animation: grao 1s steps(12) infinite;
+}
+@keyframes grao {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-7%, 4%);
+  }
+  40% {
+    transform: translate(5%, -6%);
+  }
+  60% {
+    transform: translate(-3%, 8%);
+  }
+  80% {
+    transform: translate(8%, 2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Vinheta fixa: a luz vem do vídeo, a borda escurece */
+.vinheta {
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 62%, rgb(0 0 0 / 0.3) 100%);
+}
+
+/* Botões: retangulares, como teclas de software */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 48px;
+  padding: 0 1.25rem;
+  border: 1px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    background-color 160ms var(--ease-cine),
+    color 160ms var(--ease-cine);
+}
+.botao:hover {
+  background: var(--color-creme);
+  color: var(--color-preto);
+}
+.botao-rec {
+  background: var(--color-rec);
+  border-color: var(--color-rec);
+  color: var(--color-preto);
+}
+.botao-rec:hover {
+  background: var(--color-creme);
+  border-color: var(--color-creme);
+}
+
+/* Abertura: só existe quando o script inline marcou a primeira visita */
+.abertura {
+  display: none;
+}
+html[data-abertura]:not([data-abertura-fim]) .abertura {
+  display: flex;
+  /* Rede de segurança: se o JS não carregar, a abertura some sozinha */
+  animation: abertura-trava 0s linear 2.6s forwards;
+}
+@keyframes abertura-trava {
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+/* Barras de letterbox */
+.letterbox-barra {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: #000;
+}
+
+/* Créditos passando devagar */
+.creditos-faixa {
+  display: flex;
+  width: max-content;
+  animation: creditos 60s linear infinite;
+}
+.creditos:hover .creditos-faixa,
+.creditos:focus-within .creditos-faixa {
+  animation-play-state: paused;
+}
+@keyframes creditos {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Troca de página: letterbox fecha na saída e abre na entrada */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-old(.pagina-sai) {
+  animation: letterbox-fecha 220ms var(--ease-sai) both;
+}
+::view-transition-new(.pagina-entra) {
+  animation: letterbox-abre 420ms var(--ease-cine) 120ms both;
+}
+@keyframes letterbox-fecha {
+  to {
+    clip-path: inset(50% 0 50% 0);
+    opacity: 0.4;
+  }
+}
+@keyframes letterbox-abre {
+  from {
+    clip-path: inset(50% 0 50% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+::view-transition-group(.trabalho) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--ease-cine);
+}
+
+/* Prévia que segue o cursor */
+.previa-flutuante {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms var(--ease-cine);
+}
+.previa-flutuante[data-visivel="true"] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-abertura] .abertura {
+    display: none;
+  }
+  .grao::after,
+  .cursor-digitacao,
+  .digitar-texto,
+  .creditos-faixa,
+  .rec-pisca {
+    animation: none !important;
+  }
+  .creditos-faixa {
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .creditos-duplicata {
+    display: none !important;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  .previa-flutuante {
+    transition: none;
+  }
+  .so-movimento {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .so-reduzido {
+    display: none !important;
+  }
+}
+
+.rec-pisca {
+  animation: piscar 1.2s steps(1) infinite;
+}
+
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  /* Tudo em rem encolhe junto: o CV cabe numa página A4 */
+  html {
+    font-size: 12px;
+  }
+  body {
+    font-size: 12px;
+  }
+  .grao,
+  .vinheta,
+  .sem-impressao {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
