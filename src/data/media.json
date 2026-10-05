@@ -38,9 +38,10 @@
       },
       {
         "from": "yt",
-        "in": "00:57:08:18",
-        "out": "00:57:10:03",
-        "crop": [671, 326, 1120, 630]
+        "in": "00:59:10:15",
+        "out": "00:59:12:00",
+        "crop": [671, 326, 1120, 630],
+        "note": "Paulo apresentando; substitui a cartela CONSTANCE, que disputava com o nome no herói"
       },
       {
         "from": "vis",
