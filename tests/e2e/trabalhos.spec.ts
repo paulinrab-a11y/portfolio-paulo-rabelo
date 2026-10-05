@@ -16,6 +16,20 @@ test.describe('/trabalhos', () => {
     await expect.poll(() => visiveis.count()).toBe(total);
   });
 
+  test('filtro e modo ficam na URL: link compartilhado e voltar mantêm a escolha', async ({ page }) => {
+    await page.goto('/trabalhos');
+    await page.getByRole('button', { name: /^IA/ }).click();
+    await page.getByRole('button', { name: 'Grade' }).click();
+    await expect(page).toHaveURL(/\/trabalhos\?categoria=ia&modo=grade$/);
+    await page.locator('[data-item]:visible a').first().click();
+    await expect(page).toHaveURL(/\/trabalhos\/[a-z0-9-]+$/);
+    await page.goBack();
+    await expect(page.getByRole('button', { name: /^IA/ })).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('ul[data-modo="grade"]')).toBeVisible();
+    await page.goto('/trabalhos?categoria=sites');
+    await expect(page.getByRole('button', { name: /^Sites/ })).toHaveAttribute('aria-pressed', 'true');
+  });
+
   test('alterna entre lista e grade', async ({ page }) => {
     await page.goto('/trabalhos');
     await page.getByRole('button', { name: 'Grade' }).click();

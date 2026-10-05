@@ -2,20 +2,20 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLayoutEffect, useRef, useState, ViewTransition } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, ViewTransition } from 'react';
 import { SeloIA } from '@/components/SeloIA';
 import { type Categoria, categorias, type Trabalho } from '@/data/trabalhos';
 import { ehVideo, midia } from '@/lib/midia';
 import { Flip } from '@/lib/flip';
+import { lerEstado, type Modo, montarBusca } from '@/lib/filtroUrl';
 import { gsap } from '@/lib/motion';
 import { categoriasUsadas, filtrar } from '@/lib/trabalhos';
-
-type Modo = 'lista' | 'grade';
 
 /**
  * Índice de todos os trabalhos: filtro por categoria e alternância entre
  * lista e grade. A troca reordena com GSAP Flip (rápido: é ação repetida).
- * Sem JS, mostra todos em lista.
+ * Sem JS, mostra todos em lista. Filtro e modo ficam na URL
+ * (?categoria=ia&modo=grade): o link compartilhado e o voltar mantêm a escolha.
  */
 export function Indice({ lista }: { lista: Trabalho[] }) {
   const [filtro, setFiltro] = useState<Categoria | null>(null);
@@ -23,7 +23,23 @@ export function Indice({ lista }: { lista: Trabalho[] }) {
   const raiz = useRef<HTMLDivElement>(null);
   const estado = useRef<Flip.FlipState | null>(null);
 
-  const usadas = categoriasUsadas(lista, Object.keys(categorias) as Categoria[]);
+  const usadas = useMemo(() => categoriasUsadas(lista, Object.keys(categorias) as Categoria[]), [lista]);
+  const lida = useRef(false);
+
+  // Estado inicial vem da URL (depois da hidratação, sem animar)
+  useEffect(() => {
+    const e = lerEstado(window.location.search, usadas);
+    setFiltro(e.categoria);
+    setModo(e.modo);
+    lida.current = true;
+  }, [usadas]);
+
+  // Cada mudança vai para a URL, sem criar entrada nova no histórico
+  useEffect(() => {
+    if (!lida.current) return;
+    const busca = montarBusca({ categoria: filtro, modo });
+    if (busca !== window.location.search) window.history.replaceState(window.history.state, '', `${window.location.pathname}${busca}`);
+  }, [filtro, modo]);
   const visiveis = new Set(filtrar(lista, filtro).map((t) => t.slug));
 
   const mudar = (acao: () => void) => {
