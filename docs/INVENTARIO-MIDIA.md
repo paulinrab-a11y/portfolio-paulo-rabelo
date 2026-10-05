@@ -4,6 +4,13 @@ Feito em 05/10/2026. Fonte dos recortes: `PORTFÓLIO PAULO RABELO.mp4`. Saída e
 
 Tempos em `HH:MM:SS:FF` a 30 fps. As fronteiras dos slides saíram de detecção de cena com passo de 0,2 s.
 
+> **Mudanças depois deste inventário** (a fonte de verdade é `src/data/media.json`):
+> - `site-ohc-recorte` saiu. Os sites agora vêm de gravações ao vivo (`site-<nome>-celular` e `site-<nome>-desktop`, `scripts/gravar-sites.mjs`); a do Passem a Respeitar para antes da seção do clipe inédito.
+> - Herói: o loop foi girado para começar no plano do visualizer, e o plano com a cartela "CONSTANCE" foi trocado pelo Paulo apresentando (00:59:10:15).
+> - `ohc-artes`: a versão com o texto "AI SPEC UX/UI DESIGN" saiu (o texto estava errado no slide antigo).
+> - `eventos`: o segundo recorte da tenda da OHC saiu (repetia a foto).
+> - Retrato do Paulo em `retrato/`, enviado por ele.
+
 ## 1. Arquivos da pasta
 
 | Arquivo | Dimensões | Duração | fps | Vídeo | Áudio |
