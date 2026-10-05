@@ -5,6 +5,8 @@ Site de portfólio: edição, motion e direção de arte. Conceito "ilha de edi�
 - Brief: `docs/BRIEF-ORIGINAL.md`
 - Plano e decisões: `docs/PLANO.md`
 - Pendências: `docs/PENDENCIAS.md`
+- Estado, números e evidências: `docs/RELATORIO.md`
+- Segurança: `SECURITY.md`
 - Regras para quem mexe no código (pessoas e agentes): `AGENTS.md`
 
 ```bash
