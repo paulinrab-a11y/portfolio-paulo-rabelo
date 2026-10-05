@@ -34,7 +34,6 @@ export default function Sobre() {
               src="/media/retrato/paulo-rabelo.avif"
               alt="Paulo Rabelo sentado num corrimão diante de uma parede de tijolos, com uma bandeira preta ao fundo"
               fill
-              unoptimized
               sizes="(min-width: 1024px) 40vw, (min-width: 640px) 66vw, 100vw"
               className="object-cover object-[55%_60%]"
               loading="eager"

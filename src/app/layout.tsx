@@ -8,7 +8,7 @@ import { pessoaLd } from '@/lib/seo';
 import { SITE_URL } from '@/lib/site';
 import './globals.css';
 
-const titulo = Big_Shoulders({ subsets: ['latin'], weight: ['800', '900'], variable: '--fonte-titulo', display: 'swap', adjustFontFallback: false });
+const titulo = Big_Shoulders({ subsets: ['latin'], weight: ['800', '900'], variable: '--fonte-titulo', display: 'optional', adjustFontFallback: false });
 const mono = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--fonte-mono', display: 'swap' });
 const texto = Instrument_Sans({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--fonte-texto', display: 'swap' });
 
