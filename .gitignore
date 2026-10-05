@@ -1,0 +1,22 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+.env*.local
+.env
+
+
+.DS_Store
+
+.vercel
+
+# Testes e relatórios
+coverage/
+playwright-report/
+test-results/
+reports/
+.stryker-tmp/
+
+# Configuração local de agentes
+.claude/settings.local.json
