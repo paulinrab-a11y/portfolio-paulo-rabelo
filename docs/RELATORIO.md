@@ -41,10 +41,16 @@ O modo simulado padrão do Lighthouse mostra LCP de ~3,8 s na home. É artefato 
 - Fontes no repositório (`next/font/local`): o build do CI não depende mais da rede e o texto não pula quando a fonte chega (CLS 0).
 - Timeline começa pelo clipe de V1.
 
+## Verificações manuais (05/10)
+
+- Teclado: 70 Tabs seguidos na home, todo foco visível e com contorno.
+- Console: nenhum erro ou aviso nas 32 páginas do sitemap.
+- JSON-LD válido nas 32 páginas (Person, Service, CreativeWork, BreadcrumbList).
+
 ## Testes
 
 - `npm run check`: Biome, TypeScript, Knip, dependency-cruiser e 98 testes Vitest (100% das linhas de `src/lib`).
-- `npm run test:e2e`: 78 testes Playwright em Chrome desktop e Pixel 7 (no CI, também iPhone/WebKit): fluxos, abertura, movimento reduzido, sem JavaScript, sem rolagem lateral, player, filtro (e filtro na URL), serviços, cabeçalhos de segurança, e axe (WCAG 2.2 A/AA) em 9 páginas.
+- `npm run test:e2e`: 98 testes Playwright em Chrome desktop e Pixel 7 (no CI, também iPhone/WebKit): fluxos, abertura, movimento reduzido, sem JavaScript, sem rolagem lateral, menu do celular, timeline pelo teclado, player, filtro (e filtro na URL), serviços, PDF do CV, console sem erro, cabeçalhos de segurança e axe (WCAG 2.2 A/AA) em 9 páginas.
 - `tests/integration/conteudo.test.ts` reprova: mídia faltando, IA sem selo, "airbag", "chope", travessão, frase de anúncio, fonte proibida, endereço com rua, serviço sem trabalho.
 
 ## Regras do brief e como foram atendidas
