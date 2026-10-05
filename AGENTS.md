@@ -14,7 +14,8 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 ## Conteúdo
 
 - Não invente cliente, número, prêmio, depoimento, ano, função, ferramenta ou resultado. Sem dado confirmado, o campo fica vazio e não aparece.
-- Fatos e textos ficam em `src/data/`. Trabalho feito com IA leva `feitoComIA: true` (mostra o selo "Feito com IA").
+- Fatos e textos ficam em `src/data/`: `perfil.ts`, `trabalhos.ts`, `servicos.ts` (páginas de serviço para busca) e `media.json`. Trabalho feito com IA leva `feitoComIA: true` (mostra o selo "Feito com IA").
+- Pendências e respostas do Paulo ficam em `docs/PENDENCIAS.md`. Leia antes de mexer em conteúdo.
 - Só mídia real dos trabalhos. Logos só os arquivos de `public/media/logos/`. Marca sem arquivo aparece como texto.
 - Não mexa na aparência das peças: recortar, reduzir e converter pode; recolorir ou filtrar, não.
 - Passem a Respeitar: sem data de lançamento, sem nome de faixa, sem material inédito.
@@ -44,3 +45,10 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 - Mudança visível (rota, fluxo, link) entra com teste em `tests/e2e/`.
 - Não desligue regra de lint. Se não se aplica, `biome-ignore` com o motivo.
 - Máquina de desenvolvimento com pouca RAM: rode build e navegadores um de cada vez.
+
+## Scripts
+
+- `npm run og`: gera `public/og/home.jpg` (imagem de compartilhamento) com o servidor em `localhost:3400`.
+- `node scripts/prints.mjs`: prints de conferência em `reports/prints/`.
+- `node scripts/gravar-sites.mjs`: grava os sites no ar (precisa de `FFMPEG`). A gravação do Passem a Respeitar tem de parar antes da seção do clipe inédito.
+- `node scripts/grao.mjs`: tile do grão.
