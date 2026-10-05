@@ -258,13 +258,17 @@ export const trabalhos: Trabalho[] = [
   {
     slug: 'videos-para-redes',
     titulo: 'Vídeos para redes sociais',
+    cliente: 'OHC Motors e Hora Bolas Club',
     funcao: 'Edição',
     categorias: ['social', 'edicao'],
     trilha: 'V1',
     midia: 'social-verticais',
-    creditos: [{ rotulo: 'Formato', valor: 'Vídeos verticais' }],
+    creditos: [
+      { rotulo: 'Clientes', valor: 'OHC Motors (Audi no evento) e Hora Bolas Club (drink)' },
+      { rotulo: 'Formato', valor: 'Vídeos verticais' },
+    ],
     texto: {
-      contexto: 'Vídeos verticais para redes sociais: um carro em evento e um drink sendo preparado.',
+      contexto: 'Vídeos verticais para redes sociais: um Audi no evento da OHC Motors e um drink sendo preparado no Hora Bolas Club.',
       oQueFiz: 'Editei os vídeos.',
     },
   },

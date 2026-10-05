@@ -1,11 +1,24 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { perfil } from '@/data/perfil';
 
 export function SobreResumo() {
   return (
     <section aria-labelledby="sobre-titulo" className="cartela margem grade py-[clamp(80px,14vh,160px)]">
-      <p className="rotulo secundario col-span-12 mb-6 md:col-span-3">04 · Sobre</p>
-      <div className="col-span-12 md:col-span-8">
+      <div className="col-span-12 mb-8 md:col-span-3 md:mb-0">
+        <p className="rotulo secundario mb-6">04 · Sobre</p>
+        <div className="relative aspect-[3/4] w-40 overflow-hidden bg-preto md:w-full">
+          <Image
+            src="/media/retrato/paulo-rabelo.avif"
+            alt="Retrato de Paulo Rabelo"
+            fill
+            unoptimized
+            sizes="(min-width: 768px) 22vw, 160px"
+            className="object-cover object-[55%_60%]"
+          />
+        </div>
+      </div>
+      <div className="col-span-12 md:col-span-8 md:col-start-5">
         <h2 id="sobre-titulo" className="titulo-display text-[clamp(44px,7vw,112px)]">
           Edição, motion e direção de arte.
         </h2>
