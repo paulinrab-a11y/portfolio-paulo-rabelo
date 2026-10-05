@@ -39,11 +39,13 @@ export interface Clipe {
  * fica sob o playhead por vez.
  */
 export function montarTimeline(lista: Trabalho[], ordemTrilhas: readonly Trilha[]): Clipe[] {
-  const porTrilha = ordemTrilhas.map((tr) => lista.filter((t) => t.trilha === tr));
-  const sequencia: Trabalho[] = [];
-  for (let rodada = 0; sequencia.length < lista.length; rodada += 1) {
-    for (const fila of porTrilha) if (fila[rodada]) sequencia.push(fila[rodada]);
-  }
+  // Cada trilha espalha os seus clipes por igual na régua (posição ideal
+  // (k + 0,5) / n). Assim uma trilha com mais trabalhos não se acumula no fim.
+  const posicionados = ordemTrilhas.flatMap((tr, ordem) => {
+    const fila = lista.filter((t) => t.trilha === tr);
+    return fila.map((t, k) => ({ t, ideal: (k + 0.5) / fila.length, ordem }));
+  });
+  const sequencia = posicionados.sort((a, b) => a.ideal - b.ideal || a.ordem - b.ordem).map((p) => p.t);
   const passo = 1 / sequencia.length;
   return sequencia.map((t, i) => ({ slug: t.slug, trilha: t.trilha, inicio: i * passo, fim: (i + 1) * passo }));
 }

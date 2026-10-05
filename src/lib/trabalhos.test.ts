@@ -54,6 +54,20 @@ describe('montarTimeline', () => {
     expect(clipes.map((c) => c.slug)).toEqual(['a', 'b', 'd', 'c']);
   });
 
+  it('trilha com muitos clipes se espalha pela régua, sem acumular no fim', () => {
+    const base2 = lista[0];
+    const muitos: Trabalho[] = [
+      ...Array.from({ length: 6 }, (_, i) => ({ ...base2, slug: `v4-${i}`, trilha: 'V4' as const })),
+      { ...base2, slug: 'v1-0', trilha: 'V1' as const },
+      { ...base2, slug: 'v1-1', trilha: 'V1' as const },
+    ];
+    const ordem = montarTimeline(muitos, ['V1', 'V2', 'V3', 'V4']).map((c) => c.slug);
+    // Os dois de V1 caem perto de 1/4 e 3/4, não no começo
+    expect(ordem.indexOf('v1-0')).toBeGreaterThan(0);
+    expect(ordem.indexOf('v1-1')).toBeLessThan(ordem.length - 1);
+    expect(ordem.slice(-2).every((s) => s.startsWith('v4'))).toBe(true);
+  });
+
   it('os clipes cobrem a régua inteira sem sobrepor', () => {
     expect(clipes[0].inicio).toBe(0);
     expect(clipes.at(-1)?.fim).toBeCloseTo(1);

@@ -143,7 +143,7 @@ export function Timeline({ lista }: { lista: Trabalho[] }) {
                           onClick={() => irPara(i)}
                           onFocus={() => irPara(i)}
                           aria-pressed={ativo === i}
-                          className={`absolute inset-y-0 overflow-hidden border-x border-preto px-2 text-left text-[11px] leading-9 whitespace-nowrap transition-colors ${ativo === i ? 'bg-rec text-preto' : 'bg-linha text-creme hover:bg-cinza hover:text-preto'}`}
+                          className={`absolute inset-y-0 overflow-hidden text-ellipsis border-x border-preto px-2 text-left text-[11px] leading-9 whitespace-nowrap transition-colors ${ativo === i ? 'bg-rec text-preto' : 'bg-linha text-creme hover:bg-cinza hover:text-preto'}`}
                           style={{ left: `${c.inicio * 100}%`, width: `${(c.fim - c.inicio) * 100}%` }}
                         >
                           <span className="sr-only">Mostrar no monitor: </span>
