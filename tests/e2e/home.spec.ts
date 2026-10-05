@@ -72,6 +72,17 @@ test.describe('home', () => {
     await expect(menu).not.toHaveAttribute('open', '');
   });
 
+  test('timeline: setas do teclado trocam o clipe no monitor', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'No celular a timeline vira faixas com toque');
+    await page.goto('/');
+    const primeiro = page.locator('section.so-movimento .lg\\:block [data-clipe="0"]');
+    await primeiro.focus();
+    await expect(primeiro).toHaveAttribute('aria-pressed', 'true');
+    await page.keyboard.press('ArrowRight');
+    await expect(page.locator('section.so-movimento .lg\\:block [data-clipe="1"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('section.so-movimento .lg\\:block [data-clipe="1"]')).toBeFocused();
+  });
+
   test('JSON-LD de pessoa com o nome completo', async ({ page }) => {
     await page.goto('/');
     const ld = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? '{}');
