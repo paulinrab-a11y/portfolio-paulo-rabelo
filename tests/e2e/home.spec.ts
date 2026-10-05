@@ -57,6 +57,21 @@ test.describe('home', () => {
     }
   });
 
+  test('menu do celular abre, fecha com Esc e fecha ao navegar', async ({ page, isMobile }) => {
+    test.skip(!isMobile, 'O menu em <details> só aparece no celular');
+    await page.goto('/');
+    const menu = page.locator('header details');
+    await menu.locator('summary').click();
+    await expect(menu).toHaveAttribute('open', '');
+    await expect(menu.getByRole('link', { name: /Serviços/ })).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(menu).not.toHaveAttribute('open', '');
+    await menu.locator('summary').click();
+    await menu.getByRole('link', { name: /Trabalhos/ }).click();
+    await expect(page).toHaveURL(/\/trabalhos$/);
+    await expect(menu).not.toHaveAttribute('open', '');
+  });
+
   test('JSON-LD de pessoa com o nome completo', async ({ page }) => {
     await page.goto('/');
     const ld = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? '{}');
