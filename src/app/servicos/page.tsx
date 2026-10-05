@@ -34,7 +34,9 @@ export default function PaginaServicos() {
               <span className="rotulo col-span-2 text-cinza lg:col-span-1">{String(i + 1).padStart(2, '0')}</span>
               <span className="titulo-display col-span-10 text-[clamp(32px,4.4vw,64px)] group-hover:text-rec lg:col-span-6">{s.titulo}</span>
               <span className="col-span-10 col-start-3 text-cinza lg:col-span-4 lg:col-start-auto">{s.texto[0]}</span>
-              <span className="rotulo col-span-10 col-start-3 text-cinza lg:col-span-1 lg:col-start-auto lg:text-right">{trabalhosDoServico(s, trabalhos).length}</span>
+              <span className="rotulo col-span-10 col-start-3 text-cinza lg:col-span-1 lg:col-start-auto lg:text-right">
+                {trabalhosDoServico(s, trabalhos).length} {trabalhosDoServico(s, trabalhos).length === 1 ? 'trabalho' : 'trabalhos'}
+              </span>
             </Link>
           </li>
         ))}
