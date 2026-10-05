@@ -15,7 +15,8 @@ import sharp from 'sharp';
 const FFMPEG = process.env.FFMPEG ?? 'ffmpeg';
 const SITES = [
   { nome: 'ohc', url: 'https://ohc-seven.vercel.app' },
-  { nome: 'passem-a-respeitar', url: 'https://passem-a-respeitar.vercel.app' },
+  // Regra 5 do brief: a seção do clipe inédito (BLICK) aparece por volta de 10 s de rolagem; o trecho para antes
+  { nome: 'passem-a-respeitar', url: 'https://passem-a-respeitar.vercel.app', limiteS: 9.5 },
   { nome: 'mh-phones', url: 'https://mh-phones.vercel.app' },
 ];
 const FORMATOS = {
@@ -79,8 +80,8 @@ for (const site of SITES) {
     const { bruto, inicio, width, height } = await gravar(site, formato, pasta);
     // A gravação começa com a página em branco: a prévia parte de quando a rolagem começa
     const inicioPrevia = Math.round((inicio + 0.3) * 10) / 10;
-    const duracaoPrevia = 7;
-    const duracaoFull = ROLAGEM_S;
+    const duracaoPrevia = Math.min(7, site.limiteS ?? 7);
+    const duracaoFull = Math.min(ROLAGEM_S, site.limiteS ?? ROLAGEM_S);
     const pub = (f) => `/media/${slug}/${f}`;
     ff('-ss', String(inicioPrevia), '-t', String(duracaoPrevia), '-i', bruto, '-an', '-c:v', 'libx264', '-crf', '26', '-preset', 'slow', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', join(pasta, 'preview.mp4'));
     ff('-ss', String(inicioPrevia), '-t', String(duracaoPrevia), '-i', bruto, '-an', '-c:v', 'libvpx-vp9', '-crf', '36', '-b:v', '0', join(pasta, 'preview.webm'));
