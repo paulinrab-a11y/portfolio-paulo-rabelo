@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Big_Shoulders, Instrument_Sans, JetBrains_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import { Cabecalho } from '@/components/Cabecalho';
 import { JsonLd } from '@/components/JsonLd';
 import { Rodape } from '@/components/Rodape';
@@ -8,9 +8,15 @@ import { pessoaLd } from '@/lib/seo';
 import { SITE_URL } from '@/lib/site';
 import './globals.css';
 
-const titulo = Big_Shoulders({ subsets: ['latin'], weight: ['800', '900'], variable: '--fonte-titulo', display: 'optional', adjustFontFallback: false });
-const mono = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--fonte-mono', display: 'swap' });
-const texto = Instrument_Sans({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--fonte-texto', display: 'swap' });
+/**
+ * Fontes no próprio repositório (subconjunto latino do Google Fonts, licença
+ * OFL). O build não depende da rede, e o next/font/local calcula a fonte
+ * reserva com as métricas de cada arquivo, para o texto não pular quando a
+ * fonte chega.
+ */
+const titulo = localFont({ src: './fontes/big-shoulders-latin.woff2', weight: '800 900', variable: '--fonte-titulo', display: 'swap' });
+const mono = localFont({ src: './fontes/jetbrains-mono-latin.woff2', weight: '400 500', variable: '--fonte-mono', display: 'swap' });
+const texto = localFont({ src: './fontes/instrument-sans-latin.woff2', weight: '400 600', variable: '--fonte-texto', display: 'swap' });
 
 const descricao = 'Editor de vídeo, motion designer e diretor de arte em São Paulo. Edição, motion e VFX, cor, vídeo com IA, sites, social media e fotografia.';
 

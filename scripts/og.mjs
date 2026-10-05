@@ -46,8 +46,11 @@ await pagina.evaluate((html) => {
   document.body.innerHTML = html;
 }, cartela);
 await pagina.evaluate(async () => {
-  await document.fonts.load('900 100px "Big Shoulders"');
-  await document.fonts.load('400 20px "JetBrains Mono"');
+  // As famílias vêm do next/font (nome gerado): carrega as que a cartela usa
+  const familia = (sel) => getComputedStyle(document.querySelector(sel)).fontFamily;
+  await document.fonts.load(`900 100px ${familia('.titulo-display')}`);
+  await document.fonts.load(`400 20px ${familia('.rotulo')}`);
+  await document.fonts.ready;
   await Promise.all([...document.images].map((i) => (i.complete ? null : new Promise((r) => i.addEventListener('load', r)))));
 });
 await pagina.screenshot({ path: 'public/og/home.jpg', type: 'jpeg', quality: 86 });
