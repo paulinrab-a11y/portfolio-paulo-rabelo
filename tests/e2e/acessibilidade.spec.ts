@@ -26,7 +26,7 @@ test.describe('acessibilidade', () => {
   for (const rota of rotas) {
     test(`sem violações WCAG A/AA em ${rota}`, async ({ page }) => {
       await page.goto(rota);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       const resultado = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
         // Grão e vinheta são camadas decorativas por cima de tudo (aria-hidden, pointer-events none)
