@@ -3,8 +3,7 @@ node_modules/
 out/
 *.tsbuildinfo
 next-env.d.ts
-.env*.local
-.env
+.env*
 
 
 .DS_Store
@@ -20,3 +19,6 @@ reports/
 
 # Configuração local de agentes
 .claude/settings.local.json
+
+.vercel
+.env*
