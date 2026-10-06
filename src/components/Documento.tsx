@@ -5,8 +5,11 @@ import { caminhos, codigoHtml, type Idioma, idiomas } from '@/data/idiomas';
 import { classesFontes } from '@/estilos/fontes';
 import { perfilNo, t } from '@/lib/i18n';
 import { pessoaLd } from '@/lib/seo';
-import { SITE_URL } from '@/lib/site';
+import { analyticsAtivo, SITE_URL } from '@/lib/site';
 import '@/estilos/globals.css';
+
+/** Guarda as chamadas feitas antes do script do Web Analytics carregar */
+const filaAnalytics = 'window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};';
 
 /**
  * Antes da primeira pintura: marca a abertura só na primeira visita da
@@ -40,6 +43,13 @@ export function Documento({ lang, children }: { lang: Idioma; children: React.Re
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: script fixo do próprio site, roda antes da pintura (doc preventing-flash-before-hydration) */}
         <script dangerouslySetInnerHTML={{ __html: scriptAbertura }} />
         <JsonLd dados={pessoa} />
+        {analyticsAtivo() && (
+          <>
+            {/* biome-ignore lint/security/noDangerouslySetInnerHtml: fila do Web Analytics, texto fixo da documentação da Vercel */}
+            <script dangerouslySetInnerHTML={{ __html: filaAnalytics }} />
+            <script defer src="/_vercel/insights/script.js" />
+          </>
+        )}
       </head>
       <body>
         <a href="#conteudo" className="rotulo sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[80] focus:bg-creme focus:px-4 focus:py-3 focus:text-preto">
