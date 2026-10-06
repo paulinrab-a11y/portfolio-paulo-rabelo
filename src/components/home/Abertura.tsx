@@ -37,8 +37,10 @@ export function Abertura({ lang }: { lang: Idioma }) {
     let tl: gsap.core.Timeline | undefined;
     const inicio = Number(html.getAttribute('data-abertura')) || performance.now();
 
-    // click e não pointerdown: o toque termina sobre a abertura, sem acionar o que está por baixo
-    const eventosPular = ['click', 'keydown', 'wheel', 'touchmove'] as const;
+    // click e não pointerdown: o toque termina sobre a abertura, sem acionar o que está por baixo.
+    // No iPhone o toque fora de um elemento clicável não gera click: o touchend pula e, cancelado,
+    // impede o clique sintético no link de baixo
+    const eventosPular = ['click', 'touchend', 'keydown', 'wheel', 'touchmove'] as const;
     const parar = () => {
       cancelAnimationFrame(pedido);
       tl?.kill();
@@ -56,8 +58,11 @@ export function Abertura({ lang }: { lang: Idioma }) {
       // à home pela navegação do site não espera a abertura de novo
       soltar = window.setTimeout(() => html.removeAttribute('data-abertura'), 5000);
     };
-    const pular = () => encerrar();
-    for (const ev of eventosPular) window.addEventListener(ev, pular, { capture: true, passive: true });
+    const pular = (e: Event) => {
+      if (e.type === 'touchend' && e.cancelable) e.preventDefault();
+      encerrar();
+    };
+    for (const ev of eventosPular) window.addEventListener(ev, pular, { capture: true, passive: ev !== 'touchend' });
 
     // Timecode e nome escritos direto no DOM, a cada quadro
     const quadro = (agora: number) => {
