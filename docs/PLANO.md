@@ -20,6 +20,8 @@ Escrito em 05/10/2026. O brief chegou cortado em `/sobre`. O Paulo autorizou seg
 | Vídeos | Só começam depois do `load` e de um momento ocioso; o poster já está na tela | Com CPU 4× mais lenta, o TBT da home caiu de 2,2 s para ~0,3 s |
 | `/sobre` | Retrato enviado pelo Paulo e experiência que rola (a entrada no meio da tela fica ativa, o período aparece grande) | Completa o trecho cortado do brief |
 | SEO | Páginas de serviço em `/servicos/<slug>` com texto só de fatos, trabalhos reais da categoria, JSON-LD (Person, Service, CreativeWork, BreadcrumbList), links internos e sitemap | O Paulo pediu para completar o brief com algo de bom SEO |
+| Idiomas | Português na raiz (links antigos mantidos), inglês em `/en` e espanhol em `/es`, com caminhos no idioma. Um layout raiz por idioma (`html lang` certo), tudo estático, sem proxy. Seletor por bandeira (Brasil, Estados Unidos, Espanha) leva à mesma página no outro idioma. hreflang, sitemap, JSON-LD, imagem de compartilhamento e PDF do CV por idioma | O Paulo quer concorrer a vagas de outros países (06/10/2026) |
+| Abas | Vídeo, Sites e Marketing com links próprios (`/trabalhos/video`…), no menu principal; um trabalho pode estar em duas | Cada aba fala com um tipo de vaga; "Vídeo" em vez de "Edição de vídeo" porque inclui motion, VFX, cor, podcast e IA |
 | Repositório | GitHub privado `paulinrab-a11y/portfolio-paulo-rabelo`. `main` só com a base; o site entra por PR | Mesmo fluxo dos outros repositórios |
 | Deploy | Projeto novo na Vercel ligado ao GitHub. PR gera prévia. Produção só com o OK do Paulo | Regra 10 |
 

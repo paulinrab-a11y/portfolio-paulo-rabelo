@@ -51,7 +51,7 @@
   },
   "overrides": [
     {
-      "includes": ["src/app/globals.css"],
+      "includes": ["src/estilos/globals.css"],
       "linter": {
         "rules": {
           "complexity": {

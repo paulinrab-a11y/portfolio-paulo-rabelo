@@ -3,7 +3,10 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { clientes, contato, experiencias, perfil } from '@/data/perfil';
 import { servicos } from '@/data/servicos';
+import { abas, idiomas, slugAba, slugServicos } from '@/data/idiomas';
+import { textos } from '@/data/textos';
 import { trabalhos } from '@/data/trabalhos';
+import { legendasEm, perfilEm, servicosEm, trabalhosEm } from '@/data/traducoes';
 import { midia, temMidia, todasAsMidias } from '@/lib/midia';
 import { trabalhosDoServico } from '@/lib/servicos';
 
@@ -132,7 +135,7 @@ describe('regras de texto do brief', () => {
 
   it('nome completo só no JSON-LD e no CV', () => {
     const usos = fontes.filter(({ texto }) => texto.includes('nomeCompleto')).map(({ f }) => f.replace(/\\/g, '/'));
-    for (const u of usos) expect(u).toMatch(/src\/(data\/perfil\.ts|app\/layout\.tsx|app\/cv\/page\.tsx|lib\/seo\.ts)$/);
+    for (const u of usos) expect(u).toMatch(/src\/(data\/perfil\.ts|lib\/(seo|i18n)\.ts|components\/(Documento|paginas\/PaginaCV)\.tsx)$/);
   });
 
   it('contatos confirmados', () => {
@@ -143,5 +146,71 @@ describe('regras de texto do brief', () => {
 
   it('Rabelo Design aparece só no CV', () => {
     expect(experiencias.find((e) => e.empresa === 'Rabelo Design')?.soNoCV).toBe(true);
+  });
+});
+
+describe('idiomas: inglês e espanhol completos', () => {
+  const traduzidos = ['en', 'es'] as const;
+
+  it('todo trabalho tem tradução com título, função, contexto, o que eu fiz e os mesmos créditos', () => {
+    for (const lang of traduzidos) {
+      for (const t of trabalhos) {
+        const tr = trabalhosEm[lang][t.slug];
+        expect(tr, `${lang}: ${t.slug}`).toBeDefined();
+        if (!tr) continue;
+        expect(tr.titulo.length, `${lang}: ${t.slug}`).toBeGreaterThan(2);
+        expect(tr.texto.contexto.length).toBeGreaterThan(10);
+        expect(tr.texto.oQueFiz.length).toBeGreaterThan(5);
+        expect(Boolean(tr.texto.resultado), `${lang}: ${t.slug} resultado`).toBe(Boolean(t.texto.resultado));
+        expect(tr.creditos.length, `${lang}: ${t.slug} créditos`).toBe(t.creditos.length);
+        expect(Boolean(tr.cliente), `${lang}: ${t.slug} cliente`).toBe(Boolean(t.cliente));
+      }
+      expect(Object.keys(trabalhosEm[lang]).sort()).toEqual(trabalhos.map((t) => t.slug).sort());
+    }
+  });
+
+  it('todo serviço tem tradução e slug próprio, sem slug repetido', () => {
+    for (const lang of traduzidos) {
+      for (const s of servicos) {
+        const tr = servicosEm[lang][s.slug];
+        expect(tr, `${lang}: ${s.slug}`).toBeDefined();
+        expect(tr?.texto.length, `${lang}: ${s.slug}`).toBe(s.texto.length);
+        expect(tr?.descricao.length ?? 0).toBeLessThanOrEqual(160);
+        expect(slugServicos[s.slug]?.[lang], `${lang}: ${s.slug} slug`).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+      }
+      const slugs = servicos.map((s) => slugServicos[s.slug]?.[lang]);
+      expect(new Set(slugs).size).toBe(slugs.length);
+    }
+  });
+
+  it('nenhum slug de aba coincide com slug de trabalho (dividem /trabalhos/<slug>)', () => {
+    for (const lang of idiomas) for (const a of abas) expect(trabalhos.map((t) => t.slug)).not.toContain(slugAba[a][lang]);
+  });
+
+  it('todo trabalho está em pelo menos uma aba', () => {
+    for (const t of trabalhos) expect(t.abas.length, t.slug).toBeGreaterThan(0);
+  });
+
+  it('perfil traduzido por inteiro: experiências, bio e cursos', () => {
+    for (const lang of traduzidos) {
+      const tr = perfilEm[lang];
+      for (const e of experiencias) expect(tr.experiencias[e.empresa], `${lang}: ${e.empresa}`).toBeDefined();
+      expect(tr.bio).toHaveLength(perfil.bio.length);
+      expect(tr.servicos).toHaveLength(perfil.servicos.length);
+      expect(tr.ferramentas).toHaveLength(perfil.ferramentas.length);
+    }
+  });
+
+  it('toda legenda de imagem usada nas galerias tem tradução', () => {
+    const legendas = todasAsMidias()
+      .flatMap(([, m]) => (m.images ?? []).map((i) => i.label))
+      .filter((l): l is string => Boolean(l) && !['whynot', 'mh-phones', 'mh-phones-512', 'thumb'].includes(l as string));
+    for (const lang of traduzidos) for (const l of legendas) expect(legendasEm[lang][l], `${lang}: ${l}`).toBeDefined();
+  });
+
+  it('o selo de IA aparece com o nome certo em cada idioma', () => {
+    expect(textos.pt.selo.ia).toBe('Feito com IA');
+    expect(textos.en.selo.ia).toBe('Made with AI');
+    expect(textos.es.selo.ia).toBe('Hecho con IA');
   });
 });

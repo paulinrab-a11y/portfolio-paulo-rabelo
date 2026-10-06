@@ -16,6 +16,11 @@ const rotas = [
   '/servicos/editor-de-video',
   '/sobre',
   '/cv',
+  '/trabalhos/marketing',
+  '/en',
+  '/en/work/clipe-santxx-azam-mc',
+  '/es/trabajos/sitios-web',
+  '/es/sobre-mi',
 ];
 
 test.describe('acessibilidade', () => {

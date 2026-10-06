@@ -7,11 +7,15 @@ Atualizado em 05/10/2026. Tudo está no PR #2 (`feat/1-primeira-versao`). Produ�
 | Página | O que tem |
 |---|---|
 | `/` | Abertura (REC, timecode, nome a partir de dígitos, letterbox; só na 1ª visita), herói monitor, manifesto, 6 destaques com prévia, timeline V1 a V4, clientes e artistas, sobre com retrato, "Trabalhe comigo" |
-| `/trabalhos` | 19 trabalhos, filtro por categoria, lista ou grade (GSAP Flip); filtro e modo ficam na URL (`?categoria=ia&modo=grade`) |
+| `/trabalhos` | 19 trabalhos em abas com link próprio (`/trabalhos/video`, `/trabalhos/sites`, `/trabalhos/marketing`), filtro por categoria, lista ou grade (GSAP Flip); filtro e modo ficam na URL |
 | `/trabalhos/<slug>` | Player próprio, créditos, contexto, o que eu fiz, resultado, galeria, serviços relacionados, próximo trabalho |
 | `/servicos` e `/servicos/<slug>` | 8 páginas de serviço para busca (editor de vídeo em São Paulo, motion e VFX, color grading, vídeo com IA, sites, social media e direção de arte, fotografia, podcast) |
 | `/sobre` | Retrato, bio, experiência que rola, formação, ferramentas |
 | `/cv` | Currículo que cabe numa página A4 impressa e PDF para baixar (`/paulo-rabelo-cv.pdf`) |
+
+## Idiomas
+
+Tudo existe em português (raiz), inglês (`/en`) e espanhol (`/es`): 111 páginas estáticas. O seletor de bandeiras no topo leva à mesma página no outro idioma. Cada versão tem `html lang`, hreflang, JSON-LD, imagem de compartilhamento (`/og/home-en.jpg`, `/og/home-es.jpg`) e PDF do CV (`/paulo-rabelo-cv-en.pdf`, `/paulo-rabelo-cv-es.pdf`) próprios.
 
 ## Números (medidos em 05/10/2026)
 

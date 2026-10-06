@@ -9,7 +9,7 @@ import type { Experiencia } from '@/data/perfil';
  * é por cor (contraste mantido), não por opacidade. Sem JS, todas aparecem
  * iguais e o período fica em cada linha.
  */
-export function ExperienciaRolando({ lista }: { lista: Experiencia[] }) {
+export function ExperienciaRolando({ lista, titulo }: { lista: Experiencia[]; titulo: string }) {
   const raiz = useRef<HTMLOListElement>(null);
   const [ativa, setAtiva] = useState(0);
 
@@ -33,7 +33,7 @@ export function ExperienciaRolando({ lista }: { lista: Experiencia[] }) {
       <div className="col-span-12 lg:col-span-4">
         <div className="lg:sticky lg:top-[calc(var(--cabecalho)+48px)]">
           <h2 id="experiencia" className="rotulo secundario mb-6">
-            Experiência
+            {titulo}
           </h2>
           <div aria-hidden="true" className="hidden lg:block">
             <p className="rotulo mb-2 flex items-center gap-2 text-rec-escuro">

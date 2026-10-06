@@ -10,6 +10,8 @@ const securityHeaders = buildSecurityHeaders({
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Três layouts raiz (pt, en, es): o 404 de endereço inexistente vem de app/global-not-found.tsx
+  experimental: { globalNotFound: true },
   images: {
     formats: ['image/avif', 'image/webp'],
     qualities: [75, 90],

@@ -63,12 +63,12 @@ test.describe('home', () => {
     const menu = page.locator('header details');
     await menu.locator('summary').click();
     await expect(menu).toHaveAttribute('open', '');
-    await expect(menu.getByRole('link', { name: /Serviços/ })).toBeVisible();
+    await expect(menu.getByRole('link', { name: /Marketing/ })).toBeVisible();
     await page.keyboard.press('Escape');
     await expect(menu).not.toHaveAttribute('open', '');
     await menu.locator('summary').click();
-    await menu.getByRole('link', { name: /Trabalhos/ }).click();
-    await expect(page).toHaveURL(/\/trabalhos$/);
+    await menu.getByRole('link', { name: /Sites/ }).click();
+    await expect(page).toHaveURL(/\/trabalhos\/sites$/);
     await expect(menu).not.toHaveAttribute('open', '');
   });
 

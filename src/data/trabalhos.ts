@@ -4,6 +4,8 @@
  * A mídia de cada case está em public/media/<midia>/ e descrita em media.json.
  */
 
+import type { Aba } from './idiomas';
+
 export const categorias = {
   edicao: 'Edição',
   motion: 'Motion e VFX',
@@ -40,6 +42,8 @@ export interface Trabalho {
   funcao: string;
   categorias: Categoria[];
   trilha: Trilha;
+  /** Abas de /trabalhos em que aparece (src/data/idiomas.ts) */
+  abas: Aba[];
   /** Mostra o selo "Feito com IA" */
   feitoComIA?: boolean;
   /** Posição entre os 6 destaques da home */
@@ -61,6 +65,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Edição, VFX, motion e cor',
     categorias: ['edicao', 'motion', 'cor'],
     trilha: 'V1',
+    abas: ['video'],
     destaque: 1,
     midia: 'clipe-santxx-azam-mc',
     creditos: [
@@ -81,6 +86,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'VFX, motion e capa',
     categorias: ['motion', 'social'],
     trilha: 'V2',
+    abas: ['video'],
     destaque: 2,
     midia: 'visualizer-anjo005',
     creditos: [
@@ -100,6 +106,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Montagem e lower thirds',
     categorias: ['podcast', 'edicao', 'motion'],
     trilha: 'V1',
+    abas: ['video'],
     destaque: 3,
     midia: 'podcast-opiniao-segura',
     creditos: [
@@ -117,6 +124,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Edição, motion e apresentação',
     categorias: ['edicao', 'motion'],
     trilha: 'V2',
+    abas: ['video'],
     destaque: 4,
     midia: 'youtube-constance-silksong',
     creditos: [{ rotulo: 'Minha função', valor: 'Edição, motion e apresentação' }],
@@ -131,6 +139,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Criação com IA generativa e edição',
     categorias: ['ia', 'social'],
     trilha: 'V3',
+    abas: ['video', 'marketing'],
     feitoComIA: true,
     destaque: 5,
     midia: 'ia-ugc',
@@ -147,6 +156,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Criação e implementação',
     categorias: ['sites'],
     trilha: 'V4',
+    abas: ['sites'],
     destaque: 6,
     midia: 'site-ohc-desktop',
     midiasExtras: ['site-ohc-celular'],
@@ -167,6 +177,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Edição e motion',
     categorias: ['social', 'edicao', 'motion'],
     trilha: 'V2',
+    abas: ['video', 'marketing'],
     midia: 'reel-whynot',
     creditos: [
       { rotulo: 'Marca', valor: 'WhyNot Visuals' },
@@ -184,6 +195,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Criação e implementação',
     categorias: ['sites'],
     trilha: 'V4',
+    abas: ['sites'],
     midia: 'site-passem-a-respeitar-desktop',
     midiasExtras: ['site-passem-a-respeitar-celular'],
     creditos: [{ rotulo: 'Minha função', valor: 'Criação e implementação do site' }],
@@ -200,6 +212,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Criação e implementação',
     categorias: ['sites'],
     trilha: 'V4',
+    abas: ['sites'],
     midia: 'site-mh-phones-desktop',
     midiasExtras: ['site-mh-phones-celular'],
     creditos: [
@@ -219,6 +232,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Vídeo com IA generativa',
     categorias: ['ia', 'social'],
     trilha: 'V3',
+    abas: ['video', 'marketing'],
     feitoComIA: true,
     midia: 'ia-anuncio-ohc',
     creditos: [{ rotulo: 'Cliente', valor: 'OHC Motors' }],
@@ -233,6 +247,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Vídeo com IA generativa',
     categorias: ['ia'],
     trilha: 'V3',
+    abas: ['video'],
     feitoComIA: true,
     midia: 'ia-historia-ilustrada',
     creditos: [{ rotulo: 'Formato', valor: 'Vídeo vertical' }],
@@ -247,6 +262,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Edição',
     categorias: ['edicao', 'social'],
     trilha: 'V1',
+    abas: ['video', 'marketing'],
     midia: 'vsl',
     midiasExtras: ['anuncio-volante'],
     creditos: [{ rotulo: 'Formatos', valor: 'VSL talking head e anúncio vertical' }],
@@ -262,6 +278,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Edição',
     categorias: ['social', 'edicao'],
     trilha: 'V1',
+    abas: ['video', 'marketing'],
     midia: 'social-verticais',
     creditos: [
       { rotulo: 'Clientes', valor: 'OHC Motors (Audi no evento) e Hora Bolas Club (drink)' },
@@ -279,6 +296,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Artes para redes sociais e fotos',
     categorias: ['social', 'fotografia'],
     trilha: 'V4',
+    abas: ['marketing'],
     midia: 'hora-bolas',
     creditos: [
       { rotulo: 'Cliente', valor: 'Hora Bolas Club, Lavras (MG)' },
@@ -296,6 +314,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Rebranding e social media',
     categorias: ['social'],
     trilha: 'V4',
+    abas: ['marketing'],
     midia: 'hora-bolas-rebranding',
     creditos: [
       { rotulo: 'Cliente', valor: 'Hora Bolas Club, Lavras (MG)' },
@@ -314,6 +333,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Direção de arte',
     categorias: ['social'],
     trilha: 'V4',
+    abas: ['marketing'],
     midia: 'ohc-carrossel',
     creditos: [
       { rotulo: 'Cliente', valor: 'OHC Motors' },
@@ -330,6 +350,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Direção de arte',
     categorias: ['social'],
     trilha: 'V4',
+    abas: ['marketing'],
     midia: 'ohc-artes',
     creditos: [{ rotulo: 'Peças', valor: 'Arte da OHC Motors com volante Audi e foto editorial' }],
     texto: {
@@ -343,6 +364,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Stand, filmagem, entrevistas e fotografia',
     categorias: ['fotografia', 'edicao'],
     trilha: 'V4',
+    abas: ['marketing'],
     midia: 'eventos',
     creditos: [
       { rotulo: 'Produção de stand', valor: 'OHC Motors' },
@@ -361,6 +383,7 @@ export const trabalhos: Trabalho[] = [
     funcao: 'Fotografia e coloração',
     categorias: ['fotografia', 'cor'],
     trilha: 'V4',
+    abas: ['marketing'],
     midia: 'fotografia',
     creditos: [{ rotulo: 'Minha função', valor: 'Fotografia e coloração' }],
     texto: {

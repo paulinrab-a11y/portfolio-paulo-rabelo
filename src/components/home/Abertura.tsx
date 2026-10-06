@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import type { Idioma } from '@/data/idiomas';
 import { perfil } from '@/data/perfil';
+import { textos } from '@/data/textos';
 import { montarDeDigitos } from '@/lib/embaralhar';
 import { gsap } from '@/lib/motion';
 import { timecode } from '@/lib/timecode';
@@ -15,7 +17,7 @@ const DURACAO = 1.6;
  * que já está renderizado por baixo. Clique, tecla, roda ou toque pulam.
  * Só existe quando o script inline do layout marcou `html[data-abertura]`.
  */
-export function Abertura() {
+export function Abertura({ lang }: { lang: Idioma }) {
   const raiz = useRef<HTMLDivElement>(null);
   const nome = useRef<HTMLSpanElement>(null);
   const tc = useRef<HTMLSpanElement>(null);
@@ -85,7 +87,7 @@ export function Abertura() {
         </span>
       </div>
       <button type="button" className="rotulo absolute right-[var(--margem)] bottom-8 min-h-11 px-2 text-cinza hover:text-creme">
-        Pular
+        {textos[lang].abertura.pular}
       </button>
     </div>
   );
