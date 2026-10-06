@@ -1,4 +1,4 @@
-// Rota fina: o conteúdo está em src/components/paginas (o mesmo nos três idiomas).
+// Rota fina: o conteúdo está em src/components/paginas (o mesmo em todos os idiomas).
 import { metadadosIndice, PaginaIndice } from '@/components/paginas/PaginaIndice';
 import { metadadosTrabalho, PaginaTrabalho, slugsTrabalhos } from '@/components/paginas/PaginaTrabalho';
 import type { Idioma } from '@/data/idiomas';

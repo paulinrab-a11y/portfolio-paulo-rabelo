@@ -149,8 +149,8 @@ describe('regras de texto do brief', () => {
   });
 });
 
-describe('idiomas: inglês e espanhol completos', () => {
-  const traduzidos = ['en', 'es'] as const;
+describe('idiomas: inglês, espanhol e chinês completos', () => {
+  const traduzidos = ['en', 'es', 'zh'] as const;
 
   it('todo trabalho tem tradução com título, função, contexto, o que eu fiz e os mesmos créditos', () => {
     for (const lang of traduzidos) {
@@ -158,7 +158,8 @@ describe('idiomas: inglês e espanhol completos', () => {
         const tr = trabalhosEm[lang][t.slug];
         expect(tr, `${lang}: ${t.slug}`).toBeDefined();
         if (!tr) continue;
-        expect(tr.titulo.length, `${lang}: ${t.slug}`).toBeGreaterThan(2);
+        // Em chinês, dois ideogramas já são um título (活动, eventos)
+        expect(tr.titulo.trim().length, `${lang}: ${t.slug}`).toBeGreaterThan(1);
         expect(tr.texto.contexto.length).toBeGreaterThan(10);
         expect(tr.texto.oQueFiz.length).toBeGreaterThan(5);
         expect(Boolean(tr.texto.resultado), `${lang}: ${t.slug} resultado`).toBe(Boolean(t.texto.resultado));
@@ -212,5 +213,11 @@ describe('idiomas: inglês e espanhol completos', () => {
     expect(textos.pt.selo.ia).toBe('Feito com IA');
     expect(textos.en.selo.ia).toBe('Made with AI');
     expect(textos.es.selo.ia).toBe('Hecho con IA');
+    expect(textos.zh.selo.ia).toBe('AI 制作');
+  });
+
+  it('chinês: URL sem ideograma (copiada, viraria %E4%BD%9C…)', () => {
+    for (const s of servicos) expect(slugServicos[s.slug]?.zh).toMatch(/^[a-z0-9-]+$/);
+    for (const a of abas) expect(slugAba[a].zh).toMatch(/^[a-z0-9-]+$/);
   });
 });

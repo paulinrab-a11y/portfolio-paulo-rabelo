@@ -4,7 +4,7 @@ import { metadadosTrabalho, PaginaTrabalho, slugsTrabalhos } from '@/components/
 import type { Idioma } from '@/data/idiomas';
 import { abaDoSlug } from '@/lib/rotas';
 
-const LANG = 'es' satisfies Idioma;
+const LANG = 'zh' satisfies Idioma;
 
 export const dynamicParams = false;
 
@@ -13,13 +13,13 @@ export function generateStaticParams() {
   return slugsTrabalhos(LANG).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: PageProps<'/es/trabajos/[slug]'>) {
+export async function generateMetadata({ params }: PageProps<'/en/work/[slug]'>) {
   const { slug } = await params;
   const aba = abaDoSlug(LANG, slug);
   return aba ? metadadosIndice(LANG, aba) : metadadosTrabalho(LANG, slug);
 }
 
-export default async function Page({ params }: PageProps<'/es/trabajos/[slug]'>) {
+export default async function Page({ params }: PageProps<'/en/work/[slug]'>) {
   const { slug } = await params;
   const aba = abaDoSlug(LANG, slug);
   return aba ? <PaginaIndice lang={LANG} aba={aba} /> : <PaginaTrabalho lang={LANG} slug={slug} />;

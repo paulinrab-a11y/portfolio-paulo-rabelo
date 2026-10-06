@@ -52,6 +52,27 @@ test.describe('idiomas', () => {
     await expect(page.getByRole('link', { name: /Sitio web de OHC Motors/ })).toBeVisible();
   });
 
+  test('chinês simplificado com URL em inglês, textos em chinês e fonte com ideogramas', async ({ page }) => {
+    await page.goto('/sobre');
+    await page.locator('header a[data-idioma="zh"]').click();
+    await expect(page).toHaveURL(/\/zh\/about$/);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
+    await expect(page.getByRole('heading', { name: '工作经历' })).toBeVisible();
+
+    await page.goto('/zh/work/websites');
+    await expect(page.getByRole('heading', { level: 1, name: '网站' })).toBeVisible();
+    await expect(page.getByRole('link', { name: /OHC Motors 网站/ })).toBeVisible();
+    // A pilha de fontes do título inclui fontes do sistema com ideogramas (as do site só têm latim)
+    const familia = await page
+      .locator('h1')
+      .first()
+      .evaluate((h) => getComputedStyle(h).fontFamily);
+    expect(familia).toMatch(/PingFang SC|Microsoft YaHei|Noto Sans CJK SC/);
+
+    const zap = await page.goto('/zh/about').then(() => page.getByRole('link', { name: '通过 WhatsApp 联系我' }).getAttribute('href'));
+    expect(decodeURIComponent(zap ?? '')).toContain('你好，Paulo！');
+  });
+
   test('a bandeira leva à mesma página no outro idioma', async ({ page }) => {
     await page.goto('/trabalhos/clipe-santxx-azam-mc');
     await page.locator('header a[data-idioma="en"]').click();

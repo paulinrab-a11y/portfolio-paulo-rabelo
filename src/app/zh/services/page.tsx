@@ -2,7 +2,7 @@
 import { metadadosServicos, PaginaServicos } from '@/components/paginas/PaginasServicos';
 import type { Idioma } from '@/data/idiomas';
 
-const LANG = 'en' satisfies Idioma;
+const LANG = 'zh' satisfies Idioma;
 
 export const metadata = metadadosServicos(LANG);
 

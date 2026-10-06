@@ -1,6 +1,6 @@
 /**
  * Gera a imagem de compartilhamento (WhatsApp, LinkedIn, Instagram) em
- * public/og/home.jpg (e home-en.jpg, home-es.jpg), com as fontes e o CSS do próprio site.
+ * public/og/home.jpg (e home-en.jpg, home-es.jpg, home-zh.jpg), com as fontes e o CSS do próprio site.
  *
  *   npm run build && npm run start -- -p 3400
  *   node scripts/og.mjs
@@ -15,9 +15,11 @@ const BASE = process.env.BASE_URL ?? 'http://localhost:3400';
 mkdirSync('public/og', { recursive: true });
 
 const versoes = [
-  { arquivo: 'home.jpg', funcao: 'edição · motion · direção de arte' },
-  { arquivo: 'home-en.jpg', funcao: 'editing · motion · art direction' },
-  { arquivo: 'home-es.jpg', funcao: 'edición · motion · dirección de arte' },
+  { rota: '/cv', arquivo: 'home.jpg', funcao: 'edição · motion · direção de arte' },
+  { rota: '/en/resume', arquivo: 'home-en.jpg', funcao: 'editing · motion · art direction' },
+  { rota: '/es/cv', arquivo: 'home-es.jpg', funcao: 'edición · motion · dirección de arte' },
+  // Página em chinês: o <html lang> dela aplica as fontes do sistema aos ideogramas
+  { rota: '/zh/resume', arquivo: 'home-zh.jpg', funcao: '剪辑 · 动态设计 · 艺术指导' },
 ];
 
 const cartelaDe = (funcao) => `
@@ -48,7 +50,7 @@ const navegador = await chromium.launch({ channel: 'chrome' });
 const pagina = await navegador.newPage({ viewport: { width: 1200, height: 630 } });
 await pagina.emulateMedia({ reducedMotion: 'reduce' });
 for (const v of versoes) {
-  await pagina.goto(`${BASE}/cv`);
+  await pagina.goto(`${BASE}${v.rota}`);
   await pagina.evaluate((html) => {
     document.body.innerHTML = html;
   }, cartelaDe(v.funcao));

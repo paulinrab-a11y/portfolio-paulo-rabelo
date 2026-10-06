@@ -156,7 +156,7 @@ export function PaginaTrabalho({ lang, slug }: { lang: Idioma; slug: string }) {
                   <a href={g.fallback ?? g.src} target="_blank" rel="noopener" className="group relative block bg-carvao" style={{ aspectRatio: `${g.width} / ${g.height}` }}>
                     <Image
                       src={g.src}
-                      alt={legenda ? `${t.titulo}: ${legenda}` : t.titulo}
+                      alt={legenda ? `${t.titulo}${tx.doisPontos}${legenda}` : t.titulo}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="object-contain"

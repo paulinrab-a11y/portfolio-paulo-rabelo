@@ -67,6 +67,8 @@ describe('traduzirCaminho', () => {
     expect(traduzirCaminho('/es/servicios/editor-de-video', 'pt')).toBe('/servicos/editor-de-video');
     expect(traduzirCaminho('/en/work/clipe-santxx-azam-mc', 'pt')).toBe('/trabalhos/clipe-santxx-azam-mc');
     expect(traduzirCaminho('/cv', 'en')).toBe('/en/resume');
+    expect(traduzirCaminho('/es/sobre-mi', 'zh')).toBe('/zh/about');
+    expect(traduzirCaminho('/zh/services/ai-video', 'pt')).toBe('/servicos/video-com-ia');
   });
 
   it('fora do mapa vai para a home do idioma', () => {
@@ -75,7 +77,12 @@ describe('traduzirCaminho', () => {
 });
 
 describe('alternativas', () => {
-  it('a mesma página nos três idiomas', () => {
-    expect(alternativas({ pagina: 'trabalhos', aba: 'marketing' })).toEqual({ pt: '/trabalhos/marketing', en: '/en/work/marketing', es: '/es/trabajos/marketing' });
+  it('a mesma página em todos os idiomas', () => {
+    expect(alternativas({ pagina: 'trabalhos', aba: 'marketing' })).toEqual({
+      pt: '/trabalhos/marketing',
+      en: '/en/work/marketing',
+      es: '/es/trabajos/marketing',
+      zh: '/zh/work/marketing',
+    });
   });
 });

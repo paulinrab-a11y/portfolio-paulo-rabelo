@@ -1,9 +1,9 @@
 import type { Aba, Idioma } from './idiomas';
 
 /**
- * Textos fixos da interface nos três idiomas. Conteúdo dos trabalhos, perfil e
+ * Textos fixos da interface nos quatro idiomas. Conteúdo dos trabalhos, perfil e
  * serviços fica em perfil.ts, trabalhos.ts, servicos.ts e traducoes.ts.
- * Regras do brief valem nos três: frases curtas, sem travessão, sem frase de
+ * Regras do brief valem em todos: frases curtas, sem travessão, sem frase de
  * anúncio, nada acrescentado ao que existe em português.
  */
 const pt = {
@@ -82,6 +82,9 @@ const pt = {
   fim: { rotulo: '05 · Fim', titulo1: 'Trabalhe', titulo2: 'comigo' },
   selo: { ia: 'Feito com IA' },
   assistir: '▶ Assistir',
+  /** Pontuação que junta dois trechos (título: legenda). Em chinês é de largura cheia. */
+  doisPontos: ': ',
+  descricaoAba: (descricao: string) => `${descricao}. Paulo Rabelo.`,
   indice: {
     rotulo: 'Índice',
     titulo: 'Trabalhos',
@@ -231,6 +234,8 @@ const en: Textos = {
   fim: { rotulo: '05 · The end', titulo1: 'Work', titulo2: 'with me' },
   selo: { ia: 'Made with AI' },
   assistir: '▶ Watch',
+  doisPontos: ': ',
+  descricaoAba: (descricao: string) => `${descricao}. Paulo Rabelo.`,
   indice: {
     rotulo: 'Index',
     titulo: 'Work',
@@ -378,6 +383,8 @@ const es: Textos = {
   fim: { rotulo: '05 · Fin', titulo1: 'Trabaja', titulo2: 'conmigo' },
   selo: { ia: 'Hecho con IA' },
   assistir: '▶ Ver',
+  doisPontos: ': ',
+  descricaoAba: (descricao: string) => `${descricao}. Paulo Rabelo.`,
   indice: {
     rotulo: 'Índice',
     titulo: 'Trabajos',
@@ -449,4 +456,153 @@ const es: Textos = {
   naoEncontrado: { rotulo: 'Medio sin conexión', titulo1: 'Sin', titulo2: 'señal', texto: 'Esta página no existe o cambió de lugar.', voltar: 'Volver al inicio', trabalhos: 'Ver trabajos' },
 };
 
-export const textos: Record<Idioma, Textos> = { pt, en, es };
+const zh: Textos = {
+  meta: {
+    tituloPadrao: 'Paulo Rabelo · 圣保罗视频剪辑师、动态设计师、艺术总监',
+    tituloOg: 'Paulo Rabelo · 剪辑 · 动态设计 · 艺术指导',
+    descricao: '巴西圣保罗的视频剪辑师、动态设计师和艺术总监。剪辑、动态设计与视觉特效、调色、AI 视频、网站、社交媒体和摄影。',
+    altOg: 'Paulo Rabelo：剪辑、动态设计、艺术指导',
+    cargo: '视频剪辑师、动态设计师、艺术总监',
+    trabalhosDescricao: '剪辑、动态设计与视觉特效、调色、AI 视频、网站、社交媒体、摄影和播客。Paulo Rabelo 的全部作品。',
+    servicosDescricao: '视频剪辑、动态设计与视觉特效、调色、AI 视频、网站、社交媒体、摄影和播客剪辑。巴西圣保罗，也可远程合作。',
+    sobreDescricao: 'Paulo Rabelo：巴西圣保罗的视频剪辑师、动态设计师和艺术总监。WhyNot Visuals 创始人，OHC Motors 和 WhyNot Records 的艺术总监。',
+    cvDescricao: 'Paulo Vitor Pereira Rabelo 的简历：视频剪辑师、动态设计师、艺术总监。',
+  },
+  nav: {
+    pularConteudo: '跳到正文',
+    inicio: 'Paulo Rabelo，首页',
+    principal: '主导航',
+    trabalhos: '作品',
+    servicos: '服务',
+    sobre: '关于',
+    contato: '联系',
+    menu: '菜单',
+    fechar: '关闭',
+    idioma: '语言',
+    cv: '简历',
+    inicioTrilha: '首页',
+    voceEstaEm: '当前位置',
+  },
+  abas: {
+    video: { nome: '视频', descricao: '剪辑、动态设计、视觉特效、调色、播客和 AI 视频' },
+    sites: { nome: '网站', descricao: '我设计并开发的网站' },
+    marketing: { nome: '营销', descricao: '社交媒体、艺术指导、品牌、摄影和活动' },
+  },
+  categorias: {
+    edicao: '剪辑',
+    motion: '动态设计与特效',
+    cor: '调色',
+    ia: 'AI',
+    sites: '网站',
+    social: '社交媒体',
+    fotografia: '摄影',
+    podcast: '播客',
+  },
+  trilhas: { V1: '剪辑与调色', V2: '动态设计与特效', V3: '生成式 AI', V4: '艺术指导' },
+  abertura: { pular: '跳过' },
+  heroi: {
+    altVideo: 'Paulo Rabelo 剪辑的音乐录影带、视觉化影片、播客和 YouTube 视频片段',
+    verTrabalhos: '查看作品',
+    falarComigo: '联系我',
+    desca: '向下滚动 ↓',
+    programa: '节目 · V1',
+    aoVivo: '● 直播',
+  },
+  manifesto: { rotulo: '00 · 宣言', aria: '宣言' },
+  selecionados: {
+    rotulo: '01 · 精选作品',
+    titulo: '精选',
+    todos: '全部作品 →',
+    numero: '编号',
+    projeto: '项目',
+    cliente: '客户或艺人',
+    funcao: '职责',
+    categoria: '类别',
+  },
+  timeline: {
+    rotulo: '02 · 时间线',
+    rotuloLista: '02 · 按轨道',
+    titulo: '剪辑台上',
+    dica: '滚动剪辑 · ← → 切换',
+    abrir: '打开',
+    mostrarNoMonitor: '在监视器中显示：',
+  },
+  creditos: { rotulo: '03 · 客户与艺人', aria: '客户与艺人名单' },
+  sobreResumo: { rotulo: '04 · 关于', titulo: '剪辑、动态设计、艺术指导。', mais: '了解更多', altRetrato: 'Paulo Rabelo 的肖像' },
+  fim: { rotulo: '05 · 剧终', titulo1: '一起', titulo2: '合作' },
+  selo: { ia: 'AI 制作' },
+  assistir: '▶ 观看',
+  doisPontos: '：',
+  descricaoAba: (descricao: string) => `${descricao}。Paulo Rabelo。`,
+  indice: {
+    rotulo: '索引',
+    titulo: '作品',
+    todos: '全部',
+    filtrar: '按类别筛选',
+    modo: '显示方式',
+    lista: '列表',
+    grade: '网格',
+    contagem: (n: number, categoria?: string) => `${categoria ? `${categoria}：` : ''}${n} 个作品`,
+    abasAria: '作品领域',
+    todosAba: '全部',
+  },
+  trabalho: {
+    contexto: '背景',
+    oQueFiz: '我的工作',
+    resultado: '成果',
+    creditos: '演职人员',
+    servicos: '服务：',
+    mais: '更多相关内容',
+    pecas: '作品',
+    proximo: '下一个作品 →',
+    proximoAria: '下一个作品',
+    ampliar: '放大 ↗',
+    verSite: '访问线上网站',
+  },
+  player: {
+    video: '视频',
+    tocar: '播放',
+    pausar: '暂停',
+    play: '播放',
+    pausa: '暂停',
+    posicao: '播放进度',
+    somOn: '声音开',
+    somOff: '声音关',
+    telaCheia: '全屏',
+  },
+  servicos: {
+    rotulo: '我做什么',
+    titulo: '服务',
+    contagem: (n: number) => `${n} 个作品`,
+    trabalhosDe: (n: number, nome: string) => `${nome}：${n} 个作品`,
+    outros: '其他服务',
+    whatsapp: '通过 WhatsApp 联系我',
+    email: '电子邮件',
+  },
+  sobre: {
+    rotulo: '关于',
+    altRetrato: 'Paulo Rabelo 坐在砖墙前的栏杆上，身后挂着一面黑色旗帜',
+    experiencia: '工作经历',
+    formacao: '教育背景',
+    ferramentas: '工具',
+    oQueFaco: '我做什么',
+    secaoFinal: '教育背景、工具和服务',
+    whatsapp: '通过 WhatsApp 联系我',
+    verCv: '查看简历',
+    baixarCv: '下载简历（PDF）',
+  },
+  cv: {
+    rotulo: '简历',
+    titulo: '简历',
+    resumo: '概述',
+    experiencia: '工作经历',
+    formacao: '教育背景',
+    ferramentas: '工具',
+    areas: '领域',
+    baixar: '下载 PDF',
+    imprimir: '打印',
+  },
+  naoEncontrado: { rotulo: '无媒体信号', titulo1: '无', titulo2: '信号', texto: '这个页面不存在或已移动。', voltar: '返回首页', trabalhos: '查看作品' },
+};
+
+export const textos: Record<Idioma, Textos> = { pt, en, es, zh };

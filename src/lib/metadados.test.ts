@@ -5,14 +5,21 @@ describe('imagemOg', () => {
   it('uma por idioma', () => {
     expect(imagemOg('pt')).toBe('/og/home.jpg');
     expect(imagemOg('en')).toBe('/og/home-en.jpg');
+    expect(imagemOg('zh')).toBe('/og/home-zh.jpg');
   });
 });
 
 describe('linksIdiomas', () => {
-  it('canônico no idioma, hreflang dos três e x-default em português', () => {
+  it('canônico no idioma, hreflang de todos e x-default em português', () => {
     const l = linksIdiomas('es', { pagina: 'trabalhos', aba: 'sites' });
     expect(l.canonical).toBe('/es/trabajos/sitios-web');
-    expect(l.languages).toEqual({ 'pt-BR': '/trabalhos/sites', en: '/en/work/websites', es: '/es/trabajos/sitios-web', 'x-default': '/trabalhos/sites' });
+    expect(l.languages).toEqual({
+      'pt-BR': '/trabalhos/sites',
+      en: '/en/work/websites',
+      es: '/es/trabajos/sitios-web',
+      'zh-CN': '/zh/work/websites',
+      'x-default': '/trabalhos/sites',
+    });
   });
 });
 
@@ -20,7 +27,7 @@ describe('metadadosBase', () => {
   it('título, locale e imagem no idioma', () => {
     const m = metadadosBase('en');
     expect(m.description).toContain('Video editor');
-    expect(m.openGraph).toMatchObject({ locale: 'en_US', alternateLocale: ['pt_BR', 'es_ES'] });
+    expect(m.openGraph).toMatchObject({ locale: 'en_US', alternateLocale: ['pt_BR', 'es_ES', 'zh_CN'] });
   });
 });
 

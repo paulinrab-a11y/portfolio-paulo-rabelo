@@ -2,7 +2,7 @@ import { type Aba, abas, caminhos, type Idioma, idiomaPadrao, idiomas, type Pagi
 
 /**
  * Referência de uma página, independente do idioma. `slug` de trabalho é o
- * mesmo nos três idiomas; `servico` é o slug em português; `aba` é o id.
+ * mesmo em todos os idiomas; `servico` é o slug em português; `aba` é o id.
  */
 export interface Ref {
   pagina: Pagina;

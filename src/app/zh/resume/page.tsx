@@ -2,7 +2,7 @@
 import { metadadosCV, PaginaCV } from '@/components/paginas/PaginaCV';
 import type { Idioma } from '@/data/idiomas';
 
-const LANG = 'pt' satisfies Idioma;
+const LANG = 'zh' satisfies Idioma;
 
 export const metadata = metadadosCV(LANG);
 
