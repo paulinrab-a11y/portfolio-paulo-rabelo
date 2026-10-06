@@ -14,11 +14,16 @@ const filaAnalytics = 'window.va=window.va||function(){(window.vaq=window.vaq||[
 /**
  * Antes da primeira pintura: marca a abertura só na primeira visita da
  * sessão, na home (de qualquer idioma) e sem movimento reduzido. Clique,
- * tecla, roda ou toque já pulam, mesmo antes do JS do React. Sem JS, a
- * abertura não existe.
+ * tecla, roda ou toque já pulam, mesmo antes do JS do React. O clique conta
+ * no `click` (não no `pointerdown`) e o toque no `touchend`, cancelado: no
+ * iPhone o toque fora de um elemento clicável não gera `click`, e cancelar o
+ * `touchend` impede o clique sintético. Assim o toque termina sobre a abertura
+ * e não aciona o link que estava por baixo. O valor de `data-abertura` é o instante
+ * em que ela começou, para a animação não recomeçar se a hidratação atrasar.
+ * Sem JS, a abertura não existe.
  */
 const homes = JSON.stringify(idiomas.map((l) => caminhos[l].base));
-const scriptAbertura = `try{var c=location.pathname.replace(/\\/$/,'');if(${homes}.indexOf(c)>-1&&!sessionStorage.getItem('abertura-vista')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var h=document.documentElement;h.setAttribute('data-abertura','');var e=['pointerdown','keydown','wheel','touchmove'],p=function(){h.setAttribute('data-abertura-fim','');sessionStorage.setItem('abertura-vista','1');e.forEach(function(n){removeEventListener(n,p,true)})};e.forEach(function(n){addEventListener(n,p,{capture:true,passive:true})})}}catch(e){}`;
+const scriptAbertura = `try{var c=location.pathname.replace(/\\/$/,'');if(${homes}.indexOf(c)>-1&&!sessionStorage.getItem('abertura-vista')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var h=document.documentElement;h.setAttribute('data-abertura',String(Math.round(performance.now())));var e=['click','touchend','keydown','wheel','touchmove'],p=function(v){if(v.type==='touchend'&&v.cancelable)v.preventDefault();h.setAttribute('data-abertura-fim','');sessionStorage.setItem('abertura-vista','1');e.forEach(function(n){removeEventListener(n,p,true)})};e.forEach(function(n){addEventListener(n,p,{capture:true,passive:n!=='touchend'})})}}catch(e){}`;
 
 /** Estrutura de toda página, usada pelos layouts raiz de cada idioma */
 export function Documento({ lang, children }: { lang: Idioma; children: React.ReactNode }) {

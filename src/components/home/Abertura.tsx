@@ -15,7 +15,9 @@ const DURACAO = 1.6;
  * Abertura da primeira visita: REC pisca duas vezes, o timecode corre, o nome
  * se monta a partir de dígitos e as barras de letterbox abrem sobre o herói,
  * que já está renderizado por baixo. Clique, tecla, roda ou toque pulam.
- * Só existe quando o script inline do layout marcou `html[data-abertura]`.
+ * Só existe quando o script inline do layout marcou `html[data-abertura]`
+ * (com o instante em que começou: se a hidratação atrasar, a animação
+ * adianta em vez de recomeçar).
  */
 export function Abertura({ lang }: { lang: Idioma }) {
   const raiz = useRef<HTMLDivElement>(null);
@@ -31,23 +33,36 @@ export function Abertura({ lang }: { lang: Idioma }) {
 
     let pedido = 0;
     let encerrada = false;
+    let soltar = 0;
     let tl: gsap.core.Timeline | undefined;
-    const inicio = performance.now();
+    const inicio = Number(html.getAttribute('data-abertura')) || performance.now();
 
-    const eventosPular = ['pointerdown', 'keydown', 'wheel', 'touchmove'] as const;
+    // click e não pointerdown: o toque termina sobre a abertura, sem acionar o que está por baixo.
+    // No iPhone o toque fora de um elemento clicável não gera click: o touchend pula e, cancelado,
+    // impede o clique sintético no link de baixo
+    const eventosPular = ['click', 'touchend', 'keydown', 'wheel', 'touchmove'] as const;
+    const parar = () => {
+      cancelAnimationFrame(pedido);
+      tl?.kill();
+      for (const ev of eventosPular) window.removeEventListener(ev, pular, true);
+    };
     const encerrar = () => {
       if (encerrada) return;
       encerrada = true;
-      cancelAnimationFrame(pedido);
-      tl?.kill();
+      parar();
       html.setAttribute('data-abertura-fim', '');
       try {
         sessionStorage.setItem('abertura-vista', '1');
       } catch {}
-      for (const ev of eventosPular) window.removeEventListener(ev, pular, true);
+      // Depois que a digitação do herói termina, a página volta ao normal: voltar
+      // à home pela navegação do site não espera a abertura de novo
+      soltar = window.setTimeout(() => html.removeAttribute('data-abertura'), 5000);
     };
-    const pular = () => encerrar();
-    for (const ev of eventosPular) window.addEventListener(ev, pular, { capture: true, passive: true });
+    const pular = (e: Event) => {
+      if (e.type === 'touchend' && e.cancelable) e.preventDefault();
+      encerrar();
+    };
+    for (const ev of eventosPular) window.addEventListener(ev, pular, { capture: true, passive: ev !== 'touchend' });
 
     // Timecode e nome escritos direto no DOM, a cada quadro
     const quadro = (agora: number) => {
@@ -68,7 +83,19 @@ export function Abertura({ lang }: { lang: Idioma }) {
       .to('[data-barra="topo"]', { scaleY: 0, duration: 0.5, ease: 'expo.inOut' }, 1.1)
       .to('[data-barra="base"]', { scaleY: 0, duration: 0.5, ease: 'expo.inOut' }, 1.1);
 
-    return encerrar;
+    // Hidratação atrasada: adianta até onde a abertura já estaria (ou encerra)
+    const atraso = (performance.now() - inicio) / 1000;
+    if (atraso >= DURACAO) encerrar();
+    else if (atraso > 0) tl.time(atraso);
+
+    // Desmontar só para a animação: marcar como vista é papel de encerrar (no
+    // Strict Mode do dev, o efeito monta duas vezes e a abertura recomeça)
+    return () => {
+      parar();
+      if (!encerrada) return;
+      window.clearTimeout(soltar);
+      html.removeAttribute('data-abertura');
+    };
   }, []);
 
   return (
