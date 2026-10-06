@@ -71,4 +71,4 @@ O modo simulado padrão do Lighthouse mostra LCP de ~3,8 s na home. É artefato 
 
 ## Ainda em aberto
 
-Ver `docs/PENDENCIAS.md`: cliente da VSL, arte inteira do volante Audi, legendas, ano e ferramentas por trabalho, outros resultados, domínio próprio.
+Só o domínio próprio, que o Paulo coloca mais tarde. Passo a passo em `docs/PENDENCIAS.md`.

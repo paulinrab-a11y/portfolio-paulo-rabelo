@@ -114,7 +114,7 @@ export function Player({ midia, titulo, className = '' }: Props) {
       style={{ aspectRatio: proporcao(trecho.width && trecho.height ? { width: trecho.width, height: trecho.height } : midia) }}
       onKeyDown={teclas}
     >
-      {/* biome-ignore lint/a11y/useMediaCaption: ainda não há legendas dos trabalhos; o .vtt entra em <track> quando existir (docs/PENDENCIAS.md) */}
+      {/* biome-ignore lint/a11y/useMediaCaption: os trabalhos não têm legendas (decisão de 06/10/2026); se um .vtt existir, entra em <track> */}
       <video
         ref={video}
         className="absolute inset-0 h-full w-full object-contain"
