@@ -17,7 +17,7 @@ Não abra Issue pública para falha de segurança. Use "Report a vulnerability" 
 | Varredura de robôs | `vercel.json` nega na borda `/.env`, `/.git`, `*.php`, `wp-admin` e parecidos. |
 | Vazamento | Sem source maps em produção, sem `X-Powered-By`, páginas de erro sem detalhe técnico. |
 | Dependências | `.npmrc` sem scripts de instalação e só versões com 7 dias ou mais; `npm ci`; `npm audit` e `npm audit signatures` no CI; Dependabot semanal com espera de 7 dias. |
-| Dados do visitante | O site não cria cookies nem guarda dado de visitante. O `sessionStorage` só lembra que a abertura já passou. |
+| Dados do visitante | O site não cria cookies nem guarda dado de visitante. O `sessionStorage` só lembra que a abertura já passou. O painel de visitas (Vercel Web Analytics) conta visitas sem cookie e sem guardar IP, com script e envio na própria origem (`/_vercel/insights`), então a CSP não muda. |
 
 ## Decisões conhecidas
 

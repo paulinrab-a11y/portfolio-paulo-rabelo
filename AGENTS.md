@@ -17,6 +17,11 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 - Fatos e textos ficam em `src/data/`: `perfil.ts`, `trabalhos.ts`, `servicos.ts` (páginas de serviço para busca) e `media.json`. Trabalho feito com IA leva `feitoComIA: true` (mostra o selo "Feito com IA").
 - Pendências e respostas do Paulo ficam em `docs/PENDENCIAS.md`. Leia antes de mexer em conteúdo.
 
+## Visitas
+
+- O painel de visitas é o Vercel Web Analytics do projeto (aba Analytics na Vercel). O script entra em `Documento.tsx` só nos deploys da Vercel (`analyticsAtivo()` em `src/lib/site.ts`). Só a produção conta.
+- Sem cookie e sem dado que identifique o visitante. Qualquer coleta nova passa pelo SECURITY.md antes.
+
 ## Idiomas e abas
 
 - O site existe em português (raiz), inglês (`/en`), espanhol (`/es`) e chinês simplificado (`/zh`), com caminhos no idioma (`/en/work`, `/es/trabajos`). O chinês usa os caminhos em inglês (`/zh/work`): ideograma na URL vira `%E4%BD%9C…` quando copiado. O mapa está em `src/data/idiomas.ts` e as funções em `src/lib/rotas.ts`.
