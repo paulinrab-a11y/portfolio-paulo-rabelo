@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { imagemOg, linksIdiomas, metadadosBase, metadadosPagina } from './metadados';
+import { imagemOg, linksIdiomas, metadadosBase, metadadosPagina, resumir } from './metadados';
 
 describe('imagemOg', () => {
   it('uma por idioma', () => {
@@ -38,5 +38,38 @@ describe('metadadosPagina', () => {
     const com = metadadosPagina('pt', { pagina: 'sobre' }, { titulo: 'Sobre', descricao: 'd', imagem: { url: '/x.jpg' } });
     expect(com.openGraph?.images).toEqual([{ url: '/x.jpg' }]);
     expect(com.alternates?.canonical).toBe('/sobre');
+  });
+});
+
+describe('resumir', () => {
+  it('não mexe no que cabe', () => {
+    expect(resumir('Curto.')).toBe('Curto.');
+  });
+
+  it('corta no fim da última frase que cabe', () => {
+    const texto = `${'a'.repeat(100)}. ${'b'.repeat(100)}.`;
+    expect(resumir(texto)).toBe(`${'a'.repeat(100)}.`);
+  });
+
+  it('sem frase inteira, corta na palavra e põe reticências', () => {
+    const texto = 'palavra '.repeat(30);
+    const r = resumir(texto);
+    expect(r.length).toBeLessThanOrEqual(160);
+    expect(r).toMatch(/palavra…$/);
+  });
+
+  it('chinês: frase com 。 e corte no caractere', () => {
+    expect(resumir(`${'字'.repeat(80)}。${'字'.repeat(100)}。`)).toBe(`${'字'.repeat(80)}。`);
+    const r = resumir('字'.repeat(200));
+    expect(r).toHaveLength(160);
+    expect(r.endsWith('…')).toBe(true);
+  });
+});
+
+describe('metadadosPagina: openGraph completo', () => {
+  it('repete tipo, nome do site, url e outros idiomas', () => {
+    const m = metadadosPagina('zh', { pagina: 'sobre' }, { titulo: '关于', descricao: 'd' });
+    expect(m.openGraph).toMatchObject({ type: 'website', siteName: 'Paulo Rabelo', url: '/zh/about', locale: 'zh_CN' });
+    expect((m.openGraph as { alternateLocale: string[] }).alternateLocale).toEqual(['pt_BR', 'en_US', 'es_ES']);
   });
 });

@@ -3,7 +3,8 @@ import { perfilNo, t } from '@/lib/i18n';
 
 /** Cartela final: TRABALHE COMIGO, com todos os contatos à vista */
 export function Fim({ lang }: { lang: Idioma }) {
-  const tx = t(lang).fim;
+  const pt = t(lang);
+  const tx = pt.fim;
   const perfil = perfilNo(lang);
   const { contato } = perfil;
   const canais = [contato.whatsapp, contato.email, contato.linkedin, contato.instagram];
@@ -13,10 +14,15 @@ export function Fim({ lang }: { lang: Idioma }) {
         <span className="rec-ponto" /> {tx.rotulo}
       </p>
       <h2 id="fim-titulo" className="titulo-display text-[clamp(64px,15vw,240px)] text-creme">
-        {tx.titulo1} <span className="text-rec">{tx.titulo2}</span>
+        {tx.titulo1}
+        {pt.entrePalavras}
+        <span className="text-rec">{tx.titulo2}</span>
       </h2>
       <p className="mt-6 max-w-[42ch] text-lg text-cinza">
-        {perfil.disponibilidade} {perfil.cidade}.
+        {perfil.disponibilidade}
+        {pt.entrePalavras}
+        {perfil.cidade}
+        {pt.pontoFinal}
       </p>
       <ul className="mt-12 grid gap-px border border-linha bg-linha sm:grid-cols-2">
         {canais.map((c) => (

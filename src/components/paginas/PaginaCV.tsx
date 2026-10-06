@@ -93,17 +93,27 @@ export function PaginaCV({ lang }: { lang: Idioma }) {
               {tx.cv.formacao}
             </h2>
             <p>
-              {p.formacao.graduacao.curso}, {p.formacao.graduacao.instituicao}, {p.formacao.graduacao.ano}.
+              {[p.formacao.graduacao.curso, p.formacao.graduacao.instituicao, p.formacao.graduacao.ano].join(tx.separadorLista)}
+              {tx.pontoFinal}
             </p>
             <p className="secundario mt-2">
-              {p.formacao.cursos.instituicao}: {p.formacao.cursos.lista.join(', ')}.
+              {p.formacao.cursos.instituicao}
+              {tx.doisPontos}
+              {p.formacao.cursos.lista.join(tx.separadorLista)}
+              {tx.pontoFinal}
             </p>
           </div>
           <div>
             <h2 className="rotulo text-rec-escuro mb-3">{tx.cv.ferramentas}</h2>
-            <p>{p.ferramentas.join(', ')}.</p>
+            <p>
+              {p.ferramentas.join(tx.separadorLista)}
+              {tx.pontoFinal}
+            </p>
             <h2 className="rotulo text-rec-escuro mt-6 mb-3">{tx.cv.areas}</h2>
-            <p>{p.servicos.join(', ')}.</p>
+            <p>
+              {p.servicos.join(tx.separadorLista)}
+              {tx.pontoFinal}
+            </p>
           </div>
         </section>
       </article>

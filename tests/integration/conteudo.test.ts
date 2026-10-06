@@ -219,6 +219,26 @@ describe('idiomas: inglês, espanhol e chinês completos', () => {
     expect(textos.zh.selo.ia).toBe('AI 制作');
   });
 
+  it('contagens no singular e nome do serviço como está escrito', () => {
+    expect(textos.pt.indice.contagem(1, 'Podcast')).toBe('1 trabalho em Podcast');
+    expect(textos.en.indice.contagem(1)).toBe('1 project');
+    expect(textos.es.indice.contagem(1)).toBe('1 trabajo');
+    expect(textos.en.servicos.trabalhosDe(3, 'AI video')).toBe('AI video: 3 projects');
+    expect(textos.pt.servicos.trabalhosDe(1, 'Vídeo com IA')).toBe('Vídeo com IA: 1 trabalho');
+  });
+
+  it('o fim do cabeçalho e a pontuação acompanham o idioma', () => {
+    expect([textos.pt.fimHud, textos.en.fimHud, textos.es.fimHud, textos.zh.fimHud]).toEqual(['FIM', 'END', 'FIN', '剧终']);
+    expect(textos.zh.separadorLista).toBe('、');
+    expect(textos.zh.entrePalavras).toBe('');
+  });
+
+  it('chinês sem aspas latinas no meio do texto', () => {
+    const textosZh = (v: unknown): string[] => (typeof v === 'string' ? [v] : v && typeof v === 'object' ? Object.values(v).flatMap(textosZh) : []);
+    const todos = [perfilEm.zh, trabalhosEm.zh, servicosEm.zh, legendasEm.zh].flatMap(textosZh);
+    for (const t of todos) expect(t, t).not.toContain('"');
+  });
+
   it('chinês: URL sem ideograma (copiada, viraria %E4%BD%9C…)', () => {
     for (const s of servicos) expect(slugServicos[s.slug]?.zh).toMatch(/^[a-z0-9-]+$/);
     for (const a of abas) expect(slugAba[a].zh).toMatch(/^[a-z0-9-]+$/);

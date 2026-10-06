@@ -52,12 +52,12 @@ export function servicoLd(url: string, s: { nome: string; descricao: string; cam
     description: s.descricao,
     url: `${url}${s.caminho}`,
     provider: { '@id': `${url}/#pessoa` },
-    areaServed: { '@type': 'Country', name: 'Brasil' },
+    areaServed: { '@type': 'Country', name: 'Brazil' },
   };
 }
 
-/** Trabalho do portfólio. Sem data de publicação: o Paulo não informou. */
-export function trabalhoLd(url: string, t: { titulo: string; descricao: string; caminho: string; imagem: string; cliente?: string; feitoComIA?: boolean }): JsonLd {
+/** Trabalho do portfólio. Sem data de publicação: o Paulo não informou. `seloIA` é o texto do selo no idioma da página. */
+export function trabalhoLd(url: string, t: { titulo: string; descricao: string; caminho: string; imagem: string; cliente?: string; seloIA?: string }): JsonLd {
   return {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
@@ -67,7 +67,7 @@ export function trabalhoLd(url: string, t: { titulo: string; descricao: string; 
     image: `${url}${t.imagem}`,
     creator: { '@id': `${url}/#pessoa` },
     ...(t.cliente ? { sourceOrganization: { '@type': 'Organization', name: t.cliente } } : {}),
-    ...(t.feitoComIA ? { keywords: 'Feito com IA' } : {}),
+    ...(t.seloIA ? { keywords: t.seloIA } : {}),
   };
 }
 

@@ -28,10 +28,11 @@ export function metadadosTrabalho(lang: Idioma, slug: string): Metadata {
   if (!base) return {};
   const t = trabalhoEm(base, lang);
   const m = midia(t.midia);
+  const tx = textosDe(lang);
   return metadadosPagina(
     lang,
     { pagina: 'trabalhos', trabalho: slug },
-    { titulo: t.titulo, descricao: `${t.texto.contexto} ${t.texto.oQueFiz}`, imagem: { url: m.poster.jpg, width: m.width, height: m.height } },
+    { titulo: t.titulo, descricao: `${t.texto.contexto}${tx.entrePalavras}${t.texto.oQueFiz}`, imagem: { url: m.poster.jpg, width: m.width, height: m.height } },
   );
 }
 
@@ -66,11 +67,11 @@ export function PaginaTrabalho({ lang, slug }: { lang: Idioma; slug: string }) {
         dados={[
           trabalhoLd(SITE_URL, {
             titulo: t.titulo,
-            descricao: `${t.texto.contexto} ${t.texto.oQueFiz}`,
+            descricao: `${t.texto.contexto}${tx.entrePalavras}${t.texto.oQueFiz}`,
             caminho: aqui,
             imagem: m.poster.jpg,
             cliente: t.cliente,
-            feitoComIA: t.feitoComIA,
+            seloIA: t.feitoComIA ? tx.selo.ia : undefined,
           }),
           breadcrumbLd(SITE_URL, [
             { nome: tx.nav.inicioTrilha, caminho: caminho(lang, { pagina: 'home' }) },

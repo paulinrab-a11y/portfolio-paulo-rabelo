@@ -41,6 +41,13 @@ test.describe('home', () => {
     await expect(tc).toHaveText('FIM');
   });
 
+  test('em inglês o timecode termina em END, não em FIM', async ({ page }) => {
+    await page.goto('/en');
+    const tc = page.getByTestId('timecode-cabecalho');
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await expect(tc).toHaveText('END');
+  });
+
   test('clientes e artistas em créditos', async ({ page }) => {
     await page.goto('/');
     const creditos = page.getByRole('region', { name: 'Lista de clientes e artistas' });
