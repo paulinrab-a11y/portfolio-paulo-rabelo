@@ -1,4 +1,5 @@
-import { expect, type Page, test } from './fixtures';
+import type { Page } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 /**
  * Sem o JS do React, só o script inline do layout cuida da abertura (como
