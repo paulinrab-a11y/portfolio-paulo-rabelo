@@ -17,11 +17,19 @@ Itens que dependem de dado ou decisão sua. Nada disso foi inventado no site: o 
 - Pessoas das fotos de eventos autorizam o uso; não precisa dizer qual evento é qual.
 - Placa do Porsche e "Forza / AD ASTRA" nos créditos podem ficar.
 
+## Decidido em 06/10/2026
+
+O Paulo não vai enviar mais dados: o site fica como está.
+- VSL e anúncio do volante: sem cliente nos créditos.
+- Arte do volante Audi: fica o recorte do slide.
+- Sem legendas (.vtt) por enquanto.
+- Créditos sem ano e sem ferramentas por trabalho.
+- Único resultado numérico: 300 mil de alcance mensal no Hora Bolas.
+
 ## Em aberto
 
-1. VSL (em inglês, com Monster Energy e Golden Goose): de qual cliente é? Por ora, sem cliente.
-2. A arte do volante Audi sai cortada nas bordas do slide: existe o arquivo inteiro?
-3. Legendas (.vtt) dos vídeos com fala, para acessibilidade.
-4. Ferramentas e ano de cada trabalho (aparecem nos créditos só se você informar).
-5. Outros resultados reais (views, alcance, vendas).
-6. Domínio próprio?
+1. Domínio próprio (o Paulo coloca mais tarde). Passo a passo:
+   1. Na Vercel, projeto `portfolio-paulo-rabelo` > Settings > Domains: adicionar o domínio e seguir as instruções de DNS.
+   2. Em Settings > Environment Variables (Production): `NEXT_PUBLIC_SITE_URL=https://seu-dominio`. É o endereço usado no sitemap, nos links canônicos, no JSON-LD e na imagem de compartilhamento.
+   3. Fazer um novo deploy de produção (merge de qualquer PR em `main` ou Redeploy no painel).
+   4. Conferir `https://seu-dominio/sitemap.xml` e enviar o sitemap no Google Search Console.
