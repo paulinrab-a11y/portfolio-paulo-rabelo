@@ -82,8 +82,15 @@ const pt = {
   fim: { rotulo: '05 · Fim', titulo1: 'Trabalhe', titulo2: 'comigo' },
   selo: { ia: 'Feito com IA' },
   assistir: '▶ Assistir',
-  /** Pontuação que junta dois trechos (título: legenda). Em chinês é de largura cheia. */
+  /** Pontuação que junta trechos (título: legenda, listas, frases). Em chinês é de largura cheia. */
   doisPontos: ': ',
+  separadorLista: ', ',
+  pontoFinal: '.',
+  parenteses: (texto: string) => ` (${texto})`,
+  /** Espaço entre as duas partes dos títulos grandes ("Trabalhe comigo"); em chinês, nenhum */
+  entrePalavras: ' ',
+  /** Timecode do cabeçalho quando a página acaba */
+  fimHud: 'FIM',
   descricaoAba: (descricao: string) => `${descricao}. Paulo Rabelo.`,
   indice: {
     rotulo: 'Índice',
@@ -93,7 +100,7 @@ const pt = {
     modo: 'Modo de exibição',
     lista: 'Lista',
     grade: 'Grade',
-    contagem: (n: number, categoria?: string) => `${n} trabalhos${categoria ? ` em ${categoria}` : ''}`,
+    contagem: (n: number, categoria?: string) => `${n} ${n === 1 ? 'trabalho' : 'trabalhos'}${categoria ? ` em ${categoria}` : ''}`,
     abasAria: 'Áreas de trabalho',
     todosAba: 'Todos',
   },
@@ -125,7 +132,7 @@ const pt = {
     rotulo: 'O que eu faço',
     titulo: 'Serviços',
     contagem: (n: number) => `${n} ${n === 1 ? 'trabalho' : 'trabalhos'}`,
-    trabalhosDe: (n: number, nome: string) => `${n} ${n === 1 ? 'trabalho' : 'trabalhos'} de ${nome.toLowerCase()}`,
+    trabalhosDe: (n: number, nome: string) => `${nome}: ${n} ${n === 1 ? 'trabalho' : 'trabalhos'}`,
     outros: 'Outros serviços',
     whatsapp: 'Falar no WhatsApp',
     email: 'E-mail',
@@ -166,7 +173,7 @@ const en: Textos = {
     altOg: 'Paulo Rabelo: editing, motion and art direction',
     cargo: 'Video editor, motion designer and art director',
     trabalhosDescricao: 'Editing, motion and VFX, color, AI video, websites, social media, photography and podcasts. All of Paulo Rabelo’s work.',
-    servicosDescricao: 'Video editing, motion design and VFX, color grading, AI video, websites, social media, photography and podcast editing. São Paulo, Brazil, and remote.',
+    servicosDescricao: 'Video editing, motion design and VFX, color grading, AI video, websites, social media, photography and podcast editing. São Paulo, Brazil, also remote.',
     sobreDescricao: 'Paulo Rabelo: video editor, motion designer and art director in São Paulo, Brazil. Founder of WhyNot Visuals and art director at OHC Motors and WhyNot Records.',
     cvDescricao: 'Resume of Paulo Vitor Pereira Rabelo: video editor, motion designer and art director.',
   },
@@ -235,6 +242,13 @@ const en: Textos = {
   selo: { ia: 'Made with AI' },
   assistir: '▶ Watch',
   doisPontos: ': ',
+  separadorLista: ', ',
+  pontoFinal: '.',
+  parenteses: (texto: string) => ` (${texto})`,
+  /** Espaço entre as duas partes dos títulos grandes ("Trabalhe comigo"); em chinês, nenhum */
+  entrePalavras: ' ',
+  /** Timecode do cabeçalho quando a página acaba */
+  fimHud: 'END',
   descricaoAba: (descricao: string) => `${descricao}. Paulo Rabelo.`,
   indice: {
     rotulo: 'Index',
@@ -244,7 +258,7 @@ const en: Textos = {
     modo: 'View mode',
     lista: 'List',
     grade: 'Grid',
-    contagem: (n: number, categoria?: string) => `${n} projects${categoria ? ` in ${categoria}` : ''}`,
+    contagem: (n: number, categoria?: string) => `${n} ${n === 1 ? 'project' : 'projects'}${categoria ? ` in ${categoria}` : ''}`,
     abasAria: 'Areas of work',
     todosAba: 'All',
   },
@@ -276,7 +290,7 @@ const en: Textos = {
     rotulo: 'What I do',
     titulo: 'Services',
     contagem: (n: number) => `${n} ${n === 1 ? 'project' : 'projects'}`,
-    trabalhosDe: (n: number, nome: string) => `${n} ${nome.toLowerCase()} ${n === 1 ? 'project' : 'projects'}`,
+    trabalhosDe: (n: number, nome: string) => `${nome}: ${n} ${n === 1 ? 'project' : 'projects'}`,
     outros: 'Other services',
     whatsapp: 'Message me on WhatsApp',
     email: 'Email',
@@ -309,15 +323,15 @@ const en: Textos = {
 
 const es: Textos = {
   meta: {
-    tituloPadrao: 'Paulo Rabelo · Editor de video, motion designer y director de arte en São Paulo',
+    tituloPadrao: 'Paulo Rabelo · Editor de vídeo, motion designer y director de arte en São Paulo',
     tituloOg: 'Paulo Rabelo · edición, motion y dirección de arte',
-    descricao: 'Editor de video, motion designer y director de arte en São Paulo, Brasil. Edición, motion y VFX, color, video con IA, sitios web, redes sociales y fotografía.',
+    descricao: 'Editor de vídeo, motion designer y director de arte en São Paulo, Brasil. Edición, motion y VFX, color, vídeo con IA, sitios web, redes sociales y fotografía.',
     altOg: 'Paulo Rabelo: edición, motion y dirección de arte',
-    cargo: 'Editor de video, motion designer y director de arte',
-    trabalhosDescricao: 'Edición, motion y VFX, color, video con IA, sitios web, redes sociales, fotografía y podcast. Todos los trabajos de Paulo Rabelo.',
-    servicosDescricao: 'Edición de video, motion design y VFX, color grading, video con IA, sitios web, redes sociales, fotografía y edición de podcast. São Paulo, Brasil, y en remoto.',
-    sobreDescricao: 'Paulo Rabelo: editor de video, motion designer y director de arte en São Paulo, Brasil. Fundador de WhyNot Visuals y director de arte de OHC Motors y WhyNot Records.',
-    cvDescricao: 'Currículum de Paulo Vitor Pereira Rabelo: editor de video, motion designer y director de arte.',
+    cargo: 'Editor de vídeo, motion designer y director de arte',
+    trabalhosDescricao: 'Edición, motion y VFX, color, vídeo con IA, sitios web, redes sociales, fotografía y podcast. Todos los trabajos de Paulo Rabelo.',
+    servicosDescricao: 'Edición de vídeo, motion design y VFX, color grading, vídeo con IA, sitios web, redes sociales, fotografía y edición de podcast. São Paulo, Brasil, también en remoto.',
+    sobreDescricao: 'Paulo Rabelo: editor de vídeo, motion designer y director de arte en São Paulo, Brasil. Fundador de WhyNot Visuals y director de arte de OHC Motors y WhyNot Records.',
+    cvDescricao: 'Currículum de Paulo Vitor Pereira Rabelo: editor de vídeo, motion designer y director de arte.',
   },
   nav: {
     pularConteudo: 'Saltar al contenido',
@@ -335,7 +349,7 @@ const es: Textos = {
     voceEstaEm: 'Estás en',
   },
   abas: {
-    video: { nome: 'Video', descricao: 'Edición, motion, VFX, color, podcast y video con IA' },
+    video: { nome: 'Vídeo', descricao: 'Edición, motion, VFX, color, podcast y vídeo con IA' },
     sites: { nome: 'Sitios web', descricao: 'Sitios web que diseñé e implementé' },
     marketing: { nome: 'Marketing', descricao: 'Redes sociales, dirección de arte, branding, fotografía y eventos' },
   },
@@ -352,7 +366,7 @@ const es: Textos = {
   trilhas: { V1: 'Edición y color', V2: 'Motion y VFX', V3: 'IA generativa', V4: 'Dirección de arte' },
   abertura: { pular: 'Saltar' },
   heroi: {
-    altVideo: 'Fragmentos de videoclips, un visualizer, un podcast y un video de YouTube editados por Paulo Rabelo',
+    altVideo: 'Fragmentos de videoclips, un visualizer, un podcast y un vídeo de YouTube editados por Paulo Rabelo',
     verTrabalhos: 'Ver trabajos',
     falarComigo: 'Hablemos',
     desca: 'Desliza ↓',
@@ -384,6 +398,13 @@ const es: Textos = {
   selo: { ia: 'Hecho con IA' },
   assistir: '▶ Ver',
   doisPontos: ': ',
+  separadorLista: ', ',
+  pontoFinal: '.',
+  parenteses: (texto: string) => ` (${texto})`,
+  /** Espaço entre as duas partes dos títulos grandes ("Trabalhe comigo"); em chinês, nenhum */
+  entrePalavras: ' ',
+  /** Timecode do cabeçalho quando a página acaba */
+  fimHud: 'FIN',
   descricaoAba: (descricao: string) => `${descricao}. Paulo Rabelo.`,
   indice: {
     rotulo: 'Índice',
@@ -393,7 +414,7 @@ const es: Textos = {
     modo: 'Modo de vista',
     lista: 'Lista',
     grade: 'Cuadrícula',
-    contagem: (n: number, categoria?: string) => `${n} trabajos${categoria ? ` en ${categoria}` : ''}`,
+    contagem: (n: number, categoria?: string) => `${n} ${n === 1 ? 'trabajo' : 'trabajos'}${categoria ? ` en ${categoria}` : ''}`,
     abasAria: 'Áreas de trabajo',
     todosAba: 'Todos',
   },
@@ -411,21 +432,21 @@ const es: Textos = {
     verSite: 'Ver el sitio en línea',
   },
   player: {
-    video: 'Video',
+    video: 'Vídeo',
     tocar: 'Reproducir',
     pausar: 'Pausar',
     play: 'Play',
     pausa: 'Pausa',
-    posicao: 'Posición en el video',
-    somOn: 'Sonido sí',
-    somOff: 'Sonido no',
+    posicao: 'Posición en el vídeo',
+    somOn: 'Con sonido',
+    somOff: 'Sin sonido',
     telaCheia: 'Pantalla completa',
   },
   servicos: {
     rotulo: 'Lo que hago',
     titulo: 'Servicios',
     contagem: (n: number) => `${n} ${n === 1 ? 'trabajo' : 'trabajos'}`,
-    trabalhosDe: (n: number, nome: string) => `${n} ${n === 1 ? 'trabajo' : 'trabajos'} de ${nome.toLowerCase()}`,
+    trabalhosDe: (n: number, nome: string) => `${nome}: ${n} ${n === 1 ? 'trabajo' : 'trabajos'}`,
     outros: 'Otros servicios',
     whatsapp: 'Escríbeme por WhatsApp',
     email: 'Correo',
@@ -453,7 +474,7 @@ const es: Textos = {
     baixar: 'Descargar PDF',
     imprimir: 'Imprimir',
   },
-  naoEncontrado: { rotulo: 'Medio sin conexión', titulo1: 'Sin', titulo2: 'señal', texto: 'Esta página no existe o cambió de lugar.', voltar: 'Volver al inicio', trabalhos: 'Ver trabajos' },
+  naoEncontrado: { rotulo: 'Medios sin conexión', titulo1: 'Sin', titulo2: 'señal', texto: 'Esta página no existe o cambió de lugar.', voltar: 'Volver al inicio', trabalhos: 'Ver trabajos' },
 };
 
 const zh: Textos = {
@@ -501,7 +522,7 @@ const zh: Textos = {
   trilhas: { V1: '剪辑与调色', V2: '动态设计与特效', V3: '生成式 AI', V4: '艺术指导' },
   abertura: { pular: '跳过' },
   heroi: {
-    altVideo: 'Paulo Rabelo 剪辑的音乐录影带、视觉化影片、播客和 YouTube 视频片段',
+    altVideo: 'Paulo Rabelo 剪辑的 MV、Visualizer、播客和 YouTube 视频片段',
     verTrabalhos: '查看作品',
     falarComigo: '联系我',
     desca: '向下滚动 ↓',
@@ -533,6 +554,13 @@ const zh: Textos = {
   selo: { ia: 'AI 制作' },
   assistir: '▶ 观看',
   doisPontos: '：',
+  separadorLista: '、',
+  pontoFinal: '。',
+  parenteses: (texto: string) => `（${texto}）`,
+  /** Espaço entre as duas partes dos títulos grandes (“Trabalhe comigo”); em chinês, nenhum */
+  entrePalavras: '',
+  /** Timecode do cabeçalho quando a página acaba */
+  fimHud: '剧终',
   descricaoAba: (descricao: string) => `${descricao}。Paulo Rabelo。`,
   indice: {
     rotulo: '索引',
@@ -550,7 +578,7 @@ const zh: Textos = {
     contexto: '背景',
     oQueFiz: '我的工作',
     resultado: '成果',
-    creditos: '演职人员',
+    creditos: '项目信息',
     servicos: '服务：',
     mais: '更多相关内容',
     pecas: '作品',

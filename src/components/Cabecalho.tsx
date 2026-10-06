@@ -11,7 +11,7 @@ import { caminho, caminhoContato, traduzirCaminho } from '@/lib/rotas';
 
 /**
  * Barra de software de edição: nome, timecode que anda com a rolagem (e
- * termina em FIM), navegação (as três abas de trabalho, sobre e contato) e
+ * termina no fim do idioma: FIM, END, FIN, 剧终), navegação (as três abas de trabalho, sobre e contato) e
  * idioma por bandeira. No celular a navegação vira um <details>, que abre e
  * fecha mesmo sem JS; as bandeiras ficam sempre à vista.
  */
@@ -27,6 +27,7 @@ export function Cabecalho({ lang }: { lang: Idioma }) {
     { href: caminhoContato(lang), rotulo: tx.nav.contato },
   ];
 
+  const fim = tx.fimHud;
   useEffect(() => {
     const el = tc.current;
     if (!el) return;
@@ -34,7 +35,7 @@ export function Cabecalho({ lang }: { lang: Idioma }) {
     const atualizar = () => {
       pedido = 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      el.textContent = progressoParaTimecode(max > 0 ? window.scrollY / max : 0);
+      el.textContent = progressoParaTimecode(max > 0 ? window.scrollY / max : 0, fim);
     };
     const agendar = () => {
       if (!pedido) pedido = requestAnimationFrame(atualizar);
@@ -47,7 +48,7 @@ export function Cabecalho({ lang }: { lang: Idioma }) {
       window.removeEventListener('scroll', agendar);
       window.removeEventListener('resize', agendar);
     };
-  }, []);
+  }, [fim]);
 
   // Fecha o menu do celular ao trocar de página
   useEffect(() => {

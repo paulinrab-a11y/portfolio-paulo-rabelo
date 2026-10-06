@@ -3,13 +3,13 @@ import { timecode } from './timecode';
 /** Duração simbólica do "programa" que a página inteira representa */
 const DURACAO_PAGINA_S = 180;
 
-/** A partir daqui o cabeçalho mostra FIM */
+/** A partir daqui o cabeçalho mostra o fim (FIM, END, FIN, 剧终) */
 const LIMIAR_FIM = 0.985;
 
-/** Progresso da rolagem (0 a 1) para o timecode do cabeçalho. No fim, "FIM". */
-export function progressoParaTimecode(p: number, duracao = DURACAO_PAGINA_S): string {
+/** Progresso da rolagem (0 a 1) para o timecode do cabeçalho. No fim, o texto de fim do idioma. */
+export function progressoParaTimecode(p: number, fim = 'FIM', duracao = DURACAO_PAGINA_S): string {
   const limitado = Math.min(1, Math.max(0, p));
-  if (limitado >= LIMIAR_FIM) return 'FIM';
+  if (limitado >= LIMIAR_FIM) return fim;
   return timecode(limitado * duracao * 1000);
 }
 

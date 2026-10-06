@@ -64,9 +64,9 @@ describe('trabalhoLd', () => {
   });
 
   it('com cliente e IA', () => {
-    const ld = trabalhoLd(URL_SITE, { ...t, cliente: 'OHC Motors', feitoComIA: true });
+    const ld = trabalhoLd(URL_SITE, { ...t, cliente: 'OHC Motors', seloIA: 'Made with AI' });
     expect(ld.sourceOrganization).toEqual({ '@type': 'Organization', name: 'OHC Motors' });
-    expect(ld.keywords).toBe('Feito com IA');
+    expect(ld.keywords).toBe('Made with AI');
   });
 });
 

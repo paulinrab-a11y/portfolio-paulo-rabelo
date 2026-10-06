@@ -17,6 +17,21 @@ export function linksIdiomas(lang: Idioma, ref: Ref): NonNullable<Metadata['alte
   return { canonical: caminho(lang, ref), languages };
 }
 
+/**
+ * Descrição que cabe no resultado do Google (até 160 caracteres): corta no
+ * fim da última frase que cabe; sem frase inteira, na última palavra, com
+ * reticências. Em chinês não há espaço entre palavras: corta no caractere.
+ */
+export function resumir(texto: string, max = 160): string {
+  if (texto.length <= max) return texto;
+  const trecho = texto.slice(0, max);
+  const fimFrase = Math.max(...['. ', '。', '! ', '? '].map((p) => trecho.lastIndexOf(p)));
+  if (fimFrase > max / 3) return trecho.slice(0, fimFrase + 1).trim();
+  const espaco = trecho.lastIndexOf(' ', max - 1);
+  const corte = espaco > max / 2 ? espaco : max - 1;
+  return `${trecho.slice(0, corte).replace(/[s,;:、，]+$/, '')}…`;
+}
+
 /** Metadados de cada layout raiz */
 export function metadadosBase(lang: Idioma): Metadata {
   const tx = t(lang).meta;
@@ -29,6 +44,7 @@ export function metadadosBase(lang: Idioma): Metadata {
       locale: localeOg[lang],
       alternateLocale: idiomas.filter((l) => l !== lang).map((l) => localeOg[l]),
       siteName: 'Paulo Rabelo',
+      url: caminho(lang, { pagina: 'home' }),
       title: tx.tituloOg,
       description: tx.descricao,
       images: [{ url: imagemOg(lang), width: 1200, height: 630, alt: tx.altOg }],
@@ -43,16 +59,24 @@ export const viewport: Viewport = {
   colorScheme: 'dark',
 };
 
-/** Metadados de uma página interna */
+/**
+ * Metadados de uma página interna. O Next não mescla o openGraph do layout
+ * com o da página: tudo que o layout define precisa ser repetido aqui.
+ */
 export function metadadosPagina(lang: Idioma, ref: Ref, dados: { titulo: string; descricao: string; imagem?: { url: string; width?: number; height?: number } }): Metadata {
+  const descricao = resumir(dados.descricao);
   return {
     title: dados.titulo,
-    description: dados.descricao,
+    description: descricao,
     alternates: linksIdiomas(lang, ref),
     openGraph: {
+      type: 'website',
+      siteName: 'Paulo Rabelo',
+      url: caminho(lang, ref),
       title: dados.titulo,
-      description: dados.descricao,
+      description: descricao,
       locale: localeOg[lang],
+      alternateLocale: idiomas.filter((l) => l !== lang).map((l) => localeOg[l]),
       images: [dados.imagem ?? { url: imagemOg(lang), width: 1200, height: 630 }],
     },
   };

@@ -7,12 +7,13 @@ describe('progressoParaTimecode', () => {
   });
 
   it('anda proporcional à rolagem', () => {
-    expect(progressoParaTimecode(0.5, 180)).toBe('00:01:30:00');
+    expect(progressoParaTimecode(0.5, 'FIM', 180)).toBe('00:01:30:00');
   });
 
   it('termina em FIM', () => {
     expect(progressoParaTimecode(0.99)).toBe('FIM');
     expect(progressoParaTimecode(2)).toBe('FIM');
+    expect(progressoParaTimecode(1, 'END')).toBe('END');
   });
 
   it('progresso negativo vale zero', () => {

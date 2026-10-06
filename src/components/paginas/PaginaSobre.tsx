@@ -101,10 +101,16 @@ export function PaginaSobre({ lang }: { lang: Idioma }) {
         <div className="col-span-12 md:col-span-6">
           <h2 className="rotulo mb-5 text-cinza">{tx.sobre.formacao}</h2>
           <p className="text-xl">
-            {p.formacao.graduacao.curso}, {p.formacao.graduacao.instituicao} ({p.formacao.graduacao.ano})
+            {p.formacao.graduacao.curso}
+            {tx.separadorLista}
+            {p.formacao.graduacao.instituicao}
+            {tx.parenteses(p.formacao.graduacao.ano)}
           </p>
           <p className="mt-4 text-cinza">
-            {p.formacao.cursos.instituicao}: {p.formacao.cursos.lista.join(', ')}.
+            {p.formacao.cursos.instituicao}
+            {tx.doisPontos}
+            {p.formacao.cursos.lista.join(tx.separadorLista)}
+            {tx.pontoFinal}
           </p>
         </div>
         <div className="col-span-12 md:col-span-6">

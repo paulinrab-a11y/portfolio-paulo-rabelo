@@ -11,7 +11,9 @@ export function PaginaNaoEncontrado({ lang }: { lang: Idioma }) {
         <span className="rec-ponto" /> {tx.rotulo}
       </p>
       <h1 className="titulo-display text-[clamp(72px,16vw,240px)]">
-        {tx.titulo1} <span className="text-rec">{tx.titulo2}</span>
+        {tx.titulo1}
+        {textos[lang].entrePalavras}
+        <span className="text-rec">{tx.titulo2}</span>
       </h1>
       <p className="mt-6 max-w-[40ch] text-lg text-cinza">{tx.texto}</p>
       <div className="mt-10 flex flex-wrap gap-3">
