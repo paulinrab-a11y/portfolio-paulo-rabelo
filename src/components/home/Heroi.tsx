@@ -2,7 +2,9 @@
 
 import { useCallback, useRef } from 'react';
 import { VideoLoop } from '@/components/VideoLoop';
+import type { Idioma } from '@/data/idiomas';
 import { perfil } from '@/data/perfil';
+import { textos } from '@/data/textos';
 import { midia } from '@/lib/midia';
 import { gsap, MIDIA, useGSAP } from '@/lib/motion';
 import { timecode } from '@/lib/timecode';
@@ -13,7 +15,8 @@ const heroi = midia('hero');
  * Herói monitor. O loop ocupa a tela com o poster como LCP. Ao rolar, a
  * imagem encolhe para dentro de um monitor (scrub, só transform e opacity).
  */
-export function Heroi() {
+export function Heroi({ lang, funcaoCurta }: { lang: Idioma; funcaoCurta: string }) {
+  const tx = textos[lang].heroi;
   const raiz = useRef<HTMLElement>(null);
   const tc = useRef<HTMLSpanElement>(null);
 
@@ -62,11 +65,11 @@ export function Heroi() {
       <div className="sticky top-0 h-svh overflow-hidden">
         {/* Tela: vídeo + moldura do monitor, escalados juntos */}
         <div data-tela className="absolute inset-0 origin-[50%_45%] will-change-transform">
-          <VideoLoop midia={heroi} alt="Trechos de clipes, visualizer, podcast e vídeo para YouTube editados por Paulo Rabelo" prioridade preencher aoMontar={ligarTimecode} />
+          <VideoLoop midia={heroi} alt={tx.altVideo} prioridade preencher aoMontar={ligarTimecode} />
           <div className="absolute inset-0 bg-[linear-gradient(to_top,rgb(11_11_12/0.92),rgb(11_11_12/0.15)_45%,rgb(11_11_12/0.45))]" />
           <div data-moldura aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-0 shadow-[0_0_0_18px_#151517,0_0_0_19px_#2a2a2e]">
-            <span className="rotulo absolute -top-12 left-0 text-cinza">Programa · V1</span>
-            <span className="rotulo absolute -top-12 right-0 text-rec">● Ao vivo</span>
+            <span className="rotulo absolute -top-12 left-0 text-cinza">{tx.programa}</span>
+            <span className="rotulo absolute -top-12 right-0 text-rec">{tx.aoVivo}</span>
             <span className="absolute -bottom-24 left-1/2 h-16 w-[16%] -translate-x-1/2 bg-carvao" />
           </div>
         </div>
@@ -86,7 +89,7 @@ export function Heroi() {
             </span>
           </p>
           <p className="rotulo absolute bottom-3 left-[calc(var(--margem)+36px)] hidden sm:block">{perfil.hud}</p>
-          <p className="rotulo absolute right-[calc(var(--margem)+36px)] bottom-3">Desça ↓</p>
+          <p className="rotulo absolute right-[calc(var(--margem)+36px)] bottom-3">{tx.desca}</p>
         </div>
 
         {/* Nome, função e chamadas */}
@@ -95,18 +98,18 @@ export function Heroi() {
             <span className="block md:inline">Paulo</span> <span className="block md:inline">Rabelo</span>
           </h1>
           <p className="mt-4 font-mono text-[15px] text-creme md:mt-6 md:text-lg">
-            <span className="sr-only">{perfil.funcaoCurta}</span>
-            <span aria-hidden="true" className="digitar relative inline-block" style={{ '--letras': perfil.funcaoCurta.length } as React.CSSProperties}>
-              <span className="digitar-texto marca-texto">{perfil.funcaoCurta}</span>
+            <span className="sr-only">{funcaoCurta}</span>
+            <span aria-hidden="true" className="digitar relative inline-block" style={{ '--letras': funcaoCurta.length } as React.CSSProperties}>
+              <span className="digitar-texto marca-texto">{funcaoCurta}</span>
               <span className="cursor-digitacao digitar-cursor" />
             </span>
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#trabalhos" className="botao botao-rec">
-              Ver trabalhos
+              {tx.verTrabalhos}
             </a>
             <a href="#contato" className="botao text-creme">
-              Falar comigo
+              {tx.falarComigo}
             </a>
           </div>
         </div>

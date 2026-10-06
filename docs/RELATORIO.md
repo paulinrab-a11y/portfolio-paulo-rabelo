@@ -7,11 +7,15 @@ Atualizado em 05/10/2026. Tudo está no PR #2 (`feat/1-primeira-versao`). Produ�
 | Página | O que tem |
 |---|---|
 | `/` | Abertura (REC, timecode, nome a partir de dígitos, letterbox; só na 1ª visita), herói monitor, manifesto, 6 destaques com prévia, timeline V1 a V4, clientes e artistas, sobre com retrato, "Trabalhe comigo" |
-| `/trabalhos` | 19 trabalhos, filtro por categoria, lista ou grade (GSAP Flip); filtro e modo ficam na URL (`?categoria=ia&modo=grade`) |
+| `/trabalhos` | 19 trabalhos em abas com link próprio (`/trabalhos/video`, `/trabalhos/sites`, `/trabalhos/marketing`), filtro por categoria, lista ou grade (GSAP Flip); filtro e modo ficam na URL |
 | `/trabalhos/<slug>` | Player próprio, créditos, contexto, o que eu fiz, resultado, galeria, serviços relacionados, próximo trabalho |
 | `/servicos` e `/servicos/<slug>` | 8 páginas de serviço para busca (editor de vídeo em São Paulo, motion e VFX, color grading, vídeo com IA, sites, social media e direção de arte, fotografia, podcast) |
 | `/sobre` | Retrato, bio, experiência que rola, formação, ferramentas |
 | `/cv` | Currículo que cabe numa página A4 impressa e PDF para baixar (`/paulo-rabelo-cv.pdf`) |
+
+## Idiomas
+
+Tudo existe em português (raiz), inglês (`/en`), espanhol (`/es`) e chinês simplificado (`/zh`): 146 páginas estáticas. O seletor de bandeiras no topo leva à mesma página no outro idioma. Cada versão tem `html lang`, hreflang, JSON-LD, imagem de compartilhamento (`/og/home-en.jpg`, `/og/home-es.jpg`, `/og/home-zh.jpg`) e PDF do CV (`/paulo-rabelo-cv-en.pdf`, `/paulo-rabelo-cv-es.pdf`, `/paulo-rabelo-cv-zh.pdf`) próprios.
 
 ## Números (medidos em 05/10/2026)
 
@@ -71,4 +75,4 @@ O modo simulado padrão do Lighthouse mostra LCP de ~3,8 s na home. É artefato 
 
 ## Ainda em aberto
 
-Ver `docs/PENDENCIAS.md`: cliente da VSL, arte inteira do volante Audi, legendas, ano e ferramentas por trabalho, outros resultados, domínio próprio.
+Só o domínio próprio, que o Paulo coloca mais tarde. Passo a passo em `docs/PENDENCIAS.md`.

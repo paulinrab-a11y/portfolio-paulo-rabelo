@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import type { Trabalho } from '@/data/trabalhos';
-import { buscar, categoriasUsadas, clipeNoPonto, destaques, filtrar, montarTimeline, proximo } from './trabalhos';
+import { buscar, categoriasUsadas, clipeNoPonto, daAba, destaques, filtrar, montarTimeline, proximo } from './trabalhos';
 
-const base = { funcao: 'x', midia: 'm', creditos: [] as Trabalho['creditos'], texto: { contexto: 'c', oQueFiz: 'f' } };
+const base = { funcao: 'x', midia: 'm', creditos: [] as Trabalho['creditos'], texto: { contexto: 'c', oQueFiz: 'f' }, abas: ['video'] as Trabalho['abas'] };
 const lista: Trabalho[] = [
   { ...base, slug: 'a', titulo: 'A', categorias: ['edicao'], trilha: 'V1', destaque: 2 },
   { ...base, slug: 'b', titulo: 'B', categorias: ['ia'], trilha: 'V3', destaque: 1 },
   { ...base, slug: 'c', titulo: 'C', categorias: ['edicao', 'cor'], trilha: 'V1' },
-  { ...base, slug: 'd', titulo: 'D', categorias: ['sites'], trilha: 'V4' },
+  { ...base, slug: 'd', titulo: 'D', categorias: ['sites'], trilha: 'V4', abas: ['sites', 'marketing'] },
 ];
 
 describe('destaques', () => {
@@ -22,6 +22,14 @@ describe('filtrar', () => {
   });
   it('filtra por categoria', () => {
     expect(filtrar(lista, 'edicao').map((t) => t.slug)).toEqual(['a', 'c']);
+  });
+});
+
+describe('daAba', () => {
+  it('filtra pela aba; um trabalho pode estar em mais de uma', () => {
+    expect(daAba(lista, 'video').map((t) => t.slug)).toEqual(['a', 'b', 'c']);
+    expect(daAba(lista, 'sites').map((t) => t.slug)).toEqual(['d']);
+    expect(daAba(lista, 'marketing').map((t) => t.slug)).toEqual(['d']);
   });
 });
 

@@ -1,7 +1,21 @@
 import { expect, test } from './fixtures';
 
 /** Nenhum erro ou aviso no console nas páginas principais (nem erro de hidratação). */
-const rotas = ['/', '/trabalhos', '/trabalhos/podcast-opiniao-segura-laad', '/trabalhos/hora-bolas-club', '/servicos/editor-de-video', '/sobre', '/cv'];
+const rotas = [
+  '/',
+  '/trabalhos',
+  '/trabalhos/podcast-opiniao-segura-laad',
+  '/trabalhos/hora-bolas-club',
+  '/servicos/editor-de-video',
+  '/sobre',
+  '/cv',
+  '/trabalhos/video',
+  '/en',
+  '/en/work/websites',
+  '/es/servicios/sitios-web',
+  '/zh',
+  '/zh/work/marketing',
+];
 
 test.describe('console limpo', () => {
   test.beforeEach(async ({ page }) => {
