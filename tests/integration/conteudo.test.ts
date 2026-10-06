@@ -142,6 +142,9 @@ describe('regras de texto do brief', () => {
     expect(contato.whatsapp.href).toContain('wa.me/5511975231957');
     expect(decodeURIComponent(contato.whatsapp.href)).toContain('Oi, Paulo! Vi seu portfólio e quero falar sobre um projeto.');
     expect(contato.email.valor).toBe('paulinrab@gmail.com');
+    // Com sublinhado no fim: sem ele, o link leva a outro perfil
+    expect(contato.instagram.valor).toBe('@whynotvisuals_');
+    expect(contato.instagram.href).toBe('https://www.instagram.com/whynotvisuals_/');
   });
 
   it('Rabelo Design aparece só no CV', () => {

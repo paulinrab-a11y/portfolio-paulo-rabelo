@@ -30,7 +30,7 @@ test.describe('home', () => {
     expect(decodeURIComponent(zap ?? '')).toBe('https://wa.me/5511975231957?text=Oi, Paulo! Vi seu portfólio e quero falar sobre um projeto.');
     await expect(fim.getByRole('link', { name: /paulinrab@gmail.com/ })).toHaveAttribute('href', 'mailto:paulinrab@gmail.com');
     await expect(fim.getByRole('link', { name: /linkedin/i })).toHaveAttribute('href', /linkedin\.com\/in\/paulinrab/);
-    await expect(fim.getByRole('link', { name: /whynotvisuals/ })).toBeAttached();
+    await expect(fim.getByRole('link', { name: /whynotvisuals_/ })).toBeAttached();
   });
 
   test('o timecode do cabeçalho anda com a rolagem e termina em FIM', async ({ page }) => {

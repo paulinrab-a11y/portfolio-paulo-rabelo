@@ -28,7 +28,7 @@ export const contato = {
   },
   email: { rotulo: 'E-mail', valor: 'paulinrab@gmail.com', href: 'mailto:paulinrab@gmail.com' },
   linkedin: { rotulo: 'LinkedIn', valor: 'linkedin.com/in/paulinrab', href: 'https://www.linkedin.com/in/paulinrab' },
-  instagram: { rotulo: 'Instagram da WhyNot', valor: '@whynotvisuals', href: 'https://www.instagram.com/whynotvisuals' },
+  instagram: { rotulo: 'Instagram da WhyNot', valor: '@whynotvisuals_', href: 'https://www.instagram.com/whynotvisuals_/' },
 } as const;
 
 export interface Experiencia {
