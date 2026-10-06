@@ -1,11 +1,14 @@
 import Image from 'next/image';
+import type { Idioma } from '@/data/idiomas';
 import { clientes } from '@/data/perfil';
+import { textos } from '@/data/textos';
 
 /**
  * Clientes e artistas passando devagar, como créditos. Pausa com o mouse ou o
  * foco; em movimento reduzido fica parado e quebra em linhas.
  */
-export function Creditos() {
+export function Creditos({ lang }: { lang: Idioma }) {
+  const tx = textos[lang].creditos;
   const itens = (duplicata: boolean) =>
     clientes.map((c) => (
       <li
@@ -26,10 +29,10 @@ export function Creditos() {
   return (
     <section aria-labelledby="creditos-titulo" className="border-y border-linha py-14 md:py-20">
       <h2 id="creditos-titulo" className="rotulo margem mb-8 text-cinza">
-        03 · Clientes e artistas
+        {tx.rotulo}
       </h2>
       {/* biome-ignore lint/a11y/noNoninteractiveTabindex: a faixa em movimento recebe foco para pausar, como no hover */}
-      <section className="creditos overflow-hidden" tabIndex={0} aria-label="Lista de clientes e artistas">
+      <section className="creditos overflow-hidden" tabIndex={0} aria-label={tx.aria}>
         <ul className="creditos-faixa">
           {itens(false)}
           {itens(true)}

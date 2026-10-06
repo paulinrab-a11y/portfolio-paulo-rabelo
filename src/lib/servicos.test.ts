@@ -3,7 +3,7 @@ import type { Servico } from '@/data/servicos';
 import type { Trabalho } from '@/data/trabalhos';
 import { buscarServico, servicoDaCategoria, servicosComTrabalho, trabalhosDoServico } from './servicos';
 
-const base = { funcao: 'x', midia: 'm', creditos: [] as Trabalho['creditos'], texto: { contexto: 'c', oQueFiz: 'f' }, trilha: 'V1' as const };
+const base = { funcao: 'x', midia: 'm', creditos: [] as Trabalho['creditos'], texto: { contexto: 'c', oQueFiz: 'f' }, trilha: 'V1' as const, abas: ['video'] as Trabalho['abas'] };
 const trabalhos: Trabalho[] = [
   { ...base, slug: 'a', titulo: 'A', categorias: ['edicao', 'cor'] },
   { ...base, slug: 'b', titulo: 'B', categorias: ['ia'] },

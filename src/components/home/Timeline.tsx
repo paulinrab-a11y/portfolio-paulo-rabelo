@@ -4,9 +4,12 @@ import Link from 'next/link';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { SeloIA } from '@/components/SeloIA';
 import { VideoLoop } from '@/components/VideoLoop';
+import type { Idioma } from '@/data/idiomas';
+import { textos } from '@/data/textos';
 import { type Trabalho, type Trilha, trilhas } from '@/data/trabalhos';
 import { midia } from '@/lib/midia';
 import { gsap, MIDIA, ScrollTrigger, useGSAP } from '@/lib/motion';
+import { caminho } from '@/lib/rotas';
 import { timecode } from '@/lib/timecode';
 import { buscar, clipeNoPonto, montarTimeline } from '@/lib/trabalhos';
 
@@ -18,7 +21,9 @@ const ORDEM = Object.keys(trilhas) as Trilha[];
  * trilha é uma faixa com scroll-snap e o monitor fica grudado no topo.
  * Em movimento reduzido vira lista por categoria.
  */
-export function Timeline({ lista }: { lista: Trabalho[] }) {
+export function Timeline({ lista, lang }: { lista: Trabalho[]; lang: Idioma }) {
+  const tx = textos[lang];
+  const nomesTrilha = tx.trilhas;
   const raiz = useRef<HTMLElement>(null);
   const playhead = useRef<HTMLDivElement>(null);
   const barra = useRef<HTMLDivElement>(null);
@@ -88,13 +93,13 @@ export function Timeline({ lista }: { lista: Trabalho[] }) {
         <div className="margem flex flex-col gap-4 pt-16 pb-10 lg:sticky lg:top-[var(--cabecalho)] lg:h-[calc(100svh-var(--cabecalho))] lg:pt-6 lg:pb-6">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <p className="rotulo mb-2 text-rec">02 · Timeline</p>
+              <p className="rotulo mb-2 text-rec">{tx.timeline.rotulo}</p>
               <h2 id="timeline-titulo" className="titulo-display text-[clamp(40px,5.6vw,88px)]">
-                Na ilha
+                {tx.timeline.titulo}
               </h2>
             </div>
             <p className="rotulo text-right text-cinza">
-              <span className="hidden lg:inline">Role para editar · ← → navegam</span>
+              <span className="hidden lg:inline">{tx.timeline.dica}</span>
               <span className="block text-lg text-creme lg:mt-1">
                 <span ref={tc} className="tc tc-vivo">
                   00:00:00:00
@@ -115,12 +120,15 @@ export function Timeline({ lista }: { lista: Trabalho[] }) {
                     <p className="rotulo text-rec">{trabalhoAtivo.trilha}</p>
                     <p className="titulo-display text-[clamp(22px,2.6vw,40px)]">{trabalhoAtivo.titulo}</p>
                   </div>
-                  <Link href={`/trabalhos/${trabalhoAtivo.slug}`} className="rotulo shrink-0 border border-creme/70 bg-preto/70 px-3 py-2 hover:bg-creme hover:text-preto">
-                    Abrir <span className="sr-only">{trabalhoAtivo.titulo}</span>
+                  <Link
+                    href={caminho(lang, { pagina: 'trabalhos', trabalho: trabalhoAtivo.slug })}
+                    className="rotulo shrink-0 border border-creme/70 bg-preto/70 px-3 py-2 hover:bg-creme hover:text-preto"
+                  >
+                    {tx.timeline.abrir} <span className="sr-only">{trabalhoAtivo.titulo}</span>
                   </Link>
                 </div>
               )}
-              {trabalhoAtivo?.feitoComIA && <SeloIA className="absolute top-3 left-3" />}
+              {trabalhoAtivo?.feitoComIA && <SeloIA lang={lang} className="absolute top-3 left-3" />}
             </div>
           </div>
 
@@ -146,7 +154,7 @@ export function Timeline({ lista }: { lista: Trabalho[] }) {
                           className={`absolute inset-y-0 overflow-hidden text-ellipsis border-x border-preto px-2 text-left text-[11px] leading-9 whitespace-nowrap transition-colors ${ativo === i ? 'bg-rec text-preto' : 'bg-linha text-creme hover:bg-cinza hover:text-preto'}`}
                           style={{ left: `${c.inicio * 100}%`, width: `${(c.fim - c.inicio) * 100}%` }}
                         >
-                          <span className="sr-only">Mostrar no monitor: </span>
+                          <span className="sr-only">{tx.timeline.mostrarNoMonitor}</span>
                           {buscar(lista, c.slug)?.titulo}
                         </button>
                       ),
@@ -161,7 +169,7 @@ export function Timeline({ lista }: { lista: Trabalho[] }) {
             <p className="rotulo mt-2 flex justify-between text-cinza" aria-hidden="true">
               {ORDEM.map((tr) => (
                 <span key={tr}>
-                  {tr} {trilhas[tr]}
+                  {tr} {nomesTrilha[tr]}
                 </span>
               ))}
             </p>
@@ -172,7 +180,7 @@ export function Timeline({ lista }: { lista: Trabalho[] }) {
             {ORDEM.map((tr) => (
               <div key={tr}>
                 <p className="rotulo mb-2 text-cinza">
-                  <span className="text-rec">{tr}</span> {trilhas[tr]}
+                  <span className="text-rec">{tr}</span> {nomesTrilha[tr]}
                 </p>
                 <ul className="-mx-[var(--margem)] flex snap-x snap-mandatory gap-2 overflow-x-auto px-[var(--margem)] pb-2 [scrollbar-width:none]">
                   {clipes.map((c, i) =>
@@ -185,7 +193,7 @@ export function Timeline({ lista }: { lista: Trabalho[] }) {
                           aria-pressed={ativo === i}
                           className={`relative flex min-h-12 w-[62vw] max-w-72 items-center border px-3 text-left text-sm ${ativo === i ? 'border-rec bg-rec text-preto' : 'border-linha bg-carvao text-creme'}`}
                         >
-                          <span className="sr-only">Mostrar no monitor: </span>
+                          <span className="sr-only">{tx.timeline.mostrarNoMonitor}</span>
                           {buscar(lista, c.slug)?.titulo}
                         </button>
                       </li>
@@ -200,25 +208,25 @@ export function Timeline({ lista }: { lista: Trabalho[] }) {
 
       {/* Movimento reduzido: lista por categoria */}
       <section aria-labelledby="timeline-lista-titulo" className="so-reduzido margem py-20">
-        <p className="rotulo mb-2 text-rec">02 · Por trilha</p>
+        <p className="rotulo mb-2 text-rec">{tx.timeline.rotuloLista}</p>
         <h2 id="timeline-lista-titulo" className="titulo-display mb-10 text-[clamp(40px,5.6vw,88px)]">
-          Na ilha
+          {tx.timeline.titulo}
         </h2>
         <div className="grid gap-10 md:grid-cols-2">
           {ORDEM.map((tr) => (
             <div key={tr}>
               <h3 className="rotulo mb-3 border-b border-linha pb-2 text-cinza">
-                <span className="text-rec">{tr}</span> {trilhas[tr]}
+                <span className="text-rec">{tr}</span> {nomesTrilha[tr]}
               </h3>
               <ul className="space-y-2">
                 {lista
                   .filter((t) => t.trilha === tr)
                   .map((t) => (
                     <li key={t.slug}>
-                      <Link href={`/trabalhos/${t.slug}`} className="text-lg hover:text-rec">
+                      <Link href={caminho(lang, { pagina: 'trabalhos', trabalho: t.slug })} className="text-lg hover:text-rec">
                         {t.titulo}
                       </Link>
-                      {t.feitoComIA && <SeloIA className="ml-3 align-middle" />}
+                      {t.feitoComIA && <SeloIA lang={lang} className="ml-3 align-middle" />}
                     </li>
                   ))}
               </ul>

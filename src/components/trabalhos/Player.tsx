@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import type { Idioma } from '@/data/idiomas';
+import { textos } from '@/data/textos';
 import type { Midia } from '@/lib/midia';
 import { proporcao } from '@/lib/midia';
 import { duracaoCurta, timecode } from '@/lib/timecode';
@@ -8,6 +10,7 @@ import { duracaoCurta, timecode } from '@/lib/timecode';
 interface Props {
   midia: Midia;
   titulo: string;
+  lang: Idioma;
   /** Altura máxima no desktop (vertical ao lado do texto) */
   className?: string;
 }
@@ -17,7 +20,8 @@ interface Props {
  * troca pelos controles da ilha: timecode, barra, som e tela cheia, com
  * teclado (espaço/K, ← →, M, F) quando o player tem o foco.
  */
-export function Player({ midia, titulo, className = '' }: Props) {
+export function Player({ midia, titulo, lang, className = '' }: Props) {
+  const tx = textos[lang].player;
   const caixa = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const tc = useRef<HTMLSpanElement>(null);
@@ -123,7 +127,7 @@ export function Player({ midia, titulo, className = '' }: Props) {
         playsInline
         controls={!pronto}
         onClick={alternar}
-        aria-label={`Vídeo: ${titulo}`}
+        aria-label={`${tx.video}: ${titulo}`}
       >
         {trecho.webm && <source src={trecho.webm} type="video/webm" />}
         <source src={trecho.mp4} type="video/mp4" />
@@ -132,7 +136,7 @@ export function Player({ midia, titulo, className = '' }: Props) {
       {pronto && !iniciado && (
         <button type="button" onClick={alternar} className="absolute inset-0 flex items-center justify-center bg-black/25 transition-colors hover:bg-black/10">
           <span className="rotulo flex items-center gap-3 bg-rec px-5 py-4 text-sm text-preto">
-            ▶ Assistir <span className="tc">{duracaoCurta(duracao)}</span>
+            {textos[lang].assistir} <span className="tc">{duracaoCurta(duracao)}</span>
           </span>
         </button>
       )}
@@ -143,9 +147,9 @@ export function Player({ midia, titulo, className = '' }: Props) {
             type="button"
             onClick={alternar}
             className="rotulo min-h-11 min-w-16 border border-creme/60 px-2 text-creme hover:bg-creme hover:text-preto"
-            aria-label={tocando ? 'Pausar' : 'Tocar'}
+            aria-label={tocando ? tx.pausar : tx.tocar}
           >
-            {tocando ? 'Pausa' : 'Play'}
+            {tocando ? tx.pausa : tx.play}
           </button>
           <span className="rotulo tc hidden text-creme sm:inline">
             <span ref={tc}>00:00:00:00</span>
@@ -157,7 +161,7 @@ export function Player({ midia, titulo, className = '' }: Props) {
             max={1000}
             value={Math.round(progresso * 1000)}
             onChange={(e) => buscar((Number(e.target.value) / 1000) * (video.current?.duration || duracao))}
-            aria-label="Posição no vídeo"
+            aria-label={tx.posicao}
             aria-valuetext={timecode(progresso * duracao * 1000)}
             className="h-11 flex-1 cursor-pointer accent-rec"
           />
@@ -172,10 +176,10 @@ export function Player({ midia, titulo, className = '' }: Props) {
             className="rotulo min-h-11 px-2 text-creme hover:text-rec"
             aria-pressed={mudo}
           >
-            {mudo ? 'Som off' : 'Som on'}
+            {mudo ? tx.somOff : tx.somOn}
           </button>
           <button type="button" onClick={telaCheia} className="rotulo min-h-11 px-2 text-creme hover:text-rec">
-            Tela cheia
+            {tx.telaCheia}
           </button>
         </div>
       )}

@@ -16,6 +16,15 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 - Não invente cliente, número, prêmio, depoimento, ano, função, ferramenta ou resultado. Sem dado confirmado, o campo fica vazio e não aparece.
 - Fatos e textos ficam em `src/data/`: `perfil.ts`, `trabalhos.ts`, `servicos.ts` (páginas de serviço para busca) e `media.json`. Trabalho feito com IA leva `feitoComIA: true` (mostra o selo "Feito com IA").
 - Pendências e respostas do Paulo ficam em `docs/PENDENCIAS.md`. Leia antes de mexer em conteúdo.
+
+## Idiomas e abas
+
+- O site existe em português (raiz), inglês (`/en`) e espanhol (`/es`), com caminhos no idioma (`/en/work`, `/es/trabajos`). O mapa está em `src/data/idiomas.ts` e as funções em `src/lib/rotas.ts`.
+- Português é a fonte de verdade. Todo texto novo entra nos três idiomas no mesmo PR: interface em `src/data/textos.ts`, conteúdo em `src/data/traducoes.ts`. Tradução fiel, sem acrescentar nada. O teste de conteúdo reprova trabalho, serviço, experiência ou legenda sem tradução.
+- Cada idioma tem o próprio layout raiz em `src/app/(pt)`, `src/app/en` e `src/app/es`. As rotas são finas: o conteúdo fica em `src/components/paginas`.
+- Componente de navegador (`use client`) recebe o conteúdo já traduzido por props e só importa `src/data/textos.ts`, nunca `traducoes.ts` (o conteúdo inteiro iria para o JS de todas as páginas).
+- Todo trabalho tem pelo menos uma aba (`abas` em `trabalhos.ts`): `video`, `sites` ou `marketing`. Os links são `/trabalhos/<aba>` e equivalentes.
+- Depois de mudar perfil, experiência ou contato, gere de novo os PDFs (`npm run cv:pdf`) e, se mudar o nome ou a função, as imagens de compartilhamento (`npm run og`).
 - Só mídia real dos trabalhos. Logos só os arquivos de `public/media/logos/`. Marca sem arquivo aparece como texto.
 - Não mexa na aparência das peças: recortar, reduzir e converter pode; recolorir ou filtrar, não.
 - Passem a Respeitar: sem data de lançamento, sem nome de faixa, sem material inédito.
@@ -39,7 +48,7 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 
 ## Arquitetura e testes
 
-- Camadas: `src/data` → `src/lib` → `src/components` → `src/app`. Cada uma só importa as anteriores (`npm run arch`).
+- Camadas: `src/data` → `src/lib` → `src/components` → `src/app`. Estilos e fontes ficam em `src/estilos`. Cada uma só importa as anteriores (`npm run arch`).
 - Função nova em `src/lib` entra com teste ao lado (`arquivo.test.ts`).
 - `tests/integration/conteudo.test.ts` confere mídia existente, slugs, selo de IA e palavras proibidas. Rode depois de editar `src/data/`.
 - Mudança visível (rota, fluxo, link) entra com teste em `tests/e2e/`.
@@ -48,8 +57,8 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 
 ## Scripts
 
-- `npm run cv:pdf`: gera `public/paulo-rabelo-cv.pdf` a partir da página /cv. Rode depois de mudar experiência, formação ou contato.
-- `npm run og`: gera `public/og/home.jpg` (imagem de compartilhamento) com o servidor em `localhost:3400`.
+- `npm run cv:pdf`: gera o PDF do CV nos três idiomas (`public/paulo-rabelo-cv*.pdf`) a partir das páginas de CV. Rode depois de mudar experiência, formação ou contato.
+- `npm run og`: gera `public/og/home*.jpg` (imagem de compartilhamento nos três idiomas) com o servidor em `localhost:3400`.
 - `node scripts/prints.mjs`: prints de conferência em `reports/prints/`.
 - `node scripts/gravar-sites.mjs`: grava os sites no ar (precisa de `FFMPEG`). A gravação do Passem a Respeitar tem de parar antes da seção do clipe inédito.
 - `node scripts/grao.mjs`: tile do grão.

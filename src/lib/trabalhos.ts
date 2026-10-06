@@ -1,3 +1,4 @@
+import type { Aba } from '@/data/idiomas';
 import type { Categoria, Trabalho, Trilha } from '@/data/trabalhos';
 
 /** Os destaques da home, na ordem definida em `destaque` */
@@ -8,6 +9,11 @@ export function destaques(lista: Trabalho[]): Trabalho[] {
 /** Filtro do índice. `null` mostra todos. */
 export function filtrar(lista: Trabalho[], categoria: Categoria | null): Trabalho[] {
   return categoria ? lista.filter((t) => t.categorias.includes(categoria)) : lista;
+}
+
+/** Trabalhos de uma aba (vídeo, sites ou marketing), na ordem da lista */
+export function daAba(lista: Trabalho[], aba: Aba): Trabalho[] {
+  return lista.filter((t) => t.abas.includes(aba));
 }
 
 /** Categorias que têm pelo menos um trabalho, na ordem do dicionário */

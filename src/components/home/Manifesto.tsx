@@ -1,13 +1,15 @@
 'use client';
 
 import { useRef } from 'react';
-import { manifesto } from '@/data/perfil';
+import type { Idioma } from '@/data/idiomas';
+import { textos } from '@/data/textos';
 import { gsap, MIDIA, ScrollTrigger, useGSAP } from '@/lib/motion';
 
 /** Duas linhas como cartela de cinema: sobem de dentro de uma máscara, uma vez. */
-export function Manifesto() {
+export function Manifesto({ lang, linhas }: { lang: Idioma; linhas: readonly [string, string] }) {
+  const tx = textos[lang].manifesto;
   const raiz = useRef<HTMLElement>(null);
-  const [linha1, linha2] = manifesto;
+  const [linha1, linha2] = linhas;
 
   useGSAP(
     () => {
@@ -23,9 +25,9 @@ export function Manifesto() {
   );
 
   return (
-    <section ref={raiz} aria-label="Manifesto" className="margem grade py-[clamp(96px,18vh,200px)]">
+    <section ref={raiz} aria-label={tx.aria} className="margem grade py-[clamp(96px,18vh,200px)]">
       <p data-manifesto-rotulo className="rotulo col-span-12 mb-8 text-rec md:col-span-2 md:mb-0 md:pt-4">
-        00 · Manifesto
+        {tx.rotulo}
       </p>
       <p className="titulo-display col-span-12 text-[clamp(44px,8.4vw,148px)] md:col-span-10">
         <span className="block overflow-hidden pb-[0.06em]">

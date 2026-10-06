@@ -1,15 +1,19 @@
-import { contato, perfil } from '@/data/perfil';
+import type { Idioma } from '@/data/idiomas';
+import { perfilNo, t } from '@/lib/i18n';
 
 /** Cartela final: TRABALHE COMIGO, com todos os contatos à vista */
-export function Fim() {
+export function Fim({ lang }: { lang: Idioma }) {
+  const tx = t(lang).fim;
+  const perfil = perfilNo(lang);
+  const { contato } = perfil;
   const canais = [contato.whatsapp, contato.email, contato.linkedin, contato.instagram];
   return (
     <section id="contato" aria-labelledby="fim-titulo" className="margem relative flex min-h-svh scroll-mt-[var(--cabecalho)] flex-col justify-center bg-black py-24">
       <p className="rotulo mb-6 flex items-center gap-3 text-cinza">
-        <span className="rec-ponto" /> 05 · Fim
+        <span className="rec-ponto" /> {tx.rotulo}
       </p>
       <h2 id="fim-titulo" className="titulo-display text-[clamp(64px,15vw,240px)] text-creme">
-        Trabalhe <span className="text-rec">comigo</span>
+        {tx.titulo1} <span className="text-rec">{tx.titulo2}</span>
       </h2>
       <p className="mt-6 max-w-[42ch] text-lg text-cinza">
         {perfil.disponibilidade} {perfil.cidade}.
