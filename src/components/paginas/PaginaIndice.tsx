@@ -14,7 +14,11 @@ import { daAba } from '@/lib/trabalhos';
 export function metadadosIndice(lang: Idioma, aba?: Aba): Metadata {
   const tx = textosDe(lang);
   if (!aba) return metadadosPagina(lang, { pagina: 'trabalhos' }, { titulo: tx.indice.titulo, descricao: tx.meta.trabalhosDescricao });
-  return metadadosPagina(lang, { pagina: 'trabalhos', aba }, { titulo: `${tx.indice.titulo}: ${tx.abas[aba].nome}`, descricao: `${tx.abas[aba].descricao}. Paulo Rabelo.` });
+  return metadadosPagina(
+    lang,
+    { pagina: 'trabalhos', aba },
+    { titulo: `${tx.indice.titulo}${tx.doisPontos}${tx.abas[aba].nome}`, descricao: tx.descricaoAba(tx.abas[aba].descricao) },
+  );
 }
 
 /**

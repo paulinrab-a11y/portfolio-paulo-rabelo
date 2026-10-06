@@ -1,7 +1,7 @@
 import { Cabecalho } from '@/components/Cabecalho';
 import { JsonLd } from '@/components/JsonLd';
 import { Rodape } from '@/components/Rodape';
-import { codigoHtml, type Idioma } from '@/data/idiomas';
+import { caminhos, codigoHtml, type Idioma, idiomas } from '@/data/idiomas';
 import { classesFontes } from '@/estilos/fontes';
 import { perfilNo, t } from '@/lib/i18n';
 import { pessoaLd } from '@/lib/seo';
@@ -14,9 +14,10 @@ import '@/estilos/globals.css';
  * tecla, roda ou toque já pulam, mesmo antes do JS do React. Sem JS, a
  * abertura não existe.
  */
-const scriptAbertura = `try{var c=location.pathname.replace(/\\/$/,'');if((c===''||c==='/en'||c==='/es')&&!sessionStorage.getItem('abertura-vista')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var h=document.documentElement;h.setAttribute('data-abertura','');var e=['pointerdown','keydown','wheel','touchmove'],p=function(){h.setAttribute('data-abertura-fim','');sessionStorage.setItem('abertura-vista','1');e.forEach(function(n){removeEventListener(n,p,true)})};e.forEach(function(n){addEventListener(n,p,{capture:true,passive:true})})}}catch(e){}`;
+const homes = JSON.stringify(idiomas.map((l) => caminhos[l].base));
+const scriptAbertura = `try{var c=location.pathname.replace(/\\/$/,'');if(${homes}.indexOf(c)>-1&&!sessionStorage.getItem('abertura-vista')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var h=document.documentElement;h.setAttribute('data-abertura','');var e=['pointerdown','keydown','wheel','touchmove'],p=function(){h.setAttribute('data-abertura-fim','');sessionStorage.setItem('abertura-vista','1');e.forEach(function(n){removeEventListener(n,p,true)})};e.forEach(function(n){addEventListener(n,p,{capture:true,passive:true})})}}catch(e){}`;
 
-/** Estrutura de toda página, usada pelos três layouts raiz (pt, en, es) */
+/** Estrutura de toda página, usada pelos layouts raiz de cada idioma */
 export function Documento({ lang, children }: { lang: Idioma; children: React.ReactNode }) {
   const p = perfilNo(lang);
   const pessoa = pessoaLd({
@@ -34,7 +35,7 @@ export function Documento({ lang, children }: { lang: Idioma; children: React.Re
 
   return (
     <html lang={codigoHtml[lang]} className={classesFontes} suppressHydrationWarning>
-      {/* biome-ignore lint/style/noHeadElement: este componente é o <html> dos três layouts raiz (pt, en, es), não uma página */}
+      {/* biome-ignore lint/style/noHeadElement: este componente é o <html> dos layouts raiz de cada idioma, não uma página */}
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: script fixo do próprio site, roda antes da pintura (doc preventing-flash-before-hydration) */}
         <script dangerouslySetInnerHTML={{ __html: scriptAbertura }} />

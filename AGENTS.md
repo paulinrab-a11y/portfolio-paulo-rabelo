@@ -19,9 +19,10 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 
 ## Idiomas e abas
 
-- O site existe em português (raiz), inglês (`/en`) e espanhol (`/es`), com caminhos no idioma (`/en/work`, `/es/trabajos`). O mapa está em `src/data/idiomas.ts` e as funções em `src/lib/rotas.ts`.
-- Português é a fonte de verdade. Todo texto novo entra nos três idiomas no mesmo PR: interface em `src/data/textos.ts`, conteúdo em `src/data/traducoes.ts`. Tradução fiel, sem acrescentar nada. O teste de conteúdo reprova trabalho, serviço, experiência ou legenda sem tradução.
-- Cada idioma tem o próprio layout raiz em `src/app/(pt)`, `src/app/en` e `src/app/es`. As rotas são finas: o conteúdo fica em `src/components/paginas`.
+- O site existe em português (raiz), inglês (`/en`), espanhol (`/es`) e chinês simplificado (`/zh`), com caminhos no idioma (`/en/work`, `/es/trabajos`). O chinês usa os caminhos em inglês (`/zh/work`): ideograma na URL vira `%E4%BD%9C…` quando copiado. O mapa está em `src/data/idiomas.ts` e as funções em `src/lib/rotas.ts`.
+- Português é a fonte de verdade. Todo texto novo entra em todos os idiomas no mesmo PR: interface em `src/data/textos.ts`, conteúdo em `src/data/traducoes.ts`. Tradução fiel, sem acrescentar nada. O teste de conteúdo reprova trabalho, serviço, experiência ou legenda sem tradução.
+- Cada idioma tem o próprio layout raiz em `src/app/(pt)`, `src/app/en`, `src/app/es` e `src/app/zh`. As rotas são finas: o conteúdo fica em `src/components/paginas`.
+- As fontes do site só têm o alfabeto latino. Em chinês, os ideogramas usam fontes do sistema (`:lang(zh)` em `globals.css`); não acrescente fonte web chinesa (são vários megabytes).
 - Componente de navegador (`use client`) recebe o conteúdo já traduzido por props e só importa `src/data/textos.ts`, nunca `traducoes.ts` (o conteúdo inteiro iria para o JS de todas as páginas).
 - Todo trabalho tem pelo menos uma aba (`abas` em `trabalhos.ts`): `video`, `sites` ou `marketing`. Os links são `/trabalhos/<aba>` e equivalentes.
 - Depois de mudar perfil, experiência ou contato, gere de novo os PDFs (`npm run cv:pdf`) e, se mudar o nome ou a função, as imagens de compartilhamento (`npm run og`).
@@ -57,8 +58,8 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 
 ## Scripts
 
-- `npm run cv:pdf`: gera o PDF do CV nos três idiomas (`public/paulo-rabelo-cv*.pdf`) a partir das páginas de CV. Rode depois de mudar experiência, formação ou contato.
-- `npm run og`: gera `public/og/home*.jpg` (imagem de compartilhamento nos três idiomas) com o servidor em `localhost:3400`.
+- `npm run cv:pdf`: gera o PDF do CV em todos os idiomas (`public/paulo-rabelo-cv*.pdf`) a partir das páginas de CV. Rode depois de mudar experiência, formação ou contato.
+- `npm run og`: gera `public/og/home*.jpg` (imagem de compartilhamento em todos os idiomas) com o servidor em `localhost:3400`.
 - `node scripts/prints.mjs`: prints de conferência em `reports/prints/`.
 - `node scripts/gravar-sites.mjs`: grava os sites no ar (precisa de `FFMPEG`). A gravação do Passem a Respeitar tem de parar antes da seção do clipe inédito.
 - `node scripts/grao.mjs`: tile do grão.

@@ -2,7 +2,7 @@
 import { PaginaHome } from '@/components/paginas/PaginaHome';
 import type { Idioma } from '@/data/idiomas';
 
-const LANG = 'en' satisfies Idioma;
+const LANG = 'zh' satisfies Idioma;
 
 export default function Page() {
   return <PaginaHome lang={LANG} />;

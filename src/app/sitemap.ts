@@ -6,7 +6,7 @@ import { alternativas, type Ref } from '@/lib/rotas';
 import { servicosComTrabalho } from '@/lib/servicos';
 import { SITE_URL } from '@/lib/site';
 
-/** Cada página nos três idiomas, com as alternativas (hreflang) ligando as versões */
+/** Cada página em todos os idiomas, com as alternativas (hreflang) ligando as versões */
 export default function sitemap(): MetadataRoute.Sitemap {
   const refs: Ref[] = [
     { pagina: 'home' },

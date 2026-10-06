@@ -1,4 +1,4 @@
-// Rota fina: o conteúdo está em src/components/paginas (o mesmo nos três idiomas).
+// Rota fina: o conteúdo está em src/components/paginas (o mesmo em todos os idiomas).
 import { metadadosCV, PaginaCV } from '@/components/paginas/PaginaCV';
 import type { Idioma } from '@/data/idiomas';
 

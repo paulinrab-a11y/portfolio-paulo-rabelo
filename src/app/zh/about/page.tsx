@@ -2,7 +2,7 @@
 import { metadadosSobre, PaginaSobre } from '@/components/paginas/PaginaSobre';
 import type { Idioma } from '@/data/idiomas';
 
-const LANG = 'es' satisfies Idioma;
+const LANG = 'zh' satisfies Idioma;
 
 export const metadata = metadadosSobre(LANG);
 

@@ -90,9 +90,38 @@ body {
   text-transform: uppercase;
 }
 
+/*
+ * Chinês simplificado: as fontes do site só têm o alfabeto latino. Nomes e
+ * números continuam nelas; os ideogramas caem na fonte do sistema (PingFang
+ * no Apple, YaHei no Windows, Noto no Android e no Linux). Ideograma ocupa o
+ * quadrado inteiro, então título e texto ganham entrelinha e perdem o
+ * espaçamento negativo.
+ */
+:root:lang(zh) {
+  --fonte-cjk: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC";
+  --font-titulo: var(--fonte-titulo), var(--fonte-cjk), sans-serif;
+  --font-mono: var(--fonte-mono), var(--fonte-cjk), ui-monospace, monospace;
+  --font-sans: var(--fonte-texto), var(--fonte-cjk), system-ui, sans-serif;
+}
+:lang(zh) body {
+  line-height: 1.75;
+}
+:lang(zh) .titulo-display {
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+:lang(zh) .rotulo {
+  letter-spacing: 0.06em;
+}
+
 /* Marca-texto do reel da WhyNot: faixa vermelha atrás do texto digitado */
 .marca-texto {
   background: linear-gradient(var(--color-rec), var(--color-rec)) no-repeat 0 90% / 100% 0.5em;
+}
+/* Em chinês, ideograma não tem descendente: a faixa desce para não riscar o meio dele */
+:lang(zh) .marca-texto {
+  background-position: 0 100%;
+  background-size: 100% 0.32em;
 }
 
 .cursor-digitacao {

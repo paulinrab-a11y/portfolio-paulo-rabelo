@@ -15,7 +15,7 @@ Atualizado em 05/10/2026. Tudo está no PR #2 (`feat/1-primeira-versao`). Produ�
 
 ## Idiomas
 
-Tudo existe em português (raiz), inglês (`/en`) e espanhol (`/es`): 111 páginas estáticas. O seletor de bandeiras no topo leva à mesma página no outro idioma. Cada versão tem `html lang`, hreflang, JSON-LD, imagem de compartilhamento (`/og/home-en.jpg`, `/og/home-es.jpg`) e PDF do CV (`/paulo-rabelo-cv-en.pdf`, `/paulo-rabelo-cv-es.pdf`) próprios.
+Tudo existe em português (raiz), inglês (`/en`), espanhol (`/es`) e chinês simplificado (`/zh`): 146 páginas estáticas. O seletor de bandeiras no topo leva à mesma página no outro idioma. Cada versão tem `html lang`, hreflang, JSON-LD, imagem de compartilhamento (`/og/home-en.jpg`, `/og/home-es.jpg`, `/og/home-zh.jpg`) e PDF do CV (`/paulo-rabelo-cv-en.pdf`, `/paulo-rabelo-cv-es.pdf`, `/paulo-rabelo-cv-zh.pdf`) próprios.
 
 ## Números (medidos em 05/10/2026)
 

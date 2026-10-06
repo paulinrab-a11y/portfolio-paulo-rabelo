@@ -13,6 +13,8 @@ const rotas = [
   '/en',
   '/en/work/websites',
   '/es/servicios/sitios-web',
+  '/zh',
+  '/zh/work/marketing',
 ];
 
 test.describe('console limpo', () => {

@@ -127,7 +127,7 @@ export function Player({ midia, titulo, lang, className = '' }: Props) {
         playsInline
         controls={!pronto}
         onClick={alternar}
-        aria-label={`${tx.video}: ${titulo}`}
+        aria-label={`${tx.video}${textos[lang].doisPontos}${titulo}`}
       >
         {trecho.webm && <source src={trecho.webm} type="video/webm" />}
         <source src={trecho.mp4} type="video/mp4" />

@@ -1,5 +1,5 @@
 /**
- * Traduções do conteúdo para inglês e espanhol. O português (perfil.ts,
+ * Traduções do conteúdo para inglês, espanhol e chinês simplificado. O português (perfil.ts,
  * trabalhos.ts, servicos.ts, media.json) é a fonte de verdade: aqui só entra
  * a tradução fiel do que já existe lá. Nomes próprios, marcas e títulos de
  * obras ficam como estão. O teste de conteúdo reprova trabalho ou serviço sem
@@ -103,6 +103,34 @@ export const perfilEm: Record<Traduzido, TraducaoPerfil> = {
     formacao: {
       curso: 'Tecnólogo en Marketing',
       cursos: ['Color Grading', 'Ritmo de Edición', 'Eficiencia y Practicidad', 'After Effects', 'Motion Design', 'Carrera Growth Marketing'],
+    },
+  },
+  zh: {
+    disponibilidade: '可接受远程工作和项目合作。',
+    funcaoCurta: '剪辑 · 动态设计 · 艺术指导',
+    cidade: '巴西圣保罗',
+    servicos: ['视频剪辑', '动态设计与视觉特效', '调色', '艺术指导', '生成式 AI 视频', '网站', '社交媒体', '摄影'],
+    ferramentas: ['Premiere Pro', 'After Effects', 'DaVinci Resolve', 'Photoshop', 'Canva', '生成式 AI（Higgsfield）'],
+    bio: ['我是巴西圣保罗的视频剪辑师、动态设计师和艺术总监。', '我创办了 WhyNot Visuals，为企业提供视听制作和营销服务；同时担任 WhyNot Records 的艺术总监，这是一家专注于说唱（trap）音乐录影带的厂牌和制作公司。', '四年来，我为 YouTube 剪辑长视频和口播内容，并与编剧一起负责创意方向。'],
+    manifesto: ['我像剪电影一样剪辑。', '哪怕只是一条 15 秒的快拍。'],
+    mensagemWhatsapp: '你好，Paulo！我看了你的作品集，想和你聊一个项目。',
+    rotulos: { whatsapp: 'WhatsApp', email: '电子邮件', linkedin: 'LinkedIn', instagram: 'WhyNot 的 Instagram' },
+    experiencias: {
+      'OHC Motors': { cargo: '艺术与营销总监', periodo: '2026.7 至今' },
+      'Uwuant (DDPAI Brasil)': {
+        cargo: '高级数字网红',
+        periodo: '2025.4 至今',
+        detalhe: '负责脚本、拍摄、出镜主持和剪辑。每月直播约 130 小时。',
+      },
+      'WhyNot Records': { cargo: '艺术总监', periodo: '2024.7 至今' },
+      Hiroshima: { cargo: '电商平台助理', periodo: '2024.9 至 2025.3' },
+      'Resumo Produtora': { cargo: '设计总监', periodo: '2023.6 至 2023.11' },
+      'E-Construmarket': { cargo: '电商分析师', periodo: '2022.3 至 2023.7', detalhe: '上架审核超过 3 万件商品。' },
+      'Rabelo Design': { cargo: '行政秘书', periodo: '2015 至 2020' },
+    },
+    formacao: {
+      curso: '市场营销专业本科（巴西 Tecnólogo 学位）',
+      cursos: ['Color Grading（调色）', 'Ritmo de Edição（剪辑节奏）', 'Eficiência e Praticidade（效率与实用）', 'After Effects', 'Motion Design（动态设计）', 'Carreira Growth Marketing（增长营销职业）'],
     },
   },
 };
@@ -484,6 +512,194 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
       creditos: [{ rotulo: 'Mi rol', valor: 'Fotografía y color' }],
     },
   },
+  zh: {
+    'clipe-santxx-azam-mc': {
+      titulo: 'Santxx 与 Azam MC 音乐录影带',
+      cliente: 'Santxx 与 Azam MC',
+      funcao: '剪辑、视觉特效、动态设计和调色',
+      texto: { contexto: 'Santxx 与 Azam MC 的音乐录影带。', oQueFiz: '我负责剪辑、视觉特效、动态设计和调色。' },
+      creditos: [
+        { rotulo: '艺人', valor: 'Santxx 与 Azam MC' },
+        { rotulo: '歌曲', valor: 'Forza' },
+        { rotulo: '导演', valor: 'AD ASTRA' },
+        { rotulo: '我的职责', valor: '剪辑、视觉特效、动态设计和调色' },
+      ],
+    },
+    'visualizer-anjo005': {
+      titulo: 'Anjo005 视觉化影片',
+      cliente: 'Anjo005',
+      funcao: '视觉特效、动态设计和封面',
+      texto: { contexto: '为 Anjo005 制作的视觉化影片（visualizer）和封面。', oQueFiz: '我负责视觉特效、视觉化影片的动态设计和封面。' },
+      creditos: [
+        { rotulo: '艺人', valor: 'Anjo005' },
+        { rotulo: '我的职责', valor: '视觉特效、动态设计和封面' },
+        { rotulo: '交付内容', valor: '视觉化影片和封面' },
+      ],
+    },
+    'podcast-opiniao-segura-laad': {
+      titulo: 'Opinião Segura 播客 LAAD 特辑',
+      cliente: 'Podcast Opinião Segura',
+      funcao: '剪辑和人名条',
+      texto: {
+        contexto: 'Opinião Segura 播客在 LAAD Security & Milipol Brazil 2026 录制的特别节目。',
+        oQueFiz: '我剪辑了这一期节目，并为每位嘉宾制作了人名条（lower thirds）。',
+      },
+      creditos: [
+        { rotulo: '客户', valor: 'Podcast Opinião Segura' },
+        { rotulo: '我的职责', valor: '节目剪辑和人名条制作' },
+      ],
+    },
+    'youtube-constance-silksong': {
+      titulo: 'Constance superou Silksong?',
+      funcao: '剪辑、动态设计和出镜主持',
+      texto: { contexto: '一支 YouTube 视频，标题为 "Constance superou Silksong?"（Constance 超越 Silksong 了吗？）。', oQueFiz: '我负责剪辑和动态设计，并出镜主持这支视频。' },
+      creditos: [{ rotulo: '我的职责', valor: '剪辑、动态设计和出镜主持' }],
+    },
+    'ugc-com-ia': {
+      titulo: 'AI UGC 视频',
+      funcao: '生成式 AI 制作和剪辑',
+      texto: { contexto: 'UGC 风格的视频：由角色介绍天然食材。', oQueFiz: '我用生成式 AI 制作了这些视频并完成剪辑。' },
+      creditos: [{ rotulo: '形式', valor: '竖版 UGC 视频' }],
+    },
+    'site-ohc-motors': {
+      titulo: 'OHC Motors 网站',
+      cliente: 'OHC Motors',
+      funcao: '设计与开发',
+      texto: { contexto: 'OHC Motors 的网站，由滚动驱动的体验。', oQueFiz: '我设计并开发了这个网站，从手机到桌面端。' },
+      creditos: [
+        { rotulo: '客户', valor: 'OHC Motors' },
+        { rotulo: '我的职责', valor: '网站设计与开发' },
+      ],
+    },
+    'reel-site-sob-medida': {
+      titulo: '定制网站宣传短片',
+      cliente: 'WhyNot Visuals',
+      funcao: '剪辑和动态设计',
+      texto: {
+        contexto: 'WhyNot Visuals 的宣传短片，展示我们制作的网站：OHC Motors、Passem a Respeitar 和 MH Phones。',
+        oQueFiz: '我负责这支短片的剪辑和动态设计。',
+      },
+      creditos: [
+        { rotulo: '品牌', valor: 'WhyNot Visuals' },
+        { rotulo: '形式', valor: '竖版短片' },
+      ],
+    },
+    'site-passem-a-respeitar': {
+      titulo: 'Passem a Respeitar 网站',
+      cliente: 'Passem a Respeitar',
+      funcao: '设计与开发',
+      texto: { contexto: 'Passem a Respeitar 的网站，开场是 VHS 风格，带 REC 标志和时间码。', oQueFiz: '我设计并开发了这个网站。' },
+      creditos: [{ rotulo: '我的职责', valor: '网站设计与开发' }],
+    },
+    'site-mh-phones': {
+      titulo: 'MH Phones 网站',
+      cliente: 'MH Phones',
+      funcao: '设计与开发',
+      texto: { contexto: 'MH Phones 的网站，这是圣保罗的一家 iPhone 门店。', oQueFiz: '我设计并开发了这个网站。' },
+      creditos: [
+        { rotulo: '客户', valor: 'MH Phones' },
+        { rotulo: '我的职责', valor: '网站设计与开发' },
+      ],
+    },
+    'anuncio-ohc-ia': {
+      titulo: 'OHC Motors AI 广告',
+      cliente: 'OHC Motors',
+      funcao: '生成式 AI 视频',
+      texto: { contexto: 'OHC Motors 的竖版广告。', oQueFiz: '我用生成式 AI 制作了这支视频。' },
+      creditos: [{ rotulo: '客户', valor: 'OHC Motors' }],
+    },
+    'historia-ilustrada-ia': {
+      titulo: 'AI 插画故事',
+      funcao: '生成式 AI 视频',
+      texto: { contexto: '用动态插画讲述的一个故事。', oQueFiz: '我用生成式 AI 制作了这支视频。' },
+      creditos: [{ rotulo: '形式', valor: '竖版视频' }],
+    },
+    'vsl-e-anuncios': {
+      titulo: 'VSL 和广告',
+      funcao: '剪辑',
+      texto: { contexto: '口播形式的 VSL（视频销售信）和一支竖版产品广告。', oQueFiz: '我剪辑了这两支视频。' },
+      creditos: [{ rotulo: '形式', valor: '口播 VSL 和竖版广告' }],
+    },
+    'videos-para-redes': {
+      titulo: '社交媒体视频',
+      cliente: 'OHC Motors 与 Hora Bolas Club',
+      funcao: '剪辑',
+      texto: {
+        contexto: '社交媒体竖版视频：OHC Motors 活动上的一辆奥迪，以及在 Hora Bolas Club 调制的一杯饮品。',
+        oQueFiz: '我剪辑了这些视频。',
+      },
+      creditos: [
+        { rotulo: '客户', valor: 'OHC Motors（活动上的奥迪）与 Hora Bolas Club（饮品）' },
+        { rotulo: '形式', valor: '竖版视频' },
+      ],
+    },
+    'hora-bolas-club': {
+      titulo: 'Hora Bolas Club',
+      cliente: 'Hora Bolas Club',
+      funcao: '社交媒体设计和摄影',
+      texto: {
+        contexto: 'Hora Bolas Club 位于米纳斯吉拉斯州的拉夫拉斯（Lavras）。这里有足球之夜（open Chopp 生啤畅饮）、卡拉 OK 和台球。',
+        oQueFiz: '我设计了活动海报，并拍摄了饮品和小吃的照片。',
+      },
+      creditos: [
+        { rotulo: '客户', valor: 'Hora Bolas Club，Lavras（MG）' },
+        { rotulo: '交付内容', valor: '社交媒体设计和产品照片' },
+      ],
+    },
+    'hora-bolas-rebranding': {
+      titulo: 'Hora Bolas 品牌重塑',
+      cliente: 'Hora Bolas Club',
+      funcao: '品牌重塑和社交媒体',
+      texto: {
+        contexto: 'Hora Bolas Club 的品牌重塑，位于米纳斯吉拉斯州的拉夫拉斯（Lavras）。',
+        oQueFiz: '我设计了新标志和菜单，并负责社交媒体运营。',
+        resultado: '社交媒体每月触达 30 万人次。',
+      },
+      creditos: [
+        { rotulo: '客户', valor: 'Hora Bolas Club，Lavras（MG）' },
+        { rotulo: '交付内容', valor: '标志、菜单和社交媒体' },
+      ],
+    },
+    'ohc-vai-pra-pista': {
+      titulo: 'A OHC Motors vai pra pista',
+      cliente: 'OHC Motors',
+      funcao: '艺术指导',
+      texto: { contexto: 'OHC Motors 的轮播图帖子（"OHC Motors 上赛道"）。', oQueFiz: '我负责这组轮播图的艺术指导。' },
+      creditos: [
+        { rotulo: '客户', valor: 'OHC Motors' },
+        { rotulo: '交付内容', valor: 'Instagram 轮播图' },
+      ],
+    },
+    'pecas-de-direcao-de-arte': {
+      titulo: '艺术指导作品',
+      funcao: '艺术指导',
+      texto: {
+        contexto: '两件作品：OHC Motors 的海报 "Personalize o seu carro agora!"（立即定制你的爱车！），画面是一个奥迪方向盘；以及一张被相机和麦克风围绕的编辑类照片。',
+        oQueFiz: '我负责这两件作品的艺术指导。',
+      },
+      creditos: [{ rotulo: '作品', valor: 'OHC Motors 奥迪方向盘海报和一张编辑类照片' }],
+    },
+    eventos: {
+      titulo: '活动',
+      funcao: '展台、拍摄、采访和摄影',
+      texto: {
+        contexto: 'OHC Motors 的展台制作，以及活动报道：Eletrocar Show、Cena 2K25 和 LAAD Defence & Security 2026。',
+        oQueFiz: '我制作了 OHC 的展台。在 Eletrocar Show 负责拍摄和采访；在 Cena 2K25 和 LAAD 2026 负责拍摄和摄影。',
+      },
+      creditos: [
+        { rotulo: '展台制作', valor: 'OHC Motors' },
+        { rotulo: 'Eletrocar Show（6 月）', valor: '拍摄和采访' },
+        { rotulo: 'Cena 2K25（11 月）', valor: '拍摄和摄影' },
+        { rotulo: 'LAAD Defence & Security 2026（4 月）', valor: '拍摄和摄影' },
+      ],
+    },
+    'fotografia-e-cor': {
+      titulo: '摄影与调色',
+      funcao: '摄影与调色',
+      texto: { contexto: '赛道活动、展会、美食、婚礼和影棚的照片。', oQueFiz: '我负责拍摄和调色。' },
+      creditos: [{ rotulo: '我的职责', valor: '摄影与调色' }],
+    },
+  },
 };
 
 /** Por slug do serviço em português */
@@ -604,6 +820,64 @@ export const servicosEm: Record<Traduzido, Record<string, TraducaoServico>> = {
       texto: ['Monto podcasts en video y creo los lower thirds que presentan a cada invitado.', 'Ejemplo: la edición especial del podcast Opinião Segura en LAAD Security & Milipol Brazil 2026.'],
     },
   },
+  zh: {
+    'editor-de-video': {
+      nome: '视频剪辑',
+      titulo: '巴西圣保罗视频剪辑师',
+      tituloSeo: '巴西圣保罗视频剪辑师（可远程）',
+      descricao: '为 YouTube、口播、音乐录影带、VSL、播客和社交媒体剪辑视频。Paulo Rabelo，圣保罗的剪辑师，也可远程合作。',
+      texto: ['四年来，我为 YouTube 剪辑长视频和口播内容，并与编剧一起负责创意方向。', '我也剪辑音乐录影带、VSL、广告、播客和社交媒体竖版视频。', '我在圣保罗工作，也接受远程合作。'],
+    },
+    'motion-design-e-vfx': {
+      nome: '动态设计与视觉特效',
+      titulo: '动态设计与视觉特效',
+      tituloSeo: '为音乐录影带、YouTube 和品牌制作动态设计与视觉特效',
+      descricao: '为音乐录影带、视觉化影片、YouTube 视频制作动态设计和视觉特效，以及人名条。Paulo Rabelo 作品集，圣保罗。',
+      texto: ['我为音乐录影带、视觉化影片和 YouTube 视频制作动态设计和视觉特效。', '在播客和访谈中，我制作介绍每位嘉宾的人名条。'],
+    },
+    'color-grading': {
+      nome: '调色',
+      titulo: '调色',
+      tituloSeo: '音乐录影带和照片调色',
+      descricao: '音乐录影带调色和照片调色。Paulo Rabelo 的作品，圣保罗的剪辑师和调色师。',
+      texto: ['我为音乐录影带调色，也为自己拍摄的照片调色。', '我在 Alura 学习过调色。'],
+    },
+    'video-com-ia': {
+      nome: 'AI 视频',
+      titulo: '生成式 AI 视频',
+      tituloSeo: '生成式 AI 视频：UGC、广告和故事',
+      descricao: '用生成式 AI 制作的视频：UGC、广告和插画故事。所有 AI 制作的作品都会明确标注。',
+      texto: ['我用生成式 AI 制作视频：UGC、广告和插画故事，最后再进行剪辑。', '我使用 Higgsfield 等工具。所有 AI 制作的作品在这里都带有 "AI 制作" 标签。'],
+    },
+    'criacao-de-sites': {
+      nome: '网站',
+      titulo: '定制网站',
+      tituloSeo: '定制网站设计与开发',
+      descricao: '定制网站的设计与开发：OHC Motors、Passem a Respeitar 和 MH Phones。Paulo Rabelo，WhyNot Visuals。',
+      texto: ['我通过自己创办的视听与营销公司 WhyNot Visuals 设计并开发定制网站。', '部分已上线的网站：OHC Motors、Passem a Respeitar 和 MH Phones。'],
+    },
+    'social-media-e-direcao-de-arte': {
+      nome: '社交媒体与艺术指导',
+      titulo: '社交媒体与艺术指导',
+      tituloSeo: '品牌的社交媒体与艺术指导',
+      descricao: '艺术指导和社交媒体：品牌重塑、活动海报、轮播图和竖版视频。Hora Bolas Club 每月触达 30 万人次。',
+      texto: ['我做艺术指导和社交媒体：品牌重塑、活动海报、轮播图和竖版视频。', '在米纳斯吉拉斯州拉夫拉斯的 Hora Bolas Club，品牌重塑加上社交媒体运营，每月触达 30 万人次。', '我是 OHC Motors 和 WhyNot Records 的艺术总监。'],
+    },
+    fotografia: {
+      nome: '摄影',
+      titulo: '摄影',
+      tituloSeo: '活动、美食和影棚摄影',
+      descricao: '活动、展会、美食、婚礼和影棚摄影，并由我自己调色。Paulo Rabelo，圣保罗。',
+      texto: ['我拍摄活动、展会、美食、婚礼和影棚照片，并亲自为照片调色。'],
+    },
+    'edicao-de-podcast': {
+      nome: '播客剪辑',
+      titulo: '播客剪辑',
+      tituloSeo: '带人名条的视频播客剪辑',
+      descricao: '视频播客剪辑，为每位嘉宾制作人名条。示例：Opinião Segura 播客在 LAAD Security & Milipol Brazil 2026 的特辑。',
+      texto: ['我剪辑视频播客，并制作介绍每位嘉宾的人名条。', '示例：Opinião Segura 播客在 LAAD Security & Milipol Brazil 2026 的特别节目。'],
+    },
+  },
 };
 
 /** Legendas das imagens (texto alternativo), pelo texto em português de media.json */
@@ -665,5 +939,34 @@ export const legendasEm: Record<Traduzido, Record<string, string>> = {
     'Grupo posando sob o letreiro Yala': 'Grupo posando bajo el letrero de Yala',
     'Dois rapazes num show com luzes de celular': 'Dos jóvenes en un concierto con luces de celular',
     'Entrevista em painel com marcas Protecta, UR, Flash, Milipol': 'Entrevista frente a un panel con las marcas Protecta, UR, Flash y Milipol',
+  },
+  zh: {
+    capa: '封面',
+    'Porsche 911 preto em evento de pista': '赛道活动上的黑色保时捷 911',
+    'Pistola em estande de feira, luz verde': '展会展台上的手枪，绿色灯光',
+    'Hambúrguer empanado com batata': '炸鸡汉堡配薯条',
+    'Porção de salgados sobre toalha xadrez amarela': '黄色格子桌布上的一盘炸小吃',
+    'Noiva jogando o buquê em casamento ao ar livre': '户外婚礼上新娘抛捧花',
+    'Rapaz de boné e fone de ouvido em estúdio': '影棚里戴帽子和耳机的年轻人',
+    'Arte: Hoje tem futebol, open Chopp': '海报：今晚足球之夜，open Chopp 生啤畅饮',
+    'Arte: Solta a voz, karaokê': '海报：放声歌唱，卡拉 OK',
+    'Arte: O melhor lugar pra jogar sinuca': '海报：打台球的最佳去处',
+    'Foto: porção de salgados': '照片：一盘炸小吃',
+    'Foto: porção de salgados (vertical)': '照片：一盘炸小吃（竖版）',
+    'Foto: drink vermelho com morango': '照片：草莓红色饮品',
+    'Foto: drink amarelo com hortelã': '照片：薄荷黄色饮品',
+    'Foto: drink com limão': '照片：青柠饮品',
+    'Logo em relógio do Hora Bolas Bilhar Club': 'Hora Bolas Bilhar Club 的时钟造型标志',
+    'Cardápio: capa com o logo e tacos de sinuca': '菜单：带标志和台球杆的封面',
+    'Cardápio: Para jogar junto e Rodada completa': '菜单："Para jogar junto" 和 "Rodada completa" 两个栏目',
+    'Cardápio: Sabor de boteco e Sobremesas': '菜单："Sabor de boteco" 和甜点栏目',
+    'Capa do carrossel A OHC Motors vai pra pista': '轮播图 "A OHC Motors vai pra pista" 的封面',
+    'Arte OHC: Personalize o seu carro agora, volante Audi': 'OHC 海报：立即定制你的爱车，奥迪方向盘',
+    'Foto editorial: rapaz de óculos laranja cercado de câmeras e microfones': '编辑类照片：戴橙色眼镜的年轻人，被相机和麦克风围绕',
+    'Stand da OHC Motors: tenda e expositor de volantes': 'OHC Motors 展台：帐篷和方向盘展架',
+    'Stand da OHC Motors: homem de camisa branca diante do expositor': 'OHC Motors 展台：展架前穿白衬衫的男士',
+    'Grupo posando sob o letreiro Yala': '在 Yala 招牌下合影的一群人',
+    'Dois rapazes num show com luzes de celular': '演唱会上举着手机灯光的两个年轻人',
+    'Entrevista em painel com marcas Protecta, UR, Flash, Milipol': '在印有 Protecta、UR、Flash 和 Milipol 标志的背景板前进行的采访',
   },
 };

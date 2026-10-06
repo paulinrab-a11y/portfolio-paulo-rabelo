@@ -2,7 +2,7 @@
 import { metadadosIndice, PaginaIndice } from '@/components/paginas/PaginaIndice';
 import type { Idioma } from '@/data/idiomas';
 
-const LANG = 'pt' satisfies Idioma;
+const LANG = 'zh' satisfies Idioma;
 
 export const metadata = metadadosIndice(LANG);
 
