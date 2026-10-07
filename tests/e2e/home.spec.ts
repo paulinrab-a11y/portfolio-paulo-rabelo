@@ -79,6 +79,50 @@ test.describe('home', () => {
     await expect(menu).not.toHaveAttribute('open', '');
   });
 
+  test('cabeçalho cabe numa tela de 320 px (o Menu não fica cortado)', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 });
+    await page.goto('/trabalhos');
+    const [largura, visivel, direitaMenu] = await page.evaluate(() => {
+      const h = document.querySelector('header') as HTMLElement;
+      return [h.scrollWidth, h.clientWidth, (document.querySelector('header summary') as HTMLElement).getBoundingClientRect().right];
+    });
+    expect(largura).toBeLessThanOrEqual(visivel);
+    expect(direitaMenu).toBeLessThanOrEqual(320);
+  });
+
+  test('menu do celular fecha ao tocar em Contato na própria home', async ({ page, isMobile }) => {
+    test.skip(!isMobile, 'O menu em <details> só aparece no celular');
+    await page.goto('/');
+    const menu = page.locator('header details');
+    await menu.locator('summary').click();
+    await menu.getByRole('link', { name: /Contato/ }).click();
+    await expect(menu).not.toHaveAttribute('open', '');
+    await expect(page.locator('#contato')).toBeInViewport();
+  });
+
+  test('nenhum vídeo continua tocando fora da tela', { tag: '@video' }, async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('load');
+    // Passa pela timeline e pelos destaques e para no fim da página
+    // scrollBy e não mouse.wheel: o WebKit do iPhone não tem roda do mouse
+    for (let y = 0; y < 12; y++) {
+      await page.evaluate(() => window.scrollBy(0, 900));
+      await page.waitForTimeout(150);
+    }
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await page.waitForTimeout(2500);
+    const tocando = await page.evaluate(() =>
+      [...document.querySelectorAll('video')]
+        .filter((v) => !v.paused)
+        .map((v) => {
+          const r = v.getBoundingClientRect();
+          return { src: v.currentSrc.split('/').pop(), naTela: r.bottom > 0 && r.top < innerHeight && r.width > 0 };
+        })
+        .filter((v) => !v.naTela),
+    );
+    expect(tocando).toEqual([]);
+  });
+
   test('timeline: setas do teclado trocam o clipe no monitor', async ({ page, isMobile }) => {
     test.skip(isMobile, 'No celular a timeline vira faixas com toque');
     await page.goto('/');

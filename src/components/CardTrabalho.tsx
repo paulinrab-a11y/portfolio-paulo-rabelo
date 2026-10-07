@@ -19,7 +19,7 @@ export function CardTrabalho({ trabalho, lang }: { trabalho: Trabalho; lang: Idi
           fill
           unoptimized
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
         {trabalho.feitoComIA && <SeloIA lang={lang} className="absolute top-2 left-2" />}
         {ehVideo(m) && <span className="rotulo absolute right-2 bottom-2 bg-preto/80 px-2 py-1">{t(lang).assistir}</span>}
