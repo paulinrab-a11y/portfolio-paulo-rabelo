@@ -81,7 +81,8 @@ export function Timeline({ lista, lang }: { lista: Trabalho[]; lang: Idioma }) {
     e.preventDefault();
     const i = Math.min(clipes.length - 1, Math.max(0, ativo + passo));
     irPara(i);
-    raiz.current?.querySelector<HTMLButtonElement>(`[data-clipe="${i}"]:not([hidden])`)?.focus();
+    const botoes = raiz.current?.querySelectorAll<HTMLButtonElement>(`[data-clipe="${i}"]`) ?? [];
+    [...botoes].find((b) => b.offsetParent !== null)?.focus();
   };
 
   const trabalhoAtivo = buscar(lista, clipes[ativo]?.slug ?? '');

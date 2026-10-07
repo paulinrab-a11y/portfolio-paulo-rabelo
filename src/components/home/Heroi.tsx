@@ -22,7 +22,11 @@ export function Heroi({ lang, funcaoCurta }: { lang: Idioma; funcaoCurta: string
 
   // Timecode do HUD acompanha o loop, escrito direto no DOM a 15 fps. Para
   // quando o vídeo pausa (fora da tela) e quando o HUD já sumiu na rolagem.
+  const desligarTimecode = useRef(() => {});
   const ligarTimecode = useCallback((v: HTMLVideoElement | null) => {
+    // Troca ou desmontagem do vídeo: solta os ouvintes e o laço anterior
+    desligarTimecode.current();
+    desligarTimecode.current = () => {};
     if (!v) return;
     let pedido = 0;
     let ultimo = 0;
@@ -39,6 +43,11 @@ export function Heroi({ lang, funcaoCurta }: { lang: Idioma; funcaoCurta: string
     const parar = () => cancelAnimationFrame(pedido);
     v.addEventListener('playing', iniciar);
     v.addEventListener('pause', parar);
+    desligarTimecode.current = () => {
+      parar();
+      v.removeEventListener('playing', iniciar);
+      v.removeEventListener('pause', parar);
+    };
   }, []);
 
   useGSAP(

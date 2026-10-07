@@ -9,8 +9,8 @@ interface Props {
   /** Texto alternativo do poster (o vídeo é mudo e decorativo em relação a ele) */
   alt: string;
   /**
-   * `auto`: toca quando aparece na tela. `true`/`false`: quem manda é o pai
-   * (lista de destaques, timeline).
+   * `auto`: toca quando aparece na tela. `true`/`false`: o pai pede ou não
+   * (lista de destaques, timeline), e mesmo pedido só toca se estiver na tela.
    */
   tocar?: boolean | 'auto';
   /** Poster é o elemento de LCP: carrega na frente, sem esperar nada */
@@ -53,6 +53,7 @@ export function VideoLoop({ midia, alt, tocar = 'auto', prioridade = false, pree
   const visivel = useRef(false);
   const desejado = useRef(tocar);
   desejado.current = tocar;
+  const sincronizar = useRef(() => {});
 
   useEffect(() => {
     aoMontar?.(video.current);
@@ -65,9 +66,9 @@ export function VideoLoop({ midia, alt, tocar = 'auto', prioridade = false, pree
     let liberado = false;
     let ativo = true;
 
-    const sincronizar = () => {
+    const sincronizarAgora = () => {
       if (!liberado) return;
-      const querTocar = desejado.current === 'auto' ? visivel.current : desejado.current;
+      const querTocar = visivel.current && desejado.current !== false;
       if (querTocar && !document.hidden && !reduzido() && !economia()) {
         if (v.preload !== 'auto') v.preload = 'auto';
         v.play().catch(() => {});
@@ -80,36 +81,29 @@ export function VideoLoop({ midia, alt, tocar = 'auto', prioridade = false, pree
       ([e]) => {
         visivel.current = e.isIntersecting;
         if (e.isIntersecting && v.preload === 'none') v.preload = 'metadata';
-        sincronizar();
+        sincronizarAgora();
       },
       { rootMargin: '200px 0px', threshold: 0.15 },
     );
     io.observe(v);
-    document.addEventListener('visibilitychange', sincronizar);
+    sincronizar.current = sincronizarAgora;
+    document.addEventListener('visibilitychange', sincronizarAgora);
     v.addEventListener('playing', () => v.setAttribute('data-tocando', ''));
     paginaOciosa().then(() => {
       liberado = true;
-      if (ativo) sincronizar();
+      if (ativo) sincronizarAgora();
     });
     return () => {
       ativo = false;
       io.disconnect();
-      document.removeEventListener('visibilitychange', sincronizar);
+      document.removeEventListener('visibilitychange', sincronizarAgora);
+      sincronizar.current = () => {};
     };
   }, [midia.preview]);
 
   // O pai mudou o pedido (destaque no centro da tela, clipe da timeline)
   useEffect(() => {
-    const v = video.current;
-    if (!v || tocar === 'auto') return;
-    if (tocar && !reduzido() && !economia()) {
-      v.preload = 'auto';
-      paginaOciosa().then(() => {
-        if (desejado.current === true) v.play().catch(() => {});
-      });
-    } else {
-      v.pause();
-    }
+    if (tocar !== 'auto') sincronizar.current();
   }, [tocar]);
 
   return (

@@ -121,7 +121,7 @@ export function Indice({ lista, lang }: { lista: Trabalho[]; lang: Idioma }) {
                       fill
                       unoptimized
                       sizes={modo === 'lista' ? '200px' : '(min-width: 1024px) 33vw, 100vw'}
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                   </ViewTransition>
                   {t.feitoComIA && <SeloIA lang={lang} className="absolute top-2 left-2 scale-90 origin-top-left" />}

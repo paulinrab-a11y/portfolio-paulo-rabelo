@@ -89,7 +89,11 @@ export function Player({ midia, titulo, lang, className = '' }: Props) {
   };
 
   const teclas = (e: React.KeyboardEvent) => {
-    if ((e.target as HTMLElement).tagName === 'INPUT') return;
+    // Ctrl+F, Alt+← e afins são do navegador; espaço e Enter num botão acionam o botão
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const alvo = (e.target as HTMLElement).tagName;
+    if (alvo === 'INPUT') return;
+    if (alvo === 'BUTTON' && (e.key === ' ' || e.key === 'Enter')) return;
     const v = video.current;
     if (!v) return;
     const acoes: Record<string, () => void> = {

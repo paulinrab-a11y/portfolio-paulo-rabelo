@@ -62,7 +62,11 @@ export function Selecionados({ itens, lang }: Props) {
     if (!linhas) return;
     const io = new IntersectionObserver(
       (entradas) => {
-        for (const e of entradas) if (e.isIntersecting) setNoCentro(Number((e.target as HTMLElement).dataset.indice));
+        for (const e of entradas) {
+          const i = Number((e.target as HTMLElement).dataset.indice);
+          if (e.isIntersecting) setNoCentro(i);
+          else setNoCentro((atual) => (atual === i ? null : atual));
+        }
       },
       { rootMargin: '-45% 0px -45% 0px' },
     );
@@ -145,8 +149,8 @@ export function Selecionados({ itens, lang }: Props) {
                 <span className="rotulo col-span-10 col-start-3 text-cinza lg:col-span-2 lg:col-start-auto lg:text-right">
                   {t.categorias.map((c) => tx.categorias[c]).join(' · ')}
                 </span>
-                {/* Prévia própria no celular */}
-                <span className="relative col-span-12 mt-3 block lg:hidden">
+                {/* Prévia própria no celular e no tablet (toque); a flutuante é só com mouse */}
+                <span className="relative col-span-12 mt-3 block lg:pointer-fine:hidden">
                   <VideoLoop midia={m} alt="" tocar={noCentro === i} sizes="100vw" />
                   {t.feitoComIA && <SeloIA lang={lang} className="absolute top-3 left-3" />}
                   {ehVideo(m) && <span className="rotulo absolute right-3 bottom-3 bg-preto/80 px-2 py-1 text-creme">{tx.assistir}</span>}
@@ -175,7 +179,7 @@ export function Selecionados({ itens, lang }: Props) {
       </nav>
 
       {/* Prévia flutuante do desktop (decorativa: o link já descreve o trabalho) */}
-      <div ref={previa} className="previa-flutuante hidden w-[min(34vw,520px)] lg:block" data-visivel={atual !== null} aria-hidden="true">
+      <div ref={previa} className="previa-flutuante hidden w-[min(34vw,520px)] lg:pointer-fine:block" data-visivel={atual !== null} aria-hidden="true">
         <div className="relative bg-carvao shadow-[0_0_0_1px_#2a2a2e]">
           {itens.map((t, i) => {
             const m = midia(t.midia);
