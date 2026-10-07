@@ -28,8 +28,4 @@ O Paulo não vai enviar mais dados: o site fica como está.
 
 ## Em aberto
 
-1. Domínio próprio (o Paulo coloca mais tarde). Passo a passo:
-   1. Na Vercel, projeto `portfolio-paulo-rabelo` > Settings > Domains: adicionar o domínio e seguir as instruções de DNS.
-   2. Em Settings > Environment Variables (Production): `NEXT_PUBLIC_SITE_URL=https://seu-dominio`. É o endereço usado no sitemap, nos links canônicos, no JSON-LD e na imagem de compartilhamento.
-   3. Fazer um novo deploy de produção (merge de qualquer PR em `main` ou Redeploy no painel).
-   4. Conferir `https://seu-dominio/sitemap.xml` e enviar o sitemap no Google Search Console.
+1. Domínio próprio: paulinrab.com.br (comprado em 07/10/2026). Na Vercel, o domínio e o www estão no projeto e o www redireciona para paulinrab.com.br. O endereço portfolio-paulo-rabelo.vercel.app redireciona para o domínio (vercel.json). Produção usa NEXT_PUBLIC_SITE_URL=https://paulinrab.com.br. Depois: enviar https://paulinrab.com.br/sitemap.xml no Google Search Console.

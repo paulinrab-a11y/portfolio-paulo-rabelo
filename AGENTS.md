@@ -8,7 +8,7 @@ O brief está em `docs/BRIEF-ORIGINAL.md` e o plano com as decisões em `docs/PL
 
 - Toda tarefa passa por Issue, branch `<tipo>/<número>-<resumo>` a partir de `main` e Pull Request com `Closes #<número>`.
 - Commits em Conventional Commits, em português. Nunca commit direto em `main`.
-- Deploy só pela Vercel a partir do GitHub. PR gera prévia. Produção (merge em `main`) só com o OK do Paulo.
+- Deploy só pela Vercel a partir do GitHub. PR gera prévia. Produção (merge em `main`) só com o OK do Paulo. Endereço: https://paulinrab.com.br (o www e o portfolio-paulo-rabelo.vercel.app redirecionam para ele).
 - Rode `npm run check` antes do PR.
 
 ## Conteúdo
