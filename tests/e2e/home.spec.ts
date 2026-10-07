@@ -104,8 +104,9 @@ test.describe('home', () => {
     await page.goto('/');
     await page.waitForLoadState('load');
     // Passa pela timeline e pelos destaques e para no fim da página
+    // scrollBy e não mouse.wheel: o WebKit do iPhone não tem roda do mouse
     for (let y = 0; y < 12; y++) {
-      await page.mouse.wheel(0, 900);
+      await page.evaluate(() => window.scrollBy(0, 900));
       await page.waitForTimeout(150);
     }
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
