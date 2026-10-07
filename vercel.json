@@ -3,16 +3,35 @@
   "framework": "nextjs",
   "routes": [
     {
+      "src": "^/(.*)$",
+      "has": [
+        {
+          "type": "host",
+          "value": "portfolio-paulo-rabelo.vercel.app"
+        }
+      ],
+      "status": 308,
+      "headers": {
+        "Location": "https://paulinrab.com.br/$1"
+      }
+    },
+    {
       "src": "^/\\.(?!well-known/).*",
-      "mitigate": { "action": "deny" }
+      "mitigate": {
+        "action": "deny"
+      }
     },
     {
       "src": "^/(wp-admin|wp-content|wp-includes|wp-json|phpmyadmin|pma|cgi-bin|vendor|administrator)(/.*)?$",
-      "mitigate": { "action": "deny" }
+      "mitigate": {
+        "action": "deny"
+      }
     },
     {
       "src": "^/.*\\.(php|asp|aspx|jsp|cgi|sql|bak|old|swp|ini|env)$",
-      "mitigate": { "action": "deny" }
+      "mitigate": {
+        "action": "deny"
+      }
     }
   ]
 }
