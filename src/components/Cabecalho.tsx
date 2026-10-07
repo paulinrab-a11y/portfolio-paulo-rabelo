@@ -67,7 +67,7 @@ export function Cabecalho({ lang }: { lang: Idioma }) {
   }, []);
 
   return (
-    <header className="sem-impressao margem fixed inset-x-0 top-0 z-50 flex h-[var(--cabecalho)] items-center justify-between gap-4 border-b border-linha/70 bg-preto/92">
+    <header className="sem-impressao margem fixed inset-x-0 top-0 z-50 flex h-[var(--cabecalho)] items-center justify-between gap-2 border-b sm:gap-4 border-linha/70 bg-preto/92">
       <Link href={caminho(lang, { pagina: 'home' })} className="rotulo shrink-0 text-creme hover:text-rec" aria-label={tx.nav.inicio}>
         Paulo Rabelo
       </Link>
@@ -79,7 +79,7 @@ export function Cabecalho({ lang }: { lang: Idioma }) {
         </span>
       </p>
 
-      <div className="flex items-center gap-5 lg:gap-8">
+      <div className="flex items-center gap-2 sm:gap-5 lg:gap-8">
         <nav aria-label={tx.nav.principal} className="hidden lg:block">
           <ul className="flex gap-6">
             {links.map((l) => (
@@ -103,7 +103,13 @@ export function Cabecalho({ lang }: { lang: Idioma }) {
             <ul className="flex flex-col gap-1">
               {links.map((l, i) => (
                 <li key={l.href} className="border-b border-linha py-3">
-                  <Link href={l.href} className="flex items-baseline gap-4">
+                  <Link
+                    href={l.href}
+                    className="flex items-baseline gap-4"
+                    onClick={() => {
+                      if (menu.current) menu.current.open = false;
+                    }}
+                  >
                     <span className="rotulo text-rec">0{i + 1}</span>
                     <span className="titulo-display text-[clamp(44px,12vw,88px)]">{l.rotulo}</span>
                   </Link>
@@ -124,7 +130,7 @@ export function Cabecalho({ lang }: { lang: Idioma }) {
 function SeletorIdioma({ lang, pathname, rotulo }: { lang: Idioma; pathname: string; rotulo: string }) {
   return (
     <nav aria-label={rotulo}>
-      <ul className="flex items-center gap-1">
+      <ul className="flex items-center sm:gap-1">
         {idiomas.map((l) => {
           const atual = l === lang;
           return (
@@ -136,7 +142,7 @@ function SeletorIdioma({ lang, pathname, rotulo }: { lang: Idioma; pathname: str
                 aria-current={atual ? 'true' : undefined}
                 aria-label={`${nomeIdioma[l].nome} (${nomeIdioma[l].pais})`}
                 data-idioma={l}
-                className={`rotulo flex min-h-11 items-center gap-1.5 px-1.5 transition-colors ${atual ? 'text-creme' : 'text-cinza hover:text-creme'}`}
+                className={`rotulo flex min-h-11 items-center gap-1.5 px-1 transition-colors sm:px-1.5 ${atual ? 'text-creme' : 'text-cinza hover:text-creme'}`}
               >
                 <Bandeira lang={l} className={atual ? 'outline outline-1 outline-offset-2 outline-creme/80' : ''} />
                 <span className="hidden sm:inline">{l.toUpperCase()}</span>
