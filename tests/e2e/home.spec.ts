@@ -121,18 +121,27 @@ test.describe('home', () => {
       await page.evaluate(() => window.scrollBy(0, 900));
       await page.waitForTimeout(150);
     }
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-    await page.waitForTimeout(2500);
-    const tocando = await page.evaluate(() =>
-      [...document.querySelectorAll('video')]
-        .filter((v) => !v.paused)
-        .map((v) => {
-          const r = v.getBoundingClientRect();
-          return { src: v.currentSrc.split('/').pop(), naTela: r.bottom > 0 && r.top < innerHeight && r.width > 0 };
-        })
-        .filter((v) => !v.naTela),
-    );
-    expect(tocando).toEqual([]);
+    // A página só ganha a altura final depois que o ScrollTrigger mede as seções
+    // presas, e o vídeo pausa pelo IntersectionObserver (assíncrono): confere
+    // até estabilizar no fim da página
+    await expect
+      .poll(
+        async () => {
+          await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+          await page.waitForTimeout(400);
+          return page.evaluate(() =>
+            [...document.querySelectorAll('video')]
+              .filter((v) => !v.paused)
+              .map((v) => {
+                const r = v.getBoundingClientRect();
+                return { src: v.currentSrc.split('/').pop(), naTela: r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth };
+              })
+              .filter((v) => !v.naTela),
+          );
+        },
+        { timeout: 15_000 },
+      )
+      .toEqual([]);
   });
 
   test('timeline: setas do teclado trocam o clipe no monitor', async ({ page, isMobile }) => {
@@ -144,6 +153,25 @@ test.describe('home', () => {
     await page.keyboard.press('ArrowRight');
     await expect(page.locator('section.so-movimento .lg\\:block [data-clipe="1"]')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('section.so-movimento .lg\\:block [data-clipe="1"]')).toBeFocused();
+  });
+
+  test('timeline: a agulha segue o mouse sobre as trilhas, sem prender a rolagem', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'No celular a timeline vira faixas com toque');
+    await page.goto('/');
+    const secao = page.locator('section.so-movimento');
+    // Só a película dos destaques prende a tela
+    await expect(page.locator('.pin-spacer section.so-movimento')).toHaveCount(0);
+    const trilhas = secao.locator('[data-trilhas]');
+    await trilhas.scrollIntoViewIfNeeded();
+    const caixa = await trilhas.boundingBox();
+    if (!caixa) throw new Error('trilhas sem posição');
+    // Leva a agulha até o fim: o clipe que termina no fim da timeline acende
+    await page.mouse.move(caixa.x + caixa.width - 2, caixa.y + caixa.height / 2);
+    const noFim = await trilhas.locator('[data-clipe]').evaluateAll((bs) => {
+      const ultimo = bs.reduce((a, b) => (b.getBoundingClientRect().right > a.getBoundingClientRect().right ? b : a));
+      return (ultimo as HTMLElement).dataset.clipe;
+    });
+    await expect(trilhas.locator(`[data-clipe="${noFim}"]`)).toHaveAttribute('aria-pressed', 'true');
   });
 
   test('JSON-LD de pessoa com o nome completo e do site', async ({ page }) => {
@@ -212,7 +240,8 @@ test.describe('destaques como película', () => {
     await page.locator('#trabalhos').scrollIntoViewIfNeeded();
     await expect(page.locator('.pelicula-agulha')).toBeVisible();
     await expect.poll(() => sobAgulha(page)).toEqual({ i: 0, sob: true });
-    for (let k = 0; k < 6; k++) {
+    // Duas voltas de roda caem no meio da película (mais que isso passa do fim do rolo em telas baixas)
+    for (let k = 0; k < 2; k++) {
       await page.mouse.wheel(0, 500);
       await page.waitForTimeout(150);
     }
