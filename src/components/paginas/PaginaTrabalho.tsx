@@ -201,6 +201,8 @@ export function PaginaTrabalho({ lang, slug }: { lang: Idioma; slug: string }) {
           rotulo={tx.trabalho.proximo}
           rotuloAria={`${tx.trabalho.proximoAria}${tx.doisPontos}${seguinte.titulo}`}
           midia={midia(seguinte.midia)}
+          feitoComIA={seguinte.feitoComIA}
+          lang={lang}
         />
       </nav>
     </article>

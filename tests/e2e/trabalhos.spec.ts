@@ -140,7 +140,8 @@ test('o poster do card da página de serviço voa até o topo da página do trab
       return t;
     }) as typeof document.startViewTransition;
   });
-  const card = page.locator('main a[href^="/trabalhos/"]').first();
+  // Os cards da lista de trabalhos do serviço (o link do monitor não tem a transição)
+  const card = page.locator('main ul a[href^="/trabalhos/"]').first();
   const slug = (await card.getAttribute('href'))?.split('/').pop();
   await card.click();
   await page.waitForURL(new RegExp(`/trabalhos/${slug}$`));
@@ -179,5 +180,31 @@ test.describe('página de trabalho: monitor de fonte e próximo corte', () => {
     await proximo.scrollIntoViewIfNeeded();
     await expect(proximo.locator('img').first()).toBeVisible();
     await expect(proximo.locator('video')).toBeHidden();
+  });
+});
+
+test.describe('serviços: trilha e monitor', () => {
+  test('cada serviço da lista tem uma trilha com quadros dos próprios trabalhos', async ({ page }) => {
+    await page.goto('/servicos');
+    const trilhas = page.locator('.trilha-servico');
+    await expect(trilhas).toHaveCount(await page.locator('main ol > li').count());
+    for (const n of await trilhas.evaluateAll((ts) => ts.map((t) => t.querySelectorAll('img').length))) {
+      expect(n).toBeGreaterThan(0);
+      expect(n).toBeLessThanOrEqual(6);
+    }
+  });
+
+  test('o monitor do serviço mostra um trabalho de categoria principal do serviço', async ({ page }) => {
+    await page.goto('/servicos/fotografia');
+    await expect(page.getByRole('link', { name: /Eventos/ }).first()).toHaveAttribute('href', '/trabalhos/eventos');
+  });
+
+  test('trabalho feito com IA leva o selo também no monitor do serviço e no próximo corte', async ({ page }) => {
+    await page.goto('/servicos/video-com-ia');
+    const monitor = page.locator('.monitor').first();
+    await expect(monitor).toContainText('Feito com IA');
+    // Depois do site da MH Phones vem o anúncio da OHC feito com IA
+    await page.goto('/trabalhos/site-mh-phones');
+    await expect(page.locator('.proximo-corte')).toContainText('Feito com IA');
   });
 });

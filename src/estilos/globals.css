@@ -548,3 +548,21 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
     display: none;
   }
 }
+
+/* Lista de serviços: trilha com um quadro de cada trabalho. No desktop acende
+   ao passar o mouse; no toque fica meio aceso o tempo todo */
+/* Aqui a trilha é a única imagem da linha: apagada, mas legível */
+.trilha-servico .corte-reel img {
+  opacity: 0.5;
+}
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .trilha-servico .corte-reel img,
+  .group:focus-visible .trilha-servico .corte-reel img {
+    opacity: 1;
+  }
+}
+@media (hover: none) {
+  .trilha-servico .corte-reel img {
+    opacity: 0.75;
+  }
+}

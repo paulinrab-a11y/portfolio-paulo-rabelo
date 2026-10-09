@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Servico } from '@/data/servicos';
 import type { Trabalho } from '@/data/trabalhos';
-import { buscarServico, servicoDaCategoria, servicosComTrabalho, trabalhosDoServico } from './servicos';
+import { buscarServico, servicoDaCategoria, servicosComTrabalho, trabalhoDaVitrine, trabalhosDoServico } from './servicos';
 
 const base = { funcao: 'x', midia: 'm', creditos: [] as Trabalho['creditos'], texto: { contexto: 'c', oQueFiz: 'f' }, trilha: 'V1' as const, abas: ['video'] as Trabalho['abas'] };
 const trabalhos: Trabalho[] = [
@@ -35,5 +35,21 @@ describe('servicoDaCategoria', () => {
   it('liga a categoria ao serviço', () => {
     expect(servicoDaCategoria(servicos, 'cor')?.slug).toBe('cor');
     expect(servicoDaCategoria(servicos, 'podcast')).toBeUndefined();
+  });
+});
+
+describe('trabalhoDaVitrine', () => {
+  const lista = [
+    { slug: 'arte', categorias: ['social', 'fotografia'] as Trabalho['categorias'] },
+    { slug: 'fotos', categorias: ['fotografia', 'cor'] as Trabalho['categorias'] },
+  ];
+
+  it('prefere o trabalho cuja categoria principal é do serviço', () => {
+    expect(trabalhoDaVitrine({ categorias: ['fotografia'] }, lista)?.slug).toBe('fotos');
+  });
+
+  it('sem categoria principal do serviço, fica com o primeiro; lista vazia, nada', () => {
+    expect(trabalhoDaVitrine({ categorias: ['cor'] }, lista)?.slug).toBe('arte');
+    expect(trabalhoDaVitrine({ categorias: ['cor'] }, [])).toBeUndefined();
   });
 });

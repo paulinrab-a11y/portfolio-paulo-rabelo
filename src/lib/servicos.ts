@@ -19,3 +19,13 @@ export function servicosComTrabalho(lista: Servico[], trabalhos: Trabalho[]): Se
 export function servicoDaCategoria(lista: Servico[], categoria: Trabalho['categorias'][number]): Servico | undefined {
   return lista.find((s) => s.categorias.includes(categoria));
 }
+
+/**
+ * Trabalho que vai para o monitor da página do serviço: o primeiro cuja
+ * categoria principal (a primeira) é do serviço. Assim fotografia mostra uma
+ * foto, e não uma arte de social media que também tem foto. Sem nenhum, o
+ * primeiro da lista.
+ */
+export function trabalhoDaVitrine<T extends Pick<Trabalho, 'categorias'>>(servico: Pick<Servico, 'categorias'>, lista: T[]): T | undefined {
+  return lista.find((t) => servico.categorias.includes(t.categorias[0])) ?? lista[0];
+}
