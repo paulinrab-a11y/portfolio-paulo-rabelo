@@ -10,7 +10,7 @@ import { type Categoria, categorias, type Trabalho } from '@/data/trabalhos';
 import { ehVideo, midia } from '@/lib/midia';
 import { Flip } from '@/lib/flip';
 import { lerEstado, type Modo, montarBusca } from '@/lib/filtroUrl';
-import { gsap } from '@/lib/motion';
+import { gsap, useGSAP } from '@/lib/motion';
 import { caminho } from '@/lib/rotas';
 import { categoriasUsadas, filtrar } from '@/lib/trabalhos';
 
@@ -53,10 +53,10 @@ export function Indice({ lista, lang }: { lista: Trabalho[]; lang: Idioma }) {
     acao();
   };
 
-  useLayoutEffect(() => {
-    const anterior = estado.current;
-    if (!anterior) return;
-    estado.current = null;
+  // Flip e fades nascem depois do useGSAP: contextSafe os põe no contexto, e
+  // eles são revertidos se a página trocar no meio da animação
+  const { contextSafe } = useGSAP({ scope: raiz });
+  const animarTroca = contextSafe((anterior: Flip.FlipState) => {
     Flip.from(anterior, {
       targets: raiz.current?.querySelectorAll('[data-item]'),
       duration: 0.38,
@@ -66,6 +66,13 @@ export function Indice({ lista, lang }: { lista: Trabalho[]; lang: Idioma }) {
       onEnter: (els) => gsap.fromTo(els, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.3 }),
       onLeave: (els) => gsap.to(els, { opacity: 0, scale: 0.96, duration: 0.18 }),
     });
+  });
+
+  useLayoutEffect(() => {
+    const anterior = estado.current;
+    if (!anterior) return;
+    estado.current = null;
+    animarTroca(anterior);
   });
 
   return (
