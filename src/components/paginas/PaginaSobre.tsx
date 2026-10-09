@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { JsonLd } from '@/components/JsonLd';
 import { ExperienciaRolando } from '@/components/sobre/ExperienciaRolando';
+import { experiencias } from '@/data/perfil';
+import { mesesDoPeriodo, trilhaDaCarreira } from '@/lib/carreira';
 import type { Idioma } from '@/data/idiomas';
 import { servicos } from '@/data/servicos';
 import { trabalhos } from '@/data/trabalhos';
@@ -31,6 +33,11 @@ export function PaginaSobre({ lang }: { lang: Idioma }) {
   const tx = textosDe(lang);
   const p = perfilNo(lang);
   const lista = p.experiencias.filter((e) => !e.soNoCV);
+  // Trilha da carreira a partir dos períodos em português (fonte de verdade); se
+  // algum não for lido, a trilha não aparece (e o teste de conteúdo reprova)
+  const hoje = new Date();
+  const periodos = experiencias.filter((e) => !e.soNoCV).map((e) => mesesDoPeriodo(e.periodo, hoje));
+  const trilha = periodos.every((x) => x !== null) ? trilhaDaCarreira(periodos as NonNullable<(typeof periodos)[number]>[]) : undefined;
   return (
     <>
       <JsonLd
@@ -97,7 +104,7 @@ export function PaginaSobre({ lang }: { lang: Idioma }) {
       </section>
 
       <section aria-labelledby="experiencia" className="cartela margem py-20 lg:py-28">
-        <ExperienciaRolando lista={lista} titulo={tx.sobre.experiencia} />
+        <ExperienciaRolando lista={lista} titulo={tx.sobre.experiencia} trilha={trilha} />
       </section>
 
       <section aria-label={tx.sobre.secaoFinal} className="margem grade gap-y-12 py-20">
