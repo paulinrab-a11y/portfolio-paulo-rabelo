@@ -46,6 +46,13 @@ describe('mídia de cada trabalho', () => {
     expect(cortes[cortes.length - 1].fim).toBeCloseTo(reel.preview?.duration ?? 0, 1);
   });
 
+  it('o CV em PDF tem uma página em cada idioma (npm run cv:pdf depois de mudar o CV)', () => {
+    for (const nome of ['paulo-rabelo-cv.pdf', 'paulo-rabelo-cv-en.pdf', 'paulo-rabelo-cv-es.pdf', 'paulo-rabelo-cv-zh.pdf']) {
+      const pdf = readFileSync(join(raiz, 'public', nome)).toString('latin1');
+      expect(pdf.match(/\/Count (\d+)/)?.[1], nome).toBe('1');
+    }
+  });
+
   it('todo arquivo citado no media.json existe em public/', () => {
     for (const [slug, m] of todasAsMidias()) {
       const urls = [m.poster.avif, m.poster.jpg, m.preview?.mp4, m.preview?.webm, m.full?.mp4, m.full?.webm, ...(m.images ?? []).flatMap((i) => [i.src, i.fallback])];

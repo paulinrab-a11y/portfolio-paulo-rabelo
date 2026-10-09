@@ -34,7 +34,7 @@ export interface TraducaoPerfil {
   bio: string[];
   manifesto: readonly [string, string];
   mensagemWhatsapp: string;
-  rotulos: { whatsapp: string; email: string; linkedin: string; instagram: string };
+  rotulos: { whatsapp: string; email: string; linkedin: string; instagram: string; portfolio: string };
   /** Por empresa, na mesma ordem de perfil.ts */
   experiencias: Record<string, { cargo: string; periodo: string; detalhe?: string }>;
   formacao: { curso: string; cursos: string[] };
@@ -54,7 +54,7 @@ export const perfilEm: Record<Traduzido, TraducaoPerfil> = {
     ],
     manifesto: ['A whole agency fits in one editing suite.', 'Mine.'],
     mensagemWhatsapp: 'Hi Paulo! I saw your portfolio and would like to talk about a project.',
-    rotulos: { whatsapp: 'WhatsApp', email: 'Email', linkedin: 'LinkedIn', instagram: 'WhyNot on Instagram' },
+    rotulos: { whatsapp: 'WhatsApp', email: 'Email', linkedin: 'LinkedIn', instagram: 'WhyNot on Instagram', portfolio: 'Portfolio' },
     experiencias: {
       'OHC Motors': { cargo: 'Art and Marketing Director', periodo: 'Jul 2026 to present' },
       'Uwuant (DDPAI Brasil)': {
@@ -86,7 +86,7 @@ export const perfilEm: Record<Traduzido, TraducaoPerfil> = {
     ],
     manifesto: ['Una agencia entera cabe en una sala de edición.', 'La mía.'],
     mensagemWhatsapp: '¡Hola, Paulo! Vi tu portafolio y quiero hablar sobre un proyecto.',
-    rotulos: { whatsapp: 'WhatsApp', email: 'Correo', linkedin: 'LinkedIn', instagram: 'Instagram de WhyNot' },
+    rotulos: { whatsapp: 'WhatsApp', email: 'Correo', linkedin: 'LinkedIn', instagram: 'Instagram de WhyNot', portfolio: 'Portafolio' },
     experiencias: {
       'OHC Motors': { cargo: 'Director de Arte y Marketing', periodo: 'jul. 2026 a la actualidad' },
       'Uwuant (DDPAI Brasil)': {
@@ -114,7 +114,7 @@ export const perfilEm: Record<Traduzido, TraducaoPerfil> = {
     bio: ['我是巴西圣保罗的视频剪辑师、动态设计师和艺术总监。', '我创办了 WhyNot Visuals，为企业提供视听制作和营销服务；同时担任 WhyNot Records 的艺术总监，这是一家专注于说唱（trap）MV 的厂牌和制作公司。', '四年来，我为 YouTube 剪辑长视频和口播内容，并与编剧一起负责创意方向。'],
     manifesto: ['一整家营销公司，装得进一间剪辑室。', '我的这间。'],
     mensagemWhatsapp: '你好，Paulo！我看了你的作品集，想和你聊一个项目。',
-    rotulos: { whatsapp: 'WhatsApp', email: '电子邮件', linkedin: 'LinkedIn', instagram: 'WhyNot 的 Instagram' },
+    rotulos: { whatsapp: 'WhatsApp', email: '电子邮件', linkedin: 'LinkedIn', instagram: 'WhyNot 的 Instagram', portfolio: '作品集' },
     experiencias: {
       'OHC Motors': { cargo: '艺术与营销总监', periodo: '2026.7 至今' },
       'Uwuant (DDPAI Brasil)': {

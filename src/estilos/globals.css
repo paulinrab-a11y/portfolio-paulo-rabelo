@@ -403,6 +403,10 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
   .sem-impressao {
     display: none !important;
   }
+  /* Rótulos menos espaçados no papel: contatos numa linha e o CV numa página */
+  .rotulo {
+    letter-spacing: 0.04em;
+  }
   html,
   body {
     background: #fff;

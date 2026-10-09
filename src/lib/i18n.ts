@@ -37,7 +37,13 @@ const MENSAGEM_PT = 'Oi, Paulo! Vi seu portfólio e quero falar sobre um projeto
 export function perfilNo(lang: Idioma) {
   const tr = lang === 'pt' ? null : perfilEm[lang];
   const mensagem = tr?.mensagemWhatsapp ?? MENSAGEM_PT;
-  const rotulos = tr?.rotulos ?? { whatsapp: contato.whatsapp.rotulo, email: contato.email.rotulo, linkedin: contato.linkedin.rotulo, instagram: contato.instagram.rotulo };
+  const rotulos = tr?.rotulos ?? {
+    whatsapp: contato.whatsapp.rotulo,
+    email: contato.email.rotulo,
+    linkedin: contato.linkedin.rotulo,
+    instagram: contato.instagram.rotulo,
+    portfolio: contato.portfolio.rotulo,
+  };
   return {
     nome: perfil.nome,
     nomeCompleto: perfil.nomeCompleto,
@@ -54,6 +60,8 @@ export function perfilNo(lang: Idioma) {
       email: { ...contato.email, rotulo: rotulos.email },
       linkedin: { ...contato.linkedin, rotulo: rotulos.linkedin },
       instagram: { ...contato.instagram, rotulo: rotulos.instagram },
+      // No CV em outro idioma, o link leva à versão do site nesse idioma
+      portfolio: { ...contato.portfolio, rotulo: rotulos.portfolio, href: `${contato.portfolio.href}${lang === 'pt' ? '' : `/${lang}`}` },
     },
     experiencias: experiencias.map((e): Experiencia => (tr?.experiencias[e.empresa] ? { ...e, ...tr.experiencias[e.empresa] } : e)),
     formacao: {
