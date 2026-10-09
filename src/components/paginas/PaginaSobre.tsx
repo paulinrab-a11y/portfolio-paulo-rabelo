@@ -46,7 +46,7 @@ export function PaginaSobre({ lang }: { lang: Idioma }) {
         <figure className="relative col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-5 lg:col-start-1">
           <div className="relative aspect-[3/4] overflow-hidden bg-carvao">
             <Image
-              src="/media/retrato/paulo-rabelo.avif"
+              src="/media/retrato/paulo-rabelo.jpg"
               alt={tx.sobre.altRetrato}
               fill
               sizes="(min-width: 1024px) 40vw, (min-width: 640px) 66vw, 100vw"

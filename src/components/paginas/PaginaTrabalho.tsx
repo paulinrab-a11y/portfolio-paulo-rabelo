@@ -11,7 +11,7 @@ import { servicos } from '@/data/servicos';
 import { trabalhos } from '@/data/trabalhos';
 import { legendaEm, servicoEm, t as textosDe, trabalhoEm } from '@/lib/i18n';
 import { metadadosPagina } from '@/lib/metadados';
-import { ehVideo, midia } from '@/lib/midia';
+import { ehVideo, fonteParaOtimizar, midia } from '@/lib/midia';
 import { caminho } from '@/lib/rotas';
 import { breadcrumbLd, trabalhoLd } from '@/lib/seo';
 import { servicoDaCategoria } from '@/lib/servicos';
@@ -156,7 +156,7 @@ export function PaginaTrabalho({ lang, slug }: { lang: Idioma; slug: string }) {
                   {/* Miniatura no tamanho certo (otimizador do Next); o clique abre a peça inteira */}
                   <a href={g.fallback ?? g.src} target="_blank" rel="noopener" className="group relative block bg-carvao" style={{ aspectRatio: `${g.width} / ${g.height}` }}>
                     <Image
-                      src={g.src}
+                      src={fonteParaOtimizar(g)}
                       alt={legenda ? `${t.titulo}${tx.doisPontos}${legenda}` : t.titulo}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

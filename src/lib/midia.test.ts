@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ehVideo, type Midia, midia, proporcao, temMidia, todasAsMidias } from './midia';
+import { ehVideo, fonteParaOtimizar, type Midia, midia, proporcao, temMidia, todasAsMidias } from './midia';
 
 const video: Midia = {
   orientation: 'horizontal',
@@ -39,5 +39,16 @@ describe('midia', () => {
 
   it('o manifesto real carrega', () => {
     expect(todasAsMidias().length).toBeGreaterThan(0);
+  });
+});
+
+describe('fonteParaOtimizar', () => {
+  it('troca AVIF pela versão JPG/PNG (o otimizador não reduz AVIF)', () => {
+    expect(fonteParaOtimizar({ src: '/media/a/1.avif', fallback: '/media/a/1.jpg' })).toBe('/media/a/1.jpg');
+  });
+
+  it('mantém o que o otimizador já reduz, e AVIF sem alternativa', () => {
+    expect(fonteParaOtimizar({ src: '/media/a/1.webp', fallback: '/media/a/1.png' })).toBe('/media/a/1.webp');
+    expect(fonteParaOtimizar({ src: '/media/a/1.avif' })).toBe('/media/a/1.avif');
   });
 });

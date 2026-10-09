@@ -12,7 +12,7 @@ export function SobreResumo({ lang }: { lang: Idioma }) {
       <div className="col-span-12 mb-8 md:col-span-3 md:mb-0">
         <p className="rotulo secundario mb-6">{tx.rotulo}</p>
         <div className="relative aspect-[3/4] w-40 overflow-hidden bg-preto md:w-full">
-          <Image src="/media/retrato/paulo-rabelo.avif" alt={tx.altRetrato} fill sizes="(min-width: 768px) 22vw, 160px" className="object-cover object-[55%_60%]" />
+          <Image src="/media/retrato/paulo-rabelo.jpg" alt={tx.altRetrato} fill sizes="(min-width: 768px) 22vw, 160px" className="object-cover object-[55%_60%]" />
         </div>
       </div>
       <div className="col-span-12 md:col-span-8 md:col-start-5">
