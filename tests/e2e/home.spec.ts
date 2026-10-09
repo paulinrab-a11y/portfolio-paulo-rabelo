@@ -134,10 +134,13 @@ test.describe('home', () => {
     await expect(page.locator('section.so-movimento .lg\\:block [data-clipe="1"]')).toBeFocused();
   });
 
-  test('JSON-LD de pessoa com o nome completo', async ({ page }) => {
+  test('JSON-LD de pessoa com o nome completo e do site', async ({ page }) => {
     await page.goto('/');
-    const ld = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? '{}');
+    // A home tem mais de um bloco (pessoa e site): pega o da pessoa
+    const blocos = await page.locator('script[type="application/ld+json"]').allTextContents();
+    const ld = blocos.map((b) => JSON.parse(b)).find((d) => d['@type'] === 'Person') ?? {};
     expect(ld['@type']).toBe('Person');
     expect(ld.name).toBe('Paulo Vitor Pereira Rabelo');
+    expect(blocos.map((b) => JSON.parse(b)['@type'])).toContain('WebSite');
   });
 });
