@@ -8,7 +8,6 @@ import type { Idioma } from '@/data/idiomas';
 import { textos } from '@/data/textos';
 import { type Trabalho, type Trilha, trilhas } from '@/data/trabalhos';
 import { midia } from '@/lib/midia';
-import { gsap, MIDIA, ScrollTrigger, useGSAP } from '@/lib/motion';
 import { caminho } from '@/lib/rotas';
 import { timecode } from '@/lib/timecode';
 import { buscar, clipeNoPonto, montarTimeline } from '@/lib/trabalhos';
@@ -16,8 +15,10 @@ import { buscar, clipeNoPonto, montarTimeline } from '@/lib/trabalhos';
 const ORDEM = Object.keys(trilhas) as Trilha[];
 
 /**
- * Timeline de edição. No desktop a seção fica presa enquanto o playhead anda
- * com a rolagem; o clipe sob o playhead vai para o monitor. No celular, cada
+ * Timeline de edição. No desktop a agulha segue o mouse sobre as trilhas, como
+ * arrastar a agulha num programa de edição (a rolagem segue livre: a película
+ * dos destaques, logo acima, já prende a tela); o clipe sob a agulha vai para
+ * o monitor. Clique e setas também escolhem o clipe. No celular, cada
  * trilha é uma faixa com scroll-snap e o monitor fica grudado no topo.
  * Em movimento reduzido vira lista por categoria.
  */
@@ -48,31 +49,16 @@ export function Timeline({ lista, lang }: { lista: Trabalho[]; lang: Idioma }) {
     [clipes, duracaoTotal],
   );
 
-  useGSAP(
-    () => {
-      gsap.matchMedia().add(`(min-width: 1024px) and ${MIDIA.movimento}`, () => {
-        ScrollTrigger.create({
-          trigger: raiz.current,
-          start: 'top top',
-          end: 'bottom bottom',
-          onUpdate: (st) => aplicar(st.progress),
-        });
-      });
-    },
-    { scope: raiz, dependencies: [aplicar] },
-  );
-
-  /** Teclado e clique no desktop: leva a rolagem até o meio do clipe, sem animar */
+  /** Teclado e clique: a agulha vai para o meio do clipe, sem animar */
   const irPara = (i: number) => {
-    setAtivo(i);
-    atual.current = i;
-    if (tc.current) tc.current.textContent = timecode(clipes[i].inicio * duracaoTotal * 1000);
-    const sec = raiz.current;
-    if (!sec || !window.matchMedia('(min-width: 1024px)').matches) return;
     const c = clipes[i];
-    const meio = (c.inicio + c.fim) / 2;
-    const topo = sec.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: topo + meio * (sec.offsetHeight - window.innerHeight), behavior: 'instant' });
+    if (c) aplicar((c.inicio + c.fim) / 2);
+  };
+
+  /** Mouse (ou dedo arrastando no tablet) sobre as trilhas: a agulha vai junto */
+  const arrastar = (e: React.PointerEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    if (r.width > 0) aplicar(Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)));
   };
 
   const teclas = (e: React.KeyboardEvent) => {
@@ -85,13 +71,18 @@ export function Timeline({ lista, lang }: { lista: Trabalho[]; lang: Idioma }) {
     [...botoes].find((b) => b.offsetParent !== null)?.focus();
   };
 
+  const posterDe = (slug: string) => {
+    const t = buscar(lista, slug);
+    return t ? midia(t.midia).poster.avif : '';
+  };
+
   const trabalhoAtivo = buscar(lista, clipes[ativo]?.slug ?? '');
   const midiaAtiva = trabalhoAtivo ? midia(trabalhoAtivo.midia) : null;
 
   return (
     <>
-      <section ref={raiz} aria-labelledby="timeline-titulo" className="so-movimento relative lg:h-[340vh]" onKeyDown={teclas}>
-        <div className="margem flex flex-col gap-4 pt-16 pb-10 lg:sticky lg:top-[var(--cabecalho)] lg:h-[calc(100svh-var(--cabecalho))] lg:pt-6 lg:pb-6">
+      <section ref={raiz} aria-labelledby="timeline-titulo" className="so-movimento relative" onKeyDown={teclas}>
+        <div className="margem flex flex-col gap-4 pt-16 pb-10 lg:h-[calc(100svh-var(--cabecalho))] lg:pt-6 lg:pb-6">
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="rotulo mb-2 text-rec">{tx.timeline.rotulo}</p>
@@ -138,7 +129,12 @@ export function Timeline({ lista, lang }: { lista: Trabalho[]; lang: Idioma }) {
             <div className="h-0.5 bg-linha">
               <div ref={barra} className="h-full origin-left scale-x-0 bg-rec" />
             </div>
-            <div className="relative mt-3 flex flex-col gap-1.5 [container-type:inline-size]">
+            <div
+              data-trilhas
+              className="relative mt-3 flex cursor-col-resize touch-pan-y flex-col gap-1.5 [container-type:inline-size]"
+              onPointerMove={arrastar}
+              onPointerDown={arrastar}
+            >
               {ORDEM.map((tr) => (
                 <div key={tr} className="relative flex h-9 items-stretch">
                   <span className="rotulo absolute top-0 -left-[calc(var(--margem)-8px)] flex h-full w-12 items-center text-cinza">{tr}</span>
@@ -152,11 +148,16 @@ export function Timeline({ lista, lang }: { lista: Trabalho[]; lang: Idioma }) {
                           onClick={() => irPara(i)}
                           onFocus={() => irPara(i)}
                           aria-pressed={ativo === i}
-                          className={`absolute inset-y-0 overflow-hidden text-ellipsis border-x border-preto px-2 text-left text-[11px] leading-9 whitespace-nowrap transition-colors ${ativo === i ? 'bg-rec text-preto' : 'bg-linha text-creme hover:bg-cinza hover:text-preto'}`}
+                          data-ativo={ativo === i ? '' : undefined}
+                          className="corte-reel absolute inset-y-0 overflow-hidden border-x border-preto bg-carvao"
                           style={{ left: `${c.inicio * 100}%`, width: `${(c.fim - c.inicio) * 100}%` }}
                         >
-                          <span className="sr-only">{tx.timeline.mostrarNoMonitor}</span>
-                          {buscar(lista, c.slug)?.titulo}
+                          {/* Quadro do trabalho no clipe, como na trilha de um programa de edição; o nome vai para o monitor */}
+                          {/* biome-ignore lint/performance/noImgElement: miniatura decorativa de 36 px, o mesmo poster já usado na página */}
+                          <img src={posterDe(c.slug)} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+                          <span className="sr-only">
+                            {tx.timeline.mostrarNoMonitor} {buscar(lista, c.slug)?.titulo}
+                          </span>
                         </button>
                       ),
                     )}
