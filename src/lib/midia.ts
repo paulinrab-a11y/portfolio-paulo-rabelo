@@ -45,6 +45,16 @@ export function temMidia(slug: string, fonte: Record<string, Midia> = tabela): b
   return slug in fonte;
 }
 
+/**
+ * Fonte para o otimizador do Next (next/image sem `unoptimized`). Ele não
+ * reduz AVIF: devolve o original inteiro em qualquer largura. Então, quando
+ * existe a versão JPG/PNG, ela é a fonte, e o otimizador entrega AVIF ou WebP
+ * no tamanho certo (o retrato de 750 px cai de 174 KB para 49 KB).
+ */
+export function fonteParaOtimizar(img: { src: string; fallback?: string }): string {
+  return img.src.endsWith('.avif') && img.fallback ? img.fallback : img.src;
+}
+
 /** Vídeo tem prévia em movimento? Imagens não ganham o rótulo "Assistir". */
 export function ehVideo(m: Midia): boolean {
   return m.preview !== null || m.full !== null;

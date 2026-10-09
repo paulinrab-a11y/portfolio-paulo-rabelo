@@ -31,6 +31,10 @@ describe('mídia de cada trabalho', () => {
     }
   });
 
+  it('toda foto de galeria em AVIF tem versão JPG/PNG para o otimizador reduzir', () => {
+    for (const [slug, m] of todasAsMidias()) for (const i of m.images ?? []) if (i.src.endsWith('.avif')) expect(i.fallback, `${slug}: ${i.src}`).toMatch(/\.(jpg|png)$/);
+  });
+
   it('todo arquivo citado no media.json existe em public/', () => {
     for (const [slug, m] of todasAsMidias()) {
       const urls = [m.poster.avif, m.poster.jpg, m.preview?.mp4, m.preview?.webm, m.full?.mp4, m.full?.webm, ...(m.images ?? []).flatMap((i) => [i.src, i.fallback])];
