@@ -92,7 +92,7 @@ export function Selecionados({ itens, lang }: Props) {
   const atual = ativo === null ? null : itens[ativo];
 
   return (
-    <section ref={raiz} id="trabalhos" aria-labelledby="selecionados-titulo" className="margem scroll-mt-[var(--cabecalho)] py-[clamp(72px,12vh,140px)]">
+    <section ref={raiz} id="trabalhos" aria-labelledby="selecionados-titulo" className="margem py-[clamp(72px,12vh,140px)]">
       <div className="mb-10 flex items-end justify-between gap-6 border-b border-linha pb-6">
         <div>
           <p className="rotulo mb-3 text-rec">{s.rotulo}</p>

@@ -9,7 +9,7 @@ export function Fim({ lang }: { lang: Idioma }) {
   const { contato } = perfil;
   const canais = [contato.whatsapp, contato.email, contato.linkedin, contato.instagram];
   return (
-    <section id="contato" aria-labelledby="fim-titulo" className="margem relative flex min-h-svh scroll-mt-[var(--cabecalho)] flex-col justify-center bg-black py-24">
+    <section id="contato" aria-labelledby="fim-titulo" className="margem relative flex min-h-svh flex-col justify-center bg-black py-24">
       <p className="rotulo mb-6 flex items-center gap-3 text-cinza">
         <span className="rec-ponto" /> {tx.rotulo}
       </p>
