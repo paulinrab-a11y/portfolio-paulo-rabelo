@@ -57,9 +57,8 @@ const pt = {
     altVideo: 'Trechos de clipes, visualizer, podcast e vídeo para YouTube editados por Paulo Rabelo',
     verTrabalhos: 'Ver trabalhos',
     falarComigo: 'Falar comigo',
-    desca: 'Desça ↓',
+    noMonitor: 'No monitor',
     programa: 'Programa · V1',
-    aoVivo: '● Ao vivo',
   },
   manifesto: { rotulo: '00 · Manifesto', aria: 'Manifesto' },
   selecionados: {
@@ -220,9 +219,8 @@ const en: Textos = {
     altVideo: 'Clips from music videos, a visualizer, a podcast and a YouTube video edited by Paulo Rabelo',
     verTrabalhos: 'See my work',
     falarComigo: 'Contact me',
-    desca: 'Scroll ↓',
+    noMonitor: 'On the monitor',
     programa: 'Program · V1',
-    aoVivo: '● Live',
   },
   manifesto: { rotulo: '00 · Manifesto', aria: 'Manifesto' },
   selecionados: {
@@ -380,9 +378,8 @@ const es: Textos = {
     altVideo: 'Fragmentos de videoclips, un visualizer, un podcast y un vídeo de YouTube editados por Paulo Rabelo',
     verTrabalhos: 'Ver trabajos',
     falarComigo: 'Hablemos',
-    desca: 'Desliza ↓',
+    noMonitor: 'En el monitor',
     programa: 'Programa · V1',
-    aoVivo: '● En vivo',
   },
   manifesto: { rotulo: '00 · Manifiesto', aria: 'Manifiesto' },
   selecionados: {
@@ -540,9 +537,8 @@ const zh: Textos = {
     altVideo: 'Paulo Rabelo 剪辑的 MV、Visualizer、播客和 YouTube 视频片段',
     verTrabalhos: '查看作品',
     falarComigo: '联系我',
-    desca: '向下滚动 ↓',
+    noMonitor: '监视器上',
     programa: '节目 · V1',
-    aoVivo: '● 直播',
   },
   manifesto: { rotulo: '00 · 宣言', aria: '宣言' },
   selecionados: {

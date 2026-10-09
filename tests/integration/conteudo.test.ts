@@ -8,6 +8,7 @@ import { textos } from '@/data/textos';
 import { trabalhos } from '@/data/trabalhos';
 import { legendasEm, perfilEm, servicosEm, trabalhosEm } from '@/data/traducoes';
 import { midia, temMidia, todasAsMidias } from '@/lib/midia';
+import { cortesDoReel, trabalhoDoTrecho } from '@/lib/reel';
 import { trabalhosDoServico } from '@/lib/servicos';
 
 const raiz = join(__dirname, '..', '..');
@@ -33,6 +34,15 @@ describe('mídia de cada trabalho', () => {
 
   it('toda foto de galeria em AVIF tem versão JPG/PNG para o otimizador reduzir', () => {
     for (const [slug, m] of todasAsMidias()) for (const i of m.images ?? []) if (i.src.endsWith('.avif')) expect(i.fallback, `${slug}: ${i.src}`).toMatch(/\.(jpg|png)$/);
+  });
+
+  it('todo corte do reel do herói aponta para um trabalho do site e somam a duração do loop', () => {
+    const reel = midia('hero');
+    const slugs = trabalhos.map((t) => t.slug);
+    for (const s of reel.shots ?? []) expect(slugs, s.from).toContain(trabalhoDoTrecho[s.from]);
+    const cortes = cortesDoReel(reel.shots ?? []);
+    expect(cortes.length).toBe(reel.shots?.length);
+    expect(cortes[cortes.length - 1].fim).toBeCloseTo(reel.preview?.duration ?? 0, 1);
   });
 
   it('todo arquivo citado no media.json existe em public/', () => {

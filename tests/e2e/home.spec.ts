@@ -144,3 +144,36 @@ test.describe('home', () => {
     expect(blocos.map((b) => JSON.parse(b)['@type'])).toContain('WebSite');
   });
 });
+
+test.describe('herói: monitor e mini timeline do reel', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.setItem('abertura-vista', '1'));
+  });
+
+  test('um clipe por corte do reel, cada um levando a um trabalho, e o link do que está no monitor', async ({ page }) => {
+    await page.goto('/');
+    const cortes = page.locator('[data-corte]');
+    await expect(cortes).toHaveCount(8);
+    for (const href of await cortes.evaluateAll((els) => els.map((e) => e.getAttribute('href')))) expect(href).toMatch(/^\/trabalhos\/[a-z0-9-]+$/);
+    const noMonitor = page.locator('section[aria-labelledby="heroi-nome"] a.link-monitor');
+    await expect(noMonitor).toHaveAttribute('href', '/trabalhos/visualizer-anjo005');
+  });
+
+  test('o nome do trabalho em tela troca no corte e bate com o clipe aceso', { tag: '@video' }, async ({ page, browserName }) => {
+    test.skip(browserName === 'webkit', 'Autoplay do WebKit no CI não é confiável');
+    await page.goto('/');
+    // Lê o clipe aceso e o link de uma vez só: cada corte dura ~1,5 s
+    const estado = () =>
+      page.evaluate(() => ({
+        link: document.querySelector('section[aria-labelledby="heroi-nome"] a.link-monitor')?.getAttribute('href'),
+        clipe: document.querySelector('[data-corte][data-ativo]')?.getAttribute('href'),
+      }));
+    await expect.poll(async () => (await estado()).link, { timeout: 15_000 }).not.toBe('/trabalhos/visualizer-anjo005');
+    await expect
+      .poll(async () => {
+        const e = await estado();
+        return e.link === e.clipe;
+      })
+      .toBe(true);
+  });
+});

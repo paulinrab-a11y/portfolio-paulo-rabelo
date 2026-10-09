@@ -30,6 +30,8 @@ export interface Midia {
   /** Outros vídeos do mesmo trabalho (ex.: o segundo UGC) */
   extra?: Array<Omit<Midia, 'extra'> & { label?: string }>;
   source?: string;
+  /** Trechos do reel do herói, na ordem: de onde vieram e o timecode de entrada e saída na origem */
+  shots?: Array<{ from: string; in: string; out: string }>;
 }
 
 const tabela = manifesto as unknown as Record<string, Midia>;
