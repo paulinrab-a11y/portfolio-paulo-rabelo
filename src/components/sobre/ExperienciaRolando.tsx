@@ -2,14 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { Experiencia } from '@/data/perfil';
-import type { ClipeCarreira } from '@/lib/carreira';
-
-/** Trilha da carreira já calculada no servidor (src/lib/carreira.ts) */
-interface Trilha {
-  clipes: ClipeCarreira[];
-  faixas: number;
-  anos: Array<{ ano: number; x: number }>;
-}
+import { type DadosTrilha, TrilhaCarreira } from '@/components/TrilhaCarreira';
 
 /**
  * Experiência que rola: a entrada que cruza o meio da tela fica ativa e o
@@ -19,7 +12,7 @@ interface Trilha {
  * experiência como um clipe do tamanho do período, cargos simultâneos em
  * faixas empilhadas; o da experiência ativa acende.
  */
-export function ExperienciaRolando({ lista, titulo, trilha }: { lista: Experiencia[]; titulo: string; trilha?: Trilha }) {
+export function ExperienciaRolando({ lista, titulo, trilha }: { lista: Experiencia[]; titulo: string; trilha?: DadosTrilha }) {
   const raiz = useRef<HTMLOListElement>(null);
   const [ativa, setAtiva] = useState(0);
 
@@ -52,27 +45,7 @@ export function ExperienciaRolando({ lista, titulo, trilha }: { lista: Experienc
             <p className="titulo-display text-[clamp(40px,4.4vw,72px)]">{atual.periodo}</p>
             <p className="secundario mt-2 text-lg">{atual.empresa}</p>
           </div>
-          {trilha && trilha.clipes.length === lista.length && (
-            <div aria-hidden="true" className="mt-8 lg:mt-10">
-              <div className="relative" style={{ height: `${trilha.faixas * 14 - 4}px` }}>
-                {trilha.clipes.map((c, i) => (
-                  <span
-                    key={lista[i].empresa}
-                    data-ativa={i === ativa}
-                    className="clipe-carreira absolute h-2.5 bg-preto/15"
-                    style={{ left: `${c.x * 100}%`, width: `max(3px, ${c.largura * 100}%)`, top: `${c.faixa * 14}px` }}
-                  />
-                ))}
-              </div>
-              <div className="rotulo secundario relative mt-3 h-4 border-t border-preto/20">
-                {trilha.anos.map((a) => (
-                  <span key={a.ano} className="absolute top-0 h-2 border-l border-preto/30 pt-2.5 pl-1 text-[10px] leading-none" style={{ left: `${a.x * 100}%` }}>
-                    {a.ano}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
+          {trilha && trilha.clipes.length === lista.length && <TrilhaCarreira trilha={trilha} chaves={lista.map((e) => e.empresa)} ativa={ativa} className="mt-8 lg:mt-10" />}
         </div>
       </div>
       <ol ref={raiz} className="col-span-12 lg:col-span-8">

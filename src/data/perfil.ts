@@ -29,6 +29,8 @@ export const contato = {
   email: { rotulo: 'E-mail', valor: 'paulinrab@gmail.com', href: 'mailto:paulinrab@gmail.com' },
   linkedin: { rotulo: 'LinkedIn', valor: 'linkedin.com/in/paulinrab', href: 'https://www.linkedin.com/in/paulinrab' },
   instagram: { rotulo: 'Instagram da WhyNot', valor: '@whynotvisuals_', href: 'https://www.instagram.com/whynotvisuals_/' },
+  /** Endereço do portfólio no CV (no PDF é o único caminho até os trabalhos) */
+  portfolio: { rotulo: 'Portfólio', valor: 'paulinrab.com.br', href: 'https://paulinrab.com.br' },
 } as const;
 
 export interface Experiencia {

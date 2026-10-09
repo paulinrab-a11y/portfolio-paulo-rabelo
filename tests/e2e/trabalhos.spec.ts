@@ -223,3 +223,16 @@ test.describe('sobre: trilha da carreira', () => {
     await expect(clipes.nth(2)).toHaveAttribute('data-ativa', 'true');
   });
 });
+
+test.describe('CV', () => {
+  test('portfólio no cabeçalho, no idioma do CV, e os trabalhos selecionados com endereço completo', async ({ page }) => {
+    await page.goto('/cv');
+    const cabecalho = page.locator('article header');
+    await expect(cabecalho.getByRole('link', { name: 'paulinrab.com.br' })).toHaveAttribute('href', 'https://paulinrab.com.br');
+    const trabalhos = page.locator('#cv-trabalhos + ul a');
+    await expect(trabalhos).toHaveCount(6);
+    for (const href of await trabalhos.evaluateAll((as) => as.map((a) => a.getAttribute('href')))) expect(href).toMatch(/^https:\/\/paulinrab\.com\.br\/trabalhos\/[a-z0-9-]+$/);
+    await page.goto('/en/resume');
+    await expect(page.locator('article header').getByRole('link', { name: 'paulinrab.com.br' })).toHaveAttribute('href', 'https://paulinrab.com.br/en');
+  });
+});
