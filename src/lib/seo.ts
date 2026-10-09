@@ -16,6 +16,8 @@ export interface PessoaLd {
   cidade: string;
   sameAs: string[];
   areas: readonly string[];
+  /** Empresas onde o cargo segue atual (perfil.ts, "até hoje") */
+  empresasAtuais?: readonly string[];
 }
 
 export function pessoaLd(p: PessoaLd): JsonLd {
@@ -32,6 +34,31 @@ export function pessoaLd(p: PessoaLd): JsonLd {
     address: { '@type': 'PostalAddress', addressLocality: p.cidade, addressRegion: 'SP', addressCountry: 'BR' },
     sameAs: p.sameAs,
     knowsAbout: [...p.areas],
+    ...(p.empresasAtuais?.length ? { worksFor: p.empresasAtuais.map((name) => ({ '@type': 'Organization', name })) } : {}),
+  };
+}
+
+/** O site em si: o Google usa o nome para mostrar "Paulo Rabelo" no resultado */
+export function siteLd(url: string, idioma: string): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${url}/#site`,
+    name: 'Paulo Rabelo',
+    alternateName: 'paulinrab',
+    url,
+    inLanguage: idioma,
+    publisher: { '@id': `${url}/#pessoa` },
+  };
+}
+
+/** Página de perfil (Sobre): o tipo que o Google recomenda para páginas sobre uma pessoa */
+export function paginaPerfilLd(url: string, caminho: string): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    url: `${url}${caminho}`,
+    mainEntity: { '@id': `${url}/#pessoa` },
   };
 }
 

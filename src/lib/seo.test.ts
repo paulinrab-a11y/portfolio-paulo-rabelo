@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { breadcrumbLd, pessoaLd, serializarLd, servicoLd, trabalhoLd } from './seo';
+import { breadcrumbLd, paginaPerfilLd, pessoaLd, serializarLd, servicoLd, siteLd, trabalhoLd } from './seo';
 
 const URL_SITE = 'https://exemplo.com';
 
@@ -73,5 +73,42 @@ describe('trabalhoLd', () => {
 describe('serializarLd', () => {
   it('escapa < para não fechar o <script>', () => {
     expect(serializarLd({ a: '</script>' })).not.toContain('</script>');
+  });
+});
+
+describe('dados para quem contrata', () => {
+  it('pessoa com empregos atuais e ferramentas', () => {
+    const ld = pessoaLd({
+      nome: 'Paulo Rabelo',
+      nomeCompleto: 'Paulo Vitor Pereira Rabelo',
+      url: URL_SITE,
+      email: 'a@b.c',
+      cargo: 'Editor',
+      cidade: 'São Paulo',
+      sameAs: [],
+      areas: ['Edição de vídeo', 'Premiere Pro'],
+      empresasAtuais: ['OHC Motors', 'WhyNot Records'],
+    });
+    expect(ld.worksFor).toEqual([
+      { '@type': 'Organization', name: 'OHC Motors' },
+      { '@type': 'Organization', name: 'WhyNot Records' },
+    ]);
+    expect(ld.knowsAbout).toContain('Premiere Pro');
+  });
+
+  it('sem emprego atual, não inventa worksFor', () => {
+    const ld = pessoaLd({ nome: 'P', nomeCompleto: 'P', url: URL_SITE, email: 'a@b.c', cargo: 'E', cidade: 'SP', sameAs: [], areas: [] });
+    expect(ld).not.toHaveProperty('worksFor');
+  });
+
+  it('site e página de perfil apontam para a mesma pessoa', () => {
+    const site = siteLd(URL_SITE, 'pt-BR');
+    expect(site).toMatchObject({ '@type': 'WebSite', name: 'Paulo Rabelo', inLanguage: 'pt-BR', publisher: { '@id': `${URL_SITE}/#pessoa` } });
+    expect(paginaPerfilLd(URL_SITE, '/sobre')).toEqual({
+      '@context': 'https://schema.org',
+      '@type': 'ProfilePage',
+      url: `${URL_SITE}/sobre`,
+      mainEntity: { '@id': `${URL_SITE}/#pessoa` },
+    });
   });
 });
