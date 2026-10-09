@@ -13,7 +13,7 @@ import { daAba } from '@/lib/trabalhos';
 
 export function metadadosIndice(lang: Idioma, aba?: Aba): Metadata {
   const tx = textosDe(lang);
-  if (!aba) return metadadosPagina(lang, { pagina: 'trabalhos' }, { titulo: tx.indice.titulo, descricao: tx.meta.trabalhosDescricao });
+  if (!aba) return metadadosPagina(lang, { pagina: 'trabalhos' }, { titulo: tx.meta.trabalhosTitulo, descricao: tx.meta.trabalhosDescricao });
   return metadadosPagina(
     lang,
     { pagina: 'trabalhos', aba },

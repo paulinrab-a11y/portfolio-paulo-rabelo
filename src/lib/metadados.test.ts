@@ -26,7 +26,7 @@ describe('linksIdiomas', () => {
 describe('metadadosBase', () => {
   it('título, locale e imagem no idioma', () => {
     const m = metadadosBase('en');
-    expect(m.description).toContain('Video editor');
+    expect(m.description).toMatch(/^Portfolio of Paulo Rabelo, video editor/);
     expect(m.openGraph).toMatchObject({ locale: 'en_US', alternateLocale: ['pt_BR', 'es_ES', 'zh_CN'] });
   });
 });

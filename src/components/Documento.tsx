@@ -3,6 +3,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { Rodape } from '@/components/Rodape';
 import { caminhos, codigoHtml, type Idioma, idiomas } from '@/data/idiomas';
 import { classesFontes } from '@/estilos/fontes';
+import { experiencias } from '@/data/perfil';
 import { perfilNo, t } from '@/lib/i18n';
 import { pessoaLd } from '@/lib/seo';
 import { analyticsAtivo, SITE_URL } from '@/lib/site';
@@ -38,7 +39,8 @@ export function Documento({ lang, children }: { lang: Idioma; children: React.Re
     cidade: 'São Paulo',
     // O Instagram do contato é da agência (WhyNot), não do Paulo: fica fora do sameAs
     sameAs: [p.contato.linkedin.href],
-    areas: p.servicos,
+    areas: [...p.servicos, ...p.ferramentas],
+    empresasAtuais: experiencias.filter((e) => e.periodo.includes('até hoje')).map((e) => e.empresa),
   });
 
   return (

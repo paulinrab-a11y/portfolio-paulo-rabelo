@@ -26,7 +26,7 @@ function servicoDoSlug(lang: Idioma, slug: string) {
 
 export function metadadosServicos(lang: Idioma): Metadata {
   const tx = textosDe(lang);
-  return metadadosPagina(lang, { pagina: 'servicos' }, { titulo: tx.servicos.titulo, descricao: tx.meta.servicosDescricao });
+  return metadadosPagina(lang, { pagina: 'servicos' }, { titulo: tx.meta.servicosTitulo, descricao: tx.meta.servicosDescricao });
 }
 
 export function metadadosServico(lang: Idioma, slug: string): Metadata {
@@ -82,7 +82,7 @@ export function PaginaServico({ lang, slug }: { lang: Idioma; slug: string }) {
   if (!base) notFound();
   const tx = textosDe(lang);
   const s = servicoEm(base, lang);
-  const contato = perfilNo(lang).contato;
+  const { contato, ferramentas } = perfilNo(lang);
   const lista = trabalhosDoServico(base, trabalhos).map((t) => trabalhoEm(t, lang));
   const outros = servicosComTrabalho(servicos, trabalhos).filter((o) => o.slug !== base.slug);
   const aqui = caminho(lang, { pagina: 'servicos', servico: base.slug });
@@ -113,6 +113,12 @@ export function PaginaServico({ lang, slug }: { lang: Idioma; slug: string }) {
           {s.texto.map((p) => (
             <p key={p}>{p}</p>
           ))}
+          {/* Quem contrata busca pelo nome das ferramentas; a lista é a do perfil, não deste serviço */}
+          <p className="pt-2 text-base text-cinza">
+            <span className="rotulo mr-3 text-creme">{tx.servicos.ferramentas}</span>
+            {ferramentas.join(tx.separadorLista)}
+            {tx.pontoFinal}
+          </p>
         </div>
         <div className="col-span-12 flex flex-wrap items-start gap-3 lg:col-span-4 lg:col-start-9 lg:justify-end">
           <a href={contato.whatsapp.href} target="_blank" rel="noopener noreferrer" className="botao botao-rec">

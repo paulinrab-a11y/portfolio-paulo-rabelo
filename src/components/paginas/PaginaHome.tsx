@@ -1,4 +1,5 @@
 import { Abertura } from '@/components/home/Abertura';
+import { JsonLd } from '@/components/JsonLd';
 import { Creditos } from '@/components/home/Creditos';
 import { Fim } from '@/components/home/Fim';
 import { Heroi } from '@/components/home/Heroi';
@@ -6,9 +7,11 @@ import { Manifesto } from '@/components/home/Manifesto';
 import { Selecionados } from '@/components/home/Selecionados';
 import { SobreResumo } from '@/components/home/SobreResumo';
 import { Timeline } from '@/components/home/Timeline';
-import type { Idioma } from '@/data/idiomas';
+import { codigoHtml, type Idioma } from '@/data/idiomas';
 import { trabalhos } from '@/data/trabalhos';
 import { perfilNo, trabalhoEm } from '@/lib/i18n';
+import { siteLd } from '@/lib/seo';
+import { SITE_URL } from '@/lib/site';
 import { destaques } from '@/lib/trabalhos';
 
 /** Home. O conteúdo chega já traduzido aos componentes de navegador. */
@@ -17,6 +20,7 @@ export function PaginaHome({ lang }: { lang: Idioma }) {
   const lista = trabalhos.map((t) => trabalhoEm(t, lang));
   return (
     <>
+      <JsonLd dados={siteLd(SITE_URL, codigoHtml[lang])} />
       <Abertura lang={lang} />
       <Heroi lang={lang} funcaoCurta={perfil.funcaoCurta} />
       <Manifesto lang={lang} linhas={perfil.manifesto} />

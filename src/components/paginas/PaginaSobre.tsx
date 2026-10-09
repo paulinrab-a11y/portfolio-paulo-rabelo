@@ -9,7 +9,7 @@ import { trabalhos } from '@/data/trabalhos';
 import { perfilNo, servicoEm, t as textosDe } from '@/lib/i18n';
 import { metadadosPagina } from '@/lib/metadados';
 import { caminho } from '@/lib/rotas';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, paginaPerfilLd } from '@/lib/seo';
 import { servicosComTrabalho } from '@/lib/servicos';
 import { SITE_URL } from '@/lib/site';
 
@@ -23,7 +23,7 @@ export function metadadosSobre(lang: Idioma): Metadata {
   return metadadosPagina(
     lang,
     { pagina: 'sobre' },
-    { titulo: tx.sobre.rotulo, descricao: tx.meta.sobreDescricao, imagem: { url: '/media/retrato/og.jpg', width: 1200, height: 630 } },
+    { titulo: tx.meta.sobreTitulo, descricao: tx.meta.sobreDescricao, imagem: { url: '/media/retrato/og.jpg', width: 1200, height: 630 } },
   );
 }
 
@@ -34,10 +34,13 @@ export function PaginaSobre({ lang }: { lang: Idioma }) {
   return (
     <>
       <JsonLd
-        dados={breadcrumbLd(SITE_URL, [
-          { nome: tx.nav.inicioTrilha, caminho: caminho(lang, { pagina: 'home' }) },
-          { nome: tx.sobre.rotulo, caminho: caminho(lang, { pagina: 'sobre' }) },
-        ])}
+        dados={[
+          paginaPerfilLd(SITE_URL, caminho(lang, { pagina: 'sobre' })),
+          breadcrumbLd(SITE_URL, [
+            { nome: tx.nav.inicioTrilha, caminho: caminho(lang, { pagina: 'home' }) },
+            { nome: tx.sobre.rotulo, caminho: caminho(lang, { pagina: 'sobre' }) },
+          ]),
+        ]}
       />
       <section aria-labelledby="sobre-titulo" className="margem grade gap-y-10 pt-[calc(var(--cabecalho)+clamp(32px,6vh,72px))] pb-20">
         <figure className="relative col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-5 lg:col-start-1">
