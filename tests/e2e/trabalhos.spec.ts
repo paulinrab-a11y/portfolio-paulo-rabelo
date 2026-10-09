@@ -208,3 +208,18 @@ test.describe('serviços: trilha e monitor', () => {
     await expect(page.locator('.proximo-corte')).toContainText('Feito com IA');
   });
 });
+
+test.describe('sobre: trilha da carreira', () => {
+  test('um clipe por experiência, cargos simultâneos em faixas diferentes, e o da experiência no meio da tela acende', async ({ page }) => {
+    await page.goto('/sobre');
+    const clipes = page.locator('.clipe-carreira');
+    const experiencias = page.locator('[data-indice]');
+    await expect(clipes).toHaveCount(await experiencias.count());
+    // OHC, Uwuant e WhyNot Records são simultâneos: três faixas, pelo menos
+    const tops = await clipes.evaluateAll((cs) => new Set(cs.map((c) => (c as HTMLElement).style.top)).size);
+    expect(tops).toBeGreaterThanOrEqual(3);
+    // Rolando até a terceira experiência, o terceiro clipe acende
+    await experiencias.nth(2).evaluate((el) => el.scrollIntoView({ block: 'center' }));
+    await expect(clipes.nth(2)).toHaveAttribute('data-ativa', 'true');
+  });
+});

@@ -8,6 +8,7 @@ import { textos } from '@/data/textos';
 import { trabalhos } from '@/data/trabalhos';
 import { legendasEm, perfilEm, servicosEm, trabalhosEm } from '@/data/traducoes';
 import { midia, temMidia, todasAsMidias } from '@/lib/midia';
+import { mesesDoPeriodo } from '@/lib/carreira';
 import { cortesDoReel, trabalhoDoTrecho } from '@/lib/reel';
 import { trabalhosDoServico } from '@/lib/servicos';
 
@@ -159,6 +160,10 @@ describe('regras de texto do brief', () => {
     // Com sublinhado no fim: sem ele, o link leva a outro perfil
     expect(contato.instagram.valor).toBe('@whynotvisuals_');
     expect(contato.instagram.href).toBe('https://www.instagram.com/whynotvisuals_/');
+  });
+
+  it('todo período de experiência é lido pela trilha da carreira', () => {
+    for (const e of experiencias) expect(mesesDoPeriodo(e.periodo, new Date(2026, 9, 9)), e.empresa).not.toBeNull();
   });
 
   it('Rabelo Design aparece só no CV', () => {

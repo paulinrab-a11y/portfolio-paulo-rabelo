@@ -566,3 +566,11 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
     opacity: 0.75;
   }
 }
+
+/* Sobre: trilha da carreira no painel creme; o clipe da experiência ativa acende */
+.clipe-carreira {
+  transition: background-color 300ms var(--ease-cine);
+}
+.clipe-carreira[data-ativa="true"] {
+  background: var(--color-rec-escuro);
+}
