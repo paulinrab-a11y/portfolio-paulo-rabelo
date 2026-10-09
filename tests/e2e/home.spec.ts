@@ -37,15 +37,27 @@ test.describe('home', () => {
     await page.goto('/');
     const tc = page.getByTestId('timecode-cabecalho');
     await expect(tc).toHaveText('00:00:00:00');
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-    await expect(tc).toHaveText('FIM');
+    // As seções presas (película, timeline) só ganham a altura final depois que o
+    // ScrollTrigger mede a página: repete o pulo até chegar ao fim de verdade
+    await expect
+      .poll(async () => {
+        await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+        return tc.textContent();
+      })
+      .toBe('FIM');
   });
 
   test('em inglês o timecode termina em END, não em FIM', async ({ page }) => {
     await page.goto('/en');
     const tc = page.getByTestId('timecode-cabecalho');
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-    await expect(tc).toHaveText('END');
+    // As seções presas (película, timeline) só ganham a altura final depois que o
+    // ScrollTrigger mede a página: repete o pulo até chegar ao fim de verdade
+    await expect
+      .poll(async () => {
+        await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+        return tc.textContent();
+      })
+      .toBe('END');
   });
 
   test('clientes e artistas em créditos', async ({ page }) => {
@@ -175,5 +187,57 @@ test.describe('herói: monitor e mini timeline do reel', () => {
         return e.link === e.clipe;
       })
       .toBe(true);
+  });
+});
+
+test.describe('destaques como película', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.setItem('abertura-vista', '1'));
+  });
+
+  /** Índice do quadro aceso e se ele está sob a agulha */
+  const sobAgulha = (page: import('@playwright/test').Page) =>
+    page.evaluate(() => {
+      const agulha = document.querySelector('.pelicula-agulha') as HTMLElement;
+      const q = document.querySelector('[data-quadro][data-ativo]') as HTMLElement | null;
+      if (!q) return null;
+      const x = agulha.getBoundingClientRect().left;
+      const r = q.getBoundingClientRect();
+      return { i: Number(q.dataset.quadro), sob: r.left <= x && x <= r.right };
+    });
+
+  test('rolando, a película corre na horizontal e o quadro aceso fica sob a agulha', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'Película só no desktop com mouse');
+    await page.goto('/');
+    await page.locator('#trabalhos').scrollIntoViewIfNeeded();
+    await expect(page.locator('.pelicula-agulha')).toBeVisible();
+    await expect.poll(() => sobAgulha(page)).toEqual({ i: 0, sob: true });
+    for (let k = 0; k < 6; k++) {
+      await page.mouse.wheel(0, 500);
+      await page.waitForTimeout(150);
+    }
+    await expect
+      .poll(async () => {
+        const e = await sobAgulha(page);
+        return e !== null && e.i > 0 && e.sob;
+      })
+      .toBe(true);
+  });
+
+  test('no teclado, o quadro focado vai para baixo da agulha', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'Película só no desktop com mouse');
+    await page.goto('/');
+    await page.locator('#trabalhos').scrollIntoViewIfNeeded();
+    await page.locator('[data-quadro="3"] a').focus();
+    await expect.poll(() => sobAgulha(page)).toEqual({ i: 3, sob: true });
+  });
+
+  test('no celular e com movimento reduzido, os quadros ficam um embaixo do outro, sem prender a rolagem', async ({ page, isMobile }) => {
+    if (!isMobile) await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/');
+    await expect(page.locator('.pelicula-agulha')).toBeHidden();
+    await expect(page.locator('.pin-spacer #trabalhos')).toHaveCount(0);
+    const esquerdas = await page.locator('[data-quadro]').evaluateAll((qs) => qs.map((q) => Math.round(q.getBoundingClientRect().left)));
+    expect(Math.min(...esquerdas)).toBeGreaterThanOrEqual(0);
   });
 });

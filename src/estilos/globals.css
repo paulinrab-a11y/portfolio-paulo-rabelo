@@ -347,20 +347,6 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
   animation-timing-function: var(--ease-cine);
 }
 
-/* Prévia que segue o cursor */
-.previa-flutuante {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 40;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 180ms var(--ease-cine);
-}
-.previa-flutuante[data-visivel="true"] {
-  opacity: 1;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html[data-abertura] .abertura {
     display: none;
@@ -383,9 +369,6 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
   ::view-transition-old(*),
   ::view-transition-new(*) {
     animation: none !important;
-  }
-  .previa-flutuante {
-    transition: none;
   }
   .so-movimento {
     display: none !important;
@@ -459,5 +442,86 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
 @media (hover: hover) and (pointer: fine) {
   .corte-reel:not([data-ativo]):hover img {
     opacity: 0.7;
+  }
+}
+
+/* Destaques como película (Selecionados.tsx). Fora do desktop com mouse, ou com
+   movimento reduzido, os quadros ficam em grade, um embaixo do outro. */
+.pelicula-midia {
+  aspect-ratio: var(--razao);
+  width: 100%;
+}
+.pelicula-quadros {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px 24px;
+}
+@media (min-width: 640px) {
+  .pelicula-quadros {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.pelicula-fim {
+  margin-top: 48px;
+}
+.pelicula-agulha {
+  display: none;
+}
+@media (min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .pelicula {
+    --altura-quadro: min(50vh, 520px);
+    --vao: clamp(40px, 5vw, 96px);
+    min-height: 100svh;
+    overflow: hidden;
+    padding-top: calc(var(--cabecalho) + 24px);
+    padding-bottom: 32px;
+  }
+  /* A agulha fica no meio da tela; o primeiro quadro começa centrado nela */
+  .pelicula-trilho {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--vao);
+    width: max-content;
+    padding-left: max(0px, calc(50vw - var(--margem) - min(var(--altura-quadro) * var(--razao-primeiro), 60vw) / 2));
+    padding-right: 50vw;
+    will-change: transform;
+  }
+  /* Régua de timecode que corre junto com os quadros */
+  .pelicula-trilho::before {
+    content: "";
+    position: absolute;
+    inset: -28px 0 auto;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, var(--color-linha) 0 1px, transparent 1px 24px);
+  }
+  .pelicula-quadros {
+    display: flex;
+    gap: var(--vao);
+  }
+  .pelicula-quadro {
+    flex: none;
+    width: min(calc(var(--altura-quadro) * var(--razao)), 60vw);
+    opacity: 0.36;
+    transition: opacity 240ms var(--ease-cine);
+  }
+  .pelicula-quadro[data-ativo],
+  .pelicula-quadro:focus-within {
+    opacity: 1;
+  }
+  .pelicula-fim {
+    flex: none;
+    align-self: center;
+    margin-top: 0;
+  }
+  .pelicula-agulha {
+    display: block;
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    left: calc(50vw - var(--margem) - 1px);
+    width: 2px;
+    background: var(--color-rec);
+    pointer-events: none;
   }
 }
