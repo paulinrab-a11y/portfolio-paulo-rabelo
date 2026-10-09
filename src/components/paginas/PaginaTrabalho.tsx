@@ -6,6 +6,7 @@ import { ViewTransition } from 'react';
 import { JsonLd } from '@/components/JsonLd';
 import { SeloIA } from '@/components/SeloIA';
 import { Player } from '@/components/trabalhos/Player';
+import { ProximoCorte } from '@/components/trabalhos/ProximoCorte';
 import { abas, type Idioma, slugAba } from '@/data/idiomas';
 import { servicos } from '@/data/servicos';
 import { trabalhos } from '@/data/trabalhos';
@@ -16,6 +17,7 @@ import { caminho } from '@/lib/rotas';
 import { breadcrumbLd, trabalhoLd } from '@/lib/seo';
 import { servicoDaCategoria } from '@/lib/servicos';
 import { SITE_URL } from '@/lib/site';
+import { timecode } from '@/lib/timecode';
 import { buscar, proximo } from '@/lib/trabalhos';
 
 /** Slugs estáticos de /trabalhos/<slug> no idioma: as três abas e cada trabalho */
@@ -47,6 +49,8 @@ export function PaginaTrabalho({ lang, slug }: { lang: Idioma; slug: string }) {
   const seguinte = trabalhoEm(proximo(trabalhos, t.slug), lang);
   const vertical = m.orientation === 'vertical';
   const video = ehVideo(m);
+  // Duração do clipe no player (o trecho mostrado no site, não a obra original)
+  const duracao = video ? (m.full?.duration ?? m.preview?.duration ?? 0) : 0;
   // A imagem principal já está no palco: não repete na galeria
   const galeria = (m.images ?? []).filter((i) => (i.label !== 'thumb' || !video) && i.src !== m.poster.avif);
 
@@ -83,8 +87,22 @@ export function PaginaTrabalho({ lang, slug }: { lang: Idioma; slug: string }) {
       <div className={vertical || !video ? 'margem grade gap-y-10 pt-8 pb-16 lg:pt-12' : 'pb-12'}>
         {/* Player no topo: o trabalho é o conteúdo principal */}
         <div className={vertical || !video ? 'relative col-span-12 lg:col-span-5' : 'relative mx-auto max-w-[1600px] lg:px-[var(--margem)] lg:pt-8'}>
+          {/* Monitor de fonte: o clipe na ilha de edição, com a trilha e a duração */}
+          <p className="rotulo mb-3 flex items-center justify-between gap-4 px-[var(--margem)] text-cinza lg:px-0">
+            <span className="flex items-center gap-2 text-creme">
+              <span className="rec-ponto" /> {tx.trabalho.fonte} · {t.trilha} {tx.trilhas[t.trilha]}
+            </span>
+            {duracao > 0 && <span className="tc text-creme">{timecode(duracao * 1000)}</span>}
+          </p>
           <ViewTransition name={`trabalho-${t.slug}`} share="trabalho" default="none">
-            <div>{palco}</div>
+            <div className="monitor relative">
+              {palco}
+              {/* Cantos do visor (só no desktop: no celular o vídeo vai de ponta a ponta) */}
+              <span aria-hidden="true" className="pointer-events-none absolute -top-2 -left-2 hidden h-5 w-5 border-t-2 border-l-2 border-creme/70 lg:block" />
+              <span aria-hidden="true" className="pointer-events-none absolute -top-2 -right-2 hidden h-5 w-5 border-t-2 border-r-2 border-creme/70 lg:block" />
+              <span aria-hidden="true" className="pointer-events-none absolute -bottom-2 -left-2 hidden h-5 w-5 border-b-2 border-l-2 border-creme/70 lg:block" />
+              <span aria-hidden="true" className="pointer-events-none absolute -right-2 -bottom-2 hidden h-5 w-5 border-r-2 border-b-2 border-creme/70 lg:block" />
+            </div>
           </ViewTransition>
           {t.feitoComIA && <SeloIA lang={lang} className="absolute top-3 left-3 lg:left-[calc(var(--margem)+12px)]" />}
         </div>
@@ -177,10 +195,13 @@ export function PaginaTrabalho({ lang, slug }: { lang: Idioma; slug: string }) {
       )}
 
       <nav aria-label={tx.trabalho.proximoAria} className="border-t border-linha">
-        <Link href={caminho(lang, { pagina: 'trabalhos', trabalho: seguinte.slug })} className="margem group flex flex-col gap-2 py-16 hover:bg-carvao md:py-24">
-          <span className="rotulo text-cinza">{tx.trabalho.proximo}</span>
-          <span className="titulo-display text-[clamp(48px,9vw,160px)] group-hover:text-rec">{seguinte.titulo}</span>
-        </Link>
+        <ProximoCorte
+          href={caminho(lang, { pagina: 'trabalhos', trabalho: seguinte.slug })}
+          titulo={seguinte.titulo}
+          rotulo={tx.trabalho.proximo}
+          rotuloAria={`${tx.trabalho.proximoAria}${tx.doisPontos}${seguinte.titulo}`}
+          midia={midia(seguinte.midia)}
+        />
       </nav>
     </article>
   );

@@ -118,6 +118,8 @@ const pt = {
     proximoAria: 'Próximo trabalho',
     ampliar: 'Ampliar ↗',
     verSite: 'Ver o site no ar',
+    /** Monitor de fonte: onde o clipe aparece na ilha de edição */
+    fonte: 'Fonte',
   },
   player: {
     video: 'Vídeo',
@@ -279,6 +281,7 @@ const en: Textos = {
     proximoAria: 'Next project',
     ampliar: 'Enlarge ↗',
     verSite: 'Visit the live site',
+    fonte: 'Source',
   },
   player: {
     video: 'Video',
@@ -438,6 +441,7 @@ const es: Textos = {
     proximoAria: 'Siguiente trabajo',
     ampliar: 'Ampliar ↗',
     verSite: 'Ver el sitio en línea',
+    fonte: 'Fuente',
   },
   player: {
     video: 'Vídeo',
@@ -597,6 +601,7 @@ const zh: Textos = {
     proximoAria: '下一个作品',
     ampliar: '放大 ↗',
     verSite: '访问线上网站',
+    fonte: '素材',
   },
   player: {
     video: '视频',

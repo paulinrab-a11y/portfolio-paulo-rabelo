@@ -146,3 +146,38 @@ test('o poster do card da página de serviço voa até o topo da página do trab
   await page.waitForURL(new RegExp(`/trabalhos/${slug}$`));
   await expect.poll(() => page.evaluate(() => (window as unknown as { grupos: string[] }).grupos)).toContain(`::view-transition-group(trabalho-${slug})`);
 });
+
+test.describe('página de trabalho: monitor de fonte e próximo corte', () => {
+  test('o player tem a barra do monitor de fonte com a trilha e a duração', async ({ page }) => {
+    await page.goto('/trabalhos/clipe-santxx-azam-mc');
+    const barra = page.locator('article p.rotulo').filter({ hasText: 'Fonte' }).first();
+    await expect(barra).toContainText('V1');
+    await expect(barra).toContainText('00:01:00:00');
+  });
+
+  test('rolando até o fim, o vídeo do próximo trabalho avança com a rolagem (jog)', { tag: '@video' }, async ({ page, isMobile, browserName }) => {
+    test.skip(isMobile || browserName === 'webkit', 'Jog só no desktop com mouse');
+    await page.goto('/trabalhos/clipe-santxx-azam-mc');
+    const proximo = page.locator('.proximo-corte');
+    await expect(proximo).toHaveAttribute('href', '/trabalhos/visualizer-anjo005');
+    const tempo = () => proximo.locator('video').evaluate((v: HTMLVideoElement) => v.currentTime);
+    // Chega perto da seção (o vídeo começa a carregar) e depois rola mais um pouco
+    await page.evaluate(() => {
+      const el = document.querySelector('.proximo-corte') as HTMLElement;
+      window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.9);
+    });
+    await expect.poll(() => proximo.locator('video').evaluate((v: HTMLVideoElement) => v.readyState)).toBeGreaterThan(0);
+    const antes = await tempo();
+    await page.evaluate(() => window.scrollBy(0, 400));
+    await expect.poll(tempo).toBeGreaterThan(antes + 0.5);
+  });
+
+  test('no celular, o próximo corte mostra o quadro parado, sem vídeo', async ({ page, isMobile }) => {
+    test.skip(!isMobile, 'Comportamento do celular');
+    await page.goto('/trabalhos/clipe-santxx-azam-mc');
+    const proximo = page.locator('.proximo-corte');
+    await proximo.scrollIntoViewIfNeeded();
+    await expect(proximo.locator('img').first()).toBeVisible();
+    await expect(proximo.locator('video')).toBeHidden();
+  });
+});

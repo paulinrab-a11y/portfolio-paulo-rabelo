@@ -525,3 +525,26 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
     pointer-events: none;
   }
 }
+
+/* Próximo corte (página de trabalho): jog do vídeo com a rolagem só no desktop
+   com mouse e movimento liberado; fora disso, fica o quadro parado */
+.jog-video {
+  opacity: 0;
+  transition: opacity 240ms var(--ease-cine);
+}
+.jog-video[data-pronto] {
+  opacity: 1;
+}
+.jog-regua {
+  display: none;
+}
+@media (min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .jog-regua {
+    display: flex;
+  }
+}
+@media (max-width: 1023px), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .jog-video {
+    display: none;
+  }
+}
