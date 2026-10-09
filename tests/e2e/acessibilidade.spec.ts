@@ -51,3 +51,28 @@ test.describe('acessibilidade', () => {
     });
   }
 });
+
+test.describe('foco do teclado e cabeçalho fixo (WCAG 2.4.11 e 2.4.12)', () => {
+  for (const rota of ['/trabalhos', '/servicos/editor-de-video']) {
+    test(`voltando com Shift+Tab, o foco não fica sob o cabeçalho em ${rota}`, async ({ page, isMobile }) => {
+      test.skip(isMobile, 'Navegação por teclado: desktop');
+      await page.addInitScript(() => sessionStorage.setItem('abertura-vista', '1'));
+      await page.goto(rota);
+      for (let i = 0; i < 40; i++) await page.keyboard.press('Tab');
+      const cobertos: string[] = [];
+      for (let i = 0; i < 25; i++) {
+        await page.keyboard.press('Shift+Tab');
+        const coberto = await page.evaluate(() => {
+          const el = document.activeElement as HTMLElement | null;
+          // O cabeçalho e o link "Pular para o conteúdo" (fixo, acima de tudo) ficam de fora
+          if (!el || el === document.body || el.closest('header') || getComputedStyle(el).position === 'fixed') return null;
+          const fundo = (document.querySelector('header') as HTMLElement).getBoundingClientRect().bottom;
+          const r = el.getBoundingClientRect();
+          return r.top < fundo - 1 ? `${(el.textContent ?? '').trim().slice(0, 30)} (topo ${Math.round(r.top)})` : null;
+        });
+        if (coberto) cobertos.push(coberto);
+      }
+      expect(cobertos).toEqual([]);
+    });
+  }
+});

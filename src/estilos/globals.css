@@ -30,6 +30,8 @@ html {
   color: var(--color-creme);
   -webkit-text-size-adjust: 100%;
   scrollbar-color: var(--color-linha) var(--color-preto);
+  /* O cabeçalho é fixo: âncoras e o foco do teclado param abaixo dele (WCAG 2.4.11 e 2.4.12) */
+  scroll-padding-top: calc(var(--cabecalho) + 12px);
 }
 
 body {
