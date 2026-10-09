@@ -426,3 +426,38 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
     color: #000;
   }
 }
+
+/* Herói: monitor de programa e mini timeline dos cortes do reel */
+.monitor {
+  box-shadow: 0 0 0 1px var(--color-linha);
+}
+/* A agulha anda sobre a trilha a cada quadro: repinturas ficam presas aqui */
+.trilha-reel {
+  contain: paint;
+}
+/* Clipe na trilha: o quadro do trabalho fica apagado; o que está no monitor acende.
+   Só opacidade (filtro custa mais para pintar a cada quadro). */
+.corte-reel img {
+  opacity: 0.32;
+  transition: opacity 160ms var(--ease-cine);
+}
+.corte-reel::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--color-rec);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.corte-reel[data-ativo] img {
+  opacity: 1;
+}
+.corte-reel[data-ativo]::after {
+  transform: scaleX(1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .corte-reel:not([data-ativo]):hover img {
+    opacity: 0.7;
+  }
+}
