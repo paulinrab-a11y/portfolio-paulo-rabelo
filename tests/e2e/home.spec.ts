@@ -177,3 +177,21 @@ test.describe('herói: monitor e mini timeline do reel', () => {
       .toBe(true);
   });
 });
+
+test('manifesto: a agência inteira numa ilha de edição, em cada idioma', async ({ page }) => {
+  await page.addInitScript(() => sessionStorage.setItem('abertura-vista', '1'));
+  await page.goto('/');
+  const manifesto = page.getByRole('region', { name: 'Manifesto' });
+  await expect(manifesto).toContainText('Uma agência inteira cabe numa ilha de edição.');
+  await expect(manifesto).toContainText('A minha.');
+  // Acento e til não podem ser cortados pela máscara de cada linha
+  const folgas = await manifesto.locator('[data-linha]').evaluateAll((linhas) =>
+    linhas.map((l) => {
+      const mascara = (l.parentElement as HTMLElement).getBoundingClientRect();
+      return (l.getBoundingClientRect().top - mascara.top) / parseFloat(getComputedStyle(l).fontSize);
+    }),
+  );
+  for (const f of folgas) expect(f).toBeGreaterThan(0.15);
+  await page.goto('/en');
+  await expect(page.getByRole('region', { name: 'Manifesto' })).toContainText('A whole agency fits in one editing suite.');
+});

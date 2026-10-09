@@ -29,13 +29,14 @@ export function Manifesto({ lang, linhas }: { lang: Idioma; linhas: readonly [st
       <p data-manifesto-rotulo className="rotulo col-span-12 mb-8 text-rec md:col-span-2 md:mb-0 md:pt-4">
         {tx.rotulo}
       </p>
+      {/* Cada linha sobe de dentro de uma máscara; o respiro em cima (compensado na margem) é para acento e til não serem cortados */}
       <p className="titulo-display col-span-12 text-[clamp(44px,8.4vw,148px)] md:col-span-10">
-        <span className="block overflow-hidden pb-[0.06em]">
+        <span className="-mt-[0.18em] block overflow-hidden pt-[0.18em] pb-[0.06em]">
           <span data-linha className="block">
             {linha1}
           </span>
         </span>
-        <span className="block overflow-hidden pb-[0.06em]">
+        <span className="-mt-[0.18em] block overflow-hidden pt-[0.18em] pb-[0.06em]">
           <span data-linha className="block text-cinza">
             {linha2}
           </span>

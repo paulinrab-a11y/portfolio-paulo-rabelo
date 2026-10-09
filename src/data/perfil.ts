@@ -76,4 +76,5 @@ export const clientes: Array<{ nome: string; logo?: { src: string; largura: numb
 ];
 
 /** Manifesto da home, escolhido pelo Paulo em 05/10/2026 */
-export const manifesto = ['Edito como quem monta um filme.', 'Mesmo quando é um story de 15 segundos.'] as const;
+/** Agência de um homem só: roteiro, edição, arte, site e social media, tudo com o Paulo */
+export const manifesto = ['Uma agência inteira cabe numa ilha de edição.', 'A minha.'] as const;

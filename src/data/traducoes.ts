@@ -52,7 +52,7 @@ export const perfilEm: Record<Traduzido, TraducaoPerfil> = {
       'I founded WhyNot Visuals, an audiovisual and marketing studio for businesses, and I am the art director of WhyNot Records, a label and production company for trap music videos.',
       'For 4 years I have edited long-form YouTube and talking head content, with creative direction alongside scriptwriters.',
     ],
-    manifesto: ['I edit like I am cutting a film.', 'Even when it is a 15-second story.'],
+    manifesto: ['A whole agency fits in one editing suite.', 'Mine.'],
     mensagemWhatsapp: 'Hi Paulo! I saw your portfolio and would like to talk about a project.',
     rotulos: { whatsapp: 'WhatsApp', email: 'Email', linkedin: 'LinkedIn', instagram: 'WhyNot on Instagram' },
     experiencias: {
@@ -84,7 +84,7 @@ export const perfilEm: Record<Traduzido, TraducaoPerfil> = {
       'Fundé WhyNot Visuals, una empresa de audiovisual y marketing para negocios, y soy director de arte de WhyNot Records, sello y productora de videoclips de trap.',
       'Desde hace 4 años edito contenido long-form para YouTube y talking head, con dirección creativa junto a guionistas.',
     ],
-    manifesto: ['Edito como quien monta una película.', 'Incluso cuando es una story de 15 segundos.'],
+    manifesto: ['Una agencia entera cabe en una sala de edición.', 'La mía.'],
     mensagemWhatsapp: '¡Hola, Paulo! Vi tu portafolio y quiero hablar sobre un proyecto.',
     rotulos: { whatsapp: 'WhatsApp', email: 'Correo', linkedin: 'LinkedIn', instagram: 'Instagram de WhyNot' },
     experiencias: {
@@ -112,7 +112,7 @@ export const perfilEm: Record<Traduzido, TraducaoPerfil> = {
     servicos: ['视频剪辑', '动态设计与视觉特效', '调色', '艺术指导', '生成式 AI 视频', '网站', '社交媒体', '摄影'],
     ferramentas: ['Premiere Pro', 'After Effects', 'DaVinci Resolve', 'Photoshop', 'Canva', '生成式 AI（Higgsfield）'],
     bio: ['我是巴西圣保罗的视频剪辑师、动态设计师和艺术总监。', '我创办了 WhyNot Visuals，为企业提供视听制作和营销服务；同时担任 WhyNot Records 的艺术总监，这是一家专注于说唱（trap）MV 的厂牌和制作公司。', '四年来，我为 YouTube 剪辑长视频和口播内容，并与编剧一起负责创意方向。'],
-    manifesto: ['我像剪电影一样剪辑。', '哪怕只是一条 15 秒的快拍。'],
+    manifesto: ['一整家营销公司，装得进一间剪辑室。', '我的这间。'],
     mensagemWhatsapp: '你好，Paulo！我看了你的作品集，想和你聊一个项目。',
     rotulos: { whatsapp: 'WhatsApp', email: '电子邮件', linkedin: 'LinkedIn', instagram: 'WhyNot 的 Instagram' },
     experiencias: {
