@@ -120,3 +120,29 @@ test.describe('outras páginas', () => {
     await expect(page.getByText(/Rabelo Design/)).toBeVisible();
   });
 });
+
+test('o poster do card da página de serviço voa até o topo da página do trabalho', async ({ page, browserName, isMobile }) => {
+  test.skip(browserName !== 'chromium' || isMobile, 'View Transitions conferida no Chromium de desktop');
+  await page.goto('/servicos/editor-de-video');
+  // Anota os grupos animados de cada View Transition
+  await page.evaluate(() => {
+    const w = window as unknown as { grupos: string[] };
+    w.grupos = [];
+    const original = document.startViewTransition.bind(document);
+    document.startViewTransition = ((arg: Parameters<typeof original>[0]) => {
+      const t = original(arg);
+      t.ready.then(() => {
+        for (const a of document.getAnimations()) {
+          const pseudo = (a.effect as KeyframeEffect | null)?.pseudoElement;
+          if (pseudo?.startsWith('::view-transition-group(')) w.grupos.push(pseudo);
+        }
+      });
+      return t;
+    }) as typeof document.startViewTransition;
+  });
+  const card = page.locator('main a[href^="/trabalhos/"]').first();
+  const slug = (await card.getAttribute('href'))?.split('/').pop();
+  await card.click();
+  await page.waitForURL(new RegExp(`/trabalhos/${slug}$`));
+  await expect.poll(() => page.evaluate(() => (window as unknown as { grupos: string[] }).grupos)).toContain(`::view-transition-group(trabalho-${slug})`);
+});
