@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import { SeloIA } from '@/components/SeloIA';
+import type { Idioma } from '@/data/idiomas';
 import type { Midia } from '@/lib/midia';
 import { timecode } from '@/lib/timecode';
 
@@ -14,6 +16,9 @@ interface Props {
   /** Rótulo acessível do link (sem a seta) */
   rotuloAria: string;
   midia: Midia;
+  /** Selo "Feito com IA" no quadro, quando o próximo trabalho foi feito com IA */
+  feitoComIA?: boolean;
+  lang: Idioma;
 }
 
 /** Mouse, tela larga e movimento liberado: o jog só existe aí */
@@ -27,7 +32,7 @@ const CONSULTA_JOG = '(min-width: 1024px) and (pointer: fine) and (prefers-reduc
  * Cada busca espera a anterior terminar (seeked), para não empilhar. No
  * celular e com movimento reduzido, fica o quadro parado.
  */
-export function ProximoCorte({ href, titulo, rotulo, rotuloAria, midia }: Props) {
+export function ProximoCorte({ href, titulo, rotulo, rotuloAria, midia, feitoComIA, lang }: Props) {
   const raiz = useRef<HTMLAnchorElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const barra = useRef<HTMLSpanElement>(null);
@@ -127,6 +132,7 @@ export function ProximoCorte({ href, titulo, rotulo, rotuloAria, midia }: Props)
               <source src={trecho.mp4} type="video/mp4" />
             </video>
           )}
+          {feitoComIA && <SeloIA lang={lang} className="absolute top-3 left-3" />}
         </span>
         {trecho && (
           <span className="jog-regua rotulo mt-4 flex items-center gap-4 text-cinza" aria-hidden="true">

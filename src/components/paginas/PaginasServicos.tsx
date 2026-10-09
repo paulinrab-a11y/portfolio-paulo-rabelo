@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CardTrabalho } from '@/components/CardTrabalho';
 import { JsonLd } from '@/components/JsonLd';
+import { SeloIA } from '@/components/SeloIA';
+import { VideoLoop } from '@/components/VideoLoop';
 import type { Idioma } from '@/data/idiomas';
 import { servicos } from '@/data/servicos';
 import { trabalhos } from '@/data/trabalhos';
@@ -11,7 +13,7 @@ import { metadadosPagina } from '@/lib/metadados';
 import { midia } from '@/lib/midia';
 import { caminho } from '@/lib/rotas';
 import { breadcrumbLd, servicoLd } from '@/lib/seo';
-import { buscarServico, servicosComTrabalho, trabalhosDoServico } from '@/lib/servicos';
+import { buscarServico, servicosComTrabalho, trabalhoDaVitrine, trabalhosDoServico } from '@/lib/servicos';
 import { SITE_URL } from '@/lib/site';
 
 /** Slugs do serviço no idioma, para generateStaticParams */
@@ -59,14 +61,25 @@ export function PaginaServicos({ lang }: { lang: Idioma }) {
       <ol className="border-t border-linha">
         {lista.map((pt, i) => {
           const s = servicoEm(pt, lang);
-          const n = trabalhosDoServico(pt, trabalhos).length;
+          const doServico = trabalhosDoServico(pt, trabalhos);
           return (
             <li key={pt.slug} className="border-b border-linha">
-              <Link href={caminho(lang, { pagina: 'servicos', servico: pt.slug })} className="group grid grid-cols-12 items-baseline gap-4 py-6">
-                <span className="rotulo col-span-2 text-cinza lg:col-span-1">{String(i + 1).padStart(2, '0')}</span>
-                <span className="titulo-display col-span-10 text-[clamp(32px,4.4vw,64px)] group-hover:text-rec lg:col-span-6">{s.titulo}</span>
-                <span className="col-span-10 col-start-3 text-cinza lg:col-span-4 lg:col-start-auto">{s.texto[0]}</span>
-                <span className="rotulo col-span-10 col-start-3 text-cinza lg:col-span-1 lg:col-start-auto lg:text-right">{tx.servicos.contagem(n)}</span>
+              <Link href={caminho(lang, { pagina: 'servicos', servico: pt.slug })} className="group grid grid-cols-12 items-center gap-x-4 gap-y-4 py-7">
+                <span className="rotulo col-span-2 self-start pt-3 text-cinza lg:col-span-1">{String(i + 1).padStart(2, '0')}</span>
+                <span className="col-span-10 lg:col-span-6">
+                  <span className="titulo-display block text-[clamp(32px,4.4vw,64px)] transition-colors group-hover:text-rec group-focus-visible:text-rec">{s.titulo}</span>
+                  <span className="mt-2 block max-w-[56ch] text-cinza">{s.texto[0]}</span>
+                </span>
+                {/* Trilha com um quadro de cada trabalho do serviço (decorativa: a contagem diz quantos são) */}
+                <span aria-hidden="true" className="trilha-servico col-span-10 col-start-3 flex h-12 gap-px bg-linha lg:col-span-4 lg:col-start-auto lg:h-16">
+                  {doServico.slice(0, 6).map((t) => (
+                    <span key={t.slug} className="corte-reel relative min-w-0 flex-1 overflow-hidden bg-carvao">
+                      {/* biome-ignore lint/performance/noImgElement: miniatura decorativa, o mesmo poster das outras páginas */}
+                      <img src={midia(t.midia).poster.avif} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+                    </span>
+                  ))}
+                </span>
+                <span className="rotulo col-span-10 col-start-3 text-cinza lg:col-span-1 lg:col-start-auto lg:text-right">{tx.servicos.contagem(doServico.length)}</span>
               </Link>
             </li>
           );
@@ -86,6 +99,9 @@ export function PaginaServico({ lang, slug }: { lang: Idioma; slug: string }) {
   const lista = trabalhosDoServico(base, trabalhos).map((t) => trabalhoEm(t, lang));
   const outros = servicosComTrabalho(servicos, trabalhos).filter((o) => o.slug !== base.slug);
   const aqui = caminho(lang, { pagina: 'servicos', servico: base.slug });
+  // No monitor: um trabalho cuja categoria principal é deste serviço
+  const noMonitor = trabalhoDaVitrine(base, lista);
+  const midiaMonitor = noMonitor ? midia(noMonitor.midia) : null;
 
   return (
     <>
@@ -109,25 +125,48 @@ export function PaginaServico({ lang, slug }: { lang: Idioma; slug: string }) {
         <h1 id="servico-titulo" className="titulo-display col-span-12 text-[clamp(56px,10vw,168px)] lg:col-span-10">
           {s.titulo}
         </h1>
-        <div className="col-span-12 space-y-4 text-xl leading-relaxed lg:col-span-7">
-          {s.texto.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-          {/* Quem contrata busca pelo nome das ferramentas; a lista é a do perfil, não deste serviço */}
-          <p className="pt-2 text-base text-cinza">
-            <span className="rotulo mr-3 text-creme">{tx.servicos.ferramentas}</span>
-            {ferramentas.join(tx.separadorLista)}
-            {tx.pontoFinal}
-          </p>
+        {/* Texto e botões juntos: não dependem da altura do monitor ao lado */}
+        <div className="col-span-12 space-y-8 lg:col-span-6">
+          <div className="space-y-4 text-xl leading-relaxed">
+            {s.texto.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+            {/* Quem contrata busca pelo nome das ferramentas; a lista é a do perfil, não deste serviço */}
+            <p className="pt-2 text-base text-cinza">
+              <span className="rotulo mr-3 text-creme">{tx.servicos.ferramentas}</span>
+              {ferramentas.join(tx.separadorLista)}
+              {tx.pontoFinal}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-start gap-3">
+            <a href={contato.whatsapp.href} target="_blank" rel="noopener noreferrer" className="botao botao-rec">
+              {tx.servicos.whatsapp}
+            </a>
+            <a href={contato.email.href} className="botao text-creme">
+              {tx.servicos.email}
+            </a>
+          </div>
         </div>
-        <div className="col-span-12 flex flex-wrap items-start gap-3 lg:col-span-4 lg:col-start-9 lg:justify-end">
-          <a href={contato.whatsapp.href} target="_blank" rel="noopener noreferrer" className="botao botao-rec">
-            {tx.servicos.whatsapp}
-          </a>
-          <a href={contato.email.href} className="botao text-creme">
-            {tx.servicos.email}
-          </a>
-        </div>
+        {noMonitor && midiaMonitor && (
+          <div className="col-span-12 lg:col-span-5 lg:col-start-8 lg:row-start-3">
+            {/* Rótulo, monitor e legenda na largura do quadro (peça vertical estreita o bloco todo) */}
+            <div className="ml-auto" style={{ width: `min(100%, calc(60svh * ${(midiaMonitor.width / midiaMonitor.height).toFixed(3)}))` }}>
+              <p className="rotulo mb-3 flex items-center gap-2 text-creme">
+                <span className="rec-ponto rec-pisca" /> {tx.heroi.programa}
+              </p>
+              <div className="monitor relative">
+                <VideoLoop midia={midiaMonitor} alt={noMonitor.titulo} sizes="(min-width: 1024px) 40vw, 100vw" />
+                {noMonitor.feitoComIA && <SeloIA lang={lang} className="absolute top-3 left-3" />}
+              </div>
+              <p className="mt-3 flex items-baseline gap-3 text-sm">
+                <span className="rotulo text-cinza">{tx.heroi.noMonitor}</span>
+                <Link href={caminho(lang, { pagina: 'trabalhos', trabalho: noMonitor.slug })} className="text-creme hover:text-rec">
+                  {noMonitor.titulo} <span aria-hidden="true">↗</span>
+                </Link>
+              </p>
+            </div>
+          </div>
+        )}
       </section>
 
       <section aria-labelledby="servico-trabalhos" className="margem border-t border-linha py-16">
