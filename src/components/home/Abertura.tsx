@@ -73,15 +73,17 @@ export function Abertura({ lang }: { lang: Idioma }) {
     };
     pedido = requestAnimationFrame(quadro);
 
+    // Seletores só dentro da abertura (skill gsap-react: nada de seletor global)
+    const q = gsap.utils.selector(el);
     tl = gsap.timeline({ onComplete: encerrar });
     tl.set(ponto.current, { opacity: 1 })
       .to(ponto.current, { opacity: 0, duration: 0.12, ease: 'steps(1)' }, 0.12)
       .to(ponto.current, { opacity: 1, duration: 0.12, ease: 'steps(1)' }, 0.24)
       .to(ponto.current, { opacity: 0, duration: 0.12, ease: 'steps(1)' }, 0.36)
       .to(ponto.current, { opacity: 1, duration: 0.12, ease: 'steps(1)' }, 0.48)
-      .to('[data-abertura-conteudo]', { opacity: 0, duration: 0.25, ease: 'power2.in' }, 1.1)
-      .to('[data-barra="topo"]', { scaleY: 0, duration: 0.5, ease: 'expo.inOut' }, 1.1)
-      .to('[data-barra="base"]', { scaleY: 0, duration: 0.5, ease: 'expo.inOut' }, 1.1);
+      .to(q('[data-abertura-conteudo]'), { opacity: 0, duration: 0.25, ease: 'power2.in' }, 1.1)
+      .to(q('[data-barra="topo"]'), { scaleY: 0, duration: 0.5, ease: 'expo.inOut' }, 1.1)
+      .to(q('[data-barra="base"]'), { scaleY: 0, duration: 0.5, ease: 'expo.inOut' }, 1.1);
 
     // Hidratação atrasada: adianta até onde a abertura já estaria (ou encerra)
     const atraso = (performance.now() - inicio) / 1000;
