@@ -162,14 +162,18 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
     },
     'clipe-eu-sou-coyote': {
       titulo: 'Eu Sou Coyote music video',
-      cliente: 'MC Max da CT',
-      funcao: 'Editing',
-      texto: { contexto: 'Music video by MC Max da CT for Bigode da Mooca Records.', oQueFiz: 'I edited the music video in DaVinci Resolve.' },
+      cliente: 'MC Max da CT and Loko Mooca',
+      funcao: 'Editing, VFX and color',
+      texto: {
+        contexto: 'Music video by MC Max da CT and Loko Mooca for Bigode da Mooca Records.',
+        oQueFiz: 'I edited the music video in DaVinci Resolve: cuts on the beat, lip sync, color with a custom LUT and VFX in Fusion, with flashes, punch-ins, slow motion, camera shake and a title animated to the beat.',
+      },
       creditos: [
-        { rotulo: 'Artist', valor: 'MC Max da CT' },
+        { rotulo: 'Artists', valor: 'MC Max da CT and Loko Mooca' },
         { rotulo: 'Track', valor: 'Eu Sou Coyote' },
+        { rotulo: 'Music production', valor: 'RaffTheRaff' },
         { rotulo: 'Label', valor: 'Bigode da Mooca Records' },
-        { rotulo: 'My role', valor: 'Editing in DaVinci Resolve' },
+        { rotulo: 'My role', valor: 'Beat-synced cuts, lip sync, color and VFX in DaVinci Resolve' },
       ],
     },
     'podcast-opiniao-segura-laad': {
@@ -399,14 +403,18 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
     },
     'clipe-eu-sou-coyote': {
       titulo: 'Videoclip Eu Sou Coyote',
-      cliente: 'MC Max da CT',
-      funcao: 'Edición',
-      texto: { contexto: 'Videoclip de MC Max da CT para Bigode da Mooca Records.', oQueFiz: 'Edité el videoclip en DaVinci Resolve.' },
+      cliente: 'MC Max da CT y Loko Mooca',
+      funcao: 'Edición, VFX y color',
+      texto: {
+        contexto: 'Videoclip de MC Max da CT y Loko Mooca para Bigode da Mooca Records.',
+        oQueFiz: 'Edité el videoclip en DaVinci Resolve: cortes al beat, sincronía labial, color con LUT propia y VFX en Fusion, con flashes, punch-ins, cámara lenta, temblor de cámara y el título animado al beat.',
+      },
       creditos: [
-        { rotulo: 'Artista', valor: 'MC Max da CT' },
+        { rotulo: 'Artistas', valor: 'MC Max da CT y Loko Mooca' },
         { rotulo: 'Tema', valor: 'Eu Sou Coyote' },
+        { rotulo: 'Producción musical', valor: 'RaffTheRaff' },
         { rotulo: 'Sello', valor: 'Bigode da Mooca Records' },
-        { rotulo: 'Mi rol', valor: 'Edición en DaVinci Resolve' },
+        { rotulo: 'Mi rol', valor: 'Cortes al beat, sincronía labial, color y VFX en DaVinci Resolve' },
       ],
     },
     'podcast-opiniao-segura-laad': {
@@ -636,14 +644,18 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
     },
     'clipe-eu-sou-coyote': {
       titulo: 'Eu Sou Coyote 音乐录影带',
-      cliente: 'MC Max da CT',
-      funcao: '剪辑',
-      texto: { contexto: 'MC Max da CT 为 Bigode da Mooca Records 推出的音乐录影带。', oQueFiz: '我用 DaVinci Resolve 剪辑了这支音乐录影带。' },
+      cliente: 'MC Max da CT 和 Loko Mooca',
+      funcao: '剪辑、特效与调色',
+      texto: {
+        contexto: 'MC Max da CT 和 Loko Mooca 为 Bigode da Mooca Records 推出的音乐录影带。',
+        oQueFiz: '我用 DaVinci Resolve 剪辑了这支音乐录影带：卡点剪辑、对口型、用自制 LUT 调色，并在 Fusion 中做特效，包括闪光、推近、慢动作、镜头抖动和随节拍出现的标题动画。',
+      },
       creditos: [
-        { rotulo: '艺人', valor: 'MC Max da CT' },
+        { rotulo: '艺人', valor: 'MC Max da CT 和 Loko Mooca' },
         { rotulo: '曲目', valor: 'Eu Sou Coyote' },
+        { rotulo: '音乐制作', valor: 'RaffTheRaff' },
         { rotulo: '厂牌', valor: 'Bigode da Mooca Records' },
-        { rotulo: '我的职责', valor: '用 DaVinci Resolve 剪辑' },
+        { rotulo: '我的职责', valor: '在 DaVinci Resolve 中卡点剪辑、对口型、调色和特效' },
       ],
     },
     'podcast-opiniao-segura-laad': {

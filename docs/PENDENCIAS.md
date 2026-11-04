@@ -32,7 +32,7 @@ O Paulo não vai enviar mais dados: o site fica como está.
 
 ## Abertas em 04/11/2026 (apps e clipes novos)
 
-2. Clipe Eu Sou Coyote: confirmar a função (hoje o site diz só "Edição no DaVinci Resolve"). Artista, faixa e selo vêm da cartela do próprio clipe.
+2. Clipe Eu Sou Coyote: créditos confirmados pela sessão do DaVinci em 04/11. Falta só quem filmou (não aparece).
 3. Clipe Tony Soprano (Azam x OG Rich): falta saber qual é a versão final e a função para entrar.
 4. Jarvis e Fábrica de Phonk: faltam imagens reais (print do Jarvis com a esfera; algo visual da Fábrica). Sem mídia, não entram.
 5. Apps sem o selo "Feito com IA": o selo é para mídia gerada por IA. Confirmar se quer algum aviso de que os apps foram feitos com ajuda do Claude.
