@@ -40,6 +40,7 @@ const pt = {
     video: { nome: 'Vídeo', descricao: 'Edição, motion, VFX, cor, podcast e vídeo com IA' },
     sites: { nome: 'Sites', descricao: 'Sites que criei e implementei' },
     marketing: { nome: 'Marketing', descricao: 'Social media, direção de arte, branding, fotografia e eventos' },
+    apps: { nome: 'Apps', descricao: 'Apps e ferramentas que criei' },
   } satisfies Record<Aba, { nome: string; descricao: string }>,
   categorias: {
     edicao: 'Edição',
@@ -50,8 +51,9 @@ const pt = {
     social: 'Social',
     fotografia: 'Fotografia',
     podcast: 'Podcast',
+    apps: 'Apps',
   },
-  trilhas: { V1: 'Edição e cor', V2: 'Motion e VFX', V3: 'IA generativa', V4: 'Direção de arte' },
+  trilhas: { V1: 'Edição e cor', V2: 'Motion e VFX', V3: 'IA generativa', V4: 'Direção de arte', V5: 'Apps' },
   abertura: { pular: 'Pular' },
   heroi: {
     altVideo: 'Trechos de clipes, visualizer, podcast e vídeo para YouTube editados por Paulo Rabelo',
@@ -205,6 +207,7 @@ const en: Textos = {
     video: { nome: 'Video', descricao: 'Editing, motion, VFX, color, podcasts and AI video' },
     sites: { nome: 'Websites', descricao: 'Websites I designed and built' },
     marketing: { nome: 'Marketing', descricao: 'Social media, art direction, branding, photography and events' },
+    apps: { nome: 'Apps', descricao: 'Apps and tools I built' },
   },
   categorias: {
     edicao: 'Editing',
@@ -215,8 +218,9 @@ const en: Textos = {
     social: 'Social',
     fotografia: 'Photography',
     podcast: 'Podcast',
+    apps: 'Apps',
   },
-  trilhas: { V1: 'Editing and color', V2: 'Motion and VFX', V3: 'Generative AI', V4: 'Art direction' },
+  trilhas: { V1: 'Editing and color', V2: 'Motion and VFX', V3: 'Generative AI', V4: 'Art direction', V5: 'Apps' },
   abertura: { pular: 'Skip' },
   heroi: {
     altVideo: 'Clips from music videos, a visualizer, a podcast and a YouTube video edited by Paulo Rabelo',
@@ -366,6 +370,7 @@ const es: Textos = {
     video: { nome: 'Vídeo', descricao: 'Edición, motion, VFX, color, podcast y vídeo con IA' },
     sites: { nome: 'Sitios web', descricao: 'Sitios web que diseñé e implementé' },
     marketing: { nome: 'Marketing', descricao: 'Redes sociales, dirección de arte, branding, fotografía y eventos' },
+    apps: { nome: 'Apps', descricao: 'Apps y herramientas que creé' },
   },
   categorias: {
     edicao: 'Edición',
@@ -376,8 +381,9 @@ const es: Textos = {
     social: 'Redes',
     fotografia: 'Fotografía',
     podcast: 'Podcast',
+    apps: 'Apps',
   },
-  trilhas: { V1: 'Edición y color', V2: 'Motion y VFX', V3: 'IA generativa', V4: 'Dirección de arte' },
+  trilhas: { V1: 'Edición y color', V2: 'Motion y VFX', V3: 'IA generativa', V4: 'Dirección de arte', V5: 'Apps' },
   abertura: { pular: 'Saltar' },
   heroi: {
     altVideo: 'Fragmentos de videoclips, un visualizer, un podcast y un vídeo de YouTube editados por Paulo Rabelo',
@@ -527,6 +533,7 @@ const zh: Textos = {
     video: { nome: '视频', descricao: '剪辑、动态设计、视觉特效、调色、播客和 AI 视频' },
     sites: { nome: '网站', descricao: '我设计并开发的网站' },
     marketing: { nome: '营销', descricao: '社交媒体、艺术指导、品牌、摄影和活动' },
+    apps: { nome: '应用', descricao: '我开发的应用和工具' },
   },
   categorias: {
     edicao: '剪辑',
@@ -537,8 +544,9 @@ const zh: Textos = {
     social: '社交媒体',
     fotografia: '摄影',
     podcast: '播客',
+    apps: '应用',
   },
-  trilhas: { V1: '剪辑与调色', V2: '动态设计与特效', V3: '生成式 AI', V4: '艺术指导' },
+  trilhas: { V1: '剪辑与调色', V2: '动态设计与特效', V3: '生成式 AI', V4: '艺术指导', V5: '应用' },
   abertura: { pular: '跳过' },
   heroi: {
     altVideo: 'Paulo Rabelo 剪辑的 MV、Visualizer、播客和 YouTube 视频片段',

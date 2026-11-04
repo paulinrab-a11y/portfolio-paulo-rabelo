@@ -29,3 +29,10 @@ O Paulo não vai enviar mais dados: o site fica como está.
 ## Em aberto
 
 1. Domínio próprio: paulinrab.com.br (comprado em 07/10/2026). Na Vercel, o domínio e o www estão no projeto e o www redireciona para paulinrab.com.br. O endereço portfolio-paulo-rabelo.vercel.app redireciona para o domínio (vercel.json). Produção usa NEXT_PUBLIC_SITE_URL=https://paulinrab.com.br. Depois: enviar https://paulinrab.com.br/sitemap.xml no Google Search Console.
+
+## Abertas em 04/11/2026 (apps e clipes novos)
+
+2. Clipe Eu Sou Coyote: confirmar a função (hoje o site diz só "Edição no DaVinci Resolve"). Artista, faixa e selo vêm da cartela do próprio clipe.
+3. Clipe Tony Soprano (Azam x OG Rich): falta saber qual é a versão final e a função para entrar.
+4. Jarvis e Fábrica de Phonk: faltam imagens reais (print do Jarvis com a esfera; algo visual da Fábrica). Sem mídia, não entram.
+5. Apps sem o selo "Feito com IA": o selo é para mídia gerada por IA. Confirmar se quer algum aviso de que os apps foram feitos com ajuda do Claude.

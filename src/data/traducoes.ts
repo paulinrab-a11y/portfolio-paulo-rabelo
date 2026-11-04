@@ -160,6 +160,18 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
         { rotulo: 'Deliverables', valor: 'Visualizer and cover art' },
       ],
     },
+    'clipe-eu-sou-coyote': {
+      titulo: 'Eu Sou Coyote music video',
+      cliente: 'MC Max da CT',
+      funcao: 'Editing',
+      texto: { contexto: 'Music video by MC Max da CT for Bigode da Mooca Records.', oQueFiz: 'I edited the music video in DaVinci Resolve.' },
+      creditos: [
+        { rotulo: 'Artist', valor: 'MC Max da CT' },
+        { rotulo: 'Track', valor: 'Eu Sou Coyote' },
+        { rotulo: 'Label', valor: 'Bigode da Mooca Records' },
+        { rotulo: 'My role', valor: 'Editing in DaVinci Resolve' },
+      ],
+    },
     'podcast-opiniao-segura-laad': {
       titulo: 'Opinião Segura at LAAD',
       cliente: 'Podcast Opinião Segura',
@@ -323,6 +335,43 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
       texto: { contexto: 'Photos from a track event, a trade fair, food, a wedding and a studio.', oQueFiz: 'I took the photos and did the color.' },
       creditos: [{ rotulo: 'My role', valor: 'Photography and color' }],
     },
+    'app-whynot-lab': {
+      titulo: 'WHYNOT LAB',
+      funcao: 'Building a DAW',
+      texto: { contexto: 'A DAW for producing trap and original music, with its own visual identity.', oQueFiz: 'I built the DAW: channel rack, piano roll, playlist, mixer, VST3 plugins and export to MP3, MIDI and stems. It also has an MCP bridge that lets an AI operate the app.' },
+      creditos: [
+        { rotulo: 'Platform', valor: 'Windows' },
+        { rotulo: 'Built with', valor: 'C++, JUCE and Tracktion Engine' },
+        { rotulo: 'License', valor: 'Open source (AGPL-3.0)' },
+      ],
+    },
+    'app-whynot-dj': {
+      titulo: 'WHYNOT DJ',
+      funcao: 'Building a DJ app',
+      texto: { contexto: 'A DJ app with the WHYNOT LAB look.', oQueFiz: 'I built the app: two decks with BPM and beat grid detected when a track loads, sync, keylock, 8 hot cues per deck, loops, tempo-synced effects, an 8-pad sampler and MIDI controller support with a learn mode.' },
+      creditos: [
+        { rotulo: 'Platform', valor: 'Windows' },
+        { rotulo: 'Built with', valor: 'C++ and JUCE' },
+      ],
+    },
+    'app-cortes-da-live': {
+      titulo: 'Cortes da Live',
+      funcao: 'Building a clipping app',
+      texto: {
+        contexto: 'An app that takes a livestream recording and makes vertical clips with captions, ready for Reels and TikTok.',
+        oQueFiz: 'I built the app: it finds the best moments, sorts the clips by type and writes a title and the reason for each one. It also clips podcasts from a YouTube link, with the vertical frame following whoever is speaking.',
+      },
+      creditos: [
+        { rotulo: 'Platform', valor: 'Windows' },
+        { rotulo: 'Clip format', valor: 'Vertical 9:16 with captions' },
+      ],
+    },
+    'app-baixador': {
+      titulo: 'Baixador',
+      funcao: 'Building an app',
+      texto: { contexto: 'An app that downloads video as MP4 or audio as MP3 from a link.', oQueFiz: 'I built the app: a link queue, whole playlists, quality selection and a command line for AI assistants to use.' },
+      creditos: [{ rotulo: 'Platform', valor: 'Windows' }],
+    },
   },
   es: {
     'clipe-santxx-azam-mc': {
@@ -346,6 +395,18 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
         { rotulo: 'Artista', valor: 'Anjo005' },
         { rotulo: 'Mi rol', valor: 'Efectos visuales, motion y portada' },
         { rotulo: 'Entregas', valor: 'Visualizer y portada' },
+      ],
+    },
+    'clipe-eu-sou-coyote': {
+      titulo: 'Videoclip Eu Sou Coyote',
+      cliente: 'MC Max da CT',
+      funcao: 'Edición',
+      texto: { contexto: 'Videoclip de MC Max da CT para Bigode da Mooca Records.', oQueFiz: 'Edité el videoclip en DaVinci Resolve.' },
+      creditos: [
+        { rotulo: 'Artista', valor: 'MC Max da CT' },
+        { rotulo: 'Tema', valor: 'Eu Sou Coyote' },
+        { rotulo: 'Sello', valor: 'Bigode da Mooca Records' },
+        { rotulo: 'Mi rol', valor: 'Edición en DaVinci Resolve' },
       ],
     },
     'podcast-opiniao-segura-laad': {
@@ -511,6 +572,43 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
       texto: { contexto: 'Fotos de un evento de pista, una feria, gastronomía, una boda y un estudio.', oQueFiz: 'Tomé las fotos e hice el color.' },
       creditos: [{ rotulo: 'Mi rol', valor: 'Fotografía y color' }],
     },
+    'app-whynot-lab': {
+      titulo: 'WHYNOT LAB',
+      funcao: 'Creación de una DAW',
+      texto: { contexto: 'DAW para producir trap y música propia, con identidad visual propia.', oQueFiz: 'Creé la DAW: channel rack, piano roll, playlist, mezclador, plugins VST3 y exportación a MP3, MIDI y stems. También tiene un puente MCP que permite que una IA maneje la app.' },
+      creditos: [
+        { rotulo: 'Plataforma', valor: 'Windows' },
+        { rotulo: 'Hecha con', valor: 'C++, JUCE y Tracktion Engine' },
+        { rotulo: 'Licencia', valor: 'Código abierto (AGPL-3.0)' },
+      ],
+    },
+    'app-whynot-dj': {
+      titulo: 'WHYNOT DJ',
+      funcao: 'Creación de una app de DJ',
+      texto: { contexto: 'App de DJ con el estilo visual de WHYNOT LAB.', oQueFiz: 'Creé la app: dos decks con BPM y rejilla de beats detectados al abrir el tema, sync, keylock, 8 hot cues por deck, loops, efectos al tempo del tema, sampler de 8 pads y controladora MIDI con modo aprender.' },
+      creditos: [
+        { rotulo: 'Plataforma', valor: 'Windows' },
+        { rotulo: 'Hecha con', valor: 'C++ y JUCE' },
+      ],
+    },
+    'app-cortes-da-live': {
+      titulo: 'Cortes da Live',
+      funcao: 'Creación de una app de clips',
+      texto: {
+        contexto: 'App que toma la grabación de un directo y genera clips verticales con subtítulos, listos para Reels y TikTok.',
+        oQueFiz: 'Creé la app: encuentra los mejores momentos, separa los clips por tipo y escribe el título y el motivo de cada uno. También corta pódcasts desde un enlace de YouTube, con el encuadre vertical siguiendo a quien habla.',
+      },
+      creditos: [
+        { rotulo: 'Plataforma', valor: 'Windows' },
+        { rotulo: 'Formato de los clips', valor: 'Vertical 9:16 con subtítulos' },
+      ],
+    },
+    'app-baixador': {
+      titulo: 'Baixador',
+      funcao: 'Creación de una app',
+      texto: { contexto: 'App que descarga vídeo en MP4 o audio en MP3 desde un enlace.', oQueFiz: 'Creé la app: cola de enlaces, playlists completas, elección de calidad y una línea de comandos para que la usen asistentes de IA.' },
+      creditos: [{ rotulo: 'Plataforma', valor: 'Windows' }],
+    },
   },
   zh: {
     'clipe-santxx-azam-mc': {
@@ -534,6 +632,18 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
         { rotulo: '艺人', valor: 'Anjo005' },
         { rotulo: '我的职责', valor: '视觉特效、动态设计和封面' },
         { rotulo: '交付内容', valor: 'Visualizer 和封面' },
+      ],
+    },
+    'clipe-eu-sou-coyote': {
+      titulo: 'Eu Sou Coyote 音乐录影带',
+      cliente: 'MC Max da CT',
+      funcao: '剪辑',
+      texto: { contexto: 'MC Max da CT 为 Bigode da Mooca Records 推出的音乐录影带。', oQueFiz: '我用 DaVinci Resolve 剪辑了这支音乐录影带。' },
+      creditos: [
+        { rotulo: '艺人', valor: 'MC Max da CT' },
+        { rotulo: '曲目', valor: 'Eu Sou Coyote' },
+        { rotulo: '厂牌', valor: 'Bigode da Mooca Records' },
+        { rotulo: '我的职责', valor: '用 DaVinci Resolve 剪辑' },
       ],
     },
     'podcast-opiniao-segura-laad': {
@@ -699,6 +809,40 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
       texto: { contexto: '赛道活动、展会、美食、婚礼和影棚的照片。', oQueFiz: '我负责拍摄和调色。' },
       creditos: [{ rotulo: '我的职责', valor: '摄影与调色' }],
     },
+    'app-whynot-lab': {
+      titulo: 'WHYNOT LAB',
+      funcao: '开发一款 DAW',
+      texto: { contexto: '用于制作 trap 和原创音乐的 DAW，拥有自己的视觉风格。', oQueFiz: '我开发了这款 DAW：channel rack、钢琴卷帘、播放列表、混音台、VST3 插件，以及导出 MP3、MIDI 和分轨。它还有一个 MCP 桥接，让 AI 可以操作这个应用。' },
+      creditos: [
+        { rotulo: '平台', valor: 'Windows' },
+        { rotulo: '开发工具', valor: 'C++、JUCE 和 Tracktion Engine' },
+        { rotulo: '许可证', valor: '开源（AGPL-3.0）' },
+      ],
+    },
+    'app-whynot-dj': {
+      titulo: 'WHYNOT DJ',
+      funcao: '开发一款 DJ 应用',
+      texto: { contexto: '采用 WHYNOT LAB 视觉风格的 DJ 应用。', oQueFiz: '我开发了这个应用：两个唱盘，载入歌曲时自动检测 BPM 和节拍网格，同步、调性锁定、每个唱盘 8 个热点、循环、跟随节拍的效果、8 格采样器，以及带学习模式的 MIDI 控制器支持。' },
+      creditos: [
+        { rotulo: '平台', valor: 'Windows' },
+        { rotulo: '开发工具', valor: 'C++ 和 JUCE' },
+      ],
+    },
+    'app-cortes-da-live': {
+      titulo: 'Cortes da Live',
+      funcao: '开发一款切片应用',
+      texto: { contexto: '把直播录像做成带字幕的竖屏切片的应用，可直接发到 Reels 和 TikTok。', oQueFiz: '我开发了这个应用：它找出最精彩的片段，按类型整理切片，并为每段写好标题和理由。它也能从 YouTube 链接剪辑播客，竖屏画面会跟随正在说话的人。' },
+      creditos: [
+        { rotulo: '平台', valor: 'Windows' },
+        { rotulo: '切片格式', valor: '9:16 竖屏，带字幕' },
+      ],
+    },
+    'app-baixador': {
+      titulo: 'Baixador',
+      funcao: '开发一款应用',
+      texto: { contexto: '通过链接下载 MP4 视频或 MP3 音频的应用。', oQueFiz: '我开发了这个应用：链接队列、整个播放列表、画质选择，以及供 AI 助手使用的命令行。' },
+      creditos: [{ rotulo: '平台', valor: 'Windows' }],
+    },
   },
 };
 
@@ -739,6 +883,13 @@ export const servicosEm: Record<Traduzido, Record<string, TraducaoServico>> = {
       tituloSeo: 'Custom website design and build',
       descricao: 'Custom website design and build: OHC Motors, Passem a Respeitar and MH Phones. Paulo Rabelo, WhyNot Visuals.',
       texto: ['I design and build custom websites through WhyNot Visuals, the audiovisual and marketing company I founded.', 'A few that are live: OHC Motors, Passem a Respeitar and MH Phones.'],
+    },
+    'criacao-de-apps': {
+      nome: 'Apps',
+      titulo: 'Audio and video apps',
+      tituloSeo: 'Audio and video app development',
+      descricao: 'Windows apps I built: the WHYNOT LAB DAW, WHYNOT DJ, Cortes da Live and Baixador. Paulo Rabelo, São Paulo.',
+      texto: ['I build apps for my audio and video work.', 'A few: the open source WHYNOT LAB DAW, the WHYNOT DJ app, Cortes da Live, which makes vertical clips from livestreams, and Baixador.'],
     },
     'social-media-e-direcao-de-arte': {
       nome: 'Social media and art direction',
@@ -798,6 +949,13 @@ export const servicosEm: Record<Traduzido, Record<string, TraducaoServico>> = {
       descricao: 'Diseño e implementación de sitios web a medida: OHC Motors, Passem a Respeitar y MH Phones. Paulo Rabelo, WhyNot Visuals.',
       texto: ['Diseño e implemento sitios web a medida con WhyNot Visuals, empresa de audiovisual y marketing que fundé.', 'Algunos en línea: OHC Motors, Passem a Respeitar y MH Phones.'],
     },
+    'criacao-de-apps': {
+      nome: 'Apps',
+      titulo: 'Apps de audio y vídeo',
+      tituloSeo: 'Creación de apps de audio y vídeo',
+      descricao: 'Apps para Windows que creé: la DAW WHYNOT LAB, WHYNOT DJ, Cortes da Live y Baixador. Paulo Rabelo, São Paulo.',
+      texto: ['Creo apps para mi trabajo con audio y vídeo.', 'Algunas: la DAW de código abierto WHYNOT LAB, la app de DJ WHYNOT DJ, Cortes da Live, que genera clips verticales de directos, y Baixador.'],
+    },
     'social-media-e-direcao-de-arte': {
       nome: 'Redes sociales y dirección de arte',
       titulo: 'Redes sociales y dirección de arte',
@@ -856,6 +1014,13 @@ export const servicosEm: Record<Traduzido, Record<string, TraducaoServico>> = {
       descricao: '定制网站的设计与开发：OHC Motors、Passem a Respeitar 和 MH Phones。Paulo Rabelo，WhyNot Visuals。',
       texto: ['我通过自己创办的视听与营销公司 WhyNot Visuals 设计并开发定制网站。', '部分已上线的网站：OHC Motors、Passem a Respeitar 和 MH Phones。'],
     },
+    'criacao-de-apps': {
+      nome: '应用开发',
+      titulo: '音频与视频应用',
+      tituloSeo: '音频与视频应用开发',
+      descricao: '我开发的 Windows 应用：DAW WHYNOT LAB、WHYNOT DJ、Cortes da Live 和 Baixador。Paulo Rabelo，圣保罗。',
+      texto: ['我为自己的音频和视频工作开发应用。', '其中包括：开源 DAW WHYNOT LAB、DJ 应用 WHYNOT DJ、把直播做成竖屏切片的 Cortes da Live，以及 Baixador。'],
+    },
     'social-media-e-direcao-de-arte': {
       nome: '社交媒体与艺术指导',
       titulo: '社交媒体与艺术指导',
@@ -883,6 +1048,16 @@ export const servicosEm: Record<Traduzido, Record<string, TraducaoServico>> = {
 /** Legendas das imagens (texto alternativo), pelo texto em português de media.json */
 export const legendasEm: Record<Traduzido, Record<string, string>> = {
   en: {
+    'WHYNOT DJ: dois decks, mixer no centro, biblioteca e sampler': 'WHYNOT DJ: two decks, mixer in the middle, library and sampler',
+    'WHYNOT DJ: janela da controladora MIDI': 'WHYNOT DJ: MIDI controller window',
+    'WHYNOT LAB: mixer': 'WHYNOT LAB: mixer',
+    'WHYNOT LAB: piano roll com a linha de 808': 'WHYNOT LAB: piano roll with the 808 line',
+    'WHYNOT LAB: channel rack': 'WHYNOT LAB: channel rack',
+    'WHYNOT LAB: playlist': 'WHYNOT LAB: playlist',
+    'WHYNOT LAB: navegador de sons': 'WHYNOT LAB: sound browser',
+    'WHYNOT LAB: sintetizador, modulação': 'WHYNOT LAB: synthesizer, modulation',
+    'Cortes da Live: tela de novo corte, com o arquivo da live ou um link do YouTube': 'Cortes da Live: new clip screen, from the livestream file or a YouTube link',
+    'Baixador: links, formato MP4 ou MP3 e qualidade': 'Baixador: links, MP4 or MP3 format and quality',
     capa: 'cover art',
     'Porsche 911 preto em evento de pista': 'Black Porsche 911 at a track event',
     'Pistola em estande de feira, luz verde': 'Pistol at a trade fair booth, green light',
@@ -912,6 +1087,16 @@ export const legendasEm: Record<Traduzido, Record<string, string>> = {
     'Entrevista em painel com marcas Protecta, UR, Flash, Milipol': 'Interview in front of a Protecta, UR, Flash and Milipol backdrop',
   },
   es: {
+    'WHYNOT DJ: dois decks, mixer no centro, biblioteca e sampler': 'WHYNOT DJ: dos decks, mezclador en el centro, biblioteca y sampler',
+    'WHYNOT DJ: janela da controladora MIDI': 'WHYNOT DJ: ventana de la controladora MIDI',
+    'WHYNOT LAB: mixer': 'WHYNOT LAB: mezclador',
+    'WHYNOT LAB: piano roll com a linha de 808': 'WHYNOT LAB: piano roll con la línea de 808',
+    'WHYNOT LAB: channel rack': 'WHYNOT LAB: channel rack',
+    'WHYNOT LAB: playlist': 'WHYNOT LAB: playlist',
+    'WHYNOT LAB: navegador de sons': 'WHYNOT LAB: navegador de sonidos',
+    'WHYNOT LAB: sintetizador, modulação': 'WHYNOT LAB: sintetizador, modulación',
+    'Cortes da Live: tela de novo corte, com o arquivo da live ou um link do YouTube': 'Cortes da Live: pantalla de nuevo clip, desde el archivo del directo o un enlace de YouTube',
+    'Baixador: links, formato MP4 ou MP3 e qualidade': 'Baixador: enlaces, formato MP4 o MP3 y calidad',
     capa: 'portada',
     'Porsche 911 preto em evento de pista': 'Porsche 911 negro en un evento de pista',
     'Pistola em estande de feira, luz verde': 'Pistola en un stand de feria, luz verde',
@@ -941,6 +1126,16 @@ export const legendasEm: Record<Traduzido, Record<string, string>> = {
     'Entrevista em painel com marcas Protecta, UR, Flash, Milipol': 'Entrevista frente a un panel con las marcas Protecta, UR, Flash y Milipol',
   },
   zh: {
+    'WHYNOT DJ: dois decks, mixer no centro, biblioteca e sampler': 'WHYNOT DJ：两个唱盘，中间是混音台，还有曲库和采样器',
+    'WHYNOT DJ: janela da controladora MIDI': 'WHYNOT DJ：MIDI 控制器窗口',
+    'WHYNOT LAB: mixer': 'WHYNOT LAB：混音台',
+    'WHYNOT LAB: piano roll com a linha de 808': 'WHYNOT LAB：带 808 旋律线的钢琴卷帘',
+    'WHYNOT LAB: channel rack': 'WHYNOT LAB：channel rack',
+    'WHYNOT LAB: playlist': 'WHYNOT LAB：播放列表',
+    'WHYNOT LAB: navegador de sons': 'WHYNOT LAB：音色浏览器',
+    'WHYNOT LAB: sintetizador, modulação': 'WHYNOT LAB：合成器，调制',
+    'Cortes da Live: tela de novo corte, com o arquivo da live ou um link do YouTube': 'Cortes da Live：新建切片界面，可用直播文件或 YouTube 链接',
+    'Baixador: links, formato MP4 ou MP3 e qualidade': 'Baixador：链接、MP4 或 MP3 格式和画质',
     capa: '封面',
     'Porsche 911 preto em evento de pista': '赛道活动上的黑色保时捷 911',
     'Pistola em estande de feira, luz verde': '展会展台上的手枪，绿色灯光',
