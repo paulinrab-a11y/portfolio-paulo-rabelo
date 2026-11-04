@@ -15,6 +15,7 @@ export const categorias = {
   social: 'Social',
   fotografia: 'Fotografia',
   podcast: 'Podcast',
+  apps: 'Apps',
 } as const;
 
 export type Categoria = keyof typeof categorias;
@@ -24,6 +25,7 @@ export const trilhas = {
   V2: 'Motion e VFX',
   V3: 'IA generativa',
   V4: 'Direção de arte',
+  V5: 'Apps',
 } as const;
 
 export type Trilha = keyof typeof trilhas;
@@ -97,6 +99,27 @@ export const trabalhos: Trabalho[] = [
     texto: {
       contexto: 'Visualizer e capa para Anjo005.',
       oQueFiz: 'Fiz os efeitos visuais, o motion do visualizer e a capa.',
+    },
+  },
+  {
+    slug: 'clipe-eu-sou-coyote',
+    titulo: 'Clipe Eu Sou Coyote',
+    cliente: 'MC Max da CT e Loko Mooca',
+    funcao: 'Edição, VFX e cor',
+    categorias: ['edicao', 'motion', 'cor'],
+    trilha: 'V1',
+    abas: ['video'],
+    midia: 'clipe-eu-sou-coyote',
+    creditos: [
+      { rotulo: 'Artistas', valor: 'MC Max da CT e Loko Mooca' },
+      { rotulo: 'Faixa', valor: 'Eu Sou Coyote' },
+      { rotulo: 'Produção musical', valor: 'RaffTheRaff' },
+      { rotulo: 'Selo', valor: 'Bigode da Mooca Records' },
+      { rotulo: 'Minha função', valor: 'Cortes no beat, sincronia labial, cor e VFX no DaVinci Resolve' },
+    ],
+    texto: {
+      contexto: 'Clipe musical de MC Max da CT e Loko Mooca pela Bigode da Mooca Records.',
+      oQueFiz: 'Editei o clipe no DaVinci Resolve: cortes no beat, sincronia labial, cor com LUT própria e VFX no Fusion, com flashes, punch-ins, câmera lenta, tremida e o título animado no beat.',
     },
   },
   {
@@ -389,6 +412,73 @@ export const trabalhos: Trabalho[] = [
     texto: {
       contexto: 'Fotos de evento de pista, feira, gastronomia, casamento e estúdio.',
       oQueFiz: 'Fotografei e fiz a coloração.',
+    },
+  },
+  {
+    slug: 'app-whynot-lab',
+    titulo: 'WHYNOT LAB',
+    funcao: 'Criação de uma DAW',
+    categorias: ['apps'],
+    trilha: 'V5',
+    abas: ['apps'],
+    midia: 'app-whynot-lab',
+    creditos: [
+      { rotulo: 'Plataforma', valor: 'Windows' },
+      { rotulo: 'Feito em', valor: 'C++, JUCE e Tracktion Engine' },
+      { rotulo: 'Licença', valor: 'Código aberto (AGPL-3.0)' },
+    ],
+    texto: {
+      contexto: 'DAW para produzir trap e música autoral, com identidade visual própria.',
+      oQueFiz: 'Criei a DAW: channel rack, piano roll, playlist, mixer, plugins VST3 e exportação em MP3, MIDI e stems. Ela também tem uma ponte MCP que deixa uma IA operar o app.',
+    },
+    link: { rotulo: 'Ver o código no GitHub', href: 'https://github.com/paulinrab-a11y/whynot-lab' },
+  },
+  {
+    slug: 'app-whynot-dj',
+    titulo: 'WHYNOT DJ',
+    funcao: 'Criação de um app de DJ',
+    categorias: ['apps'],
+    trilha: 'V5',
+    abas: ['apps'],
+    midia: 'app-whynot-dj',
+    creditos: [
+      { rotulo: 'Plataforma', valor: 'Windows' },
+      { rotulo: 'Feito em', valor: 'C++ e JUCE' },
+    ],
+    texto: {
+      contexto: 'App de DJ com o visual da WHYNOT LAB.',
+      oQueFiz: 'Criei o app: dois decks com BPM e grade de batidas detectados ao abrir a música, sync, keylock, 8 hot cues por deck, loops, efeitos no tempo da música, sampler de 8 pads e controladora MIDI com modo aprender.',
+    },
+  },
+  {
+    slug: 'app-cortes-da-live',
+    titulo: 'Cortes da Live',
+    funcao: 'Criação de um app de cortes',
+    categorias: ['apps', 'edicao'],
+    trilha: 'V5',
+    abas: ['apps'],
+    midia: 'app-cortes-da-live',
+    creditos: [
+      { rotulo: 'Plataforma', valor: 'Windows' },
+      { rotulo: 'Formato dos cortes', valor: 'Vertical 9:16 com legenda' },
+    ],
+    texto: {
+      contexto: 'App que pega a gravação de uma live e gera cortes verticais com legenda, prontos para Reels e TikTok.',
+      oQueFiz: 'Criei o app: ele acha os melhores momentos, separa os cortes por tipo e escreve o título e o motivo de cada um. Também corta podcasts a partir de um link do YouTube, com o vertical seguindo quem está falando.',
+    },
+  },
+  {
+    slug: 'app-baixador',
+    titulo: 'Baixador',
+    funcao: 'Criação de um app',
+    categorias: ['apps'],
+    trilha: 'V5',
+    abas: ['apps'],
+    midia: 'app-baixador',
+    creditos: [{ rotulo: 'Plataforma', valor: 'Windows' }],
+    texto: {
+      contexto: 'App que baixa vídeo em MP4 ou áudio em MP3 a partir de um link.',
+      oQueFiz: 'Criei o app: fila de links, playlist inteira, escolha de qualidade e uma linha de comando para assistentes de IA usarem.',
     },
   },
 ];

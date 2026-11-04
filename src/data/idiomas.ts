@@ -41,7 +41,7 @@ export const caminhos: Record<Idioma, { base: string } & Record<Exclude<Pagina, 
  * Abas de trabalhos: cada uma fala com um tipo de vaga. Um trabalho pode
  * estar em mais de uma (ex.: UGC com IA é vídeo e marketing).
  */
-export const abas = ['video', 'sites', 'marketing'] as const;
+export const abas = ['video', 'sites', 'marketing', 'apps'] as const;
 
 export type Aba = (typeof abas)[number];
 
@@ -50,6 +50,7 @@ export const slugAba: Record<Aba, Record<Idioma, string>> = {
   video: { pt: 'video', en: 'video', es: 'video', zh: 'video' },
   sites: { pt: 'sites', en: 'websites', es: 'sitios-web', zh: 'websites' },
   marketing: { pt: 'marketing', en: 'marketing', es: 'marketing', zh: 'marketing' },
+  apps: { pt: 'apps', en: 'apps', es: 'apps', zh: 'apps' },
 };
 
 /**
@@ -63,6 +64,7 @@ export const slugServicos: Record<string, Record<Exclude<Idioma, 'pt'>, string>>
   'color-grading': { en: 'color-grading', es: 'color-grading', zh: 'color-grading' },
   'video-com-ia': { en: 'ai-video', es: 'video-con-ia', zh: 'ai-video' },
   'criacao-de-sites': { en: 'websites', es: 'sitios-web', zh: 'websites' },
+  'criacao-de-apps': { en: 'apps', es: 'apps', zh: 'apps' },
   'social-media-e-direcao-de-arte': { en: 'social-media-and-art-direction', es: 'redes-sociales-y-direccion-de-arte', zh: 'social-media-and-art-direction' },
   fotografia: { en: 'photography', es: 'fotografia', zh: 'photography' },
   'edicao-de-podcast': { en: 'podcast-editing', es: 'edicion-de-podcast', zh: 'podcast-editing' },

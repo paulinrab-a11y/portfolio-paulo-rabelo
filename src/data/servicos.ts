@@ -67,6 +67,15 @@ export const servicos: Servico[] = [
     categorias: ['sites'],
   },
   {
+    slug: 'criacao-de-apps',
+    nome: 'Criação de apps',
+    titulo: 'Criação de apps para áudio e vídeo',
+    tituloSeo: 'Criação de apps para áudio e vídeo',
+    descricao: 'Apps para Windows que criei: a DAW WHYNOT LAB, o WHYNOT DJ, o Cortes da Live e o Baixador. Paulo Rabelo, São Paulo.',
+    texto: ['Crio apps para o meu trabalho com áudio e vídeo.', 'Alguns: a DAW WHYNOT LAB, de código aberto, o app de DJ WHYNOT DJ, o Cortes da Live, que gera cortes verticais de lives, e o Baixador.'],
+    categorias: ['apps'],
+  },
+  {
     slug: 'social-media-e-direcao-de-arte',
     nome: 'Social media e direção de arte',
     titulo: 'Social media e direção de arte',

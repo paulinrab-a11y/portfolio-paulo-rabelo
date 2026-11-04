@@ -999,5 +999,158 @@
       "out": "00:00:21:03"
     },
     "source": "gravação ao vivo de https://mh-phones.vercel.app em 2026-10-05"
+  },
+  "app-whynot-dj": {
+    "orientation": "imagem",
+    "width": 1600,
+    "height": 940,
+    "poster": {
+      "avif": "/media/app-whynot-dj/tela.avif",
+      "jpg": "/media/app-whynot-dj/tela.jpg"
+    },
+    "preview": null,
+    "full": null,
+    "images": [
+      {
+        "src": "/media/app-whynot-dj/tela.avif",
+        "fallback": "/media/app-whynot-dj/tela.jpg",
+        "width": 1600,
+        "height": 940,
+        "label": "WHYNOT DJ: dois decks, mixer no centro, biblioteca e sampler"
+      },
+      {
+        "src": "/media/app-whynot-dj/midi.avif",
+        "fallback": "/media/app-whynot-dj/midi.jpg",
+        "width": 640,
+        "height": 680,
+        "label": "WHYNOT DJ: janela da controladora MIDI"
+      }
+    ],
+    "source": "App DJ/tela.png e tela-midi.png (capturas do app)"
+  },
+  "app-whynot-lab": {
+    "orientation": "imagem",
+    "width": 1536,
+    "height": 793,
+    "poster": {
+      "avif": "/media/app-whynot-lab/mixer.avif",
+      "jpg": "/media/app-whynot-lab/mixer.jpg"
+    },
+    "preview": null,
+    "full": null,
+    "images": [
+      {
+        "src": "/media/app-whynot-lab/mixer.avif",
+        "fallback": "/media/app-whynot-lab/mixer.jpg",
+        "width": 1536,
+        "height": 793,
+        "label": "WHYNOT LAB: mixer"
+      },
+      {
+        "src": "/media/app-whynot-lab/piano-roll.avif",
+        "fallback": "/media/app-whynot-lab/piano-roll.jpg",
+        "width": 1536,
+        "height": 793,
+        "label": "WHYNOT LAB: piano roll com a linha de 808"
+      },
+      {
+        "src": "/media/app-whynot-lab/channel-rack.avif",
+        "fallback": "/media/app-whynot-lab/channel-rack.jpg",
+        "width": 1536,
+        "height": 793,
+        "label": "WHYNOT LAB: channel rack"
+      },
+      {
+        "src": "/media/app-whynot-lab/playlist.avif",
+        "fallback": "/media/app-whynot-lab/playlist.jpg",
+        "width": 1536,
+        "height": 793,
+        "label": "WHYNOT LAB: playlist"
+      },
+      {
+        "src": "/media/app-whynot-lab/navegador.avif",
+        "fallback": "/media/app-whynot-lab/navegador.jpg",
+        "width": 1536,
+        "height": 793,
+        "label": "WHYNOT LAB: navegador de sons"
+      },
+      {
+        "src": "/media/app-whynot-lab/synth.avif",
+        "fallback": "/media/app-whynot-lab/synth.jpg",
+        "width": 1180,
+        "height": 700,
+        "label": "WHYNOT LAB: sintetizador, modulação"
+      }
+    ],
+    "source": "whynot-lab docs/screenshots (capturas do app)"
+  },
+  "app-baixador": {
+    "orientation": "imagem",
+    "width": 722,
+    "height": 762,
+    "poster": {
+      "avif": "/media/app-baixador/tela.avif",
+      "jpg": "/media/app-baixador/tela.jpg"
+    },
+    "preview": null,
+    "full": null,
+    "images": [
+      {
+        "src": "/media/app-baixador/tela.avif",
+        "fallback": "/media/app-baixador/tela.jpg",
+        "width": 722,
+        "height": 762,
+        "label": "Baixador: links, formato MP4 ou MP3 e qualidade"
+      }
+    ],
+    "source": "Baixador YouTube/design_preview.png (captura do app)"
+  },
+  "app-cortes-da-live": {
+    "orientation": "imagem",
+    "width": 1440,
+    "height": 900,
+    "poster": {
+      "avif": "/media/app-cortes-da-live/tela.avif",
+      "jpg": "/media/app-cortes-da-live/tela.jpg"
+    },
+    "preview": null,
+    "full": null,
+    "images": [
+      {
+        "src": "/media/app-cortes-da-live/tela.avif",
+        "fallback": "/media/app-cortes-da-live/tela.jpg",
+        "width": 1440,
+        "height": 900,
+        "label": "Cortes da Live: tela de novo corte, com o arquivo da live ou um link do YouTube"
+      }
+    ],
+    "source": "Cortes da Live/ui/index.html, tela inicial capturada no Chrome em 2026-11-04"
+  },
+  "clipe-eu-sou-coyote": {
+    "orientation": "horizontal",
+    "width": 960,
+    "height": 540,
+    "poster": {
+      "avif": "/media/clipe-eu-sou-coyote/poster.avif",
+      "jpg": "/media/clipe-eu-sou-coyote/poster.jpg"
+    },
+    "preview": {
+      "mp4": "/media/clipe-eu-sou-coyote/preview.mp4",
+      "webm": "/media/clipe-eu-sou-coyote/preview.webm",
+      "duration": 7,
+      "in": "00:01:04:00",
+      "out": "00:01:11:00"
+    },
+    "full": {
+      "mp4": "/media/clipe-eu-sou-coyote/full.mp4",
+      "duration": 60,
+      "width": 1280,
+      "height": 720,
+      "audio": true,
+      "in": "00:00:00:00",
+      "out": "00:01:00:00"
+    },
+    "images": [],
+    "source": "Coyote_Final_4K_v2.mp4 (Mesa do Jarvis/Clipe)"
   }
 }

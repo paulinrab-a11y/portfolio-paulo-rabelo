@@ -18,6 +18,11 @@ test.describe('abas de trabalhos', () => {
     await page.locator('[data-aba="marketing"]').click();
     await expect(page).toHaveURL(/\/trabalhos\/marketing$/);
     await expect(page.getByRole('link', { name: /Rebranding Hora Bolas/ })).toBeVisible();
+
+    await page.locator('[data-aba="apps"]').click();
+    await expect(page).toHaveURL(/\/trabalhos\/apps$/);
+    await expect(page.getByRole('link', { name: /WHYNOT LAB/ })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Clipe Santxx e Azam MC/ })).toHaveCount(0);
   });
 
   test('trabalho que é vídeo e marketing aparece nas duas abas', async ({ page }) => {
@@ -31,7 +36,7 @@ test.describe('abas de trabalhos', () => {
     test.skip(isMobile, 'No celular o menu tem teste próprio');
     await page.goto('/');
     const nav = page.getByRole('navigation', { name: 'Principal' }).first();
-    for (const nome of ['Vídeo', 'Sites', 'Marketing']) await expect(nav.getByRole('link', { name: nome })).toBeVisible();
+    for (const nome of ['Vídeo', 'Sites', 'Marketing', 'Apps']) await expect(nav.getByRole('link', { name: nome })).toBeVisible();
   });
 });
 
