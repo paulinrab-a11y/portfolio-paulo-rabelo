@@ -4,71 +4,67 @@
     "width": 960,
     "height": 540,
     "poster": {
-      "avif": "/media/hero/poster.avif",
-      "jpg": "/media/hero/poster.jpg"
+      "avif": "/media/hero/poster-2.avif",
+      "jpg": "/media/hero/poster-2.jpg"
     },
     "preview": {
-      "mp4": "/media/hero/loop.mp4",
-      "webm": "/media/hero/loop.webm",
-      "duration": 11.53,
+      "mp4": "/media/hero/loop-2.mp4",
+      "webm": "/media/hero/loop-2.webm",
+      "duration": 12.6,
       "in": null,
       "out": null
     },
     "full": null,
     "images": [],
-    "source": "PORTFÓLIO PAULO RABELO.mp4",
+    "source": "Sopranos 4K, Coyote_Final_4K_v2 e full.mp4 do clipe Santxx",
     "shots": [
       {
-        "from": "vis",
-        "in": "00:06:59:06",
-        "out": "00:07:00:18",
-        "crop": [1003, 317, 792, 446]
+        "from": "coy",
+        "in": "00:00:00:18",
+        "out": "00:00:02:00"
       },
       {
-        "from": "pod",
-        "in": "00:09:53:00",
-        "out": "00:09:54:15",
-        "crop": [752, 376, 1031, 580]
-      },
-      {
-        "from": "clip",
-        "in": "00:04:06:06",
-        "out": "00:04:07:21",
-        "crop": [795, 392, 874, 492]
-      },
-      {
-        "from": "yt",
-        "in": "00:59:10:15",
-        "out": "00:59:12:00",
-        "crop": [671, 326, 1120, 630],
-        "note": "Paulo apresentando; substitui a cartela CONSTANCE, que disputava com o nome no herói"
-      },
-      {
-        "from": "vis",
-        "in": "00:06:51:24",
-        "out": "00:06:53:06",
-        "crop": [1003, 317, 792, 446]
+        "from": "sop",
+        "in": "00:01:36:00",
+        "out": "00:01:37:12"
       },
       {
         "from": "clip",
         "in": "00:03:49:03",
-        "out": "00:03:50:10",
-        "crop": [795, 392, 874, 492]
+        "out": "00:03:50:15"
+      },
+      {
+        "from": "coy",
+        "in": "00:01:06:00",
+        "out": "00:01:07:12"
+      },
+      {
+        "from": "sop",
+        "in": "00:01:20:00",
+        "out": "00:01:21:12"
+      },
+      {
+        "from": "coy",
+        "in": "00:00:40:00",
+        "out": "00:00:41:12"
+      },
+      {
+        "from": "sop",
+        "in": "00:01:44:00",
+        "out": "00:01:45:12"
       },
       {
         "from": "clip",
-        "in": "00:03:50:10",
-        "out": "00:03:51:25",
-        "crop": [795, 392, 874, 492]
+        "in": "00:04:00:24",
+        "out": "00:04:02:06"
       },
       {
-        "from": "yt",
-        "in": "00:57:54:00",
-        "out": "00:57:55:15",
-        "crop": [671, 326, 1120, 630]
+        "from": "sop",
+        "in": "00:02:16:00",
+        "out": "00:02:17:12"
       }
     ],
-    "note": "Loop girado para começar no plano do visualizer."
+    "note": "Reel montado em 05/11/2026 com os melhores takes dos clipes."
   },
   "clipe-santxx-azam-mc": {
     "orientation": "horizontal",

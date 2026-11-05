@@ -41,6 +41,9 @@ export function Heroi({ lang, funcaoCurta, reel, cortes }: Props) {
   const tc = useRef<HTMLSpanElement>(null);
   const agulha = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement | null>(null);
+  /** Luz ambiente: o vídeo em 32×18 px, ampliado e desfocado em volta do monitor */
+  const ambiente = useRef<HTMLCanvasElement>(null);
+  const monitor = useRef<HTMLDivElement>(null);
   const [ativo, setAtivo] = useState(0);
   const indice = useRef(0);
   const total = cortes.length ? cortes[cortes.length - 1].fim : 1;
@@ -67,6 +70,7 @@ export function Heroi({ lang, funcaoCurta, reel, cortes }: Props) {
         if (tc.current && agora - ultimoTc > 66) {
           ultimoTc = agora;
           tc.current.textContent = timecode(t * 1000);
+          ambiente.current?.getContext('2d')?.drawImage(v, 0, 0, 32, 18);
         }
         const i = corteNoTempo(cortes, t);
         if (i !== indice.current && i >= 0) {
@@ -99,10 +103,21 @@ export function Heroi({ lang, funcaoCurta, reel, cortes }: Props) {
 
   const atual = cortes[ativo];
 
+  /** Mouse no herói inclina o monitor de leve, como uma tela no espaço (CSS desliga com movimento reduzido) */
+  const inclinar = (e: React.PointerEvent) => {
+    const m = monitor.current;
+    if (!m || e.pointerType !== 'mouse') return;
+    const x = e.clientX / window.innerWidth - 0.5;
+    const y = e.clientY / window.innerHeight - 0.5;
+    m.style.setProperty('--ry', `${x * 7}deg`);
+    m.style.setProperty('--rx', `${-y * 5}deg`);
+  };
+
   return (
     <section
+      onPointerMove={inclinar}
       aria-labelledby="heroi-nome"
-      className="margem grade relative min-h-[100svh] content-center gap-y-8 pt-[calc(var(--cabecalho)+clamp(24px,5vh,56px))] pb-[clamp(40px,7vh,80px)] lg:items-end"
+      className="margem grade relative min-h-[100svh] overflow-x-clip content-center gap-y-8 pt-[calc(var(--cabecalho)+clamp(24px,5vh,56px))] pb-[clamp(40px,7vh,80px)] lg:items-end"
     >
       {/* Monitor de programa */}
       <div className="col-span-12 lg:order-2 lg:col-span-7 lg:col-start-6">
@@ -114,7 +129,14 @@ export function Heroi({ lang, funcaoCurta, reel, cortes }: Props) {
             00:00:00:00
           </span>
         </div>
-        <div className="monitor relative">
+        <div ref={monitor} className="monitor monitor-espaco relative isolate">
+          <canvas
+            ref={ambiente}
+            width={32}
+            height={18}
+            className="monitor-ambiente pointer-events-none absolute -inset-[14%] -z-10 h-[128%] w-[128%]"
+            style={{ backgroundImage: `url(${reel.poster.jpg})` }}
+          />
           <VideoLoop midia={reel} alt={tx.altVideo} prioridade sizes="(min-width: 1024px) 56vw, 100vw" aoMontar={ligarVideo} />
           {/* Cantos do visor */}
           <span aria-hidden="true" className="pointer-events-none absolute -top-2 -left-2 h-5 w-5 border-t-2 border-l-2 border-creme/70" />

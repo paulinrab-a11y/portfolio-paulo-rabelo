@@ -27,7 +27,7 @@ test.describe('segurança', () => {
   });
 
   test('mídia com cache longo', async ({ request }) => {
-    const r = await request.get('/media/hero/poster.jpg');
+    const r = await request.get('/media/hero/poster-2.jpg');
     expect(r.headers()['cache-control']).toContain('immutable');
   });
 });

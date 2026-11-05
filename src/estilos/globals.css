@@ -214,7 +214,7 @@ html[data-abertura] .digitar-cursor {
   position: absolute;
   inset: -50%;
   background: url("/textura/grao.webp");
-  opacity: 0.06;
+  opacity: 0.035;
   animation: grao 1s steps(12) infinite;
 }
 @keyframes grao {
@@ -417,6 +417,20 @@ html[data-abertura]:not([data-abertura-fim]) .abertura {
 /* Herói: monitor de programa e mini timeline dos cortes do reel */
 .monitor {
   box-shadow: 0 0 0 1px var(--color-linha);
+}
+/* Herói: luz ambiente com as cores do próprio reel (canvas de 32×18 ampliado e
+   desfocado; sem vídeo, fica o poster) e o monitor inclinado pelo mouse */
+.monitor-ambiente {
+  background-size: cover;
+  background-position: center;
+  filter: blur(64px) saturate(1.5);
+  opacity: 0.6;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .monitor-espaco {
+    transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 600ms var(--ease-cine);
+  }
 }
 /* A agulha anda sobre a trilha a cada quadro: repinturas ficam presas aqui */
 .trilha-reel {

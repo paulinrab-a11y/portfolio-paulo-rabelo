@@ -9,13 +9,15 @@ export interface Corte {
 
 /**
  * De onde veio cada trecho do reel (campo `from` em media.json > hero.shots)
- * para o trabalho no site. Os trechos foram cortados do vídeo-portfólio.
+ * para o trabalho no site. Os primeiros trechos vieram do vídeo-portfólio; sop e coy, dos clipes Sopranos e Eu Sou Coyote.
  */
 export const trabalhoDoTrecho: Record<string, string> = {
   vis: 'visualizer-anjo005',
   pod: 'podcast-opiniao-segura-laad',
   clip: 'clipe-santxx-azam-mc',
   yt: 'youtube-constance-silksong',
+  sop: 'clipe-sopranos',
+  coy: 'clipe-eu-sou-coyote',
 };
 
 /** Trechos em sequência viram cortes com início e fim no loop. Trecho sem trabalho conhecido fica de fora. */
