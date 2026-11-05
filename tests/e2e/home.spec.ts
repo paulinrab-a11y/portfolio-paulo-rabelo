@@ -239,6 +239,7 @@ test.describe('destaques como película', () => {
     await page.goto('/');
     await page.locator('#trabalhos').scrollIntoViewIfNeeded();
     await expect(page.locator('.pelicula-agulha')).toBeVisible();
+    await expect(page.locator('[data-palco-3d]')).toHaveCount(1);
     await expect.poll(() => sobAgulha(page)).toEqual({ i: 0, sob: true });
     // Duas voltas de roda caem no meio da película (mais que isso passa do fim do rolo em telas baixas)
     for (let k = 0; k < 2; k++) {
