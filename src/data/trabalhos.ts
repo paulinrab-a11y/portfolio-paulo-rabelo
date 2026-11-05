@@ -68,7 +68,7 @@ export const trabalhos: Trabalho[] = [
     categorias: ['edicao', 'motion', 'cor'],
     trilha: 'V1',
     abas: ['video'],
-    destaque: 1,
+    destaque: 5,
     midia: 'clipe-santxx-azam-mc',
     creditos: [
       { rotulo: 'Artistas', valor: 'Santxx e Azam MC' },
@@ -89,7 +89,6 @@ export const trabalhos: Trabalho[] = [
     categorias: ['motion', 'social'],
     trilha: 'V2',
     abas: ['video'],
-    destaque: 2,
     midia: 'visualizer-anjo005',
     creditos: [
       { rotulo: 'Artista', valor: 'Anjo005' },
@@ -109,6 +108,7 @@ export const trabalhos: Trabalho[] = [
     categorias: ['edicao', 'motion', 'cor'],
     trilha: 'V1',
     abas: ['video'],
+    destaque: 2,
     midia: 'clipe-eu-sou-coyote',
     creditos: [
       { rotulo: 'Artistas', valor: 'MC Max da CT e Loko Mooca' },
@@ -130,6 +130,7 @@ export const trabalhos: Trabalho[] = [
     categorias: ['edicao', 'motion'],
     trilha: 'V1',
     abas: ['video'],
+    destaque: 1,
     midia: 'clipe-sopranos',
     creditos: [
       { rotulo: 'Artistas', valor: 'Azam e OG Rich' },
@@ -148,6 +149,7 @@ export const trabalhos: Trabalho[] = [
     categorias: ['social', 'edicao', 'motion'],
     trilha: 'V2',
     abas: ['video', 'marketing'],
+    destaque: 4,
     midia: 'whynot-lab-video-1',
     midiasExtras: ['whynot-lab-video-2'],
     creditos: [
@@ -167,6 +169,7 @@ export const trabalhos: Trabalho[] = [
     categorias: ['motion', 'social', 'edicao'],
     trilha: 'V2',
     abas: ['video', 'marketing'],
+    destaque: 3,
     midia: 'reels-hora-bolas-v1',
     midiasExtras: ['reels-hora-bolas-v2'],
     creditos: [
@@ -188,7 +191,6 @@ export const trabalhos: Trabalho[] = [
     categorias: ['podcast', 'edicao', 'motion'],
     trilha: 'V1',
     abas: ['video'],
-    destaque: 3,
     midia: 'podcast-opiniao-segura',
     creditos: [
       { rotulo: 'Cliente', valor: 'Podcast Opinião Segura' },
@@ -206,7 +208,6 @@ export const trabalhos: Trabalho[] = [
     categorias: ['edicao', 'motion'],
     trilha: 'V2',
     abas: ['video'],
-    destaque: 4,
     midia: 'youtube-constance-silksong',
     creditos: [{ rotulo: 'Minha função', valor: 'Edição, motion e apresentação' }],
     texto: {
@@ -222,7 +223,6 @@ export const trabalhos: Trabalho[] = [
     trilha: 'V3',
     abas: ['video', 'marketing'],
     feitoComIA: true,
-    destaque: 5,
     midia: 'ia-ugc',
     creditos: [{ rotulo: 'Formato', valor: 'Vídeos verticais UGC' }],
     texto: {
@@ -238,7 +238,6 @@ export const trabalhos: Trabalho[] = [
     categorias: ['sites'],
     trilha: 'V4',
     abas: ['sites'],
-    destaque: 6,
     midia: 'site-ohc-desktop',
     midiasExtras: ['site-ohc-celular'],
     creditos: [
@@ -546,6 +545,7 @@ export const trabalhos: Trabalho[] = [
     categorias: ['apps'],
     trilha: 'V5',
     abas: ['apps'],
+    destaque: 6,
     midia: 'app-jarvis',
     creditos: [
       { rotulo: 'Plataforma', valor: 'Windows' },

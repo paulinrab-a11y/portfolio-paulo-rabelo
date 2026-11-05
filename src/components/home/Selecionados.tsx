@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Palco3D } from '@/components/home/Palco3D';
 import { SeloIA } from '@/components/SeloIA';
 import { VideoLoop } from '@/components/VideoLoop';
 import { abas, type Idioma } from '@/data/idiomas';
@@ -38,6 +39,10 @@ export function Selecionados({ itens, lang }: Props) {
   const centros = useRef<number[]>([]);
   const [ativo, setAtivo] = useState<number | null>(null);
   const atual = useRef<number | null>(null);
+  /** Progresso da película (0 a 1), lido pelo palco 3D a cada quadro */
+  const progresso = useRef(0);
+  const [palco, setPalco] = useState(false);
+  const posters = useMemo(() => itens.map((t) => midia(t.midia).poster.jpg), [itens]);
 
   const acender = useCallback((i: number | null) => {
     if (i === atual.current) return;
@@ -68,6 +73,17 @@ export function Selecionados({ itens, lang }: Props) {
           // O último centro é o fim do rolo: nada toca ali
           return melhor < c.length - 1 ? melhor : null;
         };
+        // Quadros em 3D: o que está sob a agulha fica de frente; os outros giram e recuam, como num carrossel.
+        // Declarado antes do tween: o onUpdate dispara já na criação quando a página abre rolada.
+        const quadros = [...el.querySelectorAll<HTMLElement>('[data-quadro]')];
+        const inclinar = (x: number) => {
+          const c = centros.current;
+          const vw = window.innerWidth;
+          quadros.forEach((q, i) => {
+            const d = Math.max(-1.2, Math.min(1.2, (c[i] + x - c[0]) / vw));
+            gsap.set(q, { rotateY: -d * 32, z: -Math.abs(d) * 260, transformPerspective: 1400, transformOrigin: d > 0 ? 'left center' : 'right center' });
+          });
+        };
         const tween = gsap.to(el, {
           x: () => -distancia(),
           ease: 'none',
@@ -91,14 +107,23 @@ export function Selecionados({ itens, lang }: Props) {
               duration: { min: 0.2, max: 0.5 },
               ease: 'power2.out',
             },
-            onUpdate: () => acender(quadroNoAr(Number(gsap.getProperty(el, 'x')))),
+            onUpdate: (self) => {
+              progresso.current = self.progress;
+              const x = Number(gsap.getProperty(el, 'x'));
+              acender(quadroNoAr(x));
+              inclinar(x);
+            },
           },
         });
+        inclinar(Number(gsap.getProperty(el, 'x')));
         gatilho.current = tween.scrollTrigger ?? null;
         acender(0);
+        setPalco(true);
         return () => {
           gatilho.current = null;
           acender(null);
+          setPalco(false);
+          gsap.set(quadros, { clearProps: 'transform' });
         };
       });
     },
@@ -134,7 +159,12 @@ export function Selecionados({ itens, lang }: Props) {
   };
 
   return (
-    <section ref={raiz} id="trabalhos" aria-labelledby="selecionados-titulo" className="pelicula margem py-[clamp(72px,12vh,140px)]">
+    <section ref={raiz} id="trabalhos" aria-labelledby="selecionados-titulo" className="pelicula margem relative isolate py-[clamp(72px,12vh,140px)]">
+      {palco && (
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          <Palco3D posters={posters} progresso={progresso} />
+        </div>
+      )}
       <div className="mb-10 flex items-end justify-between gap-6 border-b border-linha pb-6">
         <div>
           <p className="rotulo mb-3 text-rec">{s.rotulo}</p>

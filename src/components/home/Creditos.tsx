@@ -19,15 +19,13 @@ export function Creditos({ lang }: { lang: Idioma }) {
         {c.logo && (
           <Image src={c.logo.src} alt="" width={c.logo.largura} height={c.logo.altura} unoptimized className={`h-7 w-auto md:h-9 ${c.logo.inverterNoEscuro ? 'invert' : ''}`} />
         )}
-        <span className="font-mono text-[clamp(18px,2.4vw,30px)] tracking-tight text-creme uppercase">{c.nome}</span>
-        <span aria-hidden="true" className="ml-6 text-rec md:ml-10">
-          ●
-        </span>
+        <span className="text-[clamp(16px,1.8vw,22px)] text-cinza transition-colors hover:text-creme">{c.nome}</span>
+        <span aria-hidden="true" className="ml-6 h-1 w-1 rounded-full bg-grafite md:ml-10" />
       </li>
     ));
 
   return (
-    <section aria-labelledby="creditos-titulo" className="border-y border-linha py-14 md:py-20">
+    <section aria-labelledby="creditos-titulo" className="py-14 md:py-20">
       <h2 id="creditos-titulo" className="rotulo margem mb-8 text-cinza">
         {tx.rotulo}
       </h2>

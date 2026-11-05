@@ -8,6 +8,8 @@ test.describe('movimento reduzido', () => {
     await expect(page.getByTestId('abertura')).toBeHidden();
     await expect(page.locator('section.so-reduzido')).toBeVisible();
     await expect(page.locator('section.so-movimento')).toBeHidden();
+    // Palco 3D dos destaques só existe com movimento liberado
+    await expect(page.locator('[data-palco-3d]')).toHaveCount(0);
 
     // Rola a página inteira e confere que todo texto visível está opaco
     const altura = await page.evaluate(() => document.documentElement.scrollHeight);

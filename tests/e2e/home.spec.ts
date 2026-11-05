@@ -193,10 +193,10 @@ test.describe('herói: monitor e mini timeline do reel', () => {
   test('um clipe por corte do reel, cada um levando a um trabalho, e o link do que está no monitor', async ({ page }) => {
     await page.goto('/');
     const cortes = page.locator('[data-corte]');
-    await expect(cortes).toHaveCount(8);
+    await expect(cortes).toHaveCount(16);
     for (const href of await cortes.evaluateAll((els) => els.map((e) => e.getAttribute('href')))) expect(href).toMatch(/^\/trabalhos\/[a-z0-9-]+$/);
     const noMonitor = page.locator('section[aria-labelledby="heroi-nome"] a.link-monitor');
-    await expect(noMonitor).toHaveAttribute('href', '/trabalhos/visualizer-anjo005');
+    await expect(noMonitor).toHaveAttribute('href', '/trabalhos/clipe-eu-sou-coyote');
   });
 
   test('o nome do trabalho em tela troca no corte e bate com o clipe aceso', { tag: '@video' }, async ({ page, browserName }) => {
@@ -208,7 +208,7 @@ test.describe('herói: monitor e mini timeline do reel', () => {
         link: document.querySelector('section[aria-labelledby="heroi-nome"] a.link-monitor')?.getAttribute('href'),
         clipe: document.querySelector('[data-corte][data-ativo]')?.getAttribute('href'),
       }));
-    await expect.poll(async () => (await estado()).link, { timeout: 15_000 }).not.toBe('/trabalhos/visualizer-anjo005');
+    await expect.poll(async () => (await estado()).link, { timeout: 15_000 }).not.toBe('/trabalhos/clipe-eu-sou-coyote');
     await expect
       .poll(async () => {
         const e = await estado();
@@ -239,6 +239,7 @@ test.describe('destaques como película', () => {
     await page.goto('/');
     await page.locator('#trabalhos').scrollIntoViewIfNeeded();
     await expect(page.locator('.pelicula-agulha')).toBeVisible();
+    await expect(page.locator('[data-palco-3d]')).toHaveCount(1);
     await expect.poll(() => sobAgulha(page)).toEqual({ i: 0, sob: true });
     // Duas voltas de roda caem no meio da película (mais que isso passa do fim do rolo em telas baixas)
     for (let k = 0; k < 2; k++) {

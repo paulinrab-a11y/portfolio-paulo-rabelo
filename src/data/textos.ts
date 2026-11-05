@@ -56,7 +56,7 @@ const pt = {
   trilhas: { V1: 'Edição e cor', V2: 'Motion e VFX', V3: 'IA generativa', V4: 'Direção de arte', V5: 'Apps' },
   abertura: { pular: 'Pular' },
   heroi: {
-    altVideo: 'Trechos de clipes, visualizer, podcast e vídeo para YouTube editados por Paulo Rabelo',
+    altVideo: 'Trechos de clipes, Reels, sites, podcast e vídeos criados e editados por Paulo Rabelo',
     verTrabalhos: 'Ver trabalhos',
     falarComigo: 'Falar comigo',
     noMonitor: 'No monitor',
@@ -223,7 +223,7 @@ const en: Textos = {
   trilhas: { V1: 'Editing and color', V2: 'Motion and VFX', V3: 'Generative AI', V4: 'Art direction', V5: 'Apps' },
   abertura: { pular: 'Skip' },
   heroi: {
-    altVideo: 'Clips from music videos, a visualizer, a podcast and a YouTube video edited by Paulo Rabelo',
+    altVideo: 'Clips from music videos, Reels, websites, a podcast and videos made and edited by Paulo Rabelo',
     verTrabalhos: 'See my work',
     falarComigo: 'Contact me',
     noMonitor: 'On the monitor',
@@ -386,7 +386,7 @@ const es: Textos = {
   trilhas: { V1: 'Edición y color', V2: 'Motion y VFX', V3: 'IA generativa', V4: 'Dirección de arte', V5: 'Apps' },
   abertura: { pular: 'Saltar' },
   heroi: {
-    altVideo: 'Fragmentos de videoclips, un visualizer, un podcast y un vídeo de YouTube editados por Paulo Rabelo',
+    altVideo: 'Fragmentos de videoclips, Reels, sitios web, un pódcast y vídeos creados y editados por Paulo Rabelo',
     verTrabalhos: 'Ver trabajos',
     falarComigo: 'Hablemos',
     noMonitor: 'En el monitor',
@@ -549,7 +549,7 @@ const zh: Textos = {
   trilhas: { V1: '剪辑与调色', V2: '动态设计与特效', V3: '生成式 AI', V4: '艺术指导', V5: '应用' },
   abertura: { pular: '跳过' },
   heroi: {
-    altVideo: 'Paulo Rabelo 剪辑的 MV、Visualizer、播客和 YouTube 视频片段',
+    altVideo: 'Paulo Rabelo 制作和剪辑的 MV、Reels、网站、播客和视频片段',
     verTrabalhos: '查看作品',
     falarComigo: '联系我',
     noMonitor: '监视器上',
