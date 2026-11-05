@@ -33,6 +33,6 @@ O Paulo não vai enviar mais dados: o site fica como está.
 ## Abertas em 04/11/2026 (apps e clipes novos)
 
 2. Clipe Eu Sou Coyote: créditos confirmados pela sessão do DaVinci em 04/11. Falta só quem filmou (não aparece).
-3. Clipe Tony Soprano (Azam x OG Rich): falta saber qual é a versão final e a função para entrar.
-4. Jarvis e Fábrica de Phonk: faltam imagens reais (print do Jarvis com a esfera; algo visual da Fábrica). Sem mídia, não entram.
+3. Clipe Sopranos (Azam x OG Rich): entrou em 05/11 com o arquivo "AZAM x OG RICH - SOPRANOS 4K.mp4". Confirmar a função (o site diz edição, tela dividida no beat e VFX no Fusion).
+4. Fábrica de Phonk: falta imagem real. O Jarvis entrou em 05/11 com a captura do app (sessões de teste).
 5. Apps sem o selo "Feito com IA": o selo é para mídia gerada por IA. Confirmar se quer algum aviso de que os apps foram feitos com ajuda do Claude.

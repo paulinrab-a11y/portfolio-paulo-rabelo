@@ -123,6 +123,64 @@ export const trabalhos: Trabalho[] = [
     },
   },
   {
+    slug: 'clipe-sopranos',
+    titulo: 'Clipe Sopranos',
+    cliente: 'Azam e OG Rich',
+    funcao: 'Edição e VFX',
+    categorias: ['edicao', 'motion'],
+    trilha: 'V1',
+    abas: ['video'],
+    midia: 'clipe-sopranos',
+    creditos: [
+      { rotulo: 'Artistas', valor: 'Azam e OG Rich' },
+      { rotulo: 'Faixa', valor: 'Sopranos' },
+      { rotulo: 'Minha função', valor: 'Edição, tela dividida no beat e VFX no DaVinci Resolve' },
+    ],
+    texto: {
+      contexto: 'Clipe musical de Azam e OG Rich.',
+      oQueFiz: 'Editei o clipe no DaVinci Resolve, com tela dividida que troca no beat, textos na fonte dos Sopranos e efeitos no Fusion.',
+    },
+  },
+  {
+    slug: 'videos-whynot-lab',
+    titulo: 'Vídeos da WHYNOT LAB',
+    funcao: 'Apresentação, edição e motion',
+    categorias: ['social', 'edicao', 'motion'],
+    trilha: 'V2',
+    abas: ['video', 'marketing'],
+    midia: 'whynot-lab-video-1',
+    midiasExtras: ['whynot-lab-video-2'],
+    creditos: [
+      { rotulo: 'Formato', valor: 'Vídeos verticais para TikTok e Reels' },
+      { rotulo: 'Minha função', valor: 'Apresentação, edição, cor, motion e legendas' },
+    ],
+    texto: {
+      contexto: 'Vídeos verticais que divulgam a WHYNOT LAB, a DAW que estou criando.',
+      oQueFiz: 'Apresento os vídeos. Na edição entram as telas do app em 3D, tipografia, legendas e cor. O segundo foi refeito inteiro no After Effects.',
+    },
+  },
+  {
+    slug: 'reels-hora-bolas',
+    titulo: 'Reels do Hora Bolas com motion design',
+    cliente: 'Hora Bolas Club',
+    funcao: 'Motion design e edição',
+    categorias: ['motion', 'social', 'edicao'],
+    trilha: 'V2',
+    abas: ['video', 'marketing'],
+    midia: 'reels-hora-bolas-v1',
+    midiasExtras: ['reels-hora-bolas-v2'],
+    creditos: [
+      { rotulo: 'Cliente', valor: 'Hora Bolas Club, Lavras (MG)' },
+      { rotulo: 'Formato', valor: 'Dois Reels verticais' },
+      { rotulo: 'Música', valor: 'Baile Noturno, da WHYNOT LAB' },
+      { rotulo: 'Minha função', valor: 'Motion design e edição no beat' },
+    ],
+    texto: {
+      contexto: 'Dois Reels para o Hora Bolas Club, em Lavras (MG): sinuca, pebolim, dardos, karaokê às terças, hambúrguer e open Chopp.',
+      oQueFiz: 'Fiz o motion e a edição no beat. O primeiro tem tipografia cinética, cartões em 3D e o logo entrando no drop. O segundo, feito no After Effects, gira em torno do relógio da marca: "Que horas são?".',
+    },
+  },
+  {
     slug: 'podcast-opiniao-segura-laad',
     titulo: 'Opinião Segura na LAAD',
     cliente: 'Podcast Opinião Segura',
@@ -479,6 +537,23 @@ export const trabalhos: Trabalho[] = [
     texto: {
       contexto: 'App que baixa vídeo em MP4 ou áudio em MP3 a partir de um link.',
       oQueFiz: 'Criei o app: fila de links, playlist inteira, escolha de qualidade e uma linha de comando para assistentes de IA usarem.',
+    },
+  },
+  {
+    slug: 'app-jarvis',
+    titulo: 'Jarvis',
+    funcao: 'Criação de um assistente de voz',
+    categorias: ['apps'],
+    trilha: 'V5',
+    abas: ['apps'],
+    midia: 'app-jarvis',
+    creditos: [
+      { rotulo: 'Plataforma', valor: 'Windows' },
+      { rotulo: 'Feito em', valor: 'Electron, Whisper e Claude' },
+    ],
+    texto: {
+      contexto: 'Assistente de voz que acompanha as minhas sessões do Claude Code.',
+      oQueFiz: 'Criei o app: ele avisa falando quando uma sessão termina e resume o que ela fez, pede aprovação por voz ou com um clique e responde perguntas rápidas. Atende por "Hey Jarvis" ou F2.',
     },
   },
 ];
