@@ -176,6 +176,47 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
         { rotulo: 'My role', valor: 'Beat-synced cuts, lip sync, color and VFX in DaVinci Resolve' },
       ],
     },
+    'clipe-sopranos': {
+      titulo: 'Sopranos music video',
+      cliente: 'Azam and OG Rich',
+      funcao: 'Editing and VFX',
+      texto: {
+        contexto: 'Music video by Azam and OG Rich.',
+        oQueFiz: 'I edited the music video in DaVinci Resolve, with a split screen that changes on the beat, text in the Sopranos typeface and effects in Fusion.',
+      },
+      creditos: [
+        { rotulo: 'Artists', valor: 'Azam and OG Rich' },
+        { rotulo: 'Track', valor: 'Sopranos' },
+        { rotulo: 'My role', valor: 'Editing, beat-synced split screen and VFX in DaVinci Resolve' },
+      ],
+    },
+    'videos-whynot-lab': {
+      titulo: 'WHYNOT LAB videos',
+      funcao: 'Presenting, editing and motion',
+      texto: {
+        contexto: 'Vertical videos promoting WHYNOT LAB, the DAW I am building.',
+        oQueFiz: 'I present the videos. The edit has 3D app screens, typography, captions and color. The second one was remade entirely in After Effects.',
+      },
+      creditos: [
+        { rotulo: 'Format', valor: 'Vertical videos for TikTok and Reels' },
+        { rotulo: 'My role', valor: 'Presenting, editing, color, motion and captions' },
+      ],
+    },
+    'reels-hora-bolas': {
+      titulo: 'Hora Bolas Reels with motion design',
+      cliente: 'Hora Bolas Club',
+      funcao: 'Motion design and editing',
+      texto: {
+        contexto: 'Two Reels for Hora Bolas Club in Lavras (MG): pool, foosball, darts, karaoke on Tuesdays, burgers and open Chopp.',
+        oQueFiz: 'I did the motion and the beat-synced edit. The first has kinetic typography, 3D cards and the logo landing on the drop. The second, made in After Effects, is built around the brand\'s clock: "What time is it?".',
+      },
+      creditos: [
+        { rotulo: 'Client', valor: 'Hora Bolas Club, Lavras (MG)' },
+        { rotulo: 'Format', valor: 'Two vertical Reels' },
+        { rotulo: 'Music', valor: 'Baile Noturno, by WHYNOT LAB' },
+        { rotulo: 'My role', valor: 'Motion design and beat-synced editing' },
+      ],
+    },
     'podcast-opiniao-segura-laad': {
       titulo: 'Opinião Segura at LAAD',
       cliente: 'Podcast Opinião Segura',
@@ -376,6 +417,18 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
       texto: { contexto: 'An app that downloads video as MP4 or audio as MP3 from a link.', oQueFiz: 'I built the app: a link queue, whole playlists, quality selection and a command line for AI assistants to use.' },
       creditos: [{ rotulo: 'Platform', valor: 'Windows' }],
     },
+    'app-jarvis': {
+      titulo: 'Jarvis',
+      funcao: 'Building a voice assistant',
+      texto: {
+        contexto: 'A voice assistant that keeps track of my Claude Code sessions.',
+        oQueFiz: 'I built the app: it says out loud when a session finishes and sums up what it did, asks for approval by voice or with a click and answers quick questions. It responds to "Hey Jarvis" or F2.',
+      },
+      creditos: [
+        { rotulo: 'Platform', valor: 'Windows' },
+        { rotulo: 'Built with', valor: 'Electron, Whisper and Claude' },
+      ],
+    },
   },
   es: {
     'clipe-santxx-azam-mc': {
@@ -415,6 +468,47 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
         { rotulo: 'Producción musical', valor: 'RaffTheRaff' },
         { rotulo: 'Sello', valor: 'Bigode da Mooca Records' },
         { rotulo: 'Mi rol', valor: 'Cortes al beat, sincronía labial, color y VFX en DaVinci Resolve' },
+      ],
+    },
+    'clipe-sopranos': {
+      titulo: 'Videoclip Sopranos',
+      cliente: 'Azam y OG Rich',
+      funcao: 'Edición y VFX',
+      texto: {
+        contexto: 'Videoclip de Azam y OG Rich.',
+        oQueFiz: 'Edité el videoclip en DaVinci Resolve, con pantalla dividida que cambia al beat, textos con la tipografía de Los Soprano y efectos en Fusion.',
+      },
+      creditos: [
+        { rotulo: 'Artistas', valor: 'Azam y OG Rich' },
+        { rotulo: 'Tema', valor: 'Sopranos' },
+        { rotulo: 'Mi rol', valor: 'Edición, pantalla dividida al beat y VFX en DaVinci Resolve' },
+      ],
+    },
+    'videos-whynot-lab': {
+      titulo: 'Vídeos de WHYNOT LAB',
+      funcao: 'Presentación, edición y motion',
+      texto: {
+        contexto: 'Vídeos verticales que promocionan WHYNOT LAB, la DAW que estoy creando.',
+        oQueFiz: 'Presento los vídeos. En la edición entran las pantallas de la app en 3D, tipografía, subtítulos y color. El segundo se rehízo entero en After Effects.',
+      },
+      creditos: [
+        { rotulo: 'Formato', valor: 'Vídeos verticales para TikTok y Reels' },
+        { rotulo: 'Mi rol', valor: 'Presentación, edición, color, motion y subtítulos' },
+      ],
+    },
+    'reels-hora-bolas': {
+      titulo: 'Reels de Hora Bolas con motion design',
+      cliente: 'Hora Bolas Club',
+      funcao: 'Motion design y edición',
+      texto: {
+        contexto: 'Dos Reels para Hora Bolas Club, en Lavras (MG): billar, futbolín, dardos, karaoke los martes, hamburguesa y open Chopp.',
+        oQueFiz: 'Hice el motion y la edición al beat. El primero tiene tipografía cinética, tarjetas en 3D y el logo entrando en el drop. El segundo, hecho en After Effects, gira en torno al reloj de la marca: "¿Qué hora es?".',
+      },
+      creditos: [
+        { rotulo: 'Cliente', valor: 'Hora Bolas Club, Lavras (MG)' },
+        { rotulo: 'Formato', valor: 'Dos Reels verticales' },
+        { rotulo: 'Música', valor: 'Baile Noturno, de WHYNOT LAB' },
+        { rotulo: 'Mi rol', valor: 'Motion design y edición al beat' },
       ],
     },
     'podcast-opiniao-segura-laad': {
@@ -617,6 +711,18 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
       texto: { contexto: 'App que descarga vídeo en MP4 o audio en MP3 desde un enlace.', oQueFiz: 'Creé la app: cola de enlaces, playlists completas, elección de calidad y una línea de comandos para que la usen asistentes de IA.' },
       creditos: [{ rotulo: 'Plataforma', valor: 'Windows' }],
     },
+    'app-jarvis': {
+      titulo: 'Jarvis',
+      funcao: 'Creación de un asistente de voz',
+      texto: {
+        contexto: 'Asistente de voz que sigue mis sesiones de Claude Code.',
+        oQueFiz: 'Creé la app: avisa en voz alta cuando una sesión termina y resume lo que hizo, pide aprobación por voz o con un clic y responde preguntas rápidas. Responde a "Hey Jarvis" o F2.',
+      },
+      creditos: [
+        { rotulo: 'Plataforma', valor: 'Windows' },
+        { rotulo: 'Hecha con', valor: 'Electron, Whisper y Claude' },
+      ],
+    },
   },
   zh: {
     'clipe-santxx-azam-mc': {
@@ -656,6 +762,47 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
         { rotulo: '音乐制作', valor: 'RaffTheRaff' },
         { rotulo: '厂牌', valor: 'Bigode da Mooca Records' },
         { rotulo: '我的职责', valor: '在 DaVinci Resolve 中卡点剪辑、对口型、调色和特效' },
+      ],
+    },
+    'clipe-sopranos': {
+      titulo: 'Sopranos 音乐录影带',
+      cliente: 'Azam 和 OG Rich',
+      funcao: '剪辑与特效',
+      texto: {
+        contexto: 'Azam 和 OG Rich 的音乐录影带。',
+        oQueFiz: '我用 DaVinci Resolve 剪辑了这支音乐录影带：随节拍切换的分屏、《黑道家族》字体的文字，以及在 Fusion 中制作的特效。',
+      },
+      creditos: [
+        { rotulo: '艺人', valor: 'Azam 和 OG Rich' },
+        { rotulo: '曲目', valor: 'Sopranos' },
+        { rotulo: '我的职责', valor: '在 DaVinci Resolve 中剪辑、卡点分屏和特效' },
+      ],
+    },
+    'videos-whynot-lab': {
+      titulo: 'WHYNOT LAB 宣传视频',
+      funcao: '出镜、剪辑与动态设计',
+      texto: {
+        contexto: '宣传我正在开发的 DAW WHYNOT LAB 的竖屏视频。',
+        oQueFiz: '视频由我出镜。剪辑中有 3D 的应用界面、字体设计、字幕和调色。第二支视频完全在 After Effects 中重做。',
+      },
+      creditos: [
+        { rotulo: '格式', valor: 'TikTok 和 Reels 竖屏视频' },
+        { rotulo: '我的职责', valor: '出镜、剪辑、调色、动态设计和字幕' },
+      ],
+    },
+    'reels-hora-bolas': {
+      titulo: 'Hora Bolas 动态设计 Reels',
+      cliente: 'Hora Bolas Club',
+      funcao: '动态设计与剪辑',
+      texto: {
+        contexto: '为位于拉夫拉斯（米纳斯吉拉斯州）的 Hora Bolas Club 制作的两支 Reels：台球、桌上足球、飞镖、周二卡拉 OK、汉堡和畅饮 Chopp。',
+        oQueFiz: '我负责动态设计和卡点剪辑。第一支有动态文字、3D 卡片和在节拍高潮出现的标志。第二支在 After Effects 中制作，围绕品牌的时钟展开：“现在几点？”。',
+      },
+      creditos: [
+        { rotulo: '客户', valor: 'Hora Bolas Club，拉夫拉斯（米纳斯吉拉斯州）' },
+        { rotulo: '格式', valor: '两支竖屏 Reels' },
+        { rotulo: '音乐', valor: 'Baile Noturno，WHYNOT LAB 出品' },
+        { rotulo: '我的职责', valor: '动态设计和卡点剪辑' },
       ],
     },
     'podcast-opiniao-segura-laad': {
@@ -854,6 +1001,18 @@ export const trabalhosEm: Record<Traduzido, Record<string, TraducaoTrabalho>> = 
       funcao: '开发一款应用',
       texto: { contexto: '通过链接下载 MP4 视频或 MP3 音频的应用。', oQueFiz: '我开发了这个应用：链接队列、整个播放列表、画质选择，以及供 AI 助手使用的命令行。' },
       creditos: [{ rotulo: '平台', valor: 'Windows' }],
+    },
+    'app-jarvis': {
+      titulo: 'Jarvis',
+      funcao: '开发一款语音助手',
+      texto: {
+        contexto: '跟踪我的 Claude Code 会话的语音助手。',
+        oQueFiz: '我开发了这个应用：会话结束时它会说出来并总结做了什么，可以用语音或点击来批准请求，也能回答简单的问题。用 “Hey Jarvis” 或 F2 唤醒。',
+      },
+      creditos: [
+        { rotulo: '平台', valor: 'Windows' },
+        { rotulo: '开发工具', valor: 'Electron、Whisper 和 Claude' },
+      ],
     },
   },
 };
@@ -1060,6 +1219,7 @@ export const servicosEm: Record<Traduzido, Record<string, TraducaoServico>> = {
 /** Legendas das imagens (texto alternativo), pelo texto em português de media.json */
 export const legendasEm: Record<Traduzido, Record<string, string>> = {
   en: {
+    'Jarvis: esfera em espera, tempo de resposta, sessões e pedido de aprovação': 'Jarvis: orb on standby, response time, sessions and an approval request',
     'WHYNOT DJ: dois decks, mixer no centro, biblioteca e sampler': 'WHYNOT DJ: two decks, mixer in the middle, library and sampler',
     'WHYNOT DJ: janela da controladora MIDI': 'WHYNOT DJ: MIDI controller window',
     'WHYNOT LAB: mixer': 'WHYNOT LAB: mixer',
@@ -1099,6 +1259,7 @@ export const legendasEm: Record<Traduzido, Record<string, string>> = {
     'Entrevista em painel com marcas Protecta, UR, Flash, Milipol': 'Interview in front of a Protecta, UR, Flash and Milipol backdrop',
   },
   es: {
+    'Jarvis: esfera em espera, tempo de resposta, sessões e pedido de aprovação': 'Jarvis: esfera en espera, tiempo de respuesta, sesiones y una solicitud de aprobación',
     'WHYNOT DJ: dois decks, mixer no centro, biblioteca e sampler': 'WHYNOT DJ: dos decks, mezclador en el centro, biblioteca y sampler',
     'WHYNOT DJ: janela da controladora MIDI': 'WHYNOT DJ: ventana de la controladora MIDI',
     'WHYNOT LAB: mixer': 'WHYNOT LAB: mezclador',
@@ -1138,6 +1299,7 @@ export const legendasEm: Record<Traduzido, Record<string, string>> = {
     'Entrevista em painel com marcas Protecta, UR, Flash, Milipol': 'Entrevista frente a un panel con las marcas Protecta, UR, Flash y Milipol',
   },
   zh: {
+    'Jarvis: esfera em espera, tempo de resposta, sessões e pedido de aprovação': 'Jarvis：待机中的球体、响应时间、会话和一个批准请求',
     'WHYNOT DJ: dois decks, mixer no centro, biblioteca e sampler': 'WHYNOT DJ：两个唱盘，中间是混音台，还有曲库和采样器',
     'WHYNOT DJ: janela da controladora MIDI': 'WHYNOT DJ：MIDI 控制器窗口',
     'WHYNOT LAB: mixer': 'WHYNOT LAB：混音台',

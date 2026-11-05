@@ -1152,5 +1152,161 @@
     },
     "images": [],
     "source": "Coyote_Final_4K_v2.mp4 (Mesa do Jarvis/Clipe)"
+  },
+  "reels-hora-bolas-v1": {
+    "orientation": "vertical",
+    "width": 540,
+    "height": 960,
+    "poster": {
+      "avif": "/media/reels-hora-bolas-v1/poster.avif",
+      "jpg": "/media/reels-hora-bolas-v1/poster.jpg"
+    },
+    "preview": {
+      "mp4": "/media/reels-hora-bolas-v1/preview.mp4",
+      "webm": "/media/reels-hora-bolas-v1/preview.webm",
+      "duration": 7,
+      "in": "00:00:03:00",
+      "out": "00:00:10:00"
+    },
+    "full": {
+      "mp4": "/media/reels-hora-bolas-v1/full.mp4",
+      "duration": 27.4,
+      "width": 720,
+      "height": 1280,
+      "audio": true,
+      "in": "00:00:00:00",
+      "out": "00:00:27:00"
+    },
+    "images": [],
+    "source": "render/hora-bolas-reels_v1.mp4"
+  },
+  "reels-hora-bolas-v2": {
+    "orientation": "vertical",
+    "width": 540,
+    "height": 960,
+    "poster": {
+      "avif": "/media/reels-hora-bolas-v2/poster.avif",
+      "jpg": "/media/reels-hora-bolas-v2/poster.jpg"
+    },
+    "preview": {
+      "mp4": "/media/reels-hora-bolas-v2/preview.mp4",
+      "webm": "/media/reels-hora-bolas-v2/preview.webm",
+      "duration": 7,
+      "in": "00:00:04:00",
+      "out": "00:00:11:00"
+    },
+    "full": {
+      "mp4": "/media/reels-hora-bolas-v2/full.mp4",
+      "duration": 20.99,
+      "width": 720,
+      "height": 1280,
+      "audio": true,
+      "in": "00:00:00:00",
+      "out": "00:00:21:00"
+    },
+    "images": [],
+    "source": "render/hora-bolas-reels_v2_AE.mp4"
+  },
+  "clipe-sopranos": {
+    "orientation": "horizontal",
+    "width": 960,
+    "height": 540,
+    "poster": {
+      "avif": "/media/clipe-sopranos/poster.avif",
+      "jpg": "/media/clipe-sopranos/poster.jpg"
+    },
+    "preview": {
+      "mp4": "/media/clipe-sopranos/preview.mp4",
+      "webm": "/media/clipe-sopranos/preview.webm",
+      "duration": 7,
+      "in": "00:01:36:00",
+      "out": "00:01:43:00"
+    },
+    "full": {
+      "mp4": "/media/clipe-sopranos/full.mp4",
+      "duration": 60.03,
+      "width": 1280,
+      "height": 720,
+      "audio": true,
+      "in": "00:00:00:00",
+      "out": "00:01:00:00"
+    },
+    "images": [],
+    "source": "Clipe/AZAM x OG RICH - SOPRANOS 4K.mp4"
+  },
+  "whynot-lab-video-1": {
+    "orientation": "vertical",
+    "width": 540,
+    "height": 960,
+    "poster": {
+      "avif": "/media/whynot-lab-video-1/poster.avif",
+      "jpg": "/media/whynot-lab-video-1/poster.jpg"
+    },
+    "preview": {
+      "mp4": "/media/whynot-lab-video-1/preview.mp4",
+      "webm": "/media/whynot-lab-video-1/preview.webm",
+      "duration": 7,
+      "in": "00:00:10:00",
+      "out": "00:00:17:00"
+    },
+    "full": {
+      "mp4": "/media/whynot-lab-video-1/full.mp4",
+      "duration": 38.6,
+      "width": 720,
+      "height": 1280,
+      "audio": true,
+      "in": "00:00:00:00",
+      "out": "00:00:39:00"
+    },
+    "images": [],
+    "source": "whynot-tiktok/WHYNOT_LAB_TikTok_final.mp4"
+  },
+  "whynot-lab-video-2": {
+    "orientation": "vertical",
+    "width": 540,
+    "height": 960,
+    "poster": {
+      "avif": "/media/whynot-lab-video-2/poster.avif",
+      "jpg": "/media/whynot-lab-video-2/poster.jpg"
+    },
+    "preview": {
+      "mp4": "/media/whynot-lab-video-2/preview.mp4",
+      "webm": "/media/whynot-lab-video-2/preview.webm",
+      "duration": 7,
+      "in": "00:00:06:00",
+      "out": "00:00:13:00"
+    },
+    "full": {
+      "mp4": "/media/whynot-lab-video-2/full.mp4",
+      "duration": 25.6,
+      "width": 720,
+      "height": 1280,
+      "audio": true,
+      "in": "00:00:00:00",
+      "out": "00:00:26:00"
+    },
+    "images": [],
+    "source": "whynot-tiktok-2/WHYNOT_LAB_TikTok2_AE_final.mp4"
+  },
+  "app-jarvis": {
+    "orientation": "imagem",
+    "width": 1280,
+    "height": 800,
+    "poster": {
+      "avif": "/media/app-jarvis/tela.avif",
+      "jpg": "/media/app-jarvis/tela.jpg"
+    },
+    "preview": null,
+    "full": null,
+    "images": [
+      {
+        "src": "/media/app-jarvis/tela.avif",
+        "fallback": "/media/app-jarvis/tela.jpg",
+        "width": 1280,
+        "height": 800,
+        "label": "Jarvis: esfera em espera, tempo de resposta, sessões e pedido de aprovação"
+      }
+    ],
+    "source": "Jarvis/docs/capturas/jarvis-tela.png (captura do app, sessões de teste)"
   }
 }
