@@ -193,7 +193,7 @@ test.describe('herói: monitor e mini timeline do reel', () => {
   test('um clipe por corte do reel, cada um levando a um trabalho, e o link do que está no monitor', async ({ page }) => {
     await page.goto('/');
     const cortes = page.locator('[data-corte]');
-    await expect(cortes).toHaveCount(9);
+    await expect(cortes).toHaveCount(16);
     for (const href of await cortes.evaluateAll((els) => els.map((e) => e.getAttribute('href')))) expect(href).toMatch(/^\/trabalhos\/[a-z0-9-]+$/);
     const noMonitor = page.locator('section[aria-labelledby="heroi-nome"] a.link-monitor');
     await expect(noMonitor).toHaveAttribute('href', '/trabalhos/clipe-eu-sou-coyote');
