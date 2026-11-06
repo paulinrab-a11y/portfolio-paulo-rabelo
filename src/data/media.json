@@ -1324,15 +1324,15 @@
     "width": 1280,
     "height": 800,
     "poster": {
-      "avif": "/media/app-jarvis/tela.avif",
-      "jpg": "/media/app-jarvis/tela.jpg"
+      "avif": "/media/app-jarvis/tela-2.avif",
+      "jpg": "/media/app-jarvis/tela-2.jpg"
     },
     "preview": null,
     "full": null,
     "images": [
       {
-        "src": "/media/app-jarvis/tela.avif",
-        "fallback": "/media/app-jarvis/tela.jpg",
+        "src": "/media/app-jarvis/tela-2.avif",
+        "fallback": "/media/app-jarvis/tela-2.jpg",
         "width": 1280,
         "height": 800,
         "label": "Jarvis: esfera em espera, tempo de resposta, sessões e pedido de aprovação"
