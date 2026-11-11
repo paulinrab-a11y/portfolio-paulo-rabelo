@@ -80,3 +80,19 @@ export const clientes: Array<{ nome: string; logo?: { src: string; largura: numb
 /** Manifesto da home, escolhido pelo Paulo em 05/10/2026 */
 /** Agência de um homem só: roteiro, edição, arte, site e social media, tudo com o Paulo */
 export const manifesto = ['Uma agência inteira cabe numa ilha de edição.', 'A minha.'] as const;
+
+/**
+ * Página /links (bio das redes). A live sai nos quatro canais ao mesmo tempo
+ * (multistream do StreamElements). Só em português: o público da live é do Brasil.
+ */
+export const live = {
+  canais: [
+    { faixa: 'V1', nome: 'Kick', valor: 'kick.com/paulinrab', href: 'https://kick.com/paulinrab' },
+    { faixa: 'V2', nome: 'YouTube', valor: '@Paulinrab', href: 'https://www.youtube.com/@Paulinrab/live' },
+    { faixa: 'V3', nome: 'Twitch', valor: 'twitch.tv/paulinrab', href: 'https://www.twitch.tv/paulinrab' },
+    { faixa: 'V4', nome: 'TikTok', valor: '@paulinrab', href: 'https://www.tiktok.com/@paulinrab/live' },
+  ],
+  // shortcut: convite do Discord expira em 11/12/2026; trocar por um convite que nunca expira
+  discord: { valor: 'discord.gg/xC4Vna3NX', href: 'https://discord.gg/xC4Vna3NX' },
+  pix: { valor: 'livepix.gg/paulinrab', href: 'https://livepix.gg/paulinrab' },
+} as const;
