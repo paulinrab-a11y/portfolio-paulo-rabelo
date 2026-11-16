@@ -18,9 +18,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { pagina: 'sobre' },
     { pagina: 'cv' },
   ];
-  return refs.flatMap((ref) => {
+  const paginas = refs.flatMap((ref) => {
     const alt = alternativas(ref);
     const languages = Object.fromEntries(idiomas.map((l) => [codigoHtml[l], `${SITE_URL}${alt[l]}`]));
     return idiomas.map((l) => ({ url: `${SITE_URL}${alt[l]}`, alternates: { languages } }));
   });
+  // /links (bio das redes da live) só existe em português
+  return [...paginas, { url: `${SITE_URL}/links` }];
 }

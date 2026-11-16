@@ -23,6 +23,7 @@ const rotas = [
   '/es/sobre-mi',
   '/zh',
   '/zh/resume',
+  '/links',
 ];
 
 test.describe('acessibilidade', () => {

@@ -88,11 +88,10 @@ export const manifesto = ['Uma agência inteira cabe numa ilha de edição.', 'A
 export const live = {
   canais: [
     { faixa: 'V1', nome: 'Kick', valor: 'kick.com/paulinrab', href: 'https://kick.com/paulinrab' },
-    { faixa: 'V2', nome: 'YouTube', valor: '@Paulinrab', href: 'https://www.youtube.com/@Paulinrab/live' },
+    { faixa: 'V2', nome: 'YouTube', valor: '@paulinrabstu', href: 'https://www.youtube.com/@paulinrabstu/live' },
     { faixa: 'V3', nome: 'Twitch', valor: 'twitch.tv/paulinrab', href: 'https://www.twitch.tv/paulinrab' },
     { faixa: 'V4', nome: 'TikTok', valor: '@paulinrab', href: 'https://www.tiktok.com/@paulinrab/live' },
   ],
-  // shortcut: convite do Discord expira em 11/12/2026; trocar por um convite que nunca expira
-  discord: { valor: 'discord.gg/xC4Vna3NX', href: 'https://discord.gg/xC4Vna3NX' },
+  discord: { valor: 'discord.gg/3Pp4ZVtbWu', href: 'https://discord.gg/3Pp4ZVtbWu' },
   pix: { valor: 'livepix.gg/paulinrab', href: 'https://livepix.gg/paulinrab' },
 } as const;
