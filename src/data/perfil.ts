@@ -93,6 +93,6 @@ export const live = {
     { faixa: 'V4', nome: 'TikTok', valor: '@paulinrab', href: 'https://www.tiktok.com/@paulinrab/live' },
   ],
   // shortcut: convite do Discord expira em 11/12/2026; trocar por um convite que nunca expira
-  discord: { valor: 'discord.gg/xC4Vna3NX', href: 'https://discord.gg/xC4Vna3NX' },
+  discord: { valor: 'discord.gg/3Pp4ZVtbWu', href: 'https://discord.gg/3Pp4ZVtbWu' },
   pix: { valor: 'livepix.gg/paulinrab', href: 'https://livepix.gg/paulinrab' },
 } as const;

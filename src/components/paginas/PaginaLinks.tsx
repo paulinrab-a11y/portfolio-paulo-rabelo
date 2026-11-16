@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { localeOg } from '@/data/idiomas';
 import { contato, live } from '@/data/perfil';
+import { imagemOg } from '@/lib/metadados';
 import { caminho } from '@/lib/rotas';
 
 const DESCRICAO = 'Live de games no Kick, no YouTube, na Twitch e no TikTok ao mesmo tempo. Discord, Pix e o resto do site.';
@@ -10,7 +12,16 @@ export const metadadosLinks: Metadata = {
   description: DESCRICAO,
   // Página só em português: sem hreflang para os outros idiomas
   alternates: { canonical: '/links' },
-  openGraph: { url: '/links', title: 'Paulinrab ao vivo', description: DESCRICAO },
+  // O Next não herda o openGraph do layout: sem repetir, o link colado no Discord sai sem imagem
+  openGraph: {
+    type: 'website',
+    siteName: 'Paulo Rabelo',
+    locale: localeOg.pt,
+    url: '/links',
+    title: 'Paulinrab ao vivo',
+    description: DESCRICAO,
+    images: [{ url: imagemOg('pt'), width: 1200, height: 630 }],
+  },
 };
 
 const externo = { target: '_blank', rel: 'noopener noreferrer' } as const;
@@ -46,7 +57,7 @@ export function PaginaLinks() {
                 {...externo}
                 className="group grid min-h-[76px] grid-cols-[2.5rem_1fr_auto] items-center gap-x-3 py-3 transition-colors duration-150 hover:bg-carvao focus-visible:bg-carvao"
               >
-                <span className="tc text-[12px] text-grafite" aria-hidden="true">
+                <span className="tc text-[12px] text-cinza" aria-hidden="true">
                   {c.faixa}
                 </span>
                 <span className="flex flex-col">
@@ -70,7 +81,7 @@ export function PaginaLinks() {
         </h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <a href={live.discord.href} {...externo} className="botao botao-rec justify-between">
-            Entrar no Discord <span className="tc normal-case tracking-normal opacity-70">{live.discord.valor.replace('discord.gg/', '')}</span>
+            Entrar no Discord <span className="tc normal-case tracking-normal">{live.discord.valor.replace('discord.gg/', '')}</span>
           </a>
           <a href={live.pix.href} {...externo} className="botao justify-between text-creme">
             Mandar um Pix <span className="tc normal-case tracking-normal text-cinza">LivePix</span>

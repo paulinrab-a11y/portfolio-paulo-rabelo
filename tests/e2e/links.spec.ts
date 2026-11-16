@@ -11,3 +11,11 @@ test('links: os quatro canais da live, Discord, Pix e o site', async ({ page }) 
   await expect(page.getByRole('link', { name: /Mandar um Pix/ })).toHaveAttribute('href', 'https://livepix.gg/paulinrab');
   await expect(page.getByRole('link', { name: 'Trabalhos' }).last()).toHaveAttribute('href', '/trabalhos');
 });
+
+test('links: imagem de compartilhamento e entrada no sitemap', async ({ page, request }) => {
+  await page.goto('/links');
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /\/og\/home\.jpg$/);
+  await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute('content', 'Paulo Rabelo');
+  const sitemap = await (await request.get('/sitemap.xml')).text();
+  expect(sitemap).toMatch(/<loc>[^<]+\/links<\/loc>/);
+});
