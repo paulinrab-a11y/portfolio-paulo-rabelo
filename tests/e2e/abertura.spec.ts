@@ -4,10 +4,23 @@ import { expect, test } from './fixtures';
 /**
  * Sem o JS do React, só o script inline do layout cuida da abertura (como
  * num celular lento antes da hidratação). Deixa os testes de toque e de
- * "Pular" independentes da velocidade da máquina.
+ * "Pular" independentes da velocidade da máquina. A rede de segurança de CSS
+ * (some sozinha em 2,6 s) fica parada: num navegador lento ela esconderia a
+ * abertura antes de o toque ou o clique chegar, e o teste não veria o "Pular".
  */
-// Só os .js: o CSS do Next 16 também fica em /_next/static/chunks
-const semReact = (page: Page) => page.route(/\/_next\/static\/chunks\/.*\.js(\?|$)/, (rota) => rota.abort());
+const semReact = async (page: Page) => {
+  await page.addInitScript(() => {
+    new MutationObserver((_, observador) => {
+      if (!document.head) return;
+      observador.disconnect();
+      const estilo = document.createElement('style');
+      estilo.textContent = '.abertura{animation-play-state:paused!important}';
+      document.head.append(estilo);
+    }).observe(document, { childList: true, subtree: true });
+  });
+  // Só os .js: o CSS do Next 16 também fica em /_next/static/chunks
+  await page.route(/\/_next\/static\/chunks\/.*\.js(\?|$)/, (rota) => rota.abort());
+};
 
 test.describe('abertura', () => {
   test('aparece na primeira visita, some em até 1,8 s e não volta na mesma sessão', async ({ page }) => {
@@ -47,6 +60,8 @@ test.describe('abertura', () => {
   test('depois da abertura, a página volta ao normal (voltar à home não espera de novo)', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByTestId('abertura')).toBeHidden({ timeout: 3_000 });
+    // O relógio de 5 s conta do fim da animação, que em navegador lento chega depois da rede de segurança
+    await expect(page.locator('html')).toHaveAttribute('data-abertura-fim', '');
     await expect(page.locator('html')).not.toHaveAttribute('data-abertura', /.*/, { timeout: 7_000 });
   });
 

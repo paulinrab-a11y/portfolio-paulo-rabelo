@@ -258,6 +258,8 @@ test.describe('destaques como película', () => {
     test.skip(isMobile, 'Película só no desktop com mouse');
     await page.goto('/');
     await page.locator('#trabalhos').scrollIntoViewIfNeeded();
+    // A película montada: antes disso o foco não tem para onde levar a rolagem
+    await expect(page.locator('[data-palco-3d]')).toHaveCount(1);
     await page.locator('[data-quadro="3"] a').focus();
     await expect.poll(() => sobAgulha(page)).toEqual({ i: 3, sob: true });
   });

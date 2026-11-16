@@ -87,6 +87,13 @@ export function Selecionados({ itens, lang }: Props) {
         const tween = gsap.to(el, {
           x: () => -distancia(),
           ease: 'none',
+          // No tween e não no ScrollTrigger: com scrub, a película segue andando depois que a
+          // rolagem para, e o onUpdate do ScrollTrigger só roda quando a rolagem muda
+          onUpdate: () => {
+            const x = Number(gsap.getProperty(el, 'x'));
+            acender(quadroNoAr(x));
+            inclinar(x);
+          },
           scrollTrigger: {
             trigger: secao,
             start: 'top top',
@@ -104,14 +111,14 @@ export function Selecionados({ itens, lang }: Props) {
                 const alvos = c.map((x) => (x - c[0]) / d);
                 return alvos.reduce((a, b) => (Math.abs(b - p) < Math.abs(a - p) ? b : a), alvos[0]);
               },
+              // Sem inércia: ela projeta a parada pela velocidade do scrub (não da rolagem) e, em
+              // máquina lenta ou depois do pulo do teclado, arremessava a película até o fim do rolo
+              inertia: false,
               duration: { min: 0.2, max: 0.5 },
               ease: 'power2.out',
             },
             onUpdate: (self) => {
               progresso.current = self.progress;
-              const x = Number(gsap.getProperty(el, 'x'));
-              acender(quadroNoAr(x));
-              inclinar(x);
             },
           },
         });
